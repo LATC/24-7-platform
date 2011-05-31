@@ -12,15 +12,14 @@
     <Prefix namespace="http://www.w3.org/2004/02/skos/core#" id="skos"></Prefix>
     <Prefix namespace="http://xmlns.com/foaf/0.1/" id="foaf"></Prefix>
     <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
-    <Prefix namespace="http://dbpedia.org/ontology/" id="dbpedia-owl"></Prefix>
+	<Prefix namespace="http://dbpedia.org/ontology/" id="dbpedia-owl"></Prefix>
     <Prefix namespace="http://rdf.geospecies.org/ont/geospecies#" id="geospecies"></Prefix>
   </Prefixes>
   <DataSources>
     <DataSource type="sparqlEndpoint" id="CORDIS">
-      <Param value="http://160.45.137.73:8890/sparql" name="endpointURI"></Param>
+      <Param value="http://www4.wiwiss.fu-berlin.de/cordis/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
-      <Param value="http://relationfinder" name="graph"></Param>
     </DataSource>
     <DataSource type="sparqlEndpoint" id="DBpedia">
       <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
@@ -39,33 +38,73 @@
         <RestrictTo>?b rdf:type cordis:Organization</RestrictTo>
       </TargetDataset>
       <LinkCondition>
-        <Aggregate type="max" required="false" weight="1">
-          <Compare required="false" metric="jaro" weight="1">
-            <TransformInput function="lowerCase">
-              <Input path="?b/rdfs:label"></Input>
-            </TransformInput>
-            <TransformInput function="lowerCase">
-              <TransformInput function="replace">
-                <TransformInput function="stripUriPrefix">
-                  <Input path="?a\dbpedia-prop:redirect"></Input>
-                </TransformInput>
-                <Param value="_" name="search"></Param>
-                <Param value=" " name="replace"></Param>
-              </TransformInput>
-            </TransformInput>
-          </Compare>
-          <Compare required="false" metric="jaroWinkler" weight="1">
-            <TransformInput function="lowerCase">
-              <Input path="?a/rdfs:label"></Input>
-            </TransformInput>
-            <TransformInput function="lowerCase">
-              <Input path="?b/rdfs:label"></Input>
-            </TransformInput>
-          </Compare>
+        <Aggregate type="average" weight="1">
+			<Aggregate type="max" required="true" weight="1">
+			  <Compare required="false" metric="jaro" weight="1">
+				<TransformInput function="lowerCase">
+				  <Input path="?b/rdfs:label"></Input>
+				</TransformInput>
+				   <TransformInput function="lowerCase">
+				  <Input path="?a\dbpedia-prop:wikiPageRedirects/rdfs:label"></Input>
+				</TransformInput>
+			  </Compare>
+			  <Compare required="false" metric="jaroWinkler" weight="1">
+				<TransformInput function="lowerCase">
+				  <Input path="?a/rdfs:label"></Input>
+				</TransformInput>
+				<TransformInput function="lowerCase">
+				  <Input path="?b/rdfs:label"></Input>
+				</TransformInput>
+			  </Compare>
+			</Aggregate>
+			<Aggregate type="max" required="true" weight="1">
+			  <Compare required="false" metric="jaroWinkler" weight="1">
+				<TransformInput function="lowerCase">
+				 <TransformInput function="regexReplace">
+				  <TransformInput function="replace">
+				   <Input path="?a/foaf:homepage"></Input>
+					<Param value="http://" name="search"></Param>
+					<Param value="" name="replace"></Param>
+				  </TransformInput>
+				 <Param name="regex" value="([/?].*)" />
+				 <Param name="replace" value="" />
+				 </TransformInput>
+				</TransformInput>
+				<TransformInput function="lowerCase">
+				 <TransformInput function="regexReplace">
+				  <TransformInput function="replace">
+				   <Input path="?b/cordis:url"></Input>
+					<Param value="http://" name="search"></Param>
+					<Param value="" name="replace"></Param>
+				  </TransformInput>
+				 <Param name="regex" value="([/?].*)" />
+				 <Param name="replace" value="" />
+				 </TransformInput>
+				</TransformInput>
+			  </Compare>
+			  <Compare required="false" metric="jaroWinkler" weight="1">
+				<TransformInput function="lowerCase">
+				  <Input path="?b/rdfs:label"></Input>
+				</TransformInput>
+				<TransformInput function="lowerCase">
+				 <Input path="?a\dbpedia-prop:coordinator/rdfs:label"></Input>
+				</TransformInput>
+			  </Compare>
+		  </Aggregate>
         </Aggregate>
       </LinkCondition>
-      <Filter threshold="0.95"></Filter>
-      <Outputs> </Outputs>
+<Filter threshold="0.95" />
+
+      <Outputs>
+        <Output maxConfidence="0.98" type="file" >
+          <Param name="file" value="cordis_dbpedia_organizations_verify.xml"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output minConfidence="0.98" type="file">
+          <Param name="file" value="cordis_dbpedia_organizations.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+      </Outputs>
     </Interlink>
   </Interlinks>
 </Silk>
