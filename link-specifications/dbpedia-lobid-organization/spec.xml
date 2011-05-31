@@ -1,0 +1,192 @@
+<Silk>
+  <Prefixes>
+    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://umbel.org/umbel/sc/" id="umbel-sc"></Prefix>
+    <Prefix namespace="http://dbpedia.org/property/" id="dbpedia-prop"></Prefix>
+    <Prefix namespace="http://purl.org/uF/hCard/terms/" id="hcterms"></Prefix>
+    <Prefix namespace="http://linkedgeodata.org/triplify/" id="linkedgeodata"></Prefix>
+    <Prefix namespace="http://purl.org/dc/dcmitype/" id="dctype"></Prefix>
+    <Prefix namespace="http://purl.org/dc/terms/" id="dc"></Prefix>
+    <Prefix namespace="http://dbpedia.org/ontology/" id="dbpedia"></Prefix>
+    <Prefix namespace="http://www.geonames.org/ontology#" id="geonames"></Prefix>
+    <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"></Prefix>
+    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+    <Prefix namespace="http://dbpedia.org/class/yago/" id="yago"></Prefix>
+    <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="wgs84"></Prefix>
+    <Prefix namespace="http://www.w3.org/2004/02/skos/core#" id="skos"></Prefix>
+    <Prefix namespace="http://www.w3.org/2006/vcard/ns#" id="v"></Prefix>
+    <Prefix namespace="http://xmlns.com/foaf/0.1/" id="foaf"></Prefix>
+    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+    <Prefix namespace="http://purl.org/ontology/mo/" id="mo"></Prefix>
+    <Prefix namespace="http://linkedgeodata.org/ontology/" id="lgdo"></Prefix>
+    <Prefix namespace="http://dbpedia.org/ontology/" id="dbpedia-owl"></Prefix>
+    <Prefix namespace="http://data.linkedmdb.org/resource/movie/" id="linkedmdb"></Prefix>
+    <Prefix namespace="http://linkedgeodata.org/property/" id="lgdp"></Prefix>
+  </Prefixes>
+  <DataSources>
+    <DataSource type="sparqlEndpoint" id="dbpedia_FU">
+      <Param value="http://160.45.137.73:8890/sparql" name="endpointURI"></Param>
+      <Param value="http://dbpedia.org" name="graph"></Param>
+      <Param value="100" name="retryCount"></Param>
+      <Param value="1000" name="retryPause"></Param>
+    </DataSource>
+    <DataSource type="sparqlEndpoint" id="lobid">
+      <Param value="http://lobid.org/sparql/" name="endpointURI"></Param>
+      <Param value="100" name="retryCount"></Param>
+      <Param value="1000" name="retryPause"></Param>
+    </DataSource>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="dbpedia-lobid-organization">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset var="a" dataSource="dbpedia_FU">
+        <RestrictTo>
+          {?a dbpedia-prop:wikiPageUsesTemplate &lt;http://dbpedia.org/resource/Template:Infobox_library&gt;} UNION {?a rdf:type yago:NationalLibraries} UNION {?a rdf:type yago:Library103660909} UNION {?a dbpedia-prop:wikiPageUsesTemplate &lt;http://dbpedia.org/resource/Template:Infobox_University&gt;} UNION {?a rdf:type dbpedia-owl:EducationalInstitution} UNION {?a rdf:type yago:Building102913152} UNION {?a rdf:type dbpedia-owl:Building} UNION {?a rdf:type dbpedia-owl:Museum}.
+        </RestrictTo>
+      </SourceDataset>
+      <TargetDataset var="b" dataSource="lobid">
+        <RestrictTo>?b rdf:type foaf:Organization.</RestrictTo>
+      </TargetDataset>
+      <LinkCondition>
+        <Aggregate type="average" required="false" weight="1">
+          <Aggregate type="max" required="false" weight="1">
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="lowerCase">
+                <Input path="?a/rdfs:label@de"></Input>
+              </TransformInput>
+              <TransformInput function="lowerCase">
+                <Input path="?b/foaf:name"></Input>
+              </TransformInput>
+            </Compare>
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="lowerCase">
+                <Input path="?a/rdfs:label"></Input>
+              </TransformInput>
+              <TransformInput function="lowerCase">
+                <Input path="?b/foaf:name"></Input>
+              </TransformInput>
+            </Compare>
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="lowerCase">
+                <TransformInput function="replace">
+                  <TransformInput function="stripUriPrefix">
+                    <Input path="?a\dbpedia-prop:redirect"></Input>
+                  </TransformInput>
+                  <Param value="_" name="search"></Param>
+                  <Param value=" " name="replace"></Param>
+                </TransformInput>
+              </TransformInput>
+              <TransformInput function="lowerCase">
+                <Input path="?b/foaf:name"></Input>
+              </TransformInput>
+            </Compare>
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="lowerCase">
+                <Input path="?a/dbpedia-prop:title"></Input>
+              </TransformInput>
+              <TransformInput function="lowerCase">
+                <Input path="?b/foaf:name"></Input>
+              </TransformInput>
+            </Compare>
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="lowerCase">
+                <Input path="?a/dbpedia-prop:libraryName"></Input>
+              </TransformInput>
+              <TransformInput function="lowerCase">
+                <Input path="?b/foaf:name"></Input>
+              </TransformInput>
+            </Compare>
+          </Aggregate>
+          <Aggregate type="max" required="false" weight="1">
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="stripPostfix">
+                <Input path="?a/dbpedia-prop:website"></Input>
+                <Param value="/" name="postfix"></Param>
+              </TransformInput>
+              <TransformInput function="stripPostfix">
+                <Input path="?b/foaf:page"></Input>
+                <Param value="/" name="postfix"></Param>
+              </TransformInput>
+            </Compare>
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="lowerCase">
+                <Input path="?a/dbpedia-prop:location"></Input>
+              </TransformInput>
+              <TransformInput function="lowerCase">
+                <Input path="?b/hcterms:hasCard/v:VCard/v:adr/v:Work/v:locality"></Input>
+              </TransformInput>
+            </Compare>
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="lowerCase">
+                <TransformInput function="replace">
+                  <TransformInput function="stripUriPrefix">
+                    <Input path="?a/dbpedia:location"></Input>
+                  </TransformInput>
+                  <Param value="_" name="search"></Param>
+                  <Param value=" " name="replace"></Param>
+                </TransformInput>
+              </TransformInput>
+              <TransformInput function="lowerCase">
+                <Input path="?b/hcterms:hasCard/v:VCard/v:adr/v:Work/v:locality"></Input>
+              </TransformInput>
+            </Compare>
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="lowerCase">
+                <Input path="?a/dbpedia-prop:city"></Input>
+              </TransformInput>
+              <TransformInput function="lowerCase">
+                <Input path="?b/hcterms:hasCard/v:VCard/v:adr/v:Work/v:locality"></Input>
+              </TransformInput>
+            </Compare>
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="lowerCase">
+                <TransformInput function="replace">
+                  <Input path="?a/dbpedia-prop:libraryName"></Input>
+                  <Param value=" Public Library" name="search"></Param>
+                  <Param value="" name="replace"></Param>
+                </TransformInput>
+              </TransformInput>
+              <TransformInput function="lowerCase">
+                <Input path="?b/hcterms:hasCard/v:VCard/v:adr/v:Work/v:locality"></Input>
+              </TransformInput>
+            </Compare>
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="lowerCase">
+                <TransformInput function="replace">
+                  <Input path="?a/dbpedia-prop:libraryName"></Input>
+                  <Param value=" Community College" name="search"></Param>
+                  <Param value="" name="replace"></Param>
+                </TransformInput>
+              </TransformInput>
+              <TransformInput function="lowerCase">
+                <Input path="?b/hcterms:hasCard/v:VCard/v:adr/v:Work/v:locality"></Input>
+              </TransformInput>
+            </Compare>
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="lowerCase">
+                <Input path="?b/geo:location/rdf:Description/geo:lat"></Input>
+              </TransformInput>
+              <Input path="?a/geo:lat"></Input>
+            </Compare>
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="lowerCase">
+                <Input path="?b/geo:location/rdf:Description/geo:long"></Input>
+              </TransformInput>
+              <Input path="?a/geo:long"></Input>
+            </Compare>
+            <Compare required="false" metric="levenshtein" weight="1">
+              <TransformInput function="lowerCase">
+                <Input path="?a/dbpedia-prop:country"></Input>
+              </TransformInput>
+              <TransformInput function="lowerCase">
+                <Input path="?b/hcterms:hasCard/v:VCard/v:adr/v:Work/v:country-name"></Input>
+              </TransformInput>
+            </Compare>
+          </Aggregate>
+        </Aggregate>
+      </LinkCondition>
+      <Filter threshold="0.5"></Filter>
+      <Outputs> </Outputs>
+    </Interlink>
+  </Interlinks>
+</Silk>
