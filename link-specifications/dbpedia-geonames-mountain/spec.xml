@@ -25,13 +25,14 @@
   </Prefixes>
   <DataSources>
     <DataSource type="sparqlEndpoint" id="dbpedia">
-      <Param value="http://160.45.137.73:8890/sparql" name="endpointURI"></Param>
-      <Param value="http://dbpedia.org" name="graph"></Param>
+      <!-- <Param value="http://160.45.137.73:8890/sparql" name="endpointURI"></Param> -->
+      <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
+	  <Param value="http://dbpedia.org" name="graph"></Param>
       <Param value="100" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
     <DataSource type="sparqlEndpoint" id="geonames">
-      <Param value="http://160.45.137.77:8890/sparql" name="endpointURI"></Param>
+      <Param value="http://160.45.137.69:8890/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
       <Param value="http://geonames.org" name="graph"></Param>

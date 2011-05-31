@@ -25,13 +25,14 @@
   </Prefixes>
   <DataSources>
     <DataSource type="sparqlEndpoint" id="dbpedia_FU">
-      <Param value="http://160.45.137.73:8890/sparql" name="endpointURI"></Param>
-      <Param value="http://dbpedia.org" name="graph"></Param>
+      <!-- <Param value="http://160.45.137.73:8890/sparql" name="endpointURI"></Param> -->
+      <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
+	  <Param value="http://dbpedia.org" name="graph"></Param>
       <Param value="100" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
     <DataSource type="sparqlEndpoint" id="geonames">
-      <Param value="http://160.45.137.77:8890/sparql" name="endpointURI"></Param>
+      <Param value="http://160.45.137.69:8890/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
       <Param value="http://geonames.org" name="graph"></Param>
@@ -44,7 +45,7 @@
         <RestrictTo>?a rdf:type dbpedia-owl:Country.</RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="geonames">
-        <RestrictTo>{?a geonames:featureCode geonames:PCLI} UNION {?a geonames:featureCode geonames:PCLD}.</RestrictTo>
+        <RestrictTo>{?b geonames:featureCode geonames:PCLI} UNION {?b geonames:featureCode geonames:PCLD}.</RestrictTo>
       </TargetDataset>
       <LinkCondition>
         <Aggregate type="max" required="false" weight="1">
@@ -53,7 +54,7 @@
               <Input path="?a/rdfs:label"></Input>
             </TransformInput>
             <TransformInput function="lowerCase">
-              <Input path="?a/geonames:name"></Input>
+              <Input path="?b/geonames:name"></Input>
             </TransformInput>
           </Compare>
           <Compare required="false" metric="levenshtein" weight="1">
@@ -61,7 +62,7 @@
               <Input path="?a/rdfs:label"></Input>
             </TransformInput>
             <TransformInput function="lowerCase">
-              <Input path="?a/geonames:alternateName"></Input>
+              <Input path="?b/geonames:alternateName"></Input>
             </TransformInput>
           </Compare>
           <Compare required="false" metric="levenshtein" weight="1">
@@ -73,7 +74,7 @@
               </TransformInput>
             </TransformInput>
             <TransformInput function="lowerCase">
-              <Input path="?a/geonames:name"></Input>
+              <Input path="?b/geonames:name"></Input>
             </TransformInput>
           </Compare>
         </Aggregate>

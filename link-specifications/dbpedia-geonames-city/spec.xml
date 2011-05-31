@@ -31,10 +31,11 @@
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
     <DataSource type="sparqlEndpoint" id="geonames">
-      <Param value="http://160.45.137.69:8890/sparql" name="endpointURI"></Param>
-      <Param value="3" name="retryCount"></Param>
-      <Param value="1000" name="retryPause"></Param>
+      <!-- <Param value="http://160.45.137.69:8890/sparql" name="endpointURI"></Param> -->
+	  <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
       <Param value="http://geonames.org" name="graph"></Param>
+	  <Param value="100" name="retryCount"></Param>
+      <Param value="1000" name="retryPause"></Param>
     </DataSource>
   </DataSources>
   <Interlinks>
@@ -45,7 +46,7 @@
       </SourceDataset>
       <TargetDataset var="b" dataSource="geonames">
         <RestrictTo>
-          {?a geonames:featureCode geonames:PPLF} UNION {?a geonames:featureCode geonames:PPLG} UNION {?a geonames:featureCode geonames:PPL} UNION {?a geonames:featureCode geonames:PPLA3} UNION {?a geonames:featureCode geonames:PPLS} UNION {?a geonames:featureCode geonames:PPLR} UNION {?a geonames:featureCode geonames:PPLL} UNION {?a geonames:featureCode geonames:PPLW} UNION {?a geonames:featureCode geonames:PPLA2} UNION {?a geonames:featureCode geonames:PPLA4} UNION {?a geonames:featureCode geonames:PPLA}.
+          {?b geonames:featureCode geonames:PPLF} UNION {?b geonames:featureCode geonames:PPLG} UNION {?b geonames:featureCode geonames:PPL} UNION {?b geonames:featureCode geonames:PPLA3} UNION {?b geonames:featureCode geonames:PPLS} UNION {?b geonames:featureCode geonames:PPLR} UNION {?b geonames:featureCode geonames:PPLL} UNION {?b geonames:featureCode geonames:PPLW} UNION {?b geonames:featureCode geonames:PPLA2} UNION {?b geonames:featureCode geonames:PPLA4} UNION {?b geonames:featureCode geonames:PPLA}.
         </RestrictTo>
       </TargetDataset>
       <LinkCondition>
@@ -59,7 +60,7 @@
               </TransformInput>
             </TransformInput>
             <TransformInput function="lowerCase">
-              <Input path="?a/geonames:name"></Input>
+              <Input path="?b/geonames:name"></Input>
             </TransformInput>
           </Compare>
           <Compare required="false" metric="levenshtein" weight="1">
@@ -67,12 +68,12 @@
               <Input path="?a/foaf:name"></Input>
             </TransformInput>
             <TransformInput function="lowerCase">
-              <Input path="?a/geonames:alternateName"></Input>
+              <Input path="?b/geonames:alternateName"></Input>
             </TransformInput>
           </Compare>
           <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
-              <Input path="?a/geonames:name"></Input>
+              <Input path="?b/geonames:name"></Input>
             </TransformInput>
             <TransformInput function="lowerCase">
               <Input path="?a/foaf:name"></Input>
@@ -83,7 +84,7 @@
               <Input path="?a/rdfs:label"></Input>
             </TransformInput>
             <TransformInput function="lowerCase">
-              <Input path="?a/geonames:alternateName"></Input>
+              <Input path="?b/geonames:alternateName"></Input>
             </TransformInput>
           </Compare>
           <Compare required="false" metric="levenshtein" weight="1">
@@ -91,12 +92,12 @@
               <Input path="?a/rdfs:label"></Input>
             </TransformInput>
             <TransformInput function="lowerCase">
-              <Input path="?a/geonames:name"></Input>
+              <Input path="?b/geonames:name"></Input>
             </TransformInput>
           </Compare>
           <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
-              <Input path="?a/geonames:alternateName"></Input>
+              <Input path="?b/geonames:alternateName"></Input>
             </TransformInput>
             <TransformInput function="lowerCase">
               <TransformInput function="replace">
@@ -108,8 +109,17 @@
           </Compare>
         </Aggregate>
       </LinkCondition>
-      <Filter threshold="0.5"></Filter>
-      <Outputs> </Outputs>
+      <Filter threshold="0.95"></Filter>
+      <Outputs>
+        <Output maxConfidence="0.98" type="file" >
+          <Param name="file" value="dbpedia-geonames-city.xml"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output minConfidence="0.98" type="file">
+          <Param name="file" value="dbpedia-geonames-city.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+	  </Outputs>
     </Interlink>
   </Interlinks>
 </Silk>
