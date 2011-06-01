@@ -24,7 +24,7 @@
     <Prefix namespace="http://linkedgeodata.org/property/" id="lgdp"></Prefix>
   </Prefixes>
   <DataSources>
-    <DataSource type="sparqlEndpoint" id="dbpedia_FU">
+    <DataSource type="sparqlEndpoint" id="dbpedia">
       <!-- <Param value="http://160.45.137.73:8890/sparql" name="endpointURI"></Param> -->
 	  <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
       <Param value="http://dbpedia.org" name="graph"></Param>
@@ -50,6 +50,7 @@
         </RestrictTo>
       </TargetDataset>
       <LinkCondition>
+	  <Aggregate type="average" required="false" weight="1">
         <Aggregate type="max" required="false" weight="1">
           <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
@@ -100,6 +101,24 @@
             </TransformInput>
           </Compare>
         </Aggregate>
+				<Aggregate type="max" required="false" weight="1">
+		 <Compare metric="wgs84" required="true">
+  <TransformInput function="concat">
+   <Input path="?a/wgs84:lat" />
+   <Input path="?a/wgs84:long" />
+   <Param name="glue" value=" " />
+  </TransformInput>
+  <TransformInput function="concat">
+   <Input path="?b/wgs84:lat" />
+   <Input path="?b/wgs84:long" />
+   <Param name="glue" value=" " />
+  </TransformInput>
+  <Param name="unit" value="km" />
+  <Param name="threshold" value="10" />
+  <Param name="curveStyle" value="linear" />
+ </Compare>
+ </Aggregate>
+ </Aggregate>
       </LinkCondition>
       <Filter threshold="0.95"></Filter>
       <Outputs> </Outputs>
