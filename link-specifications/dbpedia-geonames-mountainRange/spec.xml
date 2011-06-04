@@ -39,16 +39,16 @@
     </DataSource>
   </DataSources>
   <Interlinks>
-    <Interlink id="dbpedia-geonames-mountain">
+    <Interlink id="dbpedia-geonames-mountainRange">
       <LinkType>owl:sameAs</LinkType>
       <SourceDataset var="a" dataSource="dbpedia">
         <RestrictTo>
-          {?a rdf:type dbpedia-owl:Mountain} UNION {?a rdf:type yago:Mountain109359803}.
+          {?a rdf:type dbpedia-owl:MountainRange} UNION {?a rdf:type yago:GeoclassMountains}.
         </RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="geonames">
         <RestrictTo>
-          {?b geonames:featureCode geonames:HLL} UNION {?b geonames:featureCode geonames:MT}.
+          {?b geonames:featureCode geonames:HLLS} UNION {?b geonames:featureCode geonames:MTS}.
         </RestrictTo>
       </TargetDataset>
       <LinkCondition>
@@ -109,23 +109,23 @@
                 <Input path="?a\dbpedia:wikiPageRedirects"></Input>
                 <Param value="_" name="search"></Param>
                 <Param value=" " name="replace"></Param>
+              </TransformInput>
 			  </TransformInput>
             </TransformInput>
-			</TransformInput>
             <TransformInput function="lowerCase">
               <Input path="?b/geonames:name"></Input>
             </TransformInput>
           </Compare>
           <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
-			<TransformInput function="stripUriPrefix">
+			<TransformInput function="stripUriPrefix">			
               <TransformInput function="replace">
                 <Input path="?a\dbpedia:wikiPageRedirects"></Input>
                 <Param value="_" name="search"></Param>
                 <Param value=" " name="replace"></Param>
               </TransformInput>
-			</TransformInput>
-			</TransformInput>
+			  </TransformInput>
+            </TransformInput>
             <TransformInput function="lowerCase">
               <Input path="?b/geonames:alternateName"></Input>
             </TransformInput>
@@ -144,7 +144,7 @@
    <Param name="glue" value=" " />
   </TransformInput>
   <Param name="unit" value="km" />
-  <Param name="threshold" value="40" />
+  <Param name="threshold" value="400" />
   <Param name="curveStyle" value="linear" />
  </Compare>
  </Aggregate>
@@ -153,11 +153,11 @@
       <Filter threshold="0.90"></Filter>
       <Outputs>
 		<Output maxConfidence="0.92" type="file" >
-          <Param name="file" value="dbpedia-geonames-mountain-verify.xml"/>
+          <Param name="file" value="dbpedia-geonames-mountainRange-verify.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
         <Output minConfidence="0.92" type="file">
-          <Param name="file" value="dbpedia-geonames-mountain.nt"/>
+          <Param name="file" value="dbpedia-geonames-mountainRange.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>
 		</Outputs>

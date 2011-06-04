@@ -57,11 +57,13 @@
         <Aggregate type="max" required="false" weight="1">
           <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
+			<TransformInput function="stripUriPrefix">
               <TransformInput function="replace">
                 <Input path="?a\dbpedia:wikiPageRedirects"></Input>
                 <Param value="_" name="search"></Param>
                 <Param value=" " name="replace"></Param>
               </TransformInput>
+			</TransformInput>
             </TransformInput>
             <TransformInput function="lowerCase">
               <Input path="?b/geonames:name"></Input>
@@ -104,11 +106,13 @@
               <Input path="?b/geonames:alternateName"></Input>
             </TransformInput>
             <TransformInput function="lowerCase">
+			<TransformInput function="stripUriPrefix">
               <TransformInput function="replace">
                 <Input path="?a\dbpedia:wikiPageRedirects"></Input>
                 <Param value="_" name="search"></Param>
                 <Param value=" " name="replace"></Param>
               </TransformInput>
+			  </TransformInput>
             </TransformInput>
           </Compare>
         </Aggregate>

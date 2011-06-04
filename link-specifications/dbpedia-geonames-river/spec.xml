@@ -41,7 +41,7 @@
   <Interlinks>
     <Interlink id="dbpedia-geonames-river">
       <LinkType>owl:sameAs</LinkType>
-      <SourceDataset var="a" dataSource="dbpedia_FU">
+      <SourceDataset var="a" dataSource="dbpedia">
         <RestrictTo>?a rdf:type dbpedia-owl:River.</RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="geonames">
@@ -49,7 +49,7 @@
           {?b geonames:featureCode geonames:STMC} UNION {?b geonames:featureCode geonames:STM} UNION {?b geonames:featureCode geonames:STMB} UNION {?b geonames:featureCode geonames:STMSB} UNION {?b geonames:featureCode geonames:STRT} UNION {?b geonames:featureCode geonames:STMH} UNION {?b geonames:featureCode geonames:STMX} UNION {?b geonames:featureCode geonames:STMA} UNION {?b geonames:featureCode geonames:STMIX} UNION {?b geonames:featureCode geonames:STMQ} UNION {?b geonames:featureCode geonames:STMS} UNION {?b geonames:featureCode geonames:STMD} UNION {?b geonames:featureCode geonames:STMM} UNION {?b geonames:featureCode geonames:STMI}.
         </RestrictTo>
       </TargetDataset>
-      <LinkCondition>
+<LinkCondition>
 	  <Aggregate type="average" required="false" weight="1">
         <Aggregate type="max" required="false" weight="1">
           <Compare required="false" metric="levenshtein" weight="1">
@@ -57,7 +57,7 @@
               <Input path="?a/foaf:name"></Input>
             </TransformInput>
             <TransformInput function="lowerCase">
-              <Input path="?b/geonames:name"></Input>
+              <Input path="?b/geonames:alternateName"></Input>
             </TransformInput>
           </Compare>
           <Compare required="false" metric="levenshtein" weight="1">
@@ -65,6 +65,22 @@
               <Input path="?a/foaf:name"></Input>
             </TransformInput>
             <TransformInput function="lowerCase">
+              <Input path="?b/geonames:name"></Input>
+            </TransformInput>
+          </Compare>
+          <Compare required="false" metric="levenshtein" weight="1">
+            <TransformInput function="lowerCase">
+              <Input path="?a/dbpedia-prop:name"></Input>
+            </TransformInput>
+            <TransformInput function="lowerCase">
+              <Input path="?b/geonames:name"></Input>
+            </TransformInput>
+          </Compare>
+          <Compare required="false" metric="levenshtein" weight="1">
+            <TransformInput function="lowerCase">
+              <Input path="?a/dbpedia-prop:name"></Input>
+            </TransformInput>
+            <TransformInput function="lowerCase">
               <Input path="?b/geonames:alternateName"></Input>
             </TransformInput>
           </Compare>
@@ -86,16 +102,28 @@
           </Compare>
           <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
-              <Input path="?a/dbpedia-prop:name"></Input>
+			<TransformInput function="stripUriPrefix">
+              <TransformInput function="replace">
+                <Input path="?a\dbpedia:wikiPageRedirects"></Input>
+                <Param value="_" name="search"></Param>
+                <Param value=" " name="replace"></Param>
+			  </TransformInput>
             </TransformInput>
+			</TransformInput>
             <TransformInput function="lowerCase">
               <Input path="?b/geonames:name"></Input>
             </TransformInput>
           </Compare>
           <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
-              <Input path="?a/dbpedia-prop:name"></Input>
-            </TransformInput>
+			<TransformInput function="stripUriPrefix">
+              <TransformInput function="replace">
+                <Input path="?a\dbpedia:wikiPageRedirects"></Input>
+                <Param value="_" name="search"></Param>
+                <Param value=" " name="replace"></Param>
+              </TransformInput>
+			</TransformInput>
+			</TransformInput>
             <TransformInput function="lowerCase">
               <Input path="?b/geonames:alternateName"></Input>
             </TransformInput>
@@ -114,14 +142,23 @@
    <Param name="glue" value=" " />
   </TransformInput>
   <Param name="unit" value="km" />
-  <Param name="threshold" value="10" />
+  <Param name="threshold" value="1000" />
   <Param name="curveStyle" value="linear" />
  </Compare>
  </Aggregate>
  </Aggregate>
       </LinkCondition>
-      <Filter threshold="0.95"></Filter>
-      <Outputs> </Outputs>
+      <Filter threshold="0.90"></Filter>
+      <Outputs>
+		<Output maxConfidence="0.92" type="file" >
+          <Param name="file" value="dbpedia-geonames-river-verify.xml"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output minConfidence="0.92" type="file">
+          <Param name="file" value="dbpedia-geonames-river.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+		</Outputs>
     </Interlink>
   </Interlinks>
 </Silk>

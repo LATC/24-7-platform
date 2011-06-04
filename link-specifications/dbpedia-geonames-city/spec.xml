@@ -54,11 +54,13 @@
         <Aggregate type="max" required="false" weight="1">
           <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
+			<TransformInput function="stripUriPrefix">
               <TransformInput function="replace">
                 <Input path="?a\dbpedia:wikiPageRedirects"></Input>
                 <Param value="_" name="search"></Param>
                 <Param value=" " name="replace"></Param>
               </TransformInput>
+			  </TransformInput>
             </TransformInput>
             <TransformInput function="lowerCase">
               <Input path="?b/geonames:name"></Input>
@@ -101,11 +103,13 @@
               <Input path="?b/geonames:alternateName"></Input>
             </TransformInput>
             <TransformInput function="lowerCase">
+			<TransformInput function="stripUriPrefix">
               <TransformInput function="replace">
                 <Input path="?a\dbpedia:wikiPageRedirects"></Input>
                 <Param value="_" name="search"></Param>
                 <Param value=" " name="replace"></Param>
               </TransformInput>
+			  </TransformInput>
             </TransformInput>
           </Compare>
         </Aggregate>
@@ -122,19 +126,19 @@
    <Param name="glue" value=" " />
   </TransformInput>
   <Param name="unit" value="km" />
-  <Param name="threshold" value="10" />
+  <Param name="threshold" value="100" />
   <Param name="curveStyle" value="linear" />
  </Compare>
  </Aggregate>
  </Aggregate>
       </LinkCondition>
-      <Filter threshold="0.95"></Filter>
+      <Filter threshold="0.90"></Filter>
       <Outputs>
-        <Output maxConfidence="0.98" type="file" >
+        <Output maxConfidence="0.92" type="file" >
           <Param name="file" value="dbpedia-geonames-city.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
-        <Output minConfidence="0.98" type="file">
+        <Output minConfidence="0.92" type="file">
           <Param name="file" value="dbpedia-geonames-city.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>

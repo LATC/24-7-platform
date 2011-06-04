@@ -26,8 +26,8 @@
   <DataSources>
     <DataSource type="sparqlEndpoint" id="dbpedia">
       <!-- <Param value="http://160.45.137.73:8890/sparql" name="endpointURI"></Param> -->
-      <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
-	  <Param value="http://dbpedia.org" name="graph"></Param>
+	  <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
+      <Param value="http://dbpedia.org" name="graph"></Param>
       <Param value="100" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
@@ -39,19 +39,17 @@
     </DataSource>
   </DataSources>
   <Interlinks>
-    <Interlink id="dbpedia-geonames-mountain">
+    <Interlink id="dbpedia-geonames-island">
       <LinkType>owl:sameAs</LinkType>
       <SourceDataset var="a" dataSource="dbpedia">
-        <RestrictTo>
-          {?a rdf:type dbpedia-owl:Mountain} UNION {?a rdf:type yago:Mountain109359803}.
-        </RestrictTo>
+        <RestrictTo>?a rdf:type dbpedia-owl:Island.</RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="geonames">
         <RestrictTo>
-          {?b geonames:featureCode geonames:HLL} UNION {?b geonames:featureCode geonames:MT}.
-        </RestrictTo>
+          ?b geonames:featureCode geonames:ISL.  
+		 </RestrictTo>
       </TargetDataset>
-      <LinkCondition>
+<LinkCondition>
 	  <Aggregate type="average" required="false" weight="1">
         <Aggregate type="max" required="false" weight="1">
           <Compare required="false" metric="levenshtein" weight="1">
@@ -144,7 +142,7 @@
    <Param name="glue" value=" " />
   </TransformInput>
   <Param name="unit" value="km" />
-  <Param name="threshold" value="40" />
+  <Param name="threshold" value="400" />
   <Param name="curveStyle" value="linear" />
  </Compare>
  </Aggregate>
@@ -153,11 +151,11 @@
       <Filter threshold="0.90"></Filter>
       <Outputs>
 		<Output maxConfidence="0.92" type="file" >
-          <Param name="file" value="dbpedia-geonames-mountain-verify.xml"/>
+          <Param name="file" value="dbpedia-geonames-island-verify.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
         <Output minConfidence="0.92" type="file">
-          <Param name="file" value="dbpedia-geonames-mountain.nt"/>
+          <Param name="file" value="dbpedia-geonames-island.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>
 		</Outputs>
