@@ -46,7 +46,7 @@
       </SourceDataset>
       <TargetDataset var="b" dataSource="geonames">
         <RestrictTo>
-          {?b geonames:featureCode geonames:LK} UNION  {?b geonames:featureCode geonames:LKC} UNION  {?b geonames:featureCode geonames:LKI} UNION  {?b geonames:featureCode geonames:LKN} UNION  {?b geonames:featureCode geonames:LKNI} UNION  {?b geonames:featureCode geonames:LKO} UNION  {?b geonames:featureCode geonames:LKS} UNION  .  
+          {?b geonames:featureCode geonames:LK} UNION  {?b geonames:featureCode geonames:LKC} UNION  {?b geonames:featureCode geonames:LKI} UNION  {?b geonames:featureCode geonames:LKN} UNION  {?b geonames:featureCode geonames:LKNI} UNION  {?b geonames:featureCode geonames:LKO} UNION  {?b geonames:featureCode geonames:LKS} 
 		 </RestrictTo>
       </TargetDataset>
 <LinkCondition>
@@ -142,7 +142,7 @@
    <Param name="glue" value=" " />
   </TransformInput>
   <Param name="unit" value="km" />
-  <Param name="threshold" value="400" />
+  <Param name="threshold" value="50" />
   <Param name="curveStyle" value="linear" />
  </Compare>
  </Aggregate>
@@ -151,11 +151,11 @@
       <Filter threshold="0.90"></Filter>
       <Outputs>
 		<Output maxConfidence="0.92" type="file" >
-          <Param name="file" value="dbpedia-geonames-island-verify.xml"/>
+          <Param name="file" value="dbpedia-geonames-lake-verify.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
         <Output minConfidence="0.92" type="file">
-          <Param name="file" value="dbpedia-geonames-island.nt"/>
+          <Param name="file" value="dbpedia-geonames-lake.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>
 		</Outputs>
