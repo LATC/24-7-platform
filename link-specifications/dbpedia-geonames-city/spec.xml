@@ -41,7 +41,7 @@
   <Interlinks>
     <Interlink id="dbpedia_geonames_city">
       <LinkType>owl:sameAs</LinkType>
-      <SourceDataset var="a" dataSource="dbpedia_FU">
+      <SourceDataset var="a" dataSource="dbpedia">
         <RestrictTo>{?a rdf:type dbpedia-owl:Place} UNION {?a rdf:type dbpedia-owl:Town}.</RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="geonames">
