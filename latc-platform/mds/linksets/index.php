@@ -1,7 +1,7 @@
 <?php
-define('MORIARTY_ARC_DIR', 'arc/');
-require 'moriarty/store.class.php';
-require 'moriarty/credentials.class.php';
+define('MORIARTY_ARC_DIR', '../lib/arc/');
+require '../lib/moriarty/store.class.php';
+require '../lib/moriarty/credentials.class.php';
 require 'talis-store-credentials.php';
 
 class MDSHttpRequest {
@@ -41,7 +41,6 @@ if($request->method=='POST'){
       $cohodoSparqlURI = 'http://db.cohodo.net/updates/direct/713afe73-09da-4603-bff1-f6dc84315828';
       $LinksetGraphURI = 'http://mds.lod-cloud.net/linksets';
       $updateLinksetURI = $cohodoSparqlURI.'?graph='.urlencode($LinksetGraphURI);
-      print_r($updateLinksetURI);
       $requestFactory = new HttpRequestFactory();
       $postRequest = $requestFactory->make('POST', $updateLinksetURI);
       $postRequest->set_body($request->body);
