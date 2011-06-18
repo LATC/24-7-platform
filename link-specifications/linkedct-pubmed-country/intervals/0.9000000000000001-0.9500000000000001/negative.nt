@@ -1,0 +1,5 @@
+<http://data.linkedct.org/resource/country/liberia>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://bio2rdf.org/mesh:D012800> .
+<http://data.linkedct.org/resource/country/turkey>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://bio2rdf.org/mesh:D014422> .
+<http://data.linkedct.org/resource/country/cyprus>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://bio2rdf.org/mesh:D029786> .
+<http://data.linkedct.org/resource/country/iceland>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://bio2rdf.org/mesh:D007494> .
+<http://data.linkedct.org/resource/country/ireland>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://bio2rdf.org/mesh:D007055> .
