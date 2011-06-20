@@ -53,17 +53,20 @@
   		</Aggregate>
           </LinkCondition>
        
-       		<Filter threshold="0.8"/>
+       	<Filter threshold="0.95"/>
+<!-- for evaluation purposes: -->
+<!--   	<Filter threshold="0.05"/> -->
             
             <Outputs>
                 <Output minConfidence="0.95" type="file" >
                   <Param name="file" value="newmedical/gho-linkedct-country/links.nt"/>
                   <Param name="format" value="ntriples"/>
                 </Output>
-                <Output type="file">
+<!-- for evaluation purposes: -->
+<!--                <Output type="file">
                   <Param name="file" value="newmedical/gho-linkedct-country/all.xml"/>
                   <Param name="format" value="alignment"/>
-                </Output>
+                </Output>-->
             </Outputs>
 
         </Interlink>
