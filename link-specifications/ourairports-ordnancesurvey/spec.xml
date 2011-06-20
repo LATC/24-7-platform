@@ -1,0 +1,66 @@
+<Silk>
+  <Prefixes>
+    <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix id="skos" namespace="http://www.w3.org/2004/02/skos/core#"/>
+    <Prefix id="bibo" namespace="http://purl.org/ontology/bibo/"/>
+    <Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix id="dbpedia-owl" namespace="http://dbpedia.org/ontology/"/>
+   <Prefix id="dcterms" namespace="http://purl.org/dc/terms/"/>
+ <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#"/>
+ <Prefix id="foaf" namespace="http://xmlns.com/foaf/0.1/"/>
+ <Prefix id="airports" namespace="http://airports.dataincubator.org/schema/"/>
+ <Prefix id="os" namespace="http://data.ordnancesurvey.co.uk/ontology/50kGazetteer/"/>
+ <Prefix id="countries" namespace="http://airports.dataincubator.org/countries/"/>
+  </Prefixes>
+  <DataSources>
+  <DataSource id="ordnancesurvey" type="sparqlEndpoint">
+    <Param name="endpointURI" value="http://api.talis.com/stores/ordnance-survey/services/sparql"/>
+      <Param name="retryCount" value="3"/>
+      <Param name="retryPause" value="1000"/>
+    </DataSource>
+    <DataSource id="ourairports" type="sparqlEndpoint">
+      <Param name="endpointURI" value="http://api.talis.com/stores/airports/services/sparql"/>
+      <Param name="retryCount" value="3"/>
+      <Param name="retryPause" value="1000"/>
+    </DataSource>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="ordnancesurveyourairports">
+        <LinkType>owl:sameAs</LinkType>
+      <SourceDataset dataSource="ourairports" var="b">
+        <RestrictTo>?b airports:country  countries:GB . </RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="ordnancesurvey" var="a">
+        <RestrictTo>?a rdf:type os:NamedPlace ; os:featureType os:Other ; rdfs:label ?label . FILTER(REGEX(?label, "(Airport)|(Aerodrome)|(RAF)|(Airfield)|(Heliport)", "i")) </RestrictTo>
+      </TargetDataset>
+      <LinkCondition>
+ <Aggregate  type="average" weight="1">
+          <Compare metric="jaro" required="true" weight="1">
+          <TransformInput function="replace">
+            <Input path="?a/rdfs:label" />
+            <Param name="search" value="International " />
+            <Param name="replace" value="" />
+          </TransformInput>
+          <TransformInput function="replace">
+            <Input path="?b/rdfs:label" />
+            <Param name="search" value="International " />
+            <Param name="replace" value="" />
+          </TransformInput>
+          </Compare>
+     </Aggregate>
+
+ </LinkCondition>
+      <Filter threshold="0.90"/>
+      <Outputs> 
+  <Output minConfidence="0.90" type="file">
+      <Param name="file" value="airports_ordnancesurvey_links_accepted.nt"/>
+      <Param name="format" value="ntriples"/>
+  </Output>
+  <Output maxConfidence="0.95" type="file">
+    <Param name="file" value="airports_ordnancesurvey_links_verify.nt"/>
+    <Param name="format" value="alignment"/>
+  </Output>
+</Outputs>
+    </Interlink>
+  </Interlinks>
+</Silk>
