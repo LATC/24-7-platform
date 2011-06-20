@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Silk>
+
+  <Prefixes>
+    <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+    <Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#" />
+    <Prefix id="dbpedia" namespace="http://dbpedia.org/ontology/" />
+    <Prefix id="dbpedia-owl" namespace="http://dbpedia.org/ontology/" />
+    <Prefix id="dbp" namespace="http://dbpedia.org/property/" />
+    <Prefix id="umbel-sc" namespace="http://umbel.org/umbel/sc/" />    	    		
+    <Prefix id="linkedgeodata" namespace="http://linkedgeodata.org/triplify/" />
+    <Prefix id="lgdp" namespace="http://linkedgeodata.org/property/" />
+    <Prefix id="lgdo" namespace="http://linkedgeodata.org/ontology/" />
+    <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#" />
+    <Prefix id="geo" namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" />
+    <Prefix id="foaf" namespace="http://xmlns.com/foaf/0.1/" />    
+    <Prefix id="wgs84" namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" />
+ 	<Prefix id="geonames" namespace="http://www.geonames.org/ontology#" />
+   <Prefix id="xsd" namespace="http://www.w3.org/2001/XMLSchema#" />
+   <Prefix id="airport" namespace="http://airports.dataincubator.org/schema/" />
+  </Prefixes>
+
+
+
+ <DataSources>
+    <DataSource id="airportdata" type="sparqlEndpoint">
+      <Param name="endpointURI" value="http://api.talis.com/stores/airports/services/sparql" />
+<!--      <Param name="graph" value="" />-->
+<!-- retry every minute for a maximum of one day -->
+      <Param name="retryCount" value="1440" />
+      <Param name="retryPause" value="60000" />
+<!-- Endpoint is slow and timeouts very easily -->
+      <Param name="pageSize" value="5" />                        
+    </DataSource>
+    <DataSource id="linkedgeodata" type="sparqlEndpoint">
+      <Param name="endpointURI" value="http://linkedgeodata.org/sparql/" />
+      <Param name="graph" value="http://linkedgeodata.org" />
+      <Param name="retryCount" value="1440" />
+      <Param name="retryPause" value="60000" />      
+    </DataSource>
+  </DataSources>
+
+ <Blocking blocks="100"/>
+
+  <Interlinks>
+    <Interlink id="airport">
+      <LinkType>owl:sameAs</LinkType>
+
+      <SourceDataset dataSource="airportdata" var="a">
+        <RestrictTo>
+		{?a a airport:Balloonport} UNION {?a a airport:Heliport} UNION {?a a airport:SeaplaneBase} UNION {?a a airport:LargeAirport} UNION {?a a airport:MediumAirport} UNION {?a a airport:SmallAirport}.
+        </RestrictTo>
+      </SourceDataset>
+
+      <TargetDataset dataSource="linkedgeodata" var="b">
+        <RestrictTo>
+          {?b a lgdo:Aeroway} UNION {?b a lgdo:Aerodrome} UNION {?b a lgdo:Airport} UNION {?b a lgdo:Aerialway}.
+        </RestrictTo>
+      </TargetDataset>     
+
+ <LinkCondition>
+ <Aggregate type="average" required="true">
+   <Compare metric="levenshtein" >
+    <Input path="?a/dbp:iata" />
+    <Input path="?b/lgdp:iata" />
+ </Compare>
+</Aggregate>
+</LinkCondition>
+
+      <Filter threshold="0.8" />
+
+      <Outputs>
+        <Output type="file" minConfidence="0.9999999999">
+          <Param name="file" value="airportdata/links.nt" />
+          <Param name="format" value="ntriples" />
+        </Output>
+        <Output type="file" maxConfidence="0.9999999999">
+          <Param name="file" value="airportdata/verify.nt" />
+          <Param name="format" value="alignment" />
+        </Output>
+      </Outputs>
+    </Interlink>
+  </Interlinks>
+
+</Silk>

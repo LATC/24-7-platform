@@ -1,0 +1,1288 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+    xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+    xmlns:xsd='http://www.w3.org/2001/XMLSchema#'
+    xmlns:align='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'>
+<Alignment>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/sweden"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013548"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/puerto-rico"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D011647"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/zimbabwe"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D015030"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/uganda"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014454"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/brazil"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001938"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/armenia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001136"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/finland"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005387"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/luxembourg"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008189"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/bolivia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001838"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/papua-new-guinea"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D010219"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/philippines"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D010679"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/ukraine"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014455"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/gambia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005714"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/paraguay"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D010239"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/egypt"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D004534"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/india"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007194"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/morocco"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009018"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/botswana"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001902"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/burundi"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002063"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/costa-rica"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D003364"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/czech-republic"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D018153"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/fiji"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005367"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/turkey"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014421"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/madagascar"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008270"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/malta"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008319"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/poland"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D011044"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/canada"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002170"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/san-marino"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012496"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/chile"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002677"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/burkina-faso"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002050"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/mauritius"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008436"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/el-salvador"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D004544"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/nepal"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009390"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/kuwait"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007730"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/mexico"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008800"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/macau"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008256"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.8</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/estonia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D004957"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/suriname"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013532"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/rwanda"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012432"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/slovenia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D017524"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/tunisia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014416"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/yemen"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D015006"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/jamaica"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007563"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/portugal"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D011174"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/hong-kong"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006723"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/netherlands-antilles"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009427"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/chad"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002596"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/mauritania"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008435"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/china"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002681"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/jordan"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007597"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/seychelles"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012750"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/venezuela"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014687"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/netherlands"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009426"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/hungary"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006814"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/latvia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007844"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/ethiopia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005002"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/cuba"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D003462"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/georgia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005845"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/pakistan"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D010154"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/american-samoa"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D018948"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/algeria"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D000462"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/peru"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D010568"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/vietnam"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014744"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/united-states"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014481"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/uruguay"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014583"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/uzbekistan"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014610"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/niger"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009548"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/barbados"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001460"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/trinidad-and-tobago"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014300"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/nicaragua"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009527"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/iceland"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007055"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/france"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005602"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/ecuador"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D004484"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/new-zealand"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009520"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/benin"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001541"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/mongolia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008986"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/saint-kitts-and-nevis"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D019437"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/monaco"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008984"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/sierra-leone"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012807"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/lebanon"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007861"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/kazakhstan"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007623"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/guinea-bissau"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006169"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/greece"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006115"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/tanzania"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013636"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/switzerland"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013557"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/israel"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007557"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/argentina"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001118"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/oman"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009850"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/senegal"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012675"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/sudan"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013397"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/belize"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001531"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/austria"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001317"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/grenada"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D019425"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/afghanistan"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D000346"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/martinique"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008395"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/singapore"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012846"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/croatia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D017523"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/bermuda"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001605"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/reunion"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D017508"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.8571428571428572</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/thailand"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013785"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/bangladesh"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001459"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/equatorial-guinea"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D016703"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/ireland"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007494"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/new-caledonia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009510"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/myanmar"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002052"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/dominican-republic"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D004293"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/guinea"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D016701"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/italy"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007558"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/congo"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D003223"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/togo"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014037"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/belgium"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001530"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/angola"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D000810"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/honduras"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006721"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/zambia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D015024"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/andorra"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D000725"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/azerbaijan"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001382"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/indonesia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007214"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/denmark"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D003718"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/albania"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D000415"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/iraq"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007493"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/bahamas"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001444"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/ghana"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005869"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/panama"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D010176"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/germany"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005858"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/cyprus"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D003535"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/taiwan"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013624"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/haiti"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006205"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/norway"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009664"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/japan"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007564"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/sri-lanka"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013188"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/cameroon"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002163"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/spain"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013030"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/central-african-republic"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002488"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/saudi-arabia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012529"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/romania"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012383"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/the-democratic-republic-of-the-congo"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D015023"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.8888888888888888</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/gabon"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005681"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/colombia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D003105"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/guadeloupe"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D019430"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/slovakia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D018154"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/lithuania"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008097"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/united-arab-emirates"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014479"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/kyrgyzstan"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007707"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/bahrain"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001445"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/liberia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007988"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/cote-divoire"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007560"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.8461538461538461</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/guatemala"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006166"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/qatar"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D011780"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/belarus"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002094"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.875</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/mali"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008302"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/malawi"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008295"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/australia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001315"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/mozambique"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009073"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/cambodia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002160"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/south-africa"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013019"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/bulgaria"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002031"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/malaysia"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008296"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/kenya"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007630"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/nigeria"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009549"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://data.linkedct.org/resource/country/swaziland"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013541"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+</Alignment>
+</rdf:RDF>
