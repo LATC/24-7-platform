@@ -62,7 +62,8 @@ def synchronize_task(dir, task):
         curl = pycurl.Curl()
         response = cStringIO.StringIO()
         values = [
-                  ('specification', (pycurl.FORM_FILE, spec_file)),
+                  ('api_key', 'aa4967eb8b7a5ccab7dbb57aa2368c7f'),
+                  ('specification', "".join(open(spec_file).readlines())),
                   ('title', meta['Title:'])
         ]
         if 'Description:' in meta.keys():
@@ -70,13 +71,15 @@ def synchronize_task(dir, task):
         if 'Creator:' in meta.keys():
             values.append(('author', meta['Creator:']))
         curl.setopt(curl.URL, SERVER + "/tasks")
-        curl.setopt(curl.HTTPHEADER, [ 'Content-Type:multipart/form-data', 'Expect: ']);
-        curl.setopt(curl.HTTPPOST, values)
+        curl.setopt(curl.POSTFIELDS, urllib.urlencode(values))
         curl.setopt(curl.WRITEFUNCTION, response.write)
         curl.perform()
 
         # Save its ID
-        #if curl.getinfo(pycurl.HTTP_CODE) == 200:
+        if curl.getinfo(pycurl.HTTP_CODE) != 200:
+			print SERVER + "/tasks"
+			print values
+			print response.getvalue()
         res = json.loads(response.getvalue())
         open('%s/%s/id.txt' % (dir, task), 'w').write(res['id'])
 
