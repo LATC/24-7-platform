@@ -53,7 +53,7 @@ if($request->method=='POST'){
           die;
       } else {
         header("HTTP/1.1 {$postResponse->status_code}");
-        var_dump($postResponse);
+        echo ($postResponse->body);
         die;
       }
 }
