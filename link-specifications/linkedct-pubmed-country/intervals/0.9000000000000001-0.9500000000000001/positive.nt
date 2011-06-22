@@ -1,0 +1,3 @@
+<http://data.linkedct.org/resource/country/the-democratic-republic-of-the-congo>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://bio2rdf.org/mesh:D015023> .
+<http://data.linkedct.org/resource/country/reunion>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://bio2rdf.org/mesh:D017508> .
+<http://data.linkedct.org/resource/country/belarus>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://bio2rdf.org/mesh:D002094> .

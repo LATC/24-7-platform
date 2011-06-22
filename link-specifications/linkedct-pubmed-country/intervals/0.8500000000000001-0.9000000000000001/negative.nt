@@ -1,0 +1,4 @@
+<http://data.linkedct.org/resource/country/south-africa>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://bio2rdf.org/mesh:D013020> .
+<http://data.linkedct.org/resource/country/australia>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://bio2rdf.org/mesh:D044362> .
+<http://data.linkedct.org/resource/country/zambia>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://bio2rdf.org/mesh:D005714> .
+<http://data.linkedct.org/resource/country/gambia>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://bio2rdf.org/mesh:D015024> .

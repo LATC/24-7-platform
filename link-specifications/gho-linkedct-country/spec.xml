@@ -4,18 +4,22 @@
         <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
         <Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#"/>
         <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#"/>
-        <Prefix id="linkedct" namespace="http://data.linkedct.org/resource/linkedct/"/>
+        <Prefix id="linkedct" namespace="http://data.linkedct.org/vocab/"/>
         <Prefix id="gho" namespace="http://ghodata/" />
         <Prefix id="redd" namespace="http://redd.aksw.org:" />
   </Prefixes>
 
     <DataSources>
         <DataSource id="linkedct" type="sparqlEndpoint">
-            <Param name="endpointURI" value="http://db0.aksw.org:8895/sparql" />
+            <Param name="endpointURI" value="http://lgd.aksw.org:8900/sparql" />
+	    <Param name="retryCount" value="1440" />
+            <Param name="retryPause" value="60000" />
         </DataSource>
 
          <DataSource id="who" type="sparqlEndpoint">
-            <Param name="endpointURI" value="http://db0.aksw.org:8895/sparql" />
+            <Param name="endpointURI" value="http://lgd.aksw.org:8900/sparql" />
+	    <Param name="retryCount" value="1440" />
+            <Param name="retryPause" value="60000" />
         </DataSource>
     </DataSources>
 
@@ -41,26 +45,28 @@
 		   </Blocking>
 			-->
            <LinkCondition>
-  				<Aggregate type="max">
-    				<Compare metric="jaro">
-     					<Input path="?a/linkedct:facility_address_country" />
-     				    <Input path="?countryname/rdfs:label" />
-    				</Compare>
-  			   </Aggregate>
+  		<Aggregate type="max">
+			<Compare metric="levenshtein">
+			  <Input path="?a/linkedct:location_facility/linkedct:facility_address/linkedct:address_country/rdfs:label"/>
+     			  <Input path="?countryname/rdfs:label" />
+    			</Compare>
+  		</Aggregate>
           </LinkCondition>
        
-       		<Filter threshold="0.8"/>
+       	<Filter threshold="0.95"/>
+<!-- for evaluation purposes: -->
+<!--   	<Filter threshold="0.05"/> -->
             
-
             <Outputs>
-                <Output maxConfidence="0.9" type="file" >
-                  <Param name="file" value="gho_data_linkedct_country_verify_links.nt"/>
+                <Output minConfidence="0.95" type="file" >
+                  <Param name="file" value="newmedical/gho-linkedct-country/links.nt"/>
                   <Param name="format" value="ntriples"/>
                 </Output>
-                <Output minConfidence="0.9" type="file">
-                  <Param name="file" value="gho_data_linkedctcountry_accepted_links.nt"/>
-                  <Param name="format" value="ntriples"/>
-                </Output>
+<!-- for evaluation purposes: -->
+<!--                <Output type="file">
+                  <Param name="file" value="newmedical/gho-linkedct-country/all.xml"/>
+                  <Param name="format" value="alignment"/>
+                </Output>-->
             </Outputs>
 
         </Interlink>

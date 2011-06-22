@@ -1,0 +1,1312 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+    xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+    xmlns:xsd='http://www.w3.org/2001/XMLSchema#'
+    xmlns:align='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'>
+<Alignment>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c158"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012807"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c57"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D004293"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c62"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D019017"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c92"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007597"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c36"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002170"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c67"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005602"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c46"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D003364"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c173"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013620"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c133"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D010154"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c122"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009276"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c25"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001631"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c73"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006115"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c78"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006172"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c113"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008435"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c181"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014421"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c192"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009514"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c147"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012432"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c53"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D015023"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c170"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013548"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c42"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D003105"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c140"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D011044"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c151"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D018947"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c129"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009549"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c169"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013541"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c84"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007214"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c102"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007988"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c10"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D000810"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c184"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014454"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c125"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009426"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c28"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001902"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c40"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002677"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c39"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002596"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c155"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012675"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c195"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D015006"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c136"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D010219"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c114"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008436"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c89"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007558"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c6"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D000346"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c14"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001315"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c177"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014037"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c166"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013188"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c50"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D018153"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c118"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008986"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c32"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002050"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c107"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008295"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c21"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002094"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.8235294117647058</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c20"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001460"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c61"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D016703"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c91"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007564"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c141"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D011174"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c79"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006205"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c31"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002031"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c83"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007194"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c94"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007630"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c80"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006721"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c24"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001541"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c152"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012496"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c49"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D003535"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c72"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005869"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c163"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012998"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c180"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014416"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c101"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007927"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c16"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001382"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c35"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002163"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c191"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014610"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c139"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D010679"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c115"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008800"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c128"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009548"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c97"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007707"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c134"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D019029"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c174"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013785"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c86"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007493"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c17"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001444"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c167"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013397"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c27"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D017522"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.8095238095238095</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c51"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007560"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.8888888888888888</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c104"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008097"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c64"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005002"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c41"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002681"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c178"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014058"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c119"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009018"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c13"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001136"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c7"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D000415"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c56"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D019424"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c145"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012383"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c75"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006166"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c108"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008296"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c196"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D015024"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c185"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014455"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c68"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005681"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c197"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D015030"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c120"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009073"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c157"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012750"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c105"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008189"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c12"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001118"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c55"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D015730"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c8"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D000462"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c186"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014479"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c48"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D003462"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c131"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009664"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c124"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009390"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c29"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001938"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c164"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013019"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c71"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005858"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c111"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008319"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c38"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002488"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c100"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007861"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c59"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D004534"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c60"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D004544"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c18"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001445"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c90"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007563"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c142"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D011780"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c135"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D010176"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c168"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013532"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c127"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009527"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c34"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002160"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c76"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D016701"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c150"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D019436"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c149"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D019431"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c65"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005367"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c179"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014300"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c138"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D010568"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c23"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001531"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c87"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007494"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c69"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005714"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c44"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D003223"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c160"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D018154"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c19"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001459"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c171"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013557"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c110"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008302"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c96"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007730"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c26"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001838"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c47"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D017523"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c74"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D019425"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c182"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014423"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c9"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D000725"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c58"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D004484"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c63"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D004957"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c33"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002063"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c43"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D017507"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c190"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D014583"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c137"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D010239"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c70"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005845"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c165"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D013030"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c22"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001530"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c88"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007557"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c54"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D003718"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c15"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D001317"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c93"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007623"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c81"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006814"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c106"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008270"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c77"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D006169"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c148"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D019437"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c66"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D005387"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c159"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012846"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c82"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007055"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c154"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D012529"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c126"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009520"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c117"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D008984"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c161"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D017524"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c132"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D009850"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c99"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D007844"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+<map>
+      <Cell>
+          <entity1 rdf:resource="http://ghodata/r6-c121"></entity1>
+          <entity2 rdf:resource="http://bio2rdf.org/mesh:D002052"></entity2>
+        <relation>=</relation>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+      </Cell>
+    </map>
+</Alignment>
+</rdf:RDF>

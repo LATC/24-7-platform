@@ -1,0 +1,3 @@
+[submodule "latc-platform/mds/lib/arc"]
+	path = latc-platform/mds/lib/arc
+	url = git://github.com/kwijibo/arc2.git

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/263/trunk/tests/documents
+END
+lists-seqs-collections.ttl
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/263/trunk/tests/documents/lists-seqs-collections.ttl
+END
+jobs.rdf
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/22/trunk/tests/documents/jobs.rdf
+END
+snapshots.rdf
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/12/trunk/tests/documents/snapshots.rdf
+END
