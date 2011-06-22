@@ -23,7 +23,7 @@
     <Prefix namespace="http://linkedgeodata.org/property/" id="lgdp"></Prefix>
   </Prefixes>
   <DataSources>
-    <DataSource type="sparqlEndpoint" id="dbpedia_FU">
+    <DataSource type="sparqlEndpoint" id="dbpedia">
       <!-- <Param value="http://160.45.137.73:8890/sparql" name="endpointURI"></Param> -->
 	  <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
       <Param value="http://dbpedia.org" name="graph"></Param>
@@ -39,10 +39,10 @@
   <Interlinks>
     <Interlink id="dbpedia_gutendata_person">
       <LinkType>owl:sameAs</LinkType>
-      <SourceDataset var="a" dataSource="dbpedia_FU">
+      <SourceDataset var="a" dataSource="dbpedia">
         <RestrictTo>{?a rdf:type dbpedia-owl:Person} UNION {?a rdf:type foaf:Person}.</RestrictTo>
       </SourceDataset>
-      <TargetDataset var="b" dataSource="gutenberg">
+      <TargetDataset var="b" dataSource="gutendata">
         <RestrictTo>?b rdf:type foaf:Person.</RestrictTo>
       </TargetDataset>
       <LinkCondition>
@@ -169,8 +169,17 @@
           </Aggregate>
         </Aggregate>
       </LinkCondition>
-      <Filter threshold="0.95"></Filter>
-      <Outputs> </Outputs>
+      <Filter threshold="0.90"></Filter>
+      <Outputs>
+        <Output maxConfidence="0.95" type="file" >
+          <Param name="file" value="dbpedia-gutendata-person-verify.xml"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output minConfidence="0.95" type="file">
+          <Param name="file" value="dbpedia-gutendata-person.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+	  </Outputs>
     </Interlink>
   </Interlinks>
 </Silk>
