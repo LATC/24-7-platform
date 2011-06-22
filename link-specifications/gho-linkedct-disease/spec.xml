@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Silk>
+	<Prefixes>
+        <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+        <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#"/>
+	<Prefix id="dc" namespace="http://purl.org/dc/elements/1.1/" />
+	<Prefix id="meshr" namespace="http://bio2rdf.org/ns/mesh#" />
+	<Prefix id="gho" namespace="http://ghodata/" />
+        <Prefix id="linkedct" namespace="http://data.linkedct.org/vocab/"/>
+    </Prefixes>
+
+    <DataSources>
+          <DataSource id="who" type="sparqlEndpoint">
+            <Param name="endpointURI" value="http://lgd.aksw.org:8900/sparql" />
+            <Param name="graph" value="http://www.who.int/gho" />
+     	    <Param name="retryCount" value="1440" />
+            <Param name="retryPause" value="60000" />
+        </DataSource>
+          <DataSource id="linkedct" type="sparqlEndpoint">
+            <Param name="endpointURI" value="http://lgd.aksw.org:8900/sparql" />
+            <Param name="graph" value="http://linkedct.org" />
+            <Param name="retryCount" value="1440" />
+            <Param name="retryPause" value="60000" />
+        </DataSource>
+    </DataSources>
+
+    <Interlinks>
+        <Interlink id="disease">
+            <LinkType>owl:sameAs</LinkType>
+            <SourceDataset dataSource="who" var="diseasename">
+                <RestrictTo>
+                    ?diseasename rdf:type gho:Disease.
+                </RestrictTo>
+            </SourceDataset>
+            <TargetDataset dataSource="linkedct" var="b">
+                <RestrictTo>
+                    ?b rdf:type linkedct:condition.
+                </RestrictTo>
+            </TargetDataset>
+           <LinkCondition>
+  			<Aggregate type="max">
+  			    <Compare metric="alternative">
+						<Input path="?diseasename/rdfs:label" />
+						<Input path="?b/rdfs:label" />
+						<Param name="metric" value="levenshtein" />
+						<Param name="filename" value="allparts.csv" />
+			</Compare>
+     		 </Aggregate>
+          </LinkCondition>
+
+<!-- 0.95 with limit 1 for just the links, the bottom one for evaluation -->
+<Filter threshold="0.95" limit="1"/>
+<!--       <Filter threshold="0.05"/>-->
+            <Outputs>
+ <!--               <Output type="file" >
+                  <Param name="file" value="newmedical/gho-linkedct-disease/test.xml"/>
+                  <Param name="format" value="alignment"/>
+                </Output>-->
+                <Output minConfidence="0.95" type="file">
+                  <Param name="file" value="newmedical/gho-linkedct-disease/links.nt"/>
+                  <Param name="format" value="ntriples"/>
+                </Output>
+            </Outputs>
+
+        </Interlink>
+    </Interlinks>
+</Silk>
