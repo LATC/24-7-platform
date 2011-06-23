@@ -1,0 +1,4 @@
+<http://ghodata/r16-c2>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/macular-pucker> .
+<http://ghodata/r99-c4>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/human-experimentation-human-volunteers> .
+<http://ghodata/r94-c4>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/tibia-fractures> .
+<http://ghodata/r106-c4>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/disorder-of-bile-duct-stent> .

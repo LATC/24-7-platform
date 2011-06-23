@@ -1,0 +1,6 @@
+<http://ghodata/r98-c4>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/manic-disorder> .
+<http://ghodata/r130-c4>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/peridontal-disease> .
+<http://ghodata/r123-c3>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/staphylococcal-skin-infections> .
+<http://ghodata/r63-c4>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/vitamin-b6-deficiency> .
+<http://ghodata/r84-c3>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/diabetes-mellitus-type-2> .
+<http://ghodata/r84-c3>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/diabetes-mellitus-type-1> .
