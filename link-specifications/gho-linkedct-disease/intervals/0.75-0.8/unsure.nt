@@ -1,0 +1,4 @@
+<http://ghodata/r115-c4>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/asthma-bronchiale> .
+<http://ghodata/r129-c4>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/dental-carious> .
+<http://ghodata/r114-c4>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/chronic-obstructive-airway-disease> .
+<http://ghodata/r125-c4>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/rheumatoid-arthritis-nos> .
