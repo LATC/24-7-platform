@@ -96,13 +96,13 @@
           </Compare>
 		</Aggregate>
 	  </LinkCondition>
-      <Filter threshold="0.90"></Filter>
+      <Filter threshold="0.93"></Filter>
 		<Outputs> 
-	     <Output maxConfidence="0.92" type="file" >
+	     <Output maxConfidence="0.96" type="file" >
           <Param name="file" value="dbpedia-linkedct-sponsor.xml"/>
           <Param name="format" value="alignment"/>
          </Output>
-        <Output minConfidence="0.92" type="file">
+        <Output minConfidence="0.96" type="file">
           <Param name="file" value="dbpedia-linkedct-sponsor.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>

@@ -27,8 +27,8 @@
   </Prefixes>
   <DataSources>
     <DataSource type="sparqlEndpoint" id="dbpedia">
-      <Param value="http://160.45.137.73:8890/sparql" name="endpointURI"></Param>
-	  <!-- <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param> -->
+      <!-- <Param value="http://160.45.137.73:8890/sparql" name="endpointURI"></Param> -->
+	  <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
       <Param value="http://dbpedia.org" name="graph"></Param>
       <Param value="100" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
@@ -45,7 +45,7 @@
     <Interlink id="dbpedia-linkedct-keyword">
       <LinkType>owl:sameAs</LinkType>
       <SourceDataset var="a" dataSource="dbpedia">
-        <RestrictTo>?a rdf:type dbpedia-owl:Disease .</RestrictTo>
+        <RestrictTo>{?a rdf:type dbpedia-owl:Disease} UNION {?a rdf:type dbpedia-owl:Drug}</RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="linkedct">
         <RestrictTo>?b rdf:type linkedct:keyword .</RestrictTo>
@@ -84,13 +84,13 @@
           </Compare>
 		</Aggregate>
 	  </LinkCondition>
-      <Filter threshold="0.92"></Filter>
+      <Filter threshold="0.95"></Filter>
 		<Outputs> 
-	     <Output maxConfidence="0.95" type="file" >
+	     <Output maxConfidence="0.98" type="file" >
           <Param name="file" value="dbpedia-linkedct-keyword.xml"/>
           <Param name="format" value="alignment"/>
          </Output>
-        <Output minConfidence="0.95" type="file">
+        <Output minConfidence="0.98" type="file">
           <Param name="file" value="dbpedia-linkedct-keyword.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>

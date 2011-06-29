@@ -51,7 +51,7 @@
         <RestrictTo>?b rdf:type linkedct:city  .</RestrictTo>
       </TargetDataset>
       <LinkCondition>
-	  <Aggregate type="avg" required="false" weight="1">
+	  <Aggregate type="average" required="false" weight="1">
         <Aggregate type="max" required="false" weight="1">
           <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
@@ -87,7 +87,7 @@
         <Aggregate type="max" required="false" weight="1">
 			<Compare required="false" metric="levenshtein" weight="1">
 				<TransformInput function="lowerCase">
-					<Input path="?a/dbpprop:subdivisionName"></Input>
+					<Input path="?a/dbpedia-prop:subdivisionName"></Input>
 				</TransformInput>
 				<TransformInput function="lowerCase">
 					<Input path="?b\linkedct:address_city/linkedct:address_state/rdfs:label"></Input>
@@ -95,7 +95,7 @@
 			</Compare>
 			<Compare required="false" metric="levenshtein" weight="1">
 				<TransformInput function="lowerCase">
-					<Input path="?a/dbpprop:subdivisionName"></Input>
+					<Input path="?a/dbpedia-prop:subdivisionName"></Input>
 				</TransformInput>
 				<TransformInput function="lowerCase">
 					<Input path="?b\linkedct:address_city/linkedct:address_country/rdfs:label"></Input>
