@@ -1,0 +1,2 @@
+<http://data.linkedct.org/resource/condition/lymphocytic-leukemia-l2>	<http://www.w3.org/2002/07/owl#sameAs>	<http://bio2rdf.org/mesh:D015459> .
+<http://data.linkedct.org/resource/condition/leukemia-lymphocytic-acute-adult>	<http://www.w3.org/2002/07/owl#sameAs>	<http://bio2rdf.org/mesh:D015450> .

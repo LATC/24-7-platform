@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Silk>
+	<Prefixes>
+        <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+        <Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#"/>
+        <Prefix id="linkedct" namespace="http://data.linkedct.org/vocab/"/>
+        <Prefix id="meshr" namespace="http://bio2rdf.org/ns/mesh#" />
+        <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#" />
+        <Prefix id="dc" namespace="http://purl.org/dc/elements/1.1/" />
+    </Prefixes>
+
+    <DataSources>
+        <DataSource id="linkedct" type="sparqlEndpoint">
+            <Param name="endpointURI" value="http://lgd.aksw.org:8900/sparql" />
+            <Param name="retryCount" value="1440" />
+            <Param name="retryPause" value="60000" />
+        </DataSource>
+
+        <DataSource id="mesh" type="sparqlEndpoint">
+            <Param name="endpointURI" value="http://mesh.bio2rdf.org/sparql" />
+            <Param name="retryCount" value="1440" />
+            <Param name="retryPause" value="60000" />
+        </DataSource>
+    </DataSources>
+
+    <Interlinks>
+        <Interlink id="disease">
+            <LinkType>owl:sameAs</LinkType>
+
+            <SourceDataset dataSource="linkedct" var="a">
+                <RestrictTo>
+                    ?a rdf:type linkedct:condition
+                </RestrictTo>
+            </SourceDataset>
+
+            <TargetDataset dataSource="mesh" var="b">
+                <RestrictTo>
+                    ?b rdf:type meshr:Concept
+                </RestrictTo>
+            </TargetDataset>
+    <LinkCondition>
+  			<Aggregate type="max">
+  			    <Compare metric="alternative">
+						<Input path="?a/rdfs:label" />
+						<Input path="?b/dc:title" />
+						<Param name="metric" value="levenshtein" />
+						<Param name="filename" value="allparts.csv" />
+			</Compare>
+     		 </Aggregate>
+          </LinkCondition>
+
+ <!-- 0.95 with for just the links, the bottom one for evaluation -->
+<!--       <Filter threshold="0.95" limit="1"/>-->
+<Filter threshold="0.70"/>
+ 
+            <Outputs>
+                <Output type="file" >
+                  <Param name="file" value="newmedical/linkedct-pubmed-disease/above70.xml"/>
+                  <Param name="format" value="alignment"/>
+                </Output>
+<!--                <Output minConfidence="0.95" type="file">
+                  <Param name="file" value="newmedical/linkedct-pubmed-disease/links.nt"/>
+                  <Param name="format" value="ntriples"/>
+                </Output>-->
+            </Outputs>
+
+        </Interlink>
+    </Interlinks>
+</Silk>
