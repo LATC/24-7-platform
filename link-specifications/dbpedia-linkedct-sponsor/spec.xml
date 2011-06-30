@@ -27,8 +27,8 @@
   </Prefixes>
   <DataSources>
     <DataSource type="sparqlEndpoint" id="dbpedia">
-      <Param value="http://160.45.137.73:8890/sparql" name="endpointURI"></Param>
-	  <!-- <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param> -->
+      <!-- <Param value="http://160.45.137.73:8890/sparql" name="endpointURI"></Param> -->
+	  <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
       <Param value="http://dbpedia.org" name="graph"></Param>
       <Param value="100" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
@@ -70,7 +70,7 @@
 			 </TransformInput>
             </TransformInput>
           </Compare>
-          <Compare required="false" metric="levenshtein" weight="1">
+          <!-- <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
               <Input path="?a/foaf:name"></Input>
             </TransformInput>
@@ -81,7 +81,7 @@
 				<Param value="" name="replace"></Param>
 			 </TransformInput>
             </TransformInput>
-          </Compare>
+          </Compare> -->
           <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
               <Input path="?a/rdfs:label"></Input>
