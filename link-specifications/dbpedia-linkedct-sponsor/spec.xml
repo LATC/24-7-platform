@@ -70,7 +70,7 @@
 			 </TransformInput>
             </TransformInput>
           </Compare>
-          <Compare required="false" metric="levenshtein" weight="1">
+          <!-- <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
               <Input path="?a/foaf:name"></Input>
             </TransformInput>
@@ -81,7 +81,7 @@
 				<Param value="" name="replace"></Param>
 			 </TransformInput>
             </TransformInput>
-          </Compare>
+          </Compare> -->
           <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
               <Input path="?a/rdfs:label"></Input>
