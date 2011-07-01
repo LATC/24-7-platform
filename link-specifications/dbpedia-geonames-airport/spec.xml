@@ -39,7 +39,7 @@
     </DataSource>
   </DataSources>
   <Interlinks>
-    <Interlink id="dbpedia-geonames-mountain">
+    <Interlink id="dbpedia-geonames-airport">
       <LinkType>owl:sameAs</LinkType>
       <SourceDataset var="a" dataSource="dbpedia">
         <RestrictTo>

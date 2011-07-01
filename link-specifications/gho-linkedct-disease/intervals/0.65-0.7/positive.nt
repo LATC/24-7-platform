@@ -1,0 +1,4 @@
+<http://ghodata/r113-c3>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/respiratory-illness> .
+<http://ghodata/r96-c4>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/traumatic-stress-disorders> .
+<http://ghodata/r60-c3>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/nutritional-insufficiency> .
+<http://ghodata/r115-c4>	<<http://www.w3.org/2002/07/owl#sameAs>>	<http://data.linkedct.org/resource/condition/asthmatic> .

@@ -50,7 +50,6 @@
         </RestrictTo>
       </TargetDataset>
 <LinkCondition>
-	  <Aggregate type="average" required="false" weight="1">
         <Aggregate type="max" required="false" weight="1">
           <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
@@ -129,24 +128,6 @@
             </TransformInput>
           </Compare>
         </Aggregate>
-				<Aggregate type="max" required="false" weight="1">
-		 <Compare metric="wgs84" required="true">
-  <TransformInput function="concat">
-   <Input path="?a/wgs84:lat" />
-   <Input path="?a/wgs84:long" />
-   <Param name="glue" value=" " />
-  </TransformInput>
-  <TransformInput function="concat">
-   <Input path="?b/wgs84:lat" />
-   <Input path="?b/wgs84:long" />
-   <Param name="glue" value=" " />
-  </TransformInput>
-  <Param name="unit" value="km" />
-  <Param name="threshold" value="1000" />
-  <Param name="curveStyle" value="linear" />
- </Compare>
- </Aggregate>
- </Aggregate>
       </LinkCondition>
       <Filter threshold="0.90"></Filter>
       <Outputs>
