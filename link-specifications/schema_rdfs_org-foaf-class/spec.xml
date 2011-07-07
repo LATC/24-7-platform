@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Silk>
+	<Prefixes>
+		<Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+		<Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#" />
+		<Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#" />
+		<Prefix id="dc" namespace="http://purl.org/dc/elements/1.1/" />
+		<Prefix id="swc" namespace="http://data.semanticweb.org/ns/swc/ontology#" />
+		<Prefix id="foaf" namespace="http://xmlns.com/foaf/0.1/" />
+	</Prefixes>
+
+	<DataSources>
+		<DataSource id="source_a" type="sparqlEndpoint">
+			<Param name="endpointURI" value="http://dydra.com/cgueret/schema-org-deri/sparql" />
+			<Param name="login" value="0VAZAxpztz5oELpbQBI1" />
+			<Param name="password" value="" />
+		</DataSource>
+		<DataSource id="source_b" type="sparqlEndpoint">
+			<Param name="endpointURI" value="http://dydra.com/cgueret/foaf/sparql" />
+			<Param name="login" value="0VAZAxpztz5oELpbQBI1" />
+			<Param name="password" value="" />
+		</DataSource>
+	</DataSources>
+
+	<Interlinks>
+		<Interlink id="links">
+
+			<LinkType>owl:sameAs</LinkType>
+
+			<SourceDataset dataSource="source_a" var="a">
+				<RestrictTo>
+					{?a rdf:type owl:Class} union {?b rdf:type rdfs:Class}
+				</RestrictTo>
+			</SourceDataset>
+
+			<TargetDataset dataSource="source_b" var="b">
+				<RestrictTo>
+					{?b rdf:type owl:Class} union {?b rdf:type rdfs:Class}
+				</RestrictTo>
+			</TargetDataset>
+
+			<LinkCondition>
+				<Aggregate required="false" type="average" weight="1">
+					<Compare metric="levenshtein" required="false" weight="1">
+						<TransformInput function="lowerCase">
+							<Input path="?a/rdfs:label" />
+						</TransformInput>
+						<TransformInput function="lowerCase">
+							<Input path="?b/rdfs:label" />
+						</TransformInput>
+					</Compare>
+				</Aggregate>
+			</LinkCondition>
+
+			<Filter threshold="0.9" limit="1" />
+
+			<Outputs>
+				<Output maxConfidence="0.95" type="file">
+					<Param name="file" value="verify.xml" />
+					<Param name="format" value="alignment" />
+				</Output>
+				<Output minConfidence="0.95" type="file">
+					<Param name="file" value="links.nt" />
+					<Param name="format" value="ntriples" />
+				</Output>
+			</Outputs>
+		</Interlink>
+	</Interlinks>
+</Silk>

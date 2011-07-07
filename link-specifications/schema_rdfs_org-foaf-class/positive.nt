@@ -1,0 +1,3 @@
+<http://schema.org/Organization>  <http://www.w3.org/2002/07/owl#sameAs>  <http://xmlns.com/foaf/0.1/Organization> .
+<http://schema.org/image>  <http://www.w3.org/2002/07/owl#sameAs>  <http://xmlns.com/foaf/0.1/Image> .
+<http://schema.org/Person>  <http://www.w3.org/2002/07/owl#sameAs>  <http://www.w3.org/2000/10/swap/pim/contact#Person> .
