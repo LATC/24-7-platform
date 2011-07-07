@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Silk>
+
+  <Prefixes>
+    <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+    <Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#" />
+    <Prefix id="dbpedia" namespace="http://dbpedia.org/ontology/" />
+    <Prefix id="dbpedia-owl" namespace="http://dbpedia.org/ontology/" />
+    <Prefix id="dbp" namespace="http://dbpedia.org/property/" />
+    <Prefix id="umbel-sc" namespace="http://umbel.org/umbel/sc/" />    	    		
+    <Prefix id="linkedgeodata" namespace="http://linkedgeodata.org/triplify/" />
+    <Prefix id="lgdp" namespace="http://linkedgeodata.org/property/" />
+    <Prefix id="lgdo" namespace="http://linkedgeodata.org/ontology/" />
+    <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#" />
+    <Prefix id="geo" namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" />
+    <Prefix id="foaf" namespace="http://xmlns.com/foaf/0.1/" />    
+    <Prefix id="wgs84" namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" />
+ 	<Prefix id="geonames" namespace="http://www.geonames.org/ontology#" />
+   <Prefix id="xsd" namespace="http://www.w3.org/2001/XMLSchema#" />
+   <Prefix id="airport" namespace="http://airports.dataincubator.org/schema/" />
+   <Prefix id="factbook" namespace="http://www4.wiwiss.fu-berlin.de/factbook/ns#" />
+
+  </Prefixes>
+
+
+
+ <DataSources>
+    <DataSource id="factbook" type="sparqlEndpoint">
+      <Param name="endpointURI" value="http://www4.wiwiss.fu-berlin.de/factbook/sparql" />
+<!--      <Param name="graph" value="" />-->
+      <Param name="retryCount" value="100" />
+      <Param name="retryPause" value="100" />
+<!--      <Param name="pageSize" value="5" />                        -->
+    </DataSource>
+    <DataSource id="linkedgeodata" type="sparqlEndpoint">
+      <Param name="endpointURI" value="http://linkedgeodata.org/sparql/" />
+      <Param name="graph" value="http://linkedgeodata.org" />
+      <Param name="retryCount" value="100" />
+      <Param name="retryPause" value="100" />      
+    </DataSource>
+  </DataSources>
+
+ <Blocking blocks="100"/>
+
+  <Interlinks>
+    <Interlink id="factbook">
+      <LinkType>owl:sameAs</LinkType>
+
+      <SourceDataset dataSource="factbook" var="a">
+        <RestrictTo>
+		?a a factbook:Country.
+        </RestrictTo>
+      </SourceDataset>
+
+      <TargetDataset dataSource="linkedgeodata" var="b">
+        <RestrictTo>
+		?b a lgdo:Country. ?b lgdo:official_name ?n.
+        </RestrictTo>
+      </TargetDataset>     
+
+ <LinkCondition>
+ <Aggregate type="max" required="true">
+   <Compare metric="levenshtein" >
+<TransformInput function="upperCase">
+ <TransformInput function="removeSpecialChars">
+    <Input path="?a/factbook:internetcountrycode" />
+ </TransformInput>
+</TransformInput>
+    <Input path="?b/lgdp:country_code_iso3166_1_alpha_2" />
+ </Compare>
+<!--   <Compare metric="levenshtein" >
+    <Input path="?a/factbook:countryname_conventionallongform" />
+    <Input path="?b/lgdp:official_name" />
+ </Compare>
+   <Compare metric="levenshtein" >
+    <Input path="?a/factbook:countryname_locallongform" />
+    <Input path="?b/lgdp:official_name" />
+ </Compare>
+   <Compare metric="levenshtein" >
+    <Input path="?a/factbook:countryname_conventionallongform" />
+    <Input path="?b/lgdo:official_name" />
+ </Compare>
+   <Compare metric="levenshtein" >
+    <Input path="?a/factbook:countryname_locallongform" />
+    <Input path="?b/lgdo:official_name" />
+ </Compare>
+   <Compare metric="levenshtein" >
+    <Input path="?a/factbook:countryname_conventionallongform" />
+    <Input path="?b/lgdo:official_name" />
+ </Compare>
+   <Compare metric="levenshtein" >
+    <Input path="?a/factbook:countryname_locallongform" />
+    <Input path="?b/lgdo:official_name" />
+ </Compare>-->
+</Aggregate>
+</LinkCondition>
+
+      <Filter threshold="0.8" />
+
+      <Outputs>
+        <Output type="file" minConfidence="0.9999999999">
+          <Param name="file" value="factbook/links.nt" />
+          <Param name="format" value="ntriples" />
+        </Output>
+        <Output type="file" maxConfidence="0.9999999999">
+          <Param name="file" value="factbook/verify.xml" />
+          <Param name="format" value="alignment" />
+        </Output>
+      </Outputs>
+    </Interlink>
+  </Interlinks>
+
+</Silk>
