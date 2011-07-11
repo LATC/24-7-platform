@@ -1,0 +1,64 @@
+<Silk>
+  <Prefixes>
+    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://dbpedia.org/property/" id="dbpp"></Prefix>
+    <Prefix namespace="http://www.kanzaki.com/ns/whois#" id="whois"></Prefix>
+    <Prefix namespace="http://dbpedia.org/ontology/" id="dbo"></Prefix>
+    <Prefix namespace="http://open.vocab.org/terms/" id="ov"></Prefix>
+    <Prefix namespace="http://purl.org/dc/terms/" id="dcterms"></Prefix>
+    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+    <Prefix namespace="http://purl.org/vocab/bio/0.1/" id="bio"></Prefix>
+    <Prefix namespace="http://xmlns.com/foaf/0.1/" id="foaf"></Prefix>
+    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+  </Prefixes>
+  <DataSources>
+    <DataSource type="sparqlEndpoint" id="pbac">
+      <Param value="http://api.talis.com/stores/pbac/services/sparql" name="endpointURI"></Param>
+      <Param value="3" name="retryCount"></Param>
+      <Param value="1000" name="retryPause"></Param>
+    </DataSource>
+    <DataSource type="sparqlEndpoint" id="dbpedia">
+      <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
+      <Param value="3" name="retryCount"></Param>
+      <Param value="1000" name="retryPause"></Param>
+    </DataSource>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="pbac-dbpedia-17thanglicanbishops">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset var="a" dataSource="pbac">
+        <RestrictTo>?a rdf:type foaf:Agent .</RestrictTo>
+      </SourceDataset>
+      <TargetDataset var="b" dataSource="dbpedia">
+        <RestrictTo>?b rdf:type &lt;http://dbpedia.org/class/yago/17th-centuryAnglicanBishops&gt; .</RestrictTo>
+      </TargetDataset>
+      <LinkCondition>
+        <Aggregate type="average" required="false" weight="1">
+          <Aggregate type="average" required="true" weight="1">
+            <Compare required="true" metric="qGrams" weight="1">
+              <TransformInput function="regexReplace">
+                <Input path="?b/rdfs:label"></Input>
+                <Param value="\(.+\)" name="regex"></Param>
+                <Param value="" name="replace"></Param>
+              </TransformInput>
+              <Input path="?a/rdfs:label"></Input>
+              <Param value="2" name="q"></Param>
+            </Compare>
+          </Aggregate>
+          <Aggregate type="max" required="false" weight="1">
+            <Compare required="false" metric="equality" weight="1">
+              <TransformInput function="numReduce">
+                <Input path="?a/owl:sameAs/whois:born"></Input>
+              </TransformInput>
+              <TransformInput function="numReduce">
+                <Input path="?b/dcterms:subject"></Input>
+              </TransformInput>
+            </Compare>
+          </Aggregate>
+        </Aggregate>
+      </LinkCondition>
+      <Filter threshold="0.95"></Filter>
+      <Outputs> </Outputs>
+    </Interlink>
+  </Interlinks>
+</Silk>
