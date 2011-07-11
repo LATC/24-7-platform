@@ -62,8 +62,15 @@ public class TasksResource extends ConsoleResource {
 	 */
 	@Post
 	public Representation addForm(Form form) throws Exception {
+		if (form == null) {
+			setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
+			return null;
+		}
+		
 		logger.info("[POST] Received a new task " + form.toString());
 
+		logger.info(form.getNames().toString());
+		
 		// Load the query parameters
 		String api_key = form.getFirstValue("api_key", true);
 		String specification = form.getFirstValue("specification", true);
@@ -73,12 +80,14 @@ public class TasksResource extends ConsoleResource {
 
 		// Check credentials
 		if (api_key == null || !api_key.equals(APIKeyResource.KEY)) {
+			logger.warn("Invalid key " + api_key);
 			setStatus(Status.CLIENT_ERROR_FORBIDDEN);
 			return null;
 		}
 
 		// We need at least a specification and a title
 		if (specification == null || title == null) {
+			logger.warn("Invalid request");
 			setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
 			return null;
 		}

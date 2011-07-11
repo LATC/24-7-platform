@@ -41,13 +41,13 @@
     <Interlink id="dbpedia-openei-Places">
       <LinkType>owl:sameAs</LinkType>
       <SourceDataset var="a" dataSource="dbpedia_FU">
-        <RestrictTo>?a rdf:type dbpedia-owl:Place .</RestrictTo>
+        <RestrictTo>?a rdf:type dbpedia-owl:Organisation .</RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="openei">
-        <RestrictTo>?b rdf:type openei:Category-3APlaces .</RestrictTo>
+        <RestrictTo>?b rdf:type openei:Category-3AOrganizations .</RestrictTo>
       </TargetDataset>
       <LinkCondition>
-<Aggregate type="average" required="false" weight="1">
+<!-- <Aggregate type="average" required="false" weight="1"> -->
         <Aggregate type="max" required="false" weight="1">
           <Compare required="false" metric="levenshtein" weight="1">
             <TransformInput function="lowerCase">
@@ -80,29 +80,97 @@
             </TransformInput>
           </Compare>
         </Aggregate>
-		<Aggregate type="max" required="false" weight="1">
+<!--		<Aggregate type="max" required="false" weight="1">
 		 <Compare metric="wgs84" required="true">
-  <TransformInput function="concat">
-   <Input path="?a/wgs84:lat" />
-   <Input path="?a/wgs84:long" />
-   <Param name="glue" value=" " />
-  </TransformInput>
-   <Input path="?b/openei:Property-3ACoordinates" />
-  <Param name="unit" value="km" />
-  <Param name="threshold" value="100" />
-  <Param name="curveStyle" value="linear" />
- </Compare>
-		</Aggregate>
-		</Aggregate>
+		  <TransformInput function="concat">
+		   <Input path="?a/wgs84:lat" />
+		   <Input path="?a/wgs84:long" />
+		   <Param name="glue" value=" " />
+		  </TransformInput>
+			<Input path="?b/openei:Property-3ACoordinates" />
+		  <Param name="unit" value="km" />
+		  <Param name="threshold" value="100" />
+		  <Param name="curveStyle" value="linear" />
+		 </Compare>
+		 <Compare required="false" metric="levenshtein" weight="1">
+			<TransformInput function="lowerCase">
+			 <TransformInput function="regexReplace">
+			  <TransformInput function="replace">
+			   <Input path="?a/foaf:homepage"></Input>
+				<Param value="http://" name="search"></Param>
+				<Param value="" name="replace"></Param>
+			  </TransformInput>
+			 <Param name="regex" value="([/?].*)" />
+			 <Param name="replace" value="" />
+			 </TransformInput>
+			</TransformInput>
+			<TransformInput function="lowerCase">
+			 <TransformInput function="regexReplace">
+			  <TransformInput function="replace">
+			   <Input path="?b/foaf:homepage"></Input>
+				<Param value="http://" name="search"></Param>
+				<Param value="" name="replace"></Param>
+			  </TransformInput>
+			 <Param name="regex" value="([/?].*)" />
+			 <Param name="replace" value="" />
+			 </TransformInput>
+			</TransformInput>
+		  </Compare>
+		  <Compare required="false" metric="levenshtein" weight="1">
+			<TransformInput function="lowerCase">
+			 <TransformInput function="regexReplace">
+			  <TransformInput function="replace">
+			   <Input path="?a/dbpedia-owl:wikiPageExternalLink"></Input>
+				<Param value="http://" name="search"></Param>
+				<Param value="" name="replace"></Param>
+			  </TransformInput>
+			 <Param name="regex" value="([/?].*)" />
+			 <Param name="replace" value="" />
+			 </TransformInput>
+			</TransformInput>
+			<TransformInput function="lowerCase">
+			 <TransformInput function="regexReplace">
+			  <TransformInput function="replace">
+			   <Input path="?b/foaf:homepage"></Input>
+				<Param value="http://" name="search"></Param>
+				<Param value="" name="replace"></Param>
+			  </TransformInput>
+			 <Param name="regex" value="([/?].*)" />
+			 <Param name="replace" value="" />
+			 </TransformInput>
+			</TransformInput>
+		  </Compare>
+		  <Compare required="false" metric="levenshtein" weight="1">
+            <TransformInput function="lowerCase">
+			 <TransformInput function="replace">
+			  <TransformInput function="stripUriPrefix">
+                <Input path="?a/dbpedia-owl:location"></Input>
+			  </TransformInput>
+			  <Param value="_" name="search"></Param>
+				<Param value=" " name="replace"></Param>
+             </TransformInput>
+			</TransformInput>
+            <TransformInput function="lowerCase">
+			 <TransformInput function="regexReplace">
+			  <TransformInput function="stripUriPrefix">
+				<Input path="?b/openei:Property-3APlace"></Input>
+			  </TransformInput>
+			  <Param name="regex" value="(.*),(.*)" />
+			  <Param name="replace" value="$1" />
+             </TransformInput>
+			</TransformInput>
+          </Compare>
+		</Aggregate> 
+		</Aggregate> -->
 		</LinkCondition>
       <Filter threshold="0.90"></Filter>
       <Outputs> 
 	          <Output maxConfidence="0.92" type="file" >
-          <Param name="file" value="dbpedia-openei-places.xml"/>
+          <Param name="file" value="dbpedia-openei-organisation.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
         <Output minConfidence="0.92" type="file">
-          <Param name="file" value="dbpedia-openei-places.nt"/>
+          <Param name="file" value="dbpedia-openei-organisation.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>
 	  </Outputs>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Silk>
+	<Prefixes>
+		<Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+		<Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#" />
+		<Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#" />
+		<Prefix id="dc" namespace="http://purl.org/dc/elements/1.1/" />
+		<Prefix id="swc" namespace="http://data.semanticweb.org/ns/swc/ontology#" />
+	</Prefixes>
+
+	<DataSources>
+		<DataSource id="source_a" type="sparqlEndpoint">
+			<Param name="endpointURI" value="http://eculture2.cs.vu.nl:8890/sparql" />
+			<Param name="retryCount" value="10" />
+			<Param name="retryPause" value="10000" />
+		</DataSource>
+		<DataSource id="source_b" type="sparqlEndpoint">
+			<Param name="endpointURI" value="http://data.semanticweb.org/sparql" />
+			<Param name="retryCount" value="10" />
+			<Param name="retryPause" value="10000" />
+		</DataSource>
+	</DataSources>
+
+	<Interlinks>
+		<Interlink id="links">
+
+			<LinkType>owl:sameAs</LinkType>
+
+			<SourceDataset dataSource="source_a" var="a">
+				<RestrictTo>
+					?a rdf:type swc:AcademicEvent
+				</RestrictTo>
+			</SourceDataset>
+
+			<TargetDataset dataSource="source_b" var="b">
+				<RestrictTo>
+					?b rdf:type swc:ConferenceEvent
+				</RestrictTo>
+			</TargetDataset>
+
+			<LinkCondition>
+				<Aggregate required="false" type="average" weight="1">
+					<Compare metric="levenshtein" required="false" weight="1">
+						<TransformInput function="lowerCase">
+							<Input path="?a/rdfs:label" />
+						</TransformInput>
+						<TransformInput function="lowerCase">
+							<Input path="?b/rdfs:label" />
+						</TransformInput>
+					</Compare>
+				</Aggregate>
+			</LinkCondition>
+
+			<Filter threshold="0.7" limit="1"/>
+
+			<Outputs>
+				<Output maxConfidence="0.74" type="file">
+					<Param name="file" value="verify.xml" />
+					<Param name="format" value="alignment" />
+				</Output>
+				<Output minConfidence="0.75" type="file">
+					<Param name="file" value="links.nt" />
+					<Param name="format" value="ntriples" />
+				</Output>
+			</Outputs>
+		</Interlink>
+	</Interlinks>
+</Silk>
