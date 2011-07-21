@@ -62,7 +62,16 @@
         </Aggregate>
       </LinkCondition>
       <Filter threshold="0.95"></Filter>
-      <Outputs> </Outputs>
+      <Outputs>
+	    <Output maxConfidence="0.97" type="file">
+          <Param name="file" value="climb-geonames-venues-mountains_verify.xml"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output minConfidence="0.98" type="file">
+          <Param name="file" value="climb-geonames-venues-mountains.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+	 </Outputs>
     </Interlink>
   </Interlinks>
 </Silk>

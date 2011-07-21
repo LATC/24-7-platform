@@ -2,11 +2,13 @@
   <Prefixes>
     <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
     <Prefix namespace="http://dbpedia.org/property/" id="dbpp"></Prefix>
+    <Prefix namespace="http://purl.org/ontology/bibo/" id="bibo"></Prefix>
     <Prefix namespace="http://www.kanzaki.com/ns/whois#" id="whois"></Prefix>
     <Prefix namespace="http://dbpedia.org/ontology/" id="dbo"></Prefix>
     <Prefix namespace="http://open.vocab.org/terms/" id="ov"></Prefix>
     <Prefix namespace="http://purl.org/dc/terms/" id="dcterms"></Prefix>
     <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+    <Prefix namespace="http://dbpedia.org/class/yago/" id="yago"></Prefix>
     <Prefix namespace="http://purl.org/vocab/bio/0.1/" id="bio"></Prefix>
     <Prefix namespace="http://xmlns.com/foaf/0.1/" id="foaf"></Prefix>
     <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
@@ -27,38 +29,47 @@
     <Interlink id="pbac-dbpedia-17thanglicanbishops">
       <LinkType>owl:sameAs</LinkType>
       <SourceDataset var="a" dataSource="pbac">
-        <RestrictTo>?a rdf:type foaf:Agent .</RestrictTo>
+        <RestrictTo>{ ?a rdf:type foaf:Agent . } UNION { ?a a foaf:Person } .</RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="dbpedia">
-        <RestrictTo>?b rdf:type &lt;http://dbpedia.org/class/yago/17th-centuryAnglicanBishops&gt; .</RestrictTo>
+        <RestrictTo>
+          { ?b rdf:type yago:17th-centuryAnglicanBishops . }   UNION        { ?b a yago:EjectedEnglishMinistersOf1662 .      }      UNION     { ?b a yago:EnglishAnglicanPriests . } .
+        </RestrictTo>
       </TargetDataset>
       <LinkCondition>
-        <Aggregate type="average" required="false" weight="1">
-          <Aggregate type="average" required="true" weight="1">
-            <Compare required="true" metric="qGrams" weight="1">
+        <Aggregate type="max" required="true" weight="1">
+          <Aggregate type="max" required="true" weight="1">
+            <Compare required="true" metric="jaroWinkler" weight="1">
               <TransformInput function="regexReplace">
                 <Input path="?b/rdfs:label"></Input>
                 <Param value="\(.+\)" name="regex"></Param>
                 <Param value="" name="replace"></Param>
               </TransformInput>
-              <Input path="?a/rdfs:label"></Input>
-              <Param value="2" name="q"></Param>
+              <Input path="?a\owl:sameAs/rdfs:label"></Input>
             </Compare>
           </Aggregate>
-          <Aggregate type="max" required="false" weight="1">
-            <Compare required="false" metric="equality" weight="1">
-              <TransformInput function="numReduce">
-                <Input path="?a/owl:sameAs/whois:born"></Input>
-              </TransformInput>
-              <TransformInput function="numReduce">
-                <Input path="?b/dcterms:subject"></Input>
-              </TransformInput>
-            </Compare>
-          </Aggregate>
+          <Compare required="false" metric="equality" weight="0.5">
+            <TransformInput function="numReduce">
+              <Input path="?a/whois:born"></Input>
+            </TransformInput>
+            <TransformInput function="numReduce">
+              <Input path="?b/dcterms:subject"></Input>
+            </TransformInput>
+          </Compare>
         </Aggregate>
       </LinkCondition>
       <Filter threshold="0.95"></Filter>
-      <Outputs> </Outputs>
+      <Outputs>
+               <Output minConfidence="0.90" type="file">
+                    <Param name="file" value="pbac_dbpedia_links_accepted.nt"/>
+                    <Param name="format" value="ntriples"/>
+                </Output>
+                <Output maxConfidence="0.95" type="file">
+                    <Param name="file" value="pbac_dbpedia_links_verify.nt"/>
+                    <Param name="format" value="alignment"/>
+                </Output>
+      </Outputs>
     </Interlink>
   </Interlinks>
 </Silk>
+
