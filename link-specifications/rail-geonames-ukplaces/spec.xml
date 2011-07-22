@@ -1,0 +1,73 @@
+<Silk>
+  <Prefixes>
+    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://dbpedia.org/property/" id="dbpp"></Prefix>
+    <Prefix namespace="http://climb.dataincubator.org/vocabs/climb/" id="climb"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/50kGazetteer/" id="gazetteer"></Prefix>
+    <Prefix namespace="http://transport.data.gov.uk/def/naptan/" id="naptan"></Prefix>
+    <Prefix namespace="http://www.geonames.org/ontology#" id="geonames"></Prefix>
+    <Prefix namespace="http://open.vocab.org/terms/" id="ov"></Prefix>
+    <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"></Prefix>
+    <Prefix namespace="http://statistics.data.gov.uk/def/administrative-geography/" id="dgadmingeo"></Prefix>
+    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+    <Prefix namespace="http://dbpedia.org/class/yago/" id="yago"></Prefix>
+    <Prefix namespace="http://www.w3.org/2004/02/skos/core#" id="skos"></Prefix>
+    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/admingeo/" id="admingeo"></Prefix>
+    <Prefix namespace="http://transport.data.gov.uk/def/traffic/" id="traffic"></Prefix>
+    <Prefix namespace="http://ontologi.es/rail/vocab#" id="rail"></Prefix>
+  </Prefixes>
+  <DataSources>
+    <DataSource type="sparqlEndpoint" id="sindice">
+      <Param value="http://sparql.sindice.com/sparql" name="endpointURI"></Param>
+      <Param value="3" name="retryCount"></Param>
+      <Param value="1000" name="retryPause"></Param>
+    </DataSource>
+    <DataSource type="sparqlEndpoint" id="geonames">
+      <Param value="http://api.talis.com/stores/geonames/services/sparql" name="endpointURI"></Param>
+      <Param value="3" name="retryCount"></Param>
+      <Param value="1000" name="retryPause"></Param>
+    </DataSource>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="rail-geonames-ukplaces">
+      <LinkType>ov:near</LinkType>
+      <SourceDataset var="a" dataSource="sindice">
+        <RestrictTo>?a a rail:Station .</RestrictTo>
+      </SourceDataset>
+      <TargetDataset var="b" dataSource="geonames">
+        <RestrictTo>?b geonames:inCountry &lt;http://www.geonames.org/countries/#GB&gt; .</RestrictTo>
+      </TargetDataset>
+      <LinkCondition>
+        <Aggregate type="average" required="true" weight="1">
+          <Compare required="true" metric="wgs84" weight="1">
+            <TransformInput function="concat">
+              <Input path="?a/geo:lat"></Input>
+              <Input path="?a/geo:long"></Input>
+              <Param value=" " name="glue"></Param>
+            </TransformInput>
+            <TransformInput function="concat">
+              <Input path="?b/geo:lat"></Input>
+              <Input path="?b/geo:long"></Input>
+              <Param value=" " name="glue"></Param>
+            </TransformInput>
+            <Param value="5" name="threshold"></Param>
+            <Param value="km" name="unit"></Param>
+            <Param value="linear" name="curveStyle"></Param>
+          </Compare>
+        </Aggregate>
+      </LinkCondition>
+      <Filter threshold="0.95"></Filter>
+      <Outputs>
+	    <Output maxConfidence="0.97" type="file">
+          <Param name="file" value="rail_geonames_ukplaces_verify.xml"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output minConfidence="0.98" type="file">
+          <Param name="file" value="rail_geonames_ukplaces.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+      </Outputs>
+    </Interlink>
+  </Interlinks>
+</Silk>
