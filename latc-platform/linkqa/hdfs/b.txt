@@ -1,4 +1,9 @@
-a
-b
-c
-x
+<http://a> <http://x> <http://x> .
+<http://b> <http://x> <http://x> .
+<http://c> <http://x> <http://x> .
+<http://d> <http://x> <http://x> .
+<http://e> <http://x> <http://x> .
+
+<http://v> <http://x> <http://x> .
+<http://w> <http://x> <http://x> .
+<http://x> <http://x> <http://x> .

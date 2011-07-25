@@ -1,7 +1,10 @@
-a
-b
-c
-d
-e
-f
-g
+<http://a> <http://x> <http://x> .
+<http://b> <http://x> <http://x> .
+<http://c> <http://x> <http://x> .
+<http://d> <http://x> <http://x> .
+<http://e> <http://x> <http://x> .
+<http://f> <http://x> <http://x> .
+<http://g> <http://x> <http://x> .
+<http://h> <http://x> <http://x> .
+<http://i> <http://x> <http://x> .
+<http://j> <http://x> <http://x> .
