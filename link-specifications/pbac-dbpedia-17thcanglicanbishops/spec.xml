@@ -33,13 +33,18 @@
       </SourceDataset>
       <TargetDataset var="b" dataSource="dbpedia">
         <RestrictTo>
-          { ?b rdf:type yago:17th-centuryAnglicanBishops . }   UNION        { ?b a yago:EjectedEnglishMinistersOf1662 .      }      UNION     { ?b a yago:EnglishAnglicanPriests . } .
+          { ?b rdf:type yago:17th-centuryAnglicanBishops . } 
+          UNION    
+          { ?b a yago:EjectedEnglishMinistersOf1662 .      }     
+          UNION     { ?b a yago:EnglishAnglicanPriests . } 
+          UNION { ?b a yago:16th-centuryPhilosophers  }
+          UNION { ?b a yago:17th-centuryPhilosophers  }
         </RestrictTo>
       </TargetDataset>
       <LinkCondition>
-        <Aggregate type="max" required="true" weight="1">
-          <Aggregate type="max" required="true" weight="1">
-            <Compare required="true" metric="jaroWinkler" weight="1">
+        <Aggregate type="average" required="true" weight="3">
+          <Aggregate type="max" required="true" weight="3">
+            <Compare required="true" metric="jaroWinkler" weight="3">
               <TransformInput function="regexReplace">
                 <Input path="?b/rdfs:label"></Input>
                 <Param value="\(.+\)" name="regex"></Param>
@@ -48,7 +53,7 @@
               <Input path="?a\owl:sameAs/rdfs:label"></Input>
             </Compare>
           </Aggregate>
-          <Compare required="false" metric="equality" weight="0.5">
+          <Compare required="true" metric="equality" weight="1">
             <TransformInput function="numReduce">
               <Input path="?a/whois:born"></Input>
             </TransformInput>

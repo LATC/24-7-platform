@@ -1,0 +1,19 @@
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dbp: <http://dbpedia.org/resource/> .
+@prefix pbac: <http://keithalexander.co.uk/pbac/identified/agents/> .
+@base <http://keithalexander.co.uk/pbac/identified/agents/> .
+
+<http://keithalexander.co.uk/pbac/identified/agents/405> owl:sameAs <http://dbpedia.org/resource/George_Abbot_(bishop)> .
+<http://keithalexander.co.uk/pbac/identified/agents/405> owl:sameAs <http://dbpedia.org/resource/George_Abbot_%28bishop%29> .
+<417> owl:sameAs <http://dbpedia.org/resource/Thomas_Gouge> .
+<451> owl:sameAs <http://dbpedia.org/resource/Richard_Byfield> . 
+<396> owl:sameAs <http://dbpedia.org/resource/Henry_Newcome> .
+<461> owl:sameAs <http://dbpedia.org/resource/Arthur_Lake_(actor)> .
+<461> owl:sameAs <http://dbpedia.org/resource/Arthur_Lakes> .
+<396> owl:sameAs <http://dbpedia.org/resource/John_Newcomen> .
+<396> owl:sameAs <http://dbpedia.org/resource/James_Aitken_%28bishop%29> .
+<462> owl:sameAs <http://dbpedia.org/resource/Babington,_Somerset> .
+<462> owl:sameAs <http://dbpedia.org/resource/George_Heriot_%28died_1610%29> .
+

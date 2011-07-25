@@ -1,0 +1,18 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ns0: <http://dbpedia.org/resource/> .
+@prefix dbp: <http://dbpedia.org/resource/> .
+@prefix pbac: <http://keithalexander.co.uk/pbac/identified/agents/> .
+@base <http://keithalexander.co.uk/pbac/identified/agents/> .
+
+<http://keithalexander.co.uk/pbac/identified/agents/405> owl:sameAs <http://dbpedia.org/resource/Robert_Abbot_%28bishop%29> .
+<http://keithalexander.co.uk/pbac/identified/agents/408> owl:sameAs ns0:Isaac_Ambrose .
+<http://keithalexander.co.uk/pbac/identified/agents/498> owl:sameAs <http://dbpedia.org/resource/Joseph_Hall_%28bishop%29> .
+<http://keithalexander.co.uk/pbac/identified/agents/396>  owl:sameAs <http://dbpedia.org/resource/Matthew_Newcomen> .
+<409> owl:sameAs dbp:Lancelot_Andrewes .
+<433> owl:sameAs dbp:Richard_Baxter .
+<499> owl:sameAs <http://dbpedia.org/resource/Thomas_Hall_(minister)> .
+<478> owl:sameAs <http://dbpedia.org/resource/Daniel_Cawdry> .
+<461> owl:sameAs <http://dbpedia.org/resource/Arthur_Lake_(bishop)> .
+<417> owl:sameAs <http://dbpedia.org/resource/William_Gouge> .
+<462> owl:sameAs dbp:Gervase_Babington .
