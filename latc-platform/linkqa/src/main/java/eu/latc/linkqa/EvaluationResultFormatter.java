@@ -40,8 +40,8 @@ class EvaluationResultFormatter
 
     public static Model toModel(Model result, PrecResult eval, Resource evalUri) {
         result.add(evalUri, Vocab.precision, ResourceFactory.createTypedLiteral(eval.getPrecision()));
-        //result.add(evalUri, Vocab.recall, ResourceFactory.createTypedLiteral(eval.getRecall()));
-        //result.add(evalUri, Vocab.fmeasure, ResourceFactory.createTypedLiteral(eval.getFMeasure()));
+        result.add(evalUri, Vocab.recall, ResourceFactory.createTypedLiteral(eval.getRecall()));
+        result.add(evalUri, Vocab.fmeasure, ResourceFactory.createTypedLiteral(eval.getFMeasure()));
 
         result.add(evalUri, Vocab.linksetSize, ResourceFactory.createTypedLiteral(eval.getLinksetSize()));
         result.add(evalUri, Vocab.refsetSize, ResourceFactory.createTypedLiteral(eval.getRefsetSize()));
