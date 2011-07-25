@@ -18,13 +18,13 @@
     <Prefix namespace="http://ontologi.es/rail/vocab#" id="rail"></Prefix>
   </Prefixes>
   <DataSources>
-    <DataSource type="sparqlEndpoint" id="ukrail">
+    <DataSource type="sparqlEndpoint" id="sindice">
       <Param value="http://sparql.sindice.com/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
-    <DataSource type="sparqlEndpoint" id="geonames">
-      <Param value="http://api.talis.com/stores/geonames/services/sparql" name="endpointURI"></Param>
+    <DataSource type="sparqlEndpoint" id="climb">
+      <Param value="http://api.talis.com/stores/climb/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
@@ -32,11 +32,11 @@
   <Interlinks>
     <Interlink id="rail-geonames-ukplaces">
       <LinkType>ov:near</LinkType>
-      <SourceDataset var="a" dataSource="ukrail">
-        <RestrictTo>?a a rail:Station .</RestrictTo>
+      <SourceDataset var="a" dataSource="climb">
+        <RestrictTo>?a a climb:Venue .</RestrictTo>
       </SourceDataset>
-      <TargetDataset var="b" dataSource="geonames">
-        <RestrictTo>?b geonames:inCountry &lt;http://www.geonames.org/countries/#GB&gt; .</RestrictTo>
+      <TargetDataset var="b" dataSource="sindice">
+        <RestrictTo>?b a rail:Station .</RestrictTo>
       </TargetDataset>
       <LinkCondition>
         <Aggregate type="average" required="true" weight="1">
@@ -51,7 +51,7 @@
               <Input path="?b/geo:long"></Input>
               <Param value=" " name="glue"></Param>
             </TransformInput>
-            <Param value="5" name="threshold"></Param>
+            <Param value="15" name="threshold"></Param>
             <Param value="km" name="unit"></Param>
             <Param value="linear" name="curveStyle"></Param>
           </Compare>
@@ -60,11 +60,11 @@
       <Filter threshold="0.95"></Filter>
       <Outputs>
 	    <Output maxConfidence="0.97" type="file">
-          <Param name="file" value="rail_geonames_ukplaces_verify.xml"/>
+          <Param name="file" value="climb_rail_venues.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
         <Output minConfidence="0.98" type="file">
-          <Param name="file" value="rail_geonames_ukplaces.nt"/>
+          <Param name="file" value="climb_rail_venues.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>
       </Outputs>
