@@ -34,8 +34,7 @@ public class PrecResult
      * @return
      */
     public double getRecall() {
-        throw new RuntimeException("There is no recall");
-        //return overlapSize / (double)refsetSize;
+        return overlapSize / (double)refsetSize;
     }
 
     /**
