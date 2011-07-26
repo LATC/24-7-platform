@@ -19,6 +19,11 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 CONSTRUCT {
   <{$this_resource_uri}> owl:sameAs <{$uri}> .
+  <{$this_resource_uri}> ?p ?o .
+  <{$this_resource_uri}> owl:sameAs ?sameAs .
+  <{$this_resource_uri}> ov:near ?near .
+  <{$this_resource_uri}> spatial:within ?contains .
+  <{$this_resource_uri}> spatial:contains ?within .
   <{$uri}> ?p ?o .
   <{$uri}> owl:sameAs ?sameAs .
   <{$uri}> ov:near ?near .
