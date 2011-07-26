@@ -8,20 +8,25 @@ require '../../lib/moriarty/sparqlservice.class.php';
 if(isset($_GET['uri'])){
   $uri = trim($_GET['uri']);
 $this_doc_uri = 'http://mds.lod-cloud.net/linksets/describer/?uri='.urlencode($_GET['uri']);
+$this_resource_uri = $this_doc_uri.'#id';
   $SPARQL = <<<_SPARQL_
 
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX ov: <http://open.vocab.org/terms/>
 PREFIX spatial: <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/>
 PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 CONSTRUCT {
+  <{$this_resource_uri}> owl:sameAs <{$uri}> .
   <{$uri}> ?p ?o .
   <{$uri}> owl:sameAs ?sameAs .
   <{$uri}> ov:near ?near .
   <{$uri}> spatial:within ?contains .
   <{$uri}> spatial:contains ?within .
-  <{$this_doc_uri}> dct:source ?g .
+  <{$this_doc_uri}> dct:source ?g ;
+    foaf:primaryTopic <{$this_resource_uri}>
+.
 } WHERE {
 GRAPH ?g {
 OPTIONAL{ <{$uri}> ?p ?o . }
