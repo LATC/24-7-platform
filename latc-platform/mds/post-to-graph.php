@@ -1,7 +1,7 @@
 <?php
-define('MORIARTY_ARC_DIR', 'lib/arc/');
-require 'lib/moriarty/store.class.php';
-require 'lib/moriarty/credentials.class.php';
+define('MORIARTY_ARC_DIR', '../lib/arc/');
+require '../lib/moriarty/store.class.php';
+require '../lib/moriarty/credentials.class.php';
 require 'talis-store-credentials.php';
 
 class MDSHttpRequest {
