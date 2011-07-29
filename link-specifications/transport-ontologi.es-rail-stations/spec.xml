@@ -15,12 +15,12 @@
     <Prefix namespace="http://ontologi.es/rail/vocab#" id="rail"></Prefix>
   </Prefixes>
   <DataSources>
-    <DataSource type="sparqlEndpoint" id="transport">
+    <DataSource type="sparqlEndpoint" id="transport-data-gov-uk">
       <Param value="http://api.talis.com/stores/transport/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
-    <DataSource type="sparqlEndpoint" id="sindice">
+    <DataSource type="sparqlEndpoint" id="linked-railway-data-project">
       <Param value="http://sparql.sindice.com/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
@@ -29,10 +29,10 @@
   <Interlinks>
     <Interlink id="transport-rail-stations">
       <LinkType>owl:sameAs</LinkType>
-      <SourceDataset var="a" dataSource="transport">
+      <SourceDataset var="a" dataSource="transport-data-gov-uk">
         <RestrictTo>?a a naptan:Station .</RestrictTo>
       </SourceDataset>
-      <TargetDataset var="b" dataSource="sindice">
+      <TargetDataset var="b" dataSource="linked-railway-data-project">
         <RestrictTo>?b a rail:Station .</RestrictTo>
       </TargetDataset>
       <LinkCondition>

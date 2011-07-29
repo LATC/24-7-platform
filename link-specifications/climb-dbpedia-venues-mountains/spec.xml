@@ -13,8 +13,8 @@
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
-    <DataSource type="sparqlEndpoint" id="geonames">
-      <Param value="http://api.talis.com/stores/geonames/services/sparql" name="endpointURI"></Param>
+    <DataSource type="sparqlEndpoint" id="dbpedia">
+      <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
@@ -25,9 +25,9 @@
       <SourceDataset var="a" dataSource="data-incubator-climb">
         <RestrictTo>?a rdf:type climb:Venue .</RestrictTo>
       </SourceDataset>
-      <TargetDataset var="b" dataSource="geonames">
+      <TargetDataset var="b" dataSource="dbpedia">
         <RestrictTo>
-          ?b rdf:type geonames:Feature ; geonames:inCountry &lt;http://www.geonames.org/countries/#GB&gt; ;  geonames:featureClass geonames:T .
+          ?b rdf:type &lt;http://dbpedia.org/ontology/Mountain&gt; .
         </RestrictTo>
       </TargetDataset>
       <LinkCondition>

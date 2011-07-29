@@ -18,7 +18,7 @@
     <Prefix namespace="http://ontologi.es/rail/vocab#" id="rail"></Prefix>
   </Prefixes>
   <DataSources>
-    <DataSource type="sparqlEndpoint" id="sindice">
+    <DataSource type="sparqlEndpoint" id="linked-railway-data-project">
       <Param value="http://sparql.sindice.com/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
@@ -32,7 +32,7 @@
   <Interlinks>
     <Interlink id="rail-dbpedia-scottishmonuments">
       <LinkType>ov:near</LinkType>
-      <SourceDataset var="a" dataSource="sindice">
+      <SourceDataset var="a" dataSource="linked-railway-data-project">
         <RestrictTo>?a a rail:Station .</RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="dbpedia">

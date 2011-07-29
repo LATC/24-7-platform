@@ -34,14 +34,27 @@ CONSTRUCT {
 .
 } WHERE {
 GRAPH ?g {
-OPTIONAL{ <{$uri}> ?p ?o . }
 
-OPTIONAL{ ?sameAs owl:sameAs <{$uri}> .  }
-
-OPTIONAL{ ?contains spatial:contains <{$uri}> .  }
-OPTIONAL{ ?within spatial:within <{$uri}> .  }
-OPTIONAL{ ?near ov:near <{$uri}> .  }
-
+{ <{$uri}> ?p ?o . }
+  UNION
+{ ?sameAs owl:sameAs <{$uri}> . 
+    OPTIONAL {  
+      ?sameAs ?p ?o .
+      FILTER(?o!=<{$uri}>) .
+  }
+ } 
+  UNION
+{ ?contains spatial:contains <{$uri}> .  } 
+  UNION
+{ ?within spatial:within <{$uri}> .  } 
+  UNION
+{ ?near ov:near <{$uri}> .  }
+UNION
+#transitive
+ { <{$uri}> owl:sameAs [ owl:sameAs ?sameAs ] . }
+#UNION
+#reverse-transitive
+ #{ ?sameAs   owl:sameAs [ owl:sameAs <{$uri}> ] . }
 }
  }
 _SPARQL_;
@@ -51,14 +64,15 @@ _SPARQL_;
   if($response->is_success()){
 
     $rdf = $response->body;
-
-    $httprequestfactory = new HttpRequestFactory();
-    $request = $httprequestfactory->make('GET', $uri);
-    $request->set_accept("text/turtle,application/rdf+xml,text/rdf+n3,*/*;q=0.8");    
-    $response = $request->execute();
     $graph = new SimpleGraph();
     $graph->add_rdf($rdf);
-    $graph->add_rdf($response->body);
+   if(isset($_GET['augment'])){
+      $httprequestfactory = new HttpRequestFactory();
+      $request = $httprequestfactory->make('GET', $uri);
+      $request->set_accept("text/turtle,application/rdf+xml,text/rdf+n3,*/*;q=0.8");    
+      $response = $request->execute();
+      $graph->add_rdf($response->body);
+    }
     header("Content-type: application/rdf+xml");
     echo $graph->to_rdfxml();
     die;

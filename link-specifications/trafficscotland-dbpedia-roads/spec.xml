@@ -1,61 +1,73 @@
 <Silk>
   <Prefixes>
     <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://dbpedia.org/property/" id="dbpp"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/spatialrelations/" id="spatial"></Prefix>
     <Prefix namespace="http://climb.dataincubator.org/vocabs/climb/" id="climb"></Prefix>
     <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/50kGazetteer/" id="gazetteer"></Prefix>
     <Prefix namespace="http://transport.data.gov.uk/def/naptan/" id="naptan"></Prefix>
     <Prefix namespace="http://www.geonames.org/ontology#" id="geonames"></Prefix>
+    <Prefix namespace="http://open.vocab.org/terms/" id="ov"></Prefix>
     <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"></Prefix>
     <Prefix namespace="http://statistics.data.gov.uk/def/administrative-geography/" id="dgadmingeo"></Prefix>
     <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+    <Prefix namespace="http://dbpedia.org/class/yago/" id="yago"></Prefix>
     <Prefix namespace="http://www.w3.org/2004/02/skos/core#" id="skos"></Prefix>
     <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
     <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/admingeo/" id="admingeo"></Prefix>
     <Prefix namespace="http://transport.data.gov.uk/def/traffic/" id="traffic"></Prefix>
     <Prefix namespace="http://ontologi.es/rail/vocab#" id="rail"></Prefix>
-	<Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/spatialrelations/" id="spatial"></Prefix>
   </Prefixes>
   <DataSources>
-    <DataSource type="sparqlEndpoint" id="transport">
-      <Param value="http://api.talis.com/stores/transport/services/sparql" name="endpointURI"></Param>
+    <DataSource type="sparqlEndpoint" id="traffic-scotland">
+      <Param value="http://api.talis.com/stores/trafficscotland/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
-    <DataSource type="sparqlEndpoint" id="ordnance-survey">
-      <Param value="http://api.talis.com/stores/ordnance-survey/services/sparql" name="endpointURI"></Param>
+    <DataSource type="sparqlEndpoint" id="dbpedia">
+      <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
   </DataSources>
   <Interlinks>
-    <Interlink id="transport-ordnancesurvey-countpoints">
-      <LinkType>spatial:within</LinkType>
-      <SourceDataset var="a" dataSource="transport">
-        <RestrictTo>?a a traffic:CountPoint .</RestrictTo>
+    <Interlink id="trafficscotland-sameas-dbpedia-roads">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset var="a" dataSource="traffic-scotland">
+        <RestrictTo>?a a &lt;http://purl.org/ontologies/road-traffic/Road&gt; .</RestrictTo>
       </SourceDataset>
-      <TargetDataset var="b" dataSource="ordnance-survey">
-        <RestrictTo>?b a admingeo:UnitaryAuthority .</RestrictTo>
+      <TargetDataset var="b" dataSource="dbpedia">
+        <RestrictTo>{?b a yago:RoadsInScotland . } UNION {?b a yago:MotorwaysInScotland} .</RestrictTo>
       </TargetDataset>
       <LinkCondition>
         <Aggregate type="average" required="true" weight="1">
-          <Compare required="true" metric="equality" weight="1">
-            <Input path="?a/dgadmingeo:district/dgadmingeo:standardCode"></Input>
-            <Input path="?b/skos:notation"></Input>
+          <Compare required="false" metric="equality" weight="1">
+            <TransformInput function="stripPostfix">
+              <TransformInput function="stripPostfix">
+                <Input path="?b/rdfs:label"></Input>
+                <Param value=" motorway" name="postfix"></Param>
+              </TransformInput>
+              <Param value=" road" name="postfix"></Param>
+            </TransformInput>
+            <TransformInput function="removeBlanks">
+              <Input path="?a/rdfs:label"></Input>
+            </TransformInput>
           </Compare>
         </Aggregate>
       </LinkCondition>
-      <Filter threshold="0.95"></Filter>
-      <Outputs>
+      <Filter threshold="0.85"></Filter>
+      <Outputs> 
 	    <Output maxConfidence="0.97" type="file">
-          <Param name="file" value="transport_ordnancesurvey_trafficcountpoints_verify.xml"/>
+          <Param name="file" value="trafficscotland_dbpedia_roads.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
-        <Output minConfidence="0.98" type="file">
-          <Param name="file" value="transport_ordnancesurvey_trafficcountpoints.nt"/>
+        <Output minConfidence="0.85" type="file">
+          <Param name="file" value="trafficscotland_dbpedia_roads.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>
-        
+ 
       </Outputs>
     </Interlink>
   </Interlinks>
 </Silk>
+

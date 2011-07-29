@@ -1,2 +1,2 @@
 creator: Keith Alexander
-description: places in geonames within 5km of UK Rail Stations
+description: Climbing Venues within 15km of places in Geonames

@@ -8,7 +8,7 @@
     <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
   </Prefixes>
   <DataSources>
-    <DataSource type="sparqlEndpoint" id="climb">
+    <DataSource type="sparqlEndpoint" id="data-incubator-climb">
       <Param value="http://api.talis.com/stores/climb/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
@@ -22,7 +22,7 @@
   <Interlinks>
     <Interlink id="climb-geonames-places">
       <LinkType>owl:sameAs</LinkType>
-      <SourceDataset var="a" dataSource="climb">
+      <SourceDataset var="a" dataSource="data-incubator-climb">
         <RestrictTo>?a rdf:type geo:SpatialThing .</RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="geonames">
@@ -40,8 +40,17 @@
           </Compare>
         </Aggregate>
       </LinkCondition>
-      <Filter limit="5" threshold="0.95"></Filter>
-      <Outputs> </Outputs>
+      <Filter limit="50" threshold="0.75"></Filter>
+      <Outputs>
+	    <Output maxConfidence="0.97" type="file">
+          <Param name="file" value="climb-geonames-spatialthings_verify.xml"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output minConfidence="0.98" type="file">
+          <Param name="file" value="climb-geonames-spatialthings.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+      </Outputs>
     </Interlink>
   </Interlinks>
 </Silk>
