@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Silk>
-
   <Prefixes>
     <Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#" />
     <Prefix id="dbpedia" namespace="http://dbpedia.org/ontology/" />
@@ -13,7 +12,7 @@
     <Prefix id="geo" namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" />
     <Prefix id="foaf" namespace="http://xmlns.com/foaf/0.1/" />    
     <Prefix id="wgs84" namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" />
- 	<Prefix id="geonames" namespace="http://www.geonames.org/ontology#" />
+   <Prefix id="geonames" namespace="http://www.geonames.org/ontology#" />
    <Prefix id="xsd" namespace="http://www.w3.org/2001/XMLSchema#" />
   </Prefixes>
 
@@ -32,7 +31,7 @@
     </DataSource>
   </DataSources>
 
- <Blocking blocks="100"/>
+<Blocking blocks="100"/>
 
   <Interlinks>
     <Interlink id="city">
@@ -40,13 +39,25 @@
 
       <SourceDataset dataSource="geonames" var="a">
         <RestrictTo>
-          {?a geonames:featureCode geonames:PPLF} UNION {?a geonames:featureCode geonames:PPLG} UNION {?a geonames:featureCode geonames:PPL} UNION {?a geonames:featureCode geonames:PPLA3} UNION {?a geonames:featureCode geonames:PPLS} UNION {?a geonames:featureCode geonames:PPLR} UNION {?a geonames:featureCode geonames:PPLL} UNION {?a geonames:featureCode geonames:PPLW} UNION {?a geonames:featureCode geonames:PPLA2} UNION {?a geonames:featureCode geonames:PPLA4} UNION {?a geonames:featureCode geonames:PPLA}.  ?a wgs84:lat ?lat. ?a wgs84:long ?long.
+{?a geonames:featureCode "PPL^^xsd:double"} UNION
+{?a geonames:featureCode "PPLA^^xsd:double"} UNION
+{?a geonames:featureCode "PPLA2^^xsd:double"} UNION
+{?a geonames:featureCode "PPLA3^^xsd:double"} UNION
+{?a geonames:featureCode "PPLA4^^xsd:double"} UNION
+{?a geonames:featureCode "PPLC^^xsd:double"} UNION
+{?a geonames:featureCode "PPLF^^xsd:double"} UNION
+{?a geonames:featureCode "PPLG^^xsd:double"} UNION
+{?a geonames:featureCode "PPLR^^xsd:double"} UNION
+{?a geonames:featureCode "PPLS^^xsd:double"} UNION
+{?a geonames:featureCode "PPLW^^xsd:double"} UNION
+{?a geonames:featureCode "PPLL^^xsd:double"}.
+?a wgs84:lat ?lat. ?a wgs84:long ?long.
         </RestrictTo>
       </SourceDataset>
 
       <TargetDataset dataSource="linkedgeodata" var="b">
         <RestrictTo>
-          {?b a lgdo:City} UNION {?b a lgdo:Village} UNION {?b a lgdo:Suburb} UNION {?b a lgdo:Town}.  ?b wgs84:lat ?lat. ?b wgs84:long ?long.
+          {?b a lgdo:City} UNION {?b a lgdo:Suburb} UNION {?b a lgdo:Town} UNION {?b a lgdo:Village}.  ?b wgs84:lat ?lat. ?b wgs84:long ?long.
         </RestrictTo>
       </TargetDataset>     
 
@@ -54,33 +65,13 @@
  <Aggregate type="average" required="true">
   <Aggregate type="max" required="true" weight="2">
    <Compare metric="jaro" >
- <TransformInput function="replace">
-    <Input path="?a/geonames:name" />
-    <Param name="search" value="city" />
-    <Param name="replace" value="" />
-  </TransformInput>
-  <TransformInput function="replace">
-    <Input path="?b/rdfs:label" />
-    <Param name="search" value="city" />
-    <Param name="replace" value="" />
-  </TransformInput>  
-    <!--<Input path="?a/rdfs:label" />
-    <Input path="?b/rdfs:label" />-->
-   </Compare>
-  <Compare metric="jaro" >
- <TransformInput function="replace">
     <Input path="?a/geonames:alternateName" />
-    <Param name="search" value="city" />
-    <Param name="replace" value="" />
-  </TransformInput>
-  <TransformInput function="replace">
     <Input path="?b/rdfs:label" />
-    <Param name="search" value="city" />
-    <Param name="replace" value="" />
-  </TransformInput>  
-    <!--<Input path="?a/rdfs:label" />
-    <Input path="?b/rdfs:label" />-->
-   </Compare>   
+   </Compare>
+   <Compare metric="jaro" >
+    <Input path="?a/geonames:name" />
+    <Input path="?b/rdfs:label" />
+   </Compare>
   </Aggregate>
  <Compare metric="wgs84" required="true">
   <TransformInput function="concat">
@@ -98,12 +89,7 @@
   <Param name="curveStyle" value="logistic" />
  </Compare>
 <!-- <Compare metric="num" weight="1">
-  <TransformInput function="concat">
-   <Input path="?b/wgs84:lat" />
-   <Input path="?b/wgs84:long" />
-   <Param name="glue" value=" " />
-  </TransformInput>
-  <Input path="?a/geonames:populationTotal" />
+  <Input path="?a/dbpedia-owl:populationTotal" />
   <Input path="?b/lgdo:population" />
  </Compare>-->
 </Aggregate>
@@ -113,11 +99,11 @@
 
       <Outputs>
         <Output type="file" minConfidence="0.95">
-          <Param name="file" value="1303320108589/city/links.nt" />
+          <Param name="file" value="geonames/city/links_accepted.nt" />
           <Param name="format" value="ntriples" />
         </Output>
         <Output type="file" maxConfidence="0.95">
-          <Param name="file" value="1303320108589/city/verify.nt" />
+          <Param name="file" value="geonames/city/links_verify.nt" />
           <Param name="format" value="ntriples" />
         </Output>
       </Outputs>
