@@ -30,7 +30,7 @@
       <Param value="100" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
-    <DataSource type="sparqlEndpoint" id="gutendata">
+    <DataSource type="sparqlEndpoint" id="gutenberg">
       <Param value="http://www4.wiwiss.fu-berlin.de/gutendata/sparql" name="endpointURI"></Param>
       <Param value="100" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>

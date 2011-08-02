@@ -1,0 +1,63 @@
+<Silk>
+  <Prefixes>
+    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://climb.dataincubator.org/vocabs/climb/" id="climb"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/50kGazetteer/" id="gazetteer"></Prefix>
+    <Prefix namespace="http://transport.data.gov.uk/def/naptan/" id="naptan"></Prefix>
+    <Prefix namespace="http://www.geonames.org/ontology#" id="geonames"></Prefix>
+    <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"></Prefix>
+    <Prefix namespace="http://statistics.data.gov.uk/def/administrative-geography/" id="dgadmingeo"></Prefix>
+    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+    <Prefix namespace="http://www.w3.org/2004/02/skos/core#" id="skos"></Prefix>
+    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/admingeo/" id="admingeo"></Prefix>
+    <Prefix namespace="http://transport.data.gov.uk/def/traffic/" id="traffic"></Prefix>
+    <Prefix namespace="http://ontologi.es/rail/vocab#" id="rail"></Prefix>
+  </Prefixes>
+  <DataSources>
+    <DataSource type="sparqlEndpoint" id="transport-data-gov-uk">
+      <Param value="http://api.talis.com/stores/transport/services/sparql" name="endpointURI"></Param>
+      <Param value="3" name="retryCount"></Param>
+      <Param value="1000" name="retryPause"></Param>
+    </DataSource>
+    <DataSource type="sparqlEndpoint" id="linked-railway-data-project">
+      <Param value="http://sparql.sindice.com/sparql" name="endpointURI"></Param>
+      <Param value="3" name="retryCount"></Param>
+      <Param value="1000" name="retryPause"></Param>
+    </DataSource>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="transport-rail-stations">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset var="a" dataSource="transport-data-gov-uk">
+        <RestrictTo>?a a naptan:Station .</RestrictTo>
+      </SourceDataset>
+      <TargetDataset var="b" dataSource="linked-railway-data-project">
+        <RestrictTo>?b a rail:Station .</RestrictTo>
+      </TargetDataset>
+      <LinkCondition>
+        <Aggregate type="average" required="true" weight="1">
+          <Compare required="true" metric="equality" weight="1">
+            <TransformInput function="upperCase">
+              <Input path="?a/naptan:crsRef"></Input>
+            </TransformInput>
+            <TransformInput function="upperCase">
+              <Input path="?b/rail:crs"></Input>
+            </TransformInput>
+          </Compare>
+        </Aggregate>
+      </LinkCondition>
+      <Filter threshold="0.95"></Filter>
+      <Outputs>
+	    <Output maxConfidence="0.97" type="file">
+          <Param name="file" value="transport_ontologi.es_rail_stations_verify.xml"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output minConfidence="0.98" type="file">
+          <Param name="file" value="transport_ontologi.es_rail_stations.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+	 </Outputs>
+    </Interlink>
+  </Interlinks>
+</Silk>

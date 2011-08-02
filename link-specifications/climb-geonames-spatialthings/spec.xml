@@ -1,0 +1,56 @@
+<Silk>
+  <Prefixes>
+    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://climb.dataincubator.org/vocabs/climb/" id="climb"></Prefix>
+    <Prefix namespace="http://www.geonames.org/ontology#" id="geonames"></Prefix>
+    <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"></Prefix>
+    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+  </Prefixes>
+  <DataSources>
+    <DataSource type="sparqlEndpoint" id="data-incubator-climb">
+      <Param value="http://api.talis.com/stores/climb/services/sparql" name="endpointURI"></Param>
+      <Param value="3" name="retryCount"></Param>
+      <Param value="1000" name="retryPause"></Param>
+    </DataSource>
+    <DataSource type="sparqlEndpoint" id="geonames">
+      <Param value="http://api.talis.com/stores/geonames/services/sparql" name="endpointURI"></Param>
+      <Param value="3" name="retryCount"></Param>
+      <Param value="1000" name="retryPause"></Param>
+    </DataSource>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="climb-geonames-places">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset var="a" dataSource="data-incubator-climb">
+        <RestrictTo>?a rdf:type geo:SpatialThing .</RestrictTo>
+      </SourceDataset>
+      <TargetDataset var="b" dataSource="geonames">
+        <RestrictTo>?b rdf:type geonames:Feature ;  geonames:inCountry &lt;http://www.geonames.org/countries/#GB&gt; .</RestrictTo>
+      </TargetDataset>
+      <LinkCondition>
+        <Aggregate type="average" required="false" weight="1">
+          <Compare required="true" metric="equality" weight="1">
+            <Input path="?a/geo:long"></Input>
+            <Input path="?b/geo:long"></Input>
+          </Compare>
+          <Compare required="true" metric="equality" weight="1">
+            <Input path="?a/geo:lat"></Input>
+            <Input path="?b/geo:lat"></Input>
+          </Compare>
+        </Aggregate>
+      </LinkCondition>
+      <Filter limit="50" threshold="0.75"></Filter>
+      <Outputs>
+	    <Output maxConfidence="0.97" type="file">
+          <Param name="file" value="climb-geonames-spatialthings_verify.xml"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output minConfidence="0.98" type="file">
+          <Param name="file" value="climb-geonames-spatialthings.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+      </Outputs>
+    </Interlink>
+  </Interlinks>
+</Silk>
