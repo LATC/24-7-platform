@@ -26,7 +26,7 @@
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
     <DataSource type="sparqlEndpoint" id="ordnance-survey">
-      <Param value="http://api.talis.com/stores/ordnance-survey/services/sparql" name="endpointURI"></Param>
+      <Param value="http://api.talis.com/stores/kwijibo-ordnance-survey-towns-with-lat-longs/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
@@ -35,14 +35,14 @@
     <Interlink id="metoffice-to-ordnancesurvey">
       <LinkType>owl:sameAs</LinkType>
       <SourceDataset var="a" dataSource="data-incubator-metoffice">
-        <RestrictTo>?a rdf:type metoffice:METOfficeLocation .</RestrictTo>
+        <RestrictTo>?a rdf:type metoffice:MetOfficeLocation .</RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="ordnance-survey">
-        <RestrictTo>?b rdf:type gazetteer:NamedPlace ; gazetteer:featureType gazetteer:Town .</RestrictTo>
+        <RestrictTo>?b rdf:type gazetteer:NamedPlace ; gazetteer:featureType gazetteer:Town  ; geo:lat ?lat ; geo:long ?long .</RestrictTo>
       </TargetDataset>
       <LinkCondition>
         <Aggregate type="average" required="false" weight="1">
-          <Compare required="false" metric="jaroWinkler" weight="1">
+          <Compare required="true" metric="jaroWinkler" weight="1">
             <Input path="?a/rdfs:label"></Input>
             <Input path="?b/rdfs:label"></Input>
           </Compare>
@@ -57,14 +57,19 @@
               <Input path="?b/geo:long"></Input>
               <Param value=" " name="glue"></Param>
             </TransformInput>
-            <Param value="20" name="threshold"></Param>
+            <Param value="30" name="threshold"></Param>
             <Param value="km" name="unit"></Param>
             <Param value="linear" name="curveStyle"></Param>
           </Compare>
         </Aggregate>
       </LinkCondition>
-      <Filter threshold="0.95"></Filter>
-      <Outputs> </Outputs>
+      <Filter threshold="0.90"></Filter>
+      <Outputs>
+        <Output minConfidence="0.90" type="file">
+          <Param name="file" value="metoffice_ordnance_survey.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+      </Outputs>
     </Interlink>
   </Interlinks>
 </Silk>
