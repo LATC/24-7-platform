@@ -1,71 +1,72 @@
 <Silk>
   <Prefixes>
     <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://purl.org/ontology/bibo/" id="bibo"/>
     <Prefix namespace="http://dbpedia.org/property/" id="dbpp"></Prefix>
+    <Prefix namespace="http://data.bl.uk/schema/bibliographic#" id="bibliographic"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/spatialrelations/" id="spatial"></Prefix>
     <Prefix namespace="http://climb.dataincubator.org/vocabs/climb/" id="climb"></Prefix>
     <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/50kGazetteer/" id="gazetteer"></Prefix>
     <Prefix namespace="http://transport.data.gov.uk/def/naptan/" id="naptan"></Prefix>
     <Prefix namespace="http://www.geonames.org/ontology#" id="geonames"></Prefix>
     <Prefix namespace="http://open.vocab.org/terms/" id="ov"></Prefix>
     <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/postcode/" id="postcode"></Prefix>
+    <Prefix namespace="http://purl.org/dc/terms/" id="dcterms"></Prefix>
     <Prefix namespace="http://statistics.data.gov.uk/def/administrative-geography/" id="dgadmingeo"></Prefix>
     <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
     <Prefix namespace="http://dbpedia.org/class/yago/" id="yago"></Prefix>
     <Prefix namespace="http://www.w3.org/2004/02/skos/core#" id="skos"></Prefix>
+    <Prefix namespace="http://xmlns.com/foaf/0.1/" id="foaf"></Prefix>
     <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+    <Prefix namespace="http://dbpedia.org/ontology/" id="dbpediaowl"></Prefix>
     <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/admingeo/" id="admingeo"></Prefix>
     <Prefix namespace="http://transport.data.gov.uk/def/traffic/" id="traffic"></Prefix>
+    <Prefix namespace="http://metoffice.dataincubator.org/vocabs/metoffice/" id="metoffice"></Prefix>
     <Prefix namespace="http://ontologi.es/rail/vocab#" id="rail"></Prefix>
-    <Prefix namespace="http://linkedgeodata.org/ontology/" id="lgdo"></Prefix>
   </Prefixes>
   <DataSources>
+    <DataSource type="sparqlEndpoint" id="bluk-bnb">
+      <Param value="http://bnb.data.bl.uk/sparql" name="endpointURI"></Param>
+      <Param value="6" name="retryCount"></Param>
+      <Param value="9000" name="retryPause"></Param>
+    </DataSource>
     <DataSource type="sparqlEndpoint" id="data-incubator-climb">
       <Param value="http://api.talis.com/stores/climb/services/sparql" name="endpointURI"></Param>
-      <Param value="3" name="retryCount"></Param>
-      <Param value="1000" name="retryPause"></Param>
-    </DataSource>
-    <DataSource type="sparqlEndpoint" id="linkedgeodata">
-      <Param value="http://linkedgeodata.org/sparql" name="endpointURI"></Param>
-      <Param value="3" name="retryCount"></Param>
-      <Param value="1000" name="retryPause"></Param>
+      <Param value="9" name="retryCount"></Param>
+      <Param value="9000" name="retryPause"></Param>
     </DataSource>
   </DataSources>
+  <Blocking blocks="100"/>
   <Interlinks>
-    <Interlink id="climb-geonames-venues">
-      <LinkType>ov:near</LinkType>
+    <Interlink id="bnb-climb-guidebooks">
+      <LinkType>owl:sameAs</LinkType>
       <SourceDataset var="a" dataSource="data-incubator-climb">
-        <RestrictTo>?a a climb:Venue .</RestrictTo>
+        <RestrictTo>?a a bibo:Book .</RestrictTo>
       </SourceDataset>
-      <TargetDataset var="b" dataSource="linkedgeodata">
-        <RestrictTo>?b a lgdo:Hospital ;  geo:lat ?lat ; geo:long ?long . </RestrictTo>
+      <TargetDataset var="b" dataSource="bluk-bnb">
+        <RestrictTo> ?b a bibo:Book . </RestrictTo>
       </TargetDataset>
       <LinkCondition>
-        <Aggregate type="average" required="true" weight="1">
-          <Compare required="true" metric="wgs84" weight="1">
-            <TransformInput function="concat">
-              <Input path="?a/geo:lat"></Input>
-              <Input path="?a/geo:long"></Input>
-              <Param value=" " name="glue"></Param>
+        <Aggregate type="average" required="true" weight="2">
+          <Compare required="true" metric="equality" weight="1">
+            <TransformInput function="lowerCase">
+              <Input path="?a/rdfs:label"></Input>
             </TransformInput>
-            <TransformInput function="concat">
-              <Input path="?b/geo:lat"></Input>
-              <Input path="?b/geo:long"></Input>
-              <Param value=" " name="glue"></Param>
+            <TransformInput function="lowerCase">
+              <Input path="?b/dcterms:title"></Input>
             </TransformInput>
-            <Param value="100" name="threshold"></Param>
-            <Param value="km" name="unit"></Param>
-            <Param value="linear" name="curveStyle"></Param>
           </Compare>
-        </Aggregate>
+       </Aggregate>
       </LinkCondition>
-      <Filter threshold="0.85"></Filter>
+      <Filter limit="1" threshold="0.85"></Filter>
       <Outputs>
-	    <Output maxConfidence="0.87" type="file">
-          <Param name="file" value="climb_linkedgeodata_venues_near_hospitals.xml"/>
+        <Output maxConfidence="0.90" type="file">
+          <Param name="file" value="bnb-climb-guidebooks.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
-        <Output minConfidence="0.85" type="file">
-          <Param name="file" value="climb_linkedgeodata_venues_near_hospitals.nt"/>
+        <Output minConfidence="0.95" type="file">
+          <Param name="file" value="bnb-climb-guidebooks.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>
       </Outputs>

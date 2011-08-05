@@ -1,0 +1,79 @@
+<Silk>
+  <Prefixes>
+    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://purl.org/ontology/bibo/" id="bibo"/>
+    <Prefix namespace="http://dbpedia.org/property/" id="dbpp"></Prefix>
+    <Prefix namespace="http://data.bl.uk/schema/bibliographic#" id="bibliographic"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/spatialrelations/" id="spatial"></Prefix>
+    <Prefix namespace="http://climb.dataincubator.org/vocabs/climb/" id="climb"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/50kGazetteer/" id="gazetteer"></Prefix>
+    <Prefix namespace="http://transport.data.gov.uk/def/naptan/" id="naptan"></Prefix>
+    <Prefix namespace="http://www.geonames.org/ontology#" id="geonames"></Prefix>
+    <Prefix namespace="http://open.vocab.org/terms/" id="ov"></Prefix>
+    <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/postcode/" id="postcode"></Prefix>
+    <Prefix namespace="http://purl.org/dc/terms/" id="dcterms"></Prefix>
+    <Prefix namespace="http://statistics.data.gov.uk/def/administrative-geography/" id="dgadmingeo"></Prefix>
+    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+    <Prefix namespace="http://dbpedia.org/class/yago/" id="yago"></Prefix>
+    <Prefix namespace="http://www.w3.org/2004/02/skos/core#" id="skos"></Prefix>
+    <Prefix namespace="http://xmlns.com/foaf/0.1/" id="foaf"></Prefix>
+    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+    <Prefix namespace="http://dbpedia.org/ontology/" id="dbpediaowl"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/admingeo/" id="admingeo"></Prefix>
+    <Prefix namespace="http://transport.data.gov.uk/def/traffic/" id="traffic"></Prefix>
+    <Prefix namespace="http://metoffice.dataincubator.org/vocabs/metoffice/" id="metoffice"></Prefix>
+    <Prefix namespace="http://ontologi.es/rail/vocab#" id="rail"></Prefix>
+  </Prefixes>
+  <DataSources>
+    <DataSource type="sparqlEndpoint" id="bluk-bnb">
+      <Param value="http://bnb.data.bl.uk/sparql" name="endpointURI"></Param>
+      <Param value="6" name="retryCount"></Param>
+      <Param value="9000" name="retryPause"></Param>
+    </DataSource>
+    <DataSource type="sparqlEndpoint" id="dbpedia">
+      <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
+      <Param value="9" name="retryCount"></Param>
+      <Param value="9000" name="retryPause"></Param>
+    </DataSource>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="bnb-dbpedia-books">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset var="a" dataSource="bluk-bnb">
+        <RestrictTo>?a a dcterms:BibliographicResource ; dcterms:creator
+          ?person ; bibo:isbn10 ?isbn .</RestrictTo>
+      </SourceDataset>
+      <TargetDataset var="b" dataSource="dbpedia">
+        <RestrictTo> ?b dbpp:englishPubDate ?date ; dbpp:isbn ?isbn . FILTER(?date &gt; 2004 &amp;&amp; ?date &lt; 2012) </RestrictTo>
+      </TargetDataset>
+      <LinkCondition>
+        <Aggregate type="average" required="true" weight="1">
+          <Compare required="true" metric="equality" weight="1">
+            <Input path="?a/dcterms:title"></Input>
+            <Input path="?b/dbpp:name[@lang='en']"></Input>
+          </Compare>
+          <Compare required="true" metric="equality" weight="1">
+            <Input path="?a/bibo:isbn10"></Input>
+            <TransformInput function="stripPrefix">
+              <Input path="?b/dbpp:isbn"></Input>
+              <Param name="prefix" value="ISBN "/>
+            </TransformInput>
+          </Compare>
+        </Aggregate>
+      </LinkCondition>
+      <Filter limit="1" threshold="0.85"></Filter>
+      <Outputs>
+        <Output maxConfidence="0.80" type="file">
+          <Param name="file" value="bnb-dbpedia-books.xml"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output minConfidence="0.85" type="file">
+          <Param name="file" value="bnb-dbpedia-books.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+
+      </Outputs>
+    </Interlink>
+  </Interlinks>
+</Silk>

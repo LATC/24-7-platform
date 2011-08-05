@@ -22,13 +22,13 @@
   <DataSources>
     <DataSource type="sparqlEndpoint" id="data-incubator-metoffice">
       <Param value="http://api.talis.com/stores/metoffice/services/sparql" name="endpointURI"></Param>
-      <Param value="3" name="retryCount"></Param>
+      <Param value="5" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
     <DataSource type="sparqlEndpoint" id="ordnance-survey">
-      <Param value="http://api.talis.com/stores/kwijibo-ordnance-survey-towns-with-lat-longs/services/sparql" name="endpointURI"></Param>
-      <Param value="3" name="retryCount"></Param>
-      <Param value="1000" name="retryPause"></Param>
+      <Param value="http://db.cohodo.net/sparql/4b54d12d-cca7-47f0-a169-11495efddd06" name="endpointURI"></Param>
+      <Param value="15" name="retryCount"></Param>
+      <Param value="300000" name="retryPause"></Param>
     </DataSource>
   </DataSources>
   <Interlinks>
@@ -38,15 +38,15 @@
         <RestrictTo>?a rdf:type metoffice:MetOfficeLocation .</RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="ordnance-survey">
-        <RestrictTo>?b rdf:type gazetteer:NamedPlace ; gazetteer:featureType gazetteer:Town  ; geo:lat ?lat ; geo:long ?long .</RestrictTo>
+        <RestrictTo>?b rdf:type gazetteer:NamedPlace ; geo:lat ?lat ; geo:long ?long . { ?b gazetteer:featureType gazetteer:Town  } UNION {  ?b gazetteer:featureType gazetteer:City } </RestrictTo>
       </TargetDataset>
       <LinkCondition>
-        <Aggregate type="average" required="false" weight="1">
-          <Compare required="true" metric="jaroWinkler" weight="1">
+        <Aggregate type="average" required="true" weight="2">
+          <Compare required="true" metric="equality" weight="2">
             <Input path="?a/rdfs:label"></Input>
             <Input path="?b/rdfs:label"></Input>
           </Compare>
-          <Compare required="false" metric="wgs84" weight="1">
+          <Compare required="true" metric="wgs84" weight="1">
             <TransformInput function="concat">
               <Input path="?a/geo:lat"></Input>
               <Input path="?a/geo:long"></Input>
@@ -57,16 +57,16 @@
               <Input path="?b/geo:long"></Input>
               <Param value=" " name="glue"></Param>
             </TransformInput>
-            <Param value="30" name="threshold"></Param>
+            <Param value="50" name="threshold"></Param>
             <Param value="km" name="unit"></Param>
             <Param value="linear" name="curveStyle"></Param>
           </Compare>
         </Aggregate>
       </LinkCondition>
-      <Filter threshold="0.90"></Filter>
+      <Filter threshold="0.80" limit="1"></Filter>
       <Outputs>
-        <Output minConfidence="0.90" type="file">
-          <Param name="file" value="metoffice_ordnance_survey.nt"/>
+        <Output minConfidence="0.80" type="file">
+          <Param name="file" value="metoffice_ordnance_survey_cities_and_towns.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>
       </Outputs>

@@ -9,12 +9,12 @@
     <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
   </Prefixes>
   <DataSources>
-    <DataSource type="sparqlEndpoint" id="climb">
+    <DataSource type="sparqlEndpoint" id="data-incubator-climb">
       <Param value="http://api.talis.com/stores/climb/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
-    <DataSource type="sparqlEndpoint" id="ordnance-survey">
+    <DataSource type="sparqlEndpoint" id="ordnance-survey-linked-data">
       <Param value="http://api.talis.com/stores/ordnance-survey/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
@@ -31,13 +31,13 @@
       </TargetDataset>
       <LinkCondition>
         <Aggregate type="average" required="false" weight="1">
-          <Aggregate type="max" required="false" weight="1">
+          <Aggregate type="max" required="true" weight="1">
             <Compare required="true" metric="equality" weight="1">
               <Input path="?a/rdfs:label"></Input>
               <Input path="?b/rdfs:label"></Input>
             </Compare>
           </Aggregate>
-          <Aggregate type="average" required="false" weight="1">
+          <Aggregate type="average" required="true" weight="1">
             <Compare required="true" metric="wgs84" weight="1">
               <TransformInput function="concat">
                 <Input path="?a/geo:lat"></Input>
@@ -58,11 +58,11 @@
       </LinkCondition>
       <Filter threshold="0.95"></Filter>
       <Outputs>
-	    <Output maxConfidence="0.97" type="file">
+	    <Output maxConfidence="0.94" type="file">
           <Param name="file" value="climb-ordnancesurvey-areas_verify.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
-        <Output minConfidence="0.98" type="file">
+        <Output minConfidence="0.95" type="file">
           <Param name="file" value="climb-ordnancesurvey-areas.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>

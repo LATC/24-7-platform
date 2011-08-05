@@ -19,12 +19,12 @@
     <Prefix namespace="http://linkedgeodata.org/ontology/" id="lgdo"></Prefix>
   </Prefixes>
   <DataSources>
-    <DataSource type="sparqlEndpoint" id="climb">
+    <DataSource type="sparqlEndpoint" id="data-incubator-climb">
       <Param value="http://api.talis.com/stores/climb/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
-    <DataSource type="sparqlEndpoint" id="lgd">
+    <DataSource type="sparqlEndpoint" id="linkedgeodata">
       <Param value="http://linkedgeodata.org/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
@@ -33,10 +33,10 @@
   <Interlinks>
     <Interlink id="climb-geonames-venues">
       <LinkType>ov:near</LinkType>
-      <SourceDataset var="a" dataSource="climb">
+      <SourceDataset var="a" dataSource="data-incubator-climb">
         <RestrictTo>?a a climb:Venue .</RestrictTo>
       </SourceDataset>
-      <TargetDataset var="b" dataSource="lgd">
+      <TargetDataset var="b" dataSource="linkedgeodata">
         <RestrictTo>?b a lgdo:Railway ;  geo:lat ?lat ; geo:long ?long . </RestrictTo>
       </TargetDataset>
       <LinkCondition>
@@ -52,7 +52,7 @@
               <Input path="?b/geo:long"></Input>
               <Param value=" " name="glue"></Param>
             </TransformInput>
-            <Param value="30" name="threshold"></Param>
+            <Param value="50" name="threshold"></Param>
             <Param value="km" name="unit"></Param>
             <Param value="linear" name="curveStyle"></Param>
           </Compare>
@@ -60,11 +60,11 @@
       </LinkCondition>
       <Filter threshold="0.85"></Filter>
       <Outputs>
-	    <Output maxConfidence="0.55" type="file">
+	    <Output maxConfidence="0.85" type="file">
           <Param name="file" value="climb_linkedgeodata_venues_near_trainstations.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
-        <Output minConfidence="0.65" type="file">
+        <Output minConfidence="0.75" type="file">
           <Param name="file" value="climb_linkedgeodata_venues_near_trainstations.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>

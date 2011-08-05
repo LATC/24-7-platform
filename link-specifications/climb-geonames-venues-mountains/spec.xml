@@ -13,10 +13,10 @@
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
-    <DataSource type="sparqlEndpoint" id="geonames">
+    <DataSource type="sparqlEndpoint" id="geonames-semantic-web">
       <Param value="http://api.talis.com/stores/geonames/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
-      <Param value="1000" name="retryPause"></Param>
+      <Param value="9000" name="retryPause"></Param>
     </DataSource>
   </DataSources>
   <Interlinks>
@@ -25,24 +25,17 @@
       <SourceDataset var="a" dataSource="data-incubator-climb">
         <RestrictTo>?a rdf:type climb:Venue .</RestrictTo>
       </SourceDataset>
-      <TargetDataset var="b" dataSource="geonames">
+      <TargetDataset var="b" dataSource="geonames-semantic-web">
         <RestrictTo>
           ?b rdf:type geonames:Feature ; geonames:inCountry &lt;http://www.geonames.org/countries/#GB&gt; ;  geonames:featureClass geonames:T .
         </RestrictTo>
       </TargetDataset>
       <LinkCondition>
         <Aggregate type="average" required="false" weight="1">
-          <Aggregate type="max" required="false" weight="1">
             <Compare required="true" metric="jaroWinkler" weight="1">
-              <TransformInput function="regexReplace">
-                <Input path="?a/rdfs:label"></Input>
-                <Param value="(.+?),(.+)" name="regex"></Param>
-                <Param value="$1" name="replace"></Param>
-              </TransformInput>
+              <Input path="?a/rdfs:label"></Input>
               <Input path="?b/geonames:name"></Input>
             </Compare>
-          </Aggregate>
-          <Aggregate type="max" required="false" weight="1">
             <Compare required="true" metric="wgs84" weight="1">
               <TransformInput function="concat">
                 <Input path="?a/geo:lat"></Input>
@@ -58,16 +51,15 @@
               <Param value="km" name="unit"></Param>
               <Param value="linear" name="curveStyle"></Param>
             </Compare>
-          </Aggregate>
         </Aggregate>
       </LinkCondition>
-      <Filter threshold="0.95"></Filter>
+      <Filter threshold="0.80" limit="1"></Filter>
       <Outputs>
-	    <Output maxConfidence="0.97" type="file">
+	    <Output maxConfidence="0.80" type="file">
           <Param name="file" value="climb-geonames-venues-mountains_verify.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
-        <Output minConfidence="0.98" type="file">
+        <Output minConfidence="0.90" type="file">
           <Param name="file" value="climb-geonames-venues-mountains.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>

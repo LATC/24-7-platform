@@ -19,12 +19,12 @@
     <Prefix namespace="http://linkedgeodata.org/ontology/" id="lgdo"></Prefix>
   </Prefixes>
   <DataSources>
-    <DataSource type="sparqlEndpoint" id="climb">
+    <DataSource type="sparqlEndpoint" id="data-incubator-climb">
       <Param value="http://api.talis.com/stores/climb/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
-    <DataSource type="sparqlEndpoint" id="lgd">
+    <DataSource type="sparqlEndpoint" id="linkedgeodata">
       <Param value="http://linkedgeodata.org/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
@@ -33,10 +33,10 @@
   <Interlinks>
     <Interlink id="climb-geonames-venues">
       <LinkType>ov:near</LinkType>
-      <SourceDataset var="a" dataSource="climb">
+      <SourceDataset var="a" dataSource="data-incubator-climb">
         <RestrictTo>?a a climb:Venue .</RestrictTo>
       </SourceDataset>
-      <TargetDataset var="b" dataSource="lgd">
+      <TargetDataset var="b" dataSource="linkedgeodata">
         <RestrictTo>?b a lgdo:Supermarket ;  geo:lat ?lat ; geo:long ?long . </RestrictTo>
       </TargetDataset>
       <LinkCondition>

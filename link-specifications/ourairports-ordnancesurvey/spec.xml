@@ -50,7 +50,7 @@
      </Aggregate>
 
  </LinkCondition>
-      <Filter threshold="0.90"/>
+      <Filter threshold="0.90" limit="1"/>
       <Outputs> 
   <Output minConfidence="0.90" type="file">
       <Param name="file" value="airports_ordnancesurvey_links_accepted.nt"/>
