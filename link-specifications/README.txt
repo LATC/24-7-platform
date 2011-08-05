@@ -9,6 +9,8 @@ Each directory should contain the following files:
 README.txt -- short document with some documentation: who created this, when,
               were any major revisions made, anything else noteworthy
 spec.xml -- Silk link specification
+         -- within spec.xml, @dataSource and DataSource/@id should use the CKAN package name of the dataset.
+            This makes it easier to identify the dataset for the creation and merging of metadata.
 links.nt -- resulting link set (all links)
 positive.nt -- manually verified correct links (at least 10, please try 100)
 negative.nt -- manually verified incorrect links (at least 10)
