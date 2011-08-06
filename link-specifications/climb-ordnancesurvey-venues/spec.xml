@@ -18,12 +18,12 @@
     <Prefix namespace="http://ontologi.es/rail/vocab#" id="rail"></Prefix>
   </Prefixes>
   <DataSources>
-    <DataSource type="sparqlEndpoint" id="climb">
+    <DataSource type="sparqlEndpoint" id="data-incubator-climb">
       <Param value="http://api.talis.com/stores/climb/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
-    <DataSource type="sparqlEndpoint" id="os">
+    <DataSource type="sparqlEndpoint" id="ordnance-survey-linked-data">
       <Param value="http://api.talis.com/stores/ordnance-survey/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
@@ -32,10 +32,10 @@
   <Interlinks>
     <Interlink id="climb-geonames-venues">
       <LinkType>ov:near</LinkType>
-      <SourceDataset var="a" dataSource="climb">
+      <SourceDataset var="a" dataSource="data-incubator-climb">
         <RestrictTo>?a a climb:Venue .</RestrictTo>
       </SourceDataset>
-      <TargetDataset var="b" dataSource="os">
+      <TargetDataset var="b" dataSource="ordnance-survey-linked-data">
         <RestrictTo>?b geo:lat ?lat ; geo:long ?long . </RestrictTo>
       </TargetDataset>
       <LinkCondition>

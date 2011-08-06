@@ -13,12 +13,12 @@
     <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
   </Prefixes>
   <DataSources>
-    <DataSource type="sparqlEndpoint" id="pbac">
+    <DataSource type="sparqlEndpoint" id="printed-book-auction-catalogues">
       <Param value="http://api.talis.com/stores/pbac/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
-    <DataSource type="sparqlEndpoint" id="pbac">
+    <DataSource type="sparqlEndpoint" id="printed-book-auction-catalogues">
       <Param value="http://api.talis.com/stores/pbac/services/sparql" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
@@ -27,10 +27,10 @@
   <Interlinks>
     <Interlink id="pbac-pbac-similar-books">
       <LinkType>ov:commonEndeavour</LinkType>
-      <SourceDataset var="a" dataSource="pbac">
+      <SourceDataset var="a" dataSource="printed-book-auction-catalogues">
         <RestrictTo>?a rdf:type bibo:Book .</RestrictTo>
       </SourceDataset>
-      <TargetDataset var="b" dataSource="pbac">
+      <TargetDataset var="b" dataSource="printed-book-auction-catalogues">
         <RestrictTo>?b rdf:type bibo:Book .</RestrictTo>
       </TargetDataset>
       <LinkCondition>

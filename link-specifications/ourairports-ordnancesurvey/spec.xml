@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <Silk>
   <Prefixes>
     <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
@@ -13,7 +14,7 @@
  <Prefix id="countries" namespace="http://airports.dataincubator.org/countries/"/>
   </Prefixes>
   <DataSources>
-  <DataSource id="ordnancesurvey" type="sparqlEndpoint">
+  <DataSource id="ordnance-survey-linked-data" type="sparqlEndpoint">
     <Param name="endpointURI" value="http://api.talis.com/stores/ordnance-survey/services/sparql"/>
       <Param name="retryCount" value="3"/>
       <Param name="retryPause" value="1000"/>
@@ -30,21 +31,21 @@
       <SourceDataset dataSource="ourairports" var="b">
         <RestrictTo>?b airports:country  countries:GB . </RestrictTo>
       </SourceDataset>
-      <TargetDataset dataSource="ordnancesurvey" var="a">
+      <TargetDataset dataSource="ordnance-survey-linked-data" var="a">
         <RestrictTo>?a rdf:type os:NamedPlace ; os:featureType os:Other ; rdfs:label ?label . FILTER(REGEX(?label, "(Airport)|(Aerodrome)|(RAF)|(Airfield)|(Heliport)", "i")) </RestrictTo>
       </TargetDataset>
       <LinkCondition>
- <Aggregate  type="average" weight="1">
+ <Aggregate type="average" weight="1">
           <Compare metric="jaro" required="true" weight="1">
           <TransformInput function="replace">
-            <Input path="?a/rdfs:label" />
-            <Param name="search" value="International " />
-            <Param name="replace" value="" />
+            <Input path="?a/rdfs:label"/>
+            <Param name="search" value="International "/>
+            <Param name="replace" value=""/>
           </TransformInput>
           <TransformInput function="replace">
-            <Input path="?b/rdfs:label" />
-            <Param name="search" value="International " />
-            <Param name="replace" value="" />
+            <Input path="?b/rdfs:label"/>
+            <Param name="search" value="International "/>
+            <Param name="replace" value=""/>
           </TransformInput>
           </Compare>
      </Aggregate>

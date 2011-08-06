@@ -48,13 +48,29 @@
         <RestrictTo> ?b a bibo:Book . </RestrictTo>
       </TargetDataset>
       <LinkCondition>
-        <Aggregate type="average" required="true" weight="2">
+        <Aggregate type="max" required="true" weight="2">
           <Compare required="true" metric="equality" weight="1">
-            <TransformInput function="lowerCase">
-              <Input path="?a/rdfs:label"></Input>
+            <TransformInput function="numReduce">
+              <Input path="?a/bibo:isbn"></Input>
             </TransformInput>
-            <TransformInput function="lowerCase">
-              <Input path="?b/dcterms:title"></Input>
+            <TransformInput function="numReduce">
+              <Input path="?b/bibo:isbn10"></Input>
+            </TransformInput>
+          </Compare>
+          <Compare required="true" metric="equality" weight="1">
+            <TransformInput function="numReduce">
+              <Input path="?a/bibo:isbn"></Input>
+            </TransformInput>
+            <TransformInput function="numReduce">
+              <Input path="?b/bibo:isbn13"></Input>
+            </TransformInput>
+          </Compare>
+          <Compare required="true" metric="equality" weight="1">
+            <TransformInput function="numReduce">
+              <Input path="?a/bibo:isbn"></Input>
+            </TransformInput>
+            <TransformInput function="numReduce">
+              <Input path="?b/bibo:isbn"></Input>
             </TransformInput>
           </Compare>
        </Aggregate>

@@ -25,8 +25,8 @@
       <Param value="5" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
-    <DataSource type="sparqlEndpoint" id="ordnance-survey">
-      <Param value="http://db.cohodo.net/sparql/4b54d12d-cca7-47f0-a169-11495efddd06" name="endpointURI"></Param>
+    <DataSource type="sparqlEndpoint" id="ordnance-survey-linked-data">
+      <Param value="http://kwijibo.talis.com/ordnance-survey-linked-data-places/sparql" name="endpointURI"></Param>
       <Param value="15" name="retryCount"></Param>
       <Param value="300000" name="retryPause"></Param>
     </DataSource>
@@ -37,7 +37,7 @@
       <SourceDataset var="a" dataSource="data-incubator-metoffice">
         <RestrictTo>?a rdf:type metoffice:MetOfficeLocation .</RestrictTo>
       </SourceDataset>
-      <TargetDataset var="b" dataSource="ordnance-survey">
+      <TargetDataset var="b" dataSource="ordnance-survey-linked-data">
         <RestrictTo>?b rdf:type gazetteer:NamedPlace ; geo:lat ?lat ; geo:long ?long . { ?b gazetteer:featureType gazetteer:Town  } UNION {  ?b gazetteer:featureType gazetteer:City } </RestrictTo>
       </TargetDataset>
       <LinkCondition>

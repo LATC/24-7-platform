@@ -47,7 +47,7 @@
                 <Input path="?b/geo:long"></Input>
                 <Param value=" " name="glue"></Param>
               </TransformInput>
-              <Param value="5" name="threshold"></Param>
+              <Param value="10" name="threshold"></Param>
               <Param value="km" name="unit"></Param>
               <Param value="linear" name="curveStyle"></Param>
             </Compare>
@@ -59,7 +59,7 @@
           <Param name="file" value="climb-geonames-venues-mountains_verify.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
-        <Output minConfidence="0.90" type="file">
+        <Output minConfidence="0.85" type="file">
           <Param name="file" value="climb-geonames-venues-mountains.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>

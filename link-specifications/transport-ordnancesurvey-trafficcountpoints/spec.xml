@@ -1,50 +1,51 @@
+<?xml version="1.0"?>
 <Silk>
   <Prefixes>
-    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
-    <Prefix namespace="http://climb.dataincubator.org/vocabs/climb/" id="climb"></Prefix>
-    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/50kGazetteer/" id="gazetteer"></Prefix>
-    <Prefix namespace="http://transport.data.gov.uk/def/naptan/" id="naptan"></Prefix>
-    <Prefix namespace="http://www.geonames.org/ontology#" id="geonames"></Prefix>
-    <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"></Prefix>
-    <Prefix namespace="http://statistics.data.gov.uk/def/administrative-geography/" id="dgadmingeo"></Prefix>
-    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
-    <Prefix namespace="http://www.w3.org/2004/02/skos/core#" id="skos"></Prefix>
-    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
-    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/admingeo/" id="admingeo"></Prefix>
-    <Prefix namespace="http://transport.data.gov.uk/def/traffic/" id="traffic"></Prefix>
-    <Prefix namespace="http://ontologi.es/rail/vocab#" id="rail"></Prefix>
-	<Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/spatialrelations/" id="spatial"></Prefix>
+    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"/>
+    <Prefix namespace="http://climb.dataincubator.org/vocabs/climb/" id="climb"/>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/50kGazetteer/" id="gazetteer"/>
+    <Prefix namespace="http://transport.data.gov.uk/def/naptan/" id="naptan"/>
+    <Prefix namespace="http://www.geonames.org/ontology#" id="geonames"/>
+    <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"/>
+    <Prefix namespace="http://statistics.data.gov.uk/def/administrative-geography/" id="dgadmingeo"/>
+    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"/>
+    <Prefix namespace="http://www.w3.org/2004/02/skos/core#" id="skos"/>
+    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"/>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/admingeo/" id="admingeo"/>
+    <Prefix namespace="http://transport.data.gov.uk/def/traffic/" id="traffic"/>
+    <Prefix namespace="http://ontologi.es/rail/vocab#" id="rail"/>
+	<Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/spatialrelations/" id="spatial"/>
   </Prefixes>
   <DataSources>
-    <DataSource type="sparqlEndpoint" id="transport">
-      <Param value="http://api.talis.com/stores/transport/services/sparql" name="endpointURI"></Param>
-      <Param value="3" name="retryCount"></Param>
-      <Param value="1000" name="retryPause"></Param>
+    <DataSource type="sparqlEndpoint" id="transport-data-gov-uk">
+      <Param value="http://api.talis.com/stores/transport/services/sparql" name="endpointURI"/>
+      <Param value="3" name="retryCount"/>
+      <Param value="1000" name="retryPause"/>
     </DataSource>
-    <DataSource type="sparqlEndpoint" id="ordnance-survey">
-      <Param value="http://api.talis.com/stores/ordnance-survey/services/sparql" name="endpointURI"></Param>
-      <Param value="3" name="retryCount"></Param>
-      <Param value="1000" name="retryPause"></Param>
+    <DataSource type="sparqlEndpoint" id="ordnance-survey-linked-data">
+      <Param value="http://api.talis.com/stores/ordnance-survey/services/sparql" name="endpointURI"/>
+      <Param value="3" name="retryCount"/>
+      <Param value="1000" name="retryPause"/>
     </DataSource>
   </DataSources>
   <Interlinks>
     <Interlink id="transport-ordnancesurvey-countpoints">
       <LinkType>spatial:within</LinkType>
-      <SourceDataset var="a" dataSource="transport">
+      <SourceDataset var="a" dataSource="transport-data-gov-uk">
         <RestrictTo>?a a traffic:CountPoint .</RestrictTo>
       </SourceDataset>
-      <TargetDataset var="b" dataSource="ordnance-survey">
+      <TargetDataset var="b" dataSource="ordnance-survey-linked-data">
         <RestrictTo>?b a admingeo:UnitaryAuthority .</RestrictTo>
       </TargetDataset>
       <LinkCondition>
         <Aggregate type="average" required="true" weight="1">
           <Compare required="true" metric="equality" weight="1">
-            <Input path="?a/dgadmingeo:district/dgadmingeo:standardCode"></Input>
-            <Input path="?b/skos:notation"></Input>
+            <Input path="?a/dgadmingeo:district/dgadmingeo:standardCode"/>
+            <Input path="?b/skos:notation"/>
           </Compare>
         </Aggregate>
       </LinkCondition>
-      <Filter threshold="0.95"></Filter>
+      <Filter threshold="0.95"/>
       <Outputs>
 	    <Output maxConfidence="0.97" type="file">
           <Param name="file" value="transport_ordnancesurvey_trafficcountpoints_verify.xml"/>

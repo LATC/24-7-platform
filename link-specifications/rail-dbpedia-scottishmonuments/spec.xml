@@ -49,11 +49,11 @@
               <Param value=" " name="glue"></Param>
             </TransformInput>
             <TransformInput function="concat">
-              <Input path="?b/dbpp:latitude"></Input>
-              <Input path="?b/dbpp:longitude"></Input>
+              <Input path="?b/geo:lat"></Input>
+              <Input path="?b/geo:long"></Input>
               <Param value=" " name="glue"></Param>
             </TransformInput>
-            <Param value="5" name="threshold"></Param>
+            <Param value="15" name="threshold"></Param>
             <Param value="km" name="unit"></Param>
             <Param value="linear" name="curveStyle"></Param>
           </Compare>
@@ -65,7 +65,7 @@
           <Param name="file" value="rail_dbpedia_scottishmonuments_verify.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
-        <Output minConfidence="0.98" type="file">
+        <Output minConfidence="0.95" type="file">
           <Param name="file" value="rail_dbpedia_scottishmonuments.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>
