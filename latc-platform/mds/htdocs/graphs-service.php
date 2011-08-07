@@ -72,8 +72,6 @@ $store = new Store(LATC_STORE_URI, new Credentials('latc', LATC_STORE_PASSWORD))
 
 
 if($request->method=='PUT'){
-  if($request->isAcceptable()){
-     if($request->contentType == 'text/turtle'){
        $response = $store->mirror_from_url($graphUri, $request->body);
        if($response['success']){
         header("HTTP/1.1 202 Accepted");
@@ -82,17 +80,6 @@ if($request->method=='PUT'){
         header("HTTP/1.1 500 Internal Server Error");
         exit;
        }
-
-     } else {
-       header("HTTP/1.1 400 Bad Request");
-       exit;
-     }
-   
-  } else {
-    header("HTTP/1.1 406 Not Acceptable");
-    echo("Content-type not acceptable. Acceptable content types are: ". implode(',', $request->acceptableContentTypes));
-    exit;
-  }
 } else if($request->method=='GET'){
   header("location: ".LATC_STORE_URI.'/items/mirrors/'.$graphUri, true, 302);
   exit;
