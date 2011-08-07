@@ -55,18 +55,18 @@
             </TransformInput>
             <Param value="100" name="threshold"></Param>
             <Param value="km" name="unit"></Param>
-            <Param value="linear" name="curveStyle"></Param>
+            <Param value="logistic" name="curveStyle"></Param>
           </Compare>
         </Aggregate>
       </LinkCondition>
       <Filter threshold="0.85"></Filter>
       <Outputs>
 	    <Output maxConfidence="0.87" type="file">
-          <Param name="file" value="climb_linkedgeodata_venues_near_hospitals.xml"/>
+          <Param name="file" value="nhs_linkedgeodata_venues_near_hospitals.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
         <Output minConfidence="0.85" type="file">
-          <Param name="file" value="climb_linkedgeodata_venues_near_hospitals.nt"/>
+          <Param name="file" value="nhsorgs_linkedgeodata_venues_near_hospitals.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>
       </Outputs>

@@ -6,6 +6,7 @@
     <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"></Prefix>
     <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
     <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+    <Prefix namespace="http://purl.org/dc/terms/" id="dcterms"></Prefix>    
   </Prefixes>
   <DataSources>
     <DataSource type="sparqlEndpoint" id="data-incubator-climb">

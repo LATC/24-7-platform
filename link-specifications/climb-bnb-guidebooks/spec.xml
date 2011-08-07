@@ -49,7 +49,7 @@
       </TargetDataset>
       <LinkCondition>
         <Aggregate type="max" required="true" weight="2">
-          <Compare required="true" metric="equality" weight="1">
+          <Compare required="false" metric="equality" weight="1">
             <TransformInput function="numReduce">
               <Input path="?a/bibo:isbn"></Input>
             </TransformInput>
@@ -57,7 +57,7 @@
               <Input path="?b/bibo:isbn10"></Input>
             </TransformInput>
           </Compare>
-          <Compare required="true" metric="equality" weight="1">
+          <Compare required="false" metric="equality" weight="1">
             <TransformInput function="numReduce">
               <Input path="?a/bibo:isbn"></Input>
             </TransformInput>
@@ -65,7 +65,7 @@
               <Input path="?b/bibo:isbn13"></Input>
             </TransformInput>
           </Compare>
-          <Compare required="true" metric="equality" weight="1">
+          <Compare required="false" metric="equality" weight="1">
             <TransformInput function="numReduce">
               <Input path="?a/bibo:isbn"></Input>
             </TransformInput>
@@ -75,13 +75,13 @@
           </Compare>
        </Aggregate>
       </LinkCondition>
-      <Filter limit="1" threshold="0.85"></Filter>
+      <Filter limit="1" threshold="0.60"></Filter>
       <Outputs>
-        <Output maxConfidence="0.90" type="file">
+        <Output maxConfidence="0.80" type="file">
           <Param name="file" value="bnb-climb-guidebooks.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
-        <Output minConfidence="0.95" type="file">
+        <Output minConfidence="0.80" type="file">
           <Param name="file" value="bnb-climb-guidebooks.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>

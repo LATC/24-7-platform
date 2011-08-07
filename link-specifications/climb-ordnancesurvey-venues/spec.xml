@@ -30,13 +30,13 @@
     </DataSource>
   </DataSources>
   <Interlinks>
-    <Interlink id="climb-geonames-venues">
+    <Interlink id="climb-ordnancesurvey-venues">
       <LinkType>ov:near</LinkType>
       <SourceDataset var="a" dataSource="data-incubator-climb">
         <RestrictTo>?a a climb:Venue .</RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="ordnance-survey-linked-data">
-        <RestrictTo>?b geo:lat ?lat ; geo:long ?long . </RestrictTo>
+        <RestrictTo>?b a admingeo:UnitaryAuthority ;  geo:lat ?lat ; geo:long ?long . </RestrictTo>
       </TargetDataset>
       <LinkCondition>
         <Aggregate type="average" required="true" weight="1">
@@ -51,13 +51,13 @@
               <Input path="?b/geo:long"></Input>
               <Param value=" " name="glue"></Param>
             </TransformInput>
-            <Param value="5" name="threshold"></Param>
+            <Param value="100" name="threshold"></Param>
             <Param value="km" name="unit"></Param>
             <Param value="linear" name="curveStyle"></Param>
           </Compare>
         </Aggregate>
       </LinkCondition>
-      <Filter threshold="0.85"></Filter>
+      <Filter threshold="0.85" limit="1"></Filter>
       <Outputs>
 	    <Output maxConfidence="0.87" type="file">
           <Param name="file" value="climb_ordnancesurvey_venues.xml"/>

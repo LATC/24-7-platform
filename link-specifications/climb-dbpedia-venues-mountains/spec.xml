@@ -6,6 +6,8 @@
     <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"></Prefix>
     <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
     <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+    <Prefix namespace="http://dbpedia.org/property/" id="dbpp"/>
+    <Prefix namespace="http://purl.org/dc/terms/" id="dcterms"></Prefix>    
   </Prefixes>
   <DataSources>
     <DataSource type="sparqlEndpoint" id="data-incubator-climb">
@@ -27,7 +29,7 @@
       </SourceDataset>
       <TargetDataset var="b" dataSource="dbpedia">
         <RestrictTo>
-          ?b rdf:type &lt;http://dbpedia.org/ontology/Mountain&gt; .
+          ?b dcterms:subject &lt;http://dbpedia.org/resource/Category:Marilyns_of_Scotland&gt; ; dbpp:name ?name ; geo:lat ?lat .
         </RestrictTo>
       </TargetDataset>
       <LinkCondition>
@@ -38,9 +40,8 @@
                 <Param value="(.+?),(.+)" name="regex"></Param>
                 <Param value="$1" name="replace"></Param>
               </TransformInput>
-              <Input path="?b/geonames:name"></Input>
+              <Input path="?b/dbpp:name"></Input>
             </Compare>
-          <Aggregate type="average" required="true" weight="1">
             <Compare required="true" metric="wgs84" weight="1">
               <TransformInput function="concat">
                 <Input path="?a/geo:lat"></Input>
@@ -54,19 +55,18 @@
               </TransformInput>
               <Param value="10" name="threshold"></Param>
               <Param value="km" name="unit"></Param>
-              <Param value="linear" name="curveStyle"></Param>
+              <Param value="logistic" name="curveStyle"></Param>
             </Compare>
-          </Aggregate>
         </Aggregate>
       </LinkCondition>
       <Filter threshold="0.80" limit="1"></Filter>
       <Outputs>
 	    <Output maxConfidence="0.90" type="file">
-          <Param name="file" value="climb-geonames-venues-mountains_verify.xml"/>
+          <Param name="file" value="climb-dbpedia-venues-mountains_verify.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
         <Output minConfidence="0.90" type="file">
-          <Param name="file" value="climb-geonames-venues-mountains.nt"/>
+          <Param name="file" value="climb-dbpedia-venues-mountains.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>
 	 </Outputs>

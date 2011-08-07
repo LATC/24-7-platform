@@ -26,7 +26,7 @@
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
     <DataSource type="sparqlEndpoint" id="dbpedia">
-      <Param value="http://sindice.sparql.org/sparql" name="endpointURI"></Param>
+      <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
       <Param value="15" name="retryCount"></Param>
       <Param value="30000" name="retryPause"></Param>
     </DataSource>

@@ -7,6 +7,7 @@
     <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"></Prefix>
     <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
     <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/admingeo/" id="admingeo"></Prefix>    
   </Prefixes>
   <DataSources>
     <DataSource type="sparqlEndpoint" id="data-incubator-climb">
@@ -28,7 +29,7 @@
       </SourceDataset>
       <TargetDataset var="b"
         dataSource="ordnance-survey-linked-data">
-        <RestrictTo>?b rdf:type gazetteer:NamedPlace .</RestrictTo>
+        <RestrictTo>?b rdf:type admingeo:UnitaryAuthority ; geo:lat ?lat .</RestrictTo>
       </TargetDataset>
       <LinkCondition>
         <Aggregate type="average" required="false" weight="1">
