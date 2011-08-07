@@ -53,17 +53,17 @@
             </TransformInput>
             <Param value="15" name="threshold"></Param>
             <Param value="km" name="unit"></Param>
-            <Param value="linear" name="curveStyle"></Param>
+            <Param value="logistic" name="curveStyle"></Param>
           </Compare>
         </Aggregate>
       </LinkCondition>
       <Filter threshold="0.95"></Filter>
       <Outputs>
-	    <Output maxConfidence="0.97" type="file">
+	    <Output maxConfidence="0.95" type="file">
           <Param name="file" value="climb_rail_venues.xml"/>
           <Param name="format" value="alignment"/>
         </Output>
-        <Output minConfidence="0.98" type="file">
+        <Output minConfidence="0.95" type="file">
           <Param name="file" value="climb_rail_venues.nt"/>
           <Param name="format" value="ntriples"/>
         </Output>
