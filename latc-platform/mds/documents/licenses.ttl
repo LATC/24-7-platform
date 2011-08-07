@@ -1,0 +1,47 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix okfn: <http://purl.org/okfn/licenses/> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+okfn:cc-by a cc:License ; terms:identifier "cc-by" ; 
+  rdfs:label "Creative Commons Attribution"@en-gb ;
+  foaf:page <http://www.opendefinition.org/licenses/cc-by/> ;
+   .
+
+okfn:ukcrown-withrights 
+  a cc:License ; 
+  terms:identifier "ukcrown-withrights" ;
+  rdfs:label "UK Crown Copyright with data.gov.uk rights"@en-gb ;
+  owl:sameAs <http://reference.data.gov.uk/id/open-government-licence> ;
+  foaf:page <http://www.nationalarchives.gov.uk/doc/open-government-licence/> ;
+  foaf:logo <http://nationalarchives.gov.uk/images/infoman/th-gov-licence-seal-55px.jpg> ;
+   .
+
+okfn:notspecified a cc:License ; terms:identifier "notspecified" ; rdfs:label "License Not Specified"@en .
+
+okfn:cc-by-sa a cc:License ; terms:identifier "cc-by-sa" ;
+  rdfs:label "Creative Commons Share-Alike"@en .
+
+okfn:gfdl a cc:License ; terms:identifier "gfdl" ; rdfs:label "GNU Free Documentation License" .
+
+okfn:bsd-license a cc:License ; terms:identifier "bsd-license" .
+
+okfn:other-pd a cc:License ; terms:identifier "other-pd" .
+
+okfn:other-at a cc:License ; terms:identifier "other-at" .
+
+okfn:cc-zero a cc:License ; terms:identifier "cc-zero" .
+
+okfn:other-open a cc:License ; terms:identifier "other-open" .
+
+okfn:other-nc a cc:License ; terms:identifier "other-nc" .
+
+okfn:odc-pddl a cc:License ; terms:identifier "odc-pddl" ; rdfs:label "Open Data Commons Public Domain Dedication and Licence (PDDL)"@en .
+
+okfn:odc-odbl a cc:License ; terms:identifier "odc-odbl" ; rdfs:label "Open Data Commons Open Database License (ODbL)"@en .
+
+okfn:other-closed a cc:License ; terms:identifier "other-closed" .
+
+okfn:cc-nc a cc:License ; terms:identifier "cc-nc" .
+
