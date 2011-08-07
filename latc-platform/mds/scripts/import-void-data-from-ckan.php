@@ -68,11 +68,13 @@ foreach($results as $row){
     $graphURIs = array();
     foreach($graph->get_index() as $s => $ps){
       if(strpos($s, 'http://ckan.net/package/')===0) $graphURIs[]=$s;
+      else if(strpos($s, 'http://ckan.net/tag')===0) $graphURIs[]=$s;
+
       foreach($ps as $p => $os){
         foreach($os as $o){
           if($o['type']=='uri'){
             if(strpos($o['value'], 'http://ckan.net/package')===0) $graphURIs[]=$o['value'];
-            if(strpos($o['value'], 'http://ckan.net/tag')===0) $graphURIs[]=$o['value'];
+            else if(strpos($o['value'], 'http://ckan.net/tag')===0) $graphURIs[]=$o['value'];
           }
         }
       }
@@ -80,6 +82,7 @@ foreach($results as $row){
   $graphURIs = array_unique($graphURIs);
     foreach($graphURIs as $oldUri){
       $lodCloudUri = str_replace('http://ckan.net/package/', 'http://lod-cloud.net/', $oldUri);
+      $lodCloudUri = str_replace('http://ckan.net/tag/', 'http://lod-cloud.net/tag/', $oldUri);
       $graph->replace_resource($oldUri, $lodCloudUri);
       $graph->add_resource_triple($lodCloudUri, OWL_SAMEAS, $oldUri);
     }
