@@ -1,73 +1,67 @@
 K 25
 svn:wc:ra_dav:version-url
 V 23
-/svn/!svn/ver/308/trunk
+/svn/!svn/ver/319/trunk
 END
 httprequest.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 45
-/svn/!svn/ver/297/trunk/httprequest.class.php
+/svn/!svn/ver/313/trunk/httprequest.class.php
 END
 oaiservice.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 44
-/svn/!svn/ver/297/trunk/oaiservice.class.php
+/svn/!svn/ver/313/trunk/oaiservice.class.php
 END
 rollback.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 42
-/svn/!svn/ver/297/trunk/rollback.class.php
+/svn/!svn/ver/313/trunk/rollback.class.php
 END
 privategraph.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/svn/!svn/ver/297/trunk/privategraph.class.php
+/svn/!svn/ver/313/trunk/privategraph.class.php
 END
 store.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 39
-/svn/!svn/ver/297/trunk/store.class.php
+/svn/!svn/ver/319/trunk/store.class.php
 END
 credentials.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 45
-/svn/!svn/ver/297/trunk/credentials.class.php
+/svn/!svn/ver/313/trunk/credentials.class.php
 END
 multisparqlservice.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 52
-/svn/!svn/ver/297/trunk/multisparqlservice.class.php
+/svn/!svn/ver/313/trunk/multisparqlservice.class.php
 END
 changeset.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/svn/!svn/ver/297/trunk/changeset.class.php
+/svn/!svn/ver/314/trunk/changeset.class.php
 END
 fieldpredicatemap.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 51
-/svn/!svn/ver/297/trunk/fieldpredicatemap.class.php
-END
-changesetbatch.class.php
-K 25
-svn:wc:ra_dav:version-url
-V 48
-/svn/!svn/ver/297/trunk/changesetbatch.class.php
+/svn/!svn/ver/313/trunk/fieldpredicatemap.class.php
 END
 build.xml
 K 25
 svn:wc:ra_dav:version-url
 V 33
-/svn/!svn/ver/291/trunk/build.xml
+/svn/!svn/ver/313/trunk/build.xml
 END
 config.class.php
 K 25
@@ -79,19 +73,19 @@ valuepool.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/svn/!svn/ver/297/trunk/valuepool.class.php
+/svn/!svn/ver/313/trunk/valuepool.class.php
 END
 storecollection.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 49
-/svn/!svn/ver/297/trunk/storecollection.class.php
+/svn/!svn/ver/313/trunk/storecollection.class.php
 END
 moriarty.inc.php
 K 25
 svn:wc:ra_dav:version-url
 V 40
-/svn/!svn/ver/297/trunk/moriarty.inc.php
+/svn/!svn/ver/317/trunk/moriarty.inc.php
 END
 httpclient.class.php
 K 25
@@ -109,139 +103,139 @@ graphpath.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/svn/!svn/ver/297/trunk/graphpath.class.php
+/svn/!svn/ver/313/trunk/graphpath.class.php
 END
 sparqlservicebase.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 51
-/svn/!svn/ver/297/trunk/sparqlservicebase.class.php
+/svn/!svn/ver/313/trunk/sparqlservicebase.class.php
 END
 constants.inc.php
 K 25
 svn:wc:ra_dav:version-url
 V 41
-/svn/!svn/ver/297/trunk/constants.inc.php
+/svn/!svn/ver/313/trunk/constants.inc.php
 END
 datatableresult.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 49
-/svn/!svn/ver/297/trunk/datatableresult.class.php
+/svn/!svn/ver/313/trunk/datatableresult.class.php
 END
 augmentservice.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 48
-/svn/!svn/ver/297/trunk/augmentservice.class.php
+/svn/!svn/ver/313/trunk/augmentservice.class.php
 END
 datatable.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/svn/!svn/ver/297/trunk/datatable.class.php
+/svn/!svn/ver/313/trunk/datatable.class.php
 END
 sparqlservice.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 47
-/svn/!svn/ver/297/trunk/sparqlservice.class.php
+/svn/!svn/ver/313/trunk/sparqlservice.class.php
 END
 phphttpclient.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 47
-/svn/!svn/ver/297/trunk/phphttpclient.class.php
+/svn/!svn/ver/313/trunk/phphttpclient.class.php
 END
 queryprofile.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/svn/!svn/ver/297/trunk/queryprofile.class.php
+/svn/!svn/ver/313/trunk/queryprofile.class.php
 END
 union.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 39
-/svn/!svn/ver/297/trunk/union.class.php
+/svn/!svn/ver/313/trunk/union.class.php
 END
 httpresponse.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/svn/!svn/ver/297/trunk/httpresponse.class.php
+/svn/!svn/ver/313/trunk/httpresponse.class.php
 END
 metabox.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 41
-/svn/!svn/ver/297/trunk/metabox.class.php
+/svn/!svn/ver/313/trunk/metabox.class.php
 END
 storegroupconfig.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 50
-/svn/!svn/ver/297/trunk/storegroupconfig.class.php
-END
-networkresource.class.php
-K 25
-svn:wc:ra_dav:version-url
-V 49
-/svn/!svn/ver/297/trunk/networkresource.class.php
+/svn/!svn/ver/313/trunk/storegroupconfig.class.php
 END
 graph.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 39
-/svn/!svn/ver/297/trunk/graph.class.php
+/svn/!svn/ver/314/trunk/graph.class.php
+END
+networkresource.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/313/trunk/networkresource.class.php
 END
 httpcache.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/svn/!svn/ver/297/trunk/httpcache.class.php
+/svn/!svn/ver/313/trunk/httpcache.class.php
 END
 facetservice.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/svn/!svn/ver/297/trunk/facetservice.class.php
+/svn/!svn/ver/313/trunk/facetservice.class.php
 END
 curlhttpclient.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 48
-/svn/!svn/ver/308/trunk/curlhttpclient.class.php
+/svn/!svn/ver/313/trunk/curlhttpclient.class.php
 END
 storegroup.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 44
-/svn/!svn/ver/297/trunk/storegroup.class.php
+/svn/!svn/ver/313/trunk/storegroup.class.php
 END
 phing.xml
 K 25
 svn:wc:ra_dav:version-url
 V 33
-/svn/!svn/ver/293/trunk/phing.xml
+/svn/!svn/ver/313/trunk/phing.xml
 END
 simplegraph.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 45
-/svn/!svn/ver/297/trunk/simplegraph.class.php
+/svn/!svn/ver/316/trunk/simplegraph.class.php
 END
 jobqueue.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 42
-/svn/!svn/ver/297/trunk/jobqueue.class.php
+/svn/!svn/ver/313/trunk/jobqueue.class.php
 END
 httprequestfactory.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 52
-/svn/!svn/ver/297/trunk/httprequestfactory.class.php
+/svn/!svn/ver/313/trunk/httprequestfactory.class.php
 END
 readme.txt
 K 25
@@ -253,17 +247,17 @@ snapshots.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/svn/!svn/ver/297/trunk/snapshots.class.php
+/svn/!svn/ver/313/trunk/snapshots.class.php
 END
 labeller.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 42
-/svn/!svn/ver/297/trunk/labeller.class.php
+/svn/!svn/ver/313/trunk/labeller.class.php
 END
 contentbox.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 44
-/svn/!svn/ver/297/trunk/contentbox.class.php
+/svn/!svn/ver/313/trunk/contentbox.class.php
 END

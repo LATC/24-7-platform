@@ -353,6 +353,27 @@ class GraphTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue( in_array('Accept: */*', $fake_request->get_headers() ) );
   }
 
+  function test_submit_ntriples_from_file_in_batches(){
+    $response = new HttpResponse('202');
+    $graph = $this->getMock('Graph', array('submit_turtle'), array(),'',false ); 
+    $graph->expects($this->exactly(10))
+      ->method('submit_turtle')
+      ->will($this->returnValue($response));
+    $filename = dirname(__FILE__).'/documents/10-ntriples.nt';
+    $result = $graph->submit_ntriples_in_batches_from_file($filename,1);
+    $this->assertEquals(count($result), 10);
+  }
+  function test_submit_ntriples_from_file_in_batches_stop_on_failure(){
+    $response = new HttpResponse('500');
+    $graph = $this->getMock('Graph', array('submit_turtle'), array(),'',false ); 
+    $graph->expects($this->exactly(1))
+      ->method('submit_turtle')
+      ->will($this->returnValue($response));
+    $filename = dirname(__FILE__).'/documents/10-ntriples.nt';
+    $result = $graph->submit_ntriples_in_batches_from_file($filename,1,true);
+    $this->assertEquals(count($result), 1);
+  }
+
 
 }
 

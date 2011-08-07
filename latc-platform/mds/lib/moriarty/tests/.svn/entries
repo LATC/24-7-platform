@@ -1,15 +1,15 @@
 10
 
 dir
-308
+319
 http://moriarty.googlecode.com/svn/trunk/tests
 http://moriarty.googlecode.com/svn
 
 
 
-2011-05-18T21:48:53.463741Z
-308
-jhigman@gmail.com
+2011-08-07T00:17:14.170305Z
+318
+k.j.w.alexander@gmail.com
 
 
 
@@ -100,11 +100,11 @@ file
 
 
 
-2011-06-14T12:02:47.000000Z
+2011-08-07T08:24:58.000000Z
 139d6a23f280001a6f58a1ea96c8ec1e
-2011-02-23T14:55:57.385719Z
-294
-jhigman
+2011-08-02T08:13:40.906503Z
+313
+jhigman@gmail.com
 
 
 
@@ -304,11 +304,11 @@ file
 
 
 
-2011-06-14T12:02:47.000000Z
-03713ae085210dd82322efe98a464a8d
-2010-04-12T14:42:03.084378Z
-268
-K.J.W.Alexander
+2011-08-07T08:24:58.000000Z
+ec538b7e048d89a4efdea3c7c6668e57
+2011-08-07T00:17:14.170305Z
+318
+k.j.w.alexander@gmail.com
 
 
 
@@ -330,7 +330,7 @@ K.J.W.Alexander
 
 
 
-17992
+23557
 
 multisparqlservice.test.php
 file
@@ -474,11 +474,11 @@ file
 
 
 
-2011-06-14T12:02:47.000000Z
-1f8d20ebb74ce273237ab49f53d50714
-2010-03-21T12:36:37.497741Z
-262
-innovateer
+2011-08-07T08:24:58.000000Z
+c13fe0b03940a563e0008a3ab252a6fb
+2011-08-02T08:29:25.374371Z
+314
+jhigman@gmail.com
 
 
 
@@ -500,7 +500,7 @@ innovateer
 
 
 
-16415
+17418
 
 fieldpredicatemap.test.php
 file
@@ -712,11 +712,11 @@ file
 
 
 
-2011-06-14T12:02:47.000000Z
+2011-08-07T08:24:58.000000Z
 07e938b6701b9fddebbd663c96ce05f1
-2011-02-23T14:51:25.186310Z
-293
-jhigman
+2011-08-02T08:13:40.906503Z
+313
+jhigman@gmail.com
 
 
 
@@ -848,11 +848,11 @@ file
 
 
 
-2011-06-14T12:02:47.000000Z
-c1594a176f43ed67977bdc93ecaf960c
-2011-03-01T11:04:15.948962Z
-295
-nadeem.shabir@gmail.com
+2011-08-07T08:24:58.000000Z
+25b8c7dd7a582682c59bbffa8d3681cc
+2011-08-02T15:53:06.985822Z
+316
+jhigman@gmail.com
 
 
 
@@ -874,7 +874,7 @@ nadeem.shabir@gmail.com
 
 
 
-46661
+49876
 
 sparqlservicebase.test.php
 file
@@ -1287,6 +1287,40 @@ me@iandavis.com
 
 367
 
+httpresponse.test.php
+file
+
+
+
+
+2011-08-07T08:24:58.000000Z
+82594563b7c0ee779e587eaeb2b057eb
+2011-07-29T15:34:10.347961Z
+311
+k.j.w.alexander@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+767
+
 changeset.test.php
 file
 
@@ -1321,50 +1355,16 @@ mmmmmrob
 
 33658
 
-changesetbatch.test.php
-file
-
-
-
-
-2011-06-14T12:02:47.000000Z
-83ae2c8ab8dca5fa01c008e0397b4e17
-2010-02-22T00:33:32.408391Z
-255
-innovateer
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6238
-
 curlhttpclient.test.php
 file
 
 
 
 
-2011-06-14T12:02:47.000000Z
+2011-08-07T08:24:58.000000Z
 bb7df1025d04738b4d1b430c1d11bac1
-2011-05-18T21:48:53.463741Z
-308
+2011-08-02T08:13:40.906503Z
+313
 jhigman@gmail.com
 
 

@@ -12,7 +12,7 @@ require_once MORIARTY_DIR. 'snapshots.class.php';
 require_once MORIARTY_DIR. 'augmentservice.class.php';
 require_once MORIARTY_DIR. 'oaiservice.class.php';
 require_once MORIARTY_DIR. 'httprequest.class.php';
-
+require_once MORIARTY_DIR. 'changeset.class.php';
 /**
  * Represents a platform store.
  */
@@ -204,5 +204,88 @@ class Store {
       return $this->get_contentbox()->save_item($content, $content_type);
   }
 
+  
+  /**
+   * mirror_from_url
+   *
+   * @return array of responses from http requests, and overall success status 
+   * @author Keith Alexander
+   **/
+  function mirror_from_url($url, $rdf_content=false)
+  {
+
+      $return = array(
+        'get_page' => false,
+        'get_copy' => false,
+        'put_page' => false,
+        'update_data' => false,
+        'success' => false,
+      );
+
+    if (empty( $this->request_factory) ) {
+      $this->request_factory = new HttpRequestFactory();
+    }
+    
+    $last_cached_page_uri = $this->get_contentbox()->uri.'/mirrors/'.$url;
+
+    if(!$rdf_content){
+      
+      $web_page_request  = $this->request_factory->make('GET', $url); 
+      $web_page_request->set_accept('application/rdf+xml;q=0.8,text/turtle;q=0.9,*/*;q=0.1');
+      $web_page_response = $web_page_request->execute();
+      $return['get_page'] = $web_page_response;
+      $web_page_content = $web_page_response->body;
+    } else {
+      $web_page_content = $rdf_content;
+      $return['rdf_content'] = $rdf_content;
+    }
+    if($rdf_content OR $web_page_response->is_success() ){
+
+    $newGraph = new SimpleGraph();
+    $newGraph->add_rdf($web_page_content, $url);
+    $newGraph->add_resource_triple($url, OPEN_LASTCACHEDPAGE, $last_cached_page_uri);
+    $newGraph->skolemise_bnodes($last_cached_page_uri.'/');
+    $after = $newGraph->get_index();
+    # get previous copy if it exists
+    $cached_page_request = $this->request_factory->make('GET', $last_cached_page_uri, $this->credentials);
+    $cached_page_response = $cached_page_request->execute();
+    $return['get_copy'] = $cached_page_response;
+            if($cached_page_response->status_code == '200'){
+              $before =  json_decode($cached_page_response->body, true);
+            } else if( $cached_page_response->status_code == '404' ) {
+              $before = false;
+            } else {
+                return $return;
+            }
+    # build new changeset
+
+    $Changeset = new ChangeSet(array('before' => $before, 'after' => $after, 'creatorName' => 'Store::mirror_from_url', 'changeReason' => 'mirroring from '.$url));
+
+    if($Changeset->has_changes()){
+      $return['update_data'] = $this->get_metabox()->apply_changeset($Changeset);
+      if($return['update_data']->is_success()){
+        $return['success'] = true;
+      } else {
+        return $return;
+      } 
+      $put_page_request = $this->request_factory->make('PUT', $last_cached_page_uri, $this->credentials);
+      $put_page_request->set_body($newGraph->to_json());
+      $put_page_request->set_content_type('application/json');
+      $put_page_response = $put_page_request->execute();
+      $return['put_page'] = $put_page_response;
+      return $return;
+    } else {
+       $return['success'] = true;
+       return $return;
+    }
+
+      
+    } else {
+    
+      return $return;
+    }
+  }
+
 }
 ?>
+

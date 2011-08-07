@@ -1,9 +1,9 @@
 <?php
-define('MORIARTY_ARC_DIR', '../../lib/arc/');
-define('MORIARTY_HTTP_CACHE_DIR', '../../cache');
+define('MORIARTY_ARC_DIR', '../lib/arc/');
+define('MORIARTY_HTTP_CACHE_DIR', '../cache');
 
-require '../../lib/moriarty/simplegraph.class.php';
-require '../../lib/moriarty/sparqlservice.class.php';
+require '../lib/moriarty/simplegraph.class.php';
+require '../lib/moriarty/sparqlservice.class.php';
 
 if(isset($_GET['uri'])){
   $uri = trim($_GET['uri']);

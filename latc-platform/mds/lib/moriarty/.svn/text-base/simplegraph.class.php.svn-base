@@ -243,7 +243,22 @@ class SimpleGraph {
     return json_encode($this->_index);
   }
 
+  function get_valid_id($s) {
+    return htmlspecialchars(str_replace('_:','',$s));	
+  }
+  
+  function get_link_href($s) {
+  	$prefix = (strpos($s,'_:')===0) ? '#' : '';
+  	return $prefix . $this->get_valid_id($s);
+  }
 
+  function get_link_id($s) {
+  	if (strpos($s,'_:')===0) {
+  		return $this->get_valid_id($s);
+  	}
+  	return null;
+  }
+  
   /**
    * Serialise the graph to HTML
    * @return string a HTML version of the graph
@@ -275,7 +290,11 @@ class SimpleGraph {
     if (count($subjects) > 0) {
       foreach ($subjects as $subject) {
         if (count($subjects) > 1) {
-          $h .= '<h1><a href="' . htmlspecialchars($subject) . '">' . htmlspecialchars($this->get_label($subject)) . '</a></h1>' . "\n";
+          $h .= '<h1><a';
+          if($link_id = $this->get_link_id($subject)) {
+          	$h .= ' id="' . $link_id . '"';
+          }	
+          $h .= ' href="' . $this->get_link_href($subject) . '">' . htmlspecialchars($this->get_label($subject)) . '</a></h1>' . "\n";
         }
         $h .= '<table>' . "\n";
 
@@ -284,7 +303,7 @@ class SimpleGraph {
         $properties = array_merge($priority_properties, array_diff($properties, $priority_properties));
 
         foreach ($properties as $p) {
-          $h .= '<tr><th valign="top"><a href="' . htmlspecialchars($p). '">' . htmlspecialchars($this->get_label($p, true)). '</a></th>';
+          $h .= '<tr><th valign="top"><a href="' . $this->get_link_href($p). '">' . htmlspecialchars($this->get_label($p, true)). '</a></th>';
           $h .= '<td valign="top">';
           for ($i = 0; $i < count($this->_index[$subject][$p]); $i++) {
             if ($i > 0) $h .= '<br />';
@@ -292,7 +311,7 @@ class SimpleGraph {
               $h .= htmlspecialchars($this->_index[$subject][$p][$i]['value'] );
             }
             else {
-              $h .= '<a href="' . htmlspecialchars($this->_index[$subject][$p][$i]['value']). '">';
+              $h .= '<a href="' . $this->get_link_href($this->_index[$subject][$p][$i]['value']). '">';
               if ($guess_labels) {
                 $h .= htmlspecialchars($this->get_label($this->_index[$subject][$p][$i]['value']) );
               }
@@ -322,12 +341,12 @@ class SimpleGraph {
         }
         
         foreach ($backlinks as $backlink_p => $backlink_values) {
-          $h .= '<tr><th valign="top"><a href="' . htmlspecialchars($backlink_p). '">' . htmlspecialchars($this->get_inverse_label($backlink_p, true)). '</a></th>';
+          $h .= '<tr><th valign="top"><a href="' . $this->get_link_href($backlink_p). '">' . htmlspecialchars($this->get_inverse_label($backlink_p, true)). '</a></th>';
           $h .= '<td valign="top">';
           for ($i = 0; $i < count($backlink_values); $i++) {
             if ($i > 0) $h .= '<br />';
 
-            $h .= '<a href="' . htmlspecialchars($backlink_values[$i]). '">';
+            $h .= '<a href="' . $this->get_link_href($backlink_values[$i]). '">';
             if ($guess_labels) {
               $h .= htmlspecialchars($this->get_label($backlink_values[$i]) );
             }
@@ -1372,5 +1391,38 @@ class SimpleGraph {
           return $values;
       }
 
+  /** Skolemise Bnodes
+   *  replace bnodes in the graph with URIs
+   * @param urispace 
+  **/
+
+      public function skolemise_bnodes($urispace)
+      {
+        $bnodes = $this->get_bnodes();
+        $skolemised_bnodes = array();
+        foreach($bnodes as $no => $bnode){
+          $uri = $urispace.'id-'.++$no;
+          $this->replace_resource($bnode, $uri);
+          $skolemised_bnodes[$bnode] = $uri;
+        }
+        return $skolemised_bnodes; 
+      }
+
+      public function get_bnodes()
+      {
+        $bnodes = array();
+        $index = $this->get_index();
+        foreach($index as $s => $ps){
+          if(strpos($s,'_:')===0) $bnodes[]=$s;
+          foreach($ps as $p => $os){
+            foreach($os as $o){
+              if($o['type']=='bnode'){
+                $bnodes[]=$o['value'];
+              }
+            }
+          }
+        }
+        return array_unique($bnodes);
+      }
 }
 ?>

@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 27
-/svn/!svn/ver/293/trunk/etc
+/svn/!svn/ver/313/trunk/etc
 END
 tophat.png
 K 25
@@ -19,5 +19,5 @@ phingBootstrap.php
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/svn/!svn/ver/293/trunk/etc/phingBootstrap.php
+/svn/!svn/ver/313/trunk/etc/phingBootstrap.php
 END

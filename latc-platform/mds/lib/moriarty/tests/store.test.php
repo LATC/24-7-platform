@@ -348,6 +348,98 @@ class StoreTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue( $fake_request->was_executed() );
   }
 
+function test_store_content_sets_content_type() {
+    $fake_request_factory = new FakeRequestFactory();
+    $fake_request = new FakeHttpRequest( new HttpResponse() );
+    $fake_request_factory->register('POST', "http://example.org/store/items", $fake_request );
+
+    $store = new Store("http://example.org/store", new FakeCredentials(), $fake_request_factory);
+    $response = $store->store_content('some content', 'text/html');
+    $this->assertTrue( in_array('Content-Type: text/html', $fake_request->get_headers() ) );
+  }
+
+  function test_mirror_from_url(){
+    $url =  "http://example.org/web-page";
+    $fake_request_factory = new FakeRequestFactory();
+    $webpage_response =  new HttpResponse('200') ;
+    $webpage_response->body = file_get_contents(dirname(__FILE__).DIRECTORY_SEPARATOR.'documents/after.ttl');
+    $fake_webpage_request = new FakeHttpRequest($webpage_response);
+    $fake_request_factory->register('GET',$url, $fake_webpage_request );
+
+
+    $contentbox_copy =  new HttpResponse('200');
+    $contentbox_copy->body = file_get_contents(dirname(__FILE__).DIRECTORY_SEPARATOR.'documents/before.ttl');
+    $fake_contentbox_request = new FakeHttpRequest($contentbox_copy);
+    $fake_request_factory->register('GET','http://api.talis.com/stores/example/items/mirrors/'.$url , $fake_contentbox_request);
+
+    $putResponse =new HttpResponse('201');
+    $fake_postContent_request = new FakeHttpRequest($putResponse);
+    $fake_request_factory->register('PUT', 'http://api.talis.com/stores/example/items/mirrors/'.$url , $fake_postContent_request );
+
+    $postDataResponse =  new HttpResponse('201');
+    $fake_postData_request = new FakeHttpRequest($postDataResponse);
+    $fake_request_factory->register('POST', 'http://api.talis.com/stores/example/meta' , $fake_postData_request );
+
+    $store = new Store("http://api.talis.com/stores/example", new FakeCredentials(), $fake_request_factory);
+    $response = $store->mirror_from_url($url);
+
+    $this->assertTrue($fake_webpage_request->was_executed(), "The webpage $url should be retrieved over HTTP");
+    $this->assertTrue($fake_contentbox_request->was_executed(), "Store:mirror_from_url should attempt to retrieve a copy of $url from the content box at {storeuri}/items/mirrors/{$url} if it exists yet.");
+    $this->assertTrue($fake_postContent_request->was_executed(), "The contents of $url should be POSTed to the contentbox");
+    $this->assertTrue($fake_postData_request->was_executed(), "The data from $url  (and its metadata) should be added to the store by POSTing a document containing changesets to /meta");
+    
+    $expected_response =  array(
+        'get_page' => $webpage_response,
+        'get_copy' => $contentbox_copy,
+        'put_page' => $putResponse,
+        'update_data' => $postDataResponse,
+        'success' => true,
+      );
+     $this->assertEquals($expected_response, $response,""); 
+  }
+
+  function test_mirror_from_url_does_not_PUT_if_changesets_fail(){
+    $url =  "http://example.org/web-page";
+    $fake_request_factory = new FakeRequestFactory();
+    $webpage_response =  new HttpResponse('200') ;
+    $webpage_response->body = file_get_contents(dirname(__FILE__).DIRECTORY_SEPARATOR.'documents/after.ttl');
+    $fake_webpage_request = new FakeHttpRequest($webpage_response);
+    $fake_request_factory->register('GET',$url, $fake_webpage_request );
+
+
+    $contentbox_copy =  new HttpResponse('200');
+    $contentbox_copy->body = file_get_contents(dirname(__FILE__).DIRECTORY_SEPARATOR.'documents/before.ttl');
+    $fake_contentbox_request = new FakeHttpRequest($contentbox_copy);
+    $fake_request_factory->register('GET','http://api.talis.com/stores/example/items/mirrors/'.$url , $fake_contentbox_request);
+
+    $putResponse =new HttpResponse('201');
+    $fake_postContent_request = new FakeHttpRequest($putResponse);
+    $fake_request_factory->register('PUT', 'http://api.talis.com/stores/example/items/mirrors/'.$url , $fake_postContent_request );
+
+
+    $postDataResponse =  new HttpResponse('500');
+    $fake_postData_request = new FakeHttpRequest($postDataResponse);
+    $fake_request_factory->register('POST', 'http://api.talis.com/stores/example/meta' , $fake_postData_request );
+
+    $store = new Store("http://api.talis.com/stores/example", new FakeCredentials(), $fake_request_factory);
+    $response = $store->mirror_from_url($url);
+
+    $this->assertTrue($fake_webpage_request->was_executed(), "The webpage $url should be retrieved over HTTP");
+    $this->assertTrue($fake_contentbox_request->was_executed(), "Store:mirror_from_url should attempt to retrieve a copy of $url from the content box at {storeuri}/items/mirrors/{$url} if it exists yet.");
+    $this->assertFalse($fake_postContent_request->was_executed(), "The contents of $url should not be POSTed to the contentbox because the POST to the metabox failed");
+    $this->assertTrue($fake_postData_request->was_executed(), "The data from $url  (and its metadata) should be added to the store by POSTing a document containing changesets to /meta");
+    
+    $expected_response =  array(
+        'get_page' => $webpage_response,
+        'get_copy' => $contentbox_copy,
+        'put_page' => false,
+        'update_data' => $postDataResponse,
+        'success' => false,
+      );
+     $this->assertEquals($expected_response, $response,"the updated document should not be PUT to the contentbox if the changes fail (changes could fail if other changesets have already removed the triples)"); 
+  }
+
+  
 
 
 }

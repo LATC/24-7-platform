@@ -126,6 +126,31 @@ class Graph {
     return $request->execute();
   }
 
+  function submit_ntriples_in_batches_from_file($filename,$no_of_lines=500, $stop_on_failure=true) {
+    $responses = array();
+    $pointer = fopen($filename, 'r');
+    $batch = '';
+    $lineCount=0;
+    while($line =  fgets($pointer)){
+      $batch.=$line;
+      $lineCount++;
+      if($lineCount==$no_of_lines){
+        $response = $this->submit_turtle($batch);
+        $responses[] = $response;
+        if($response->is_success()===false AND $stop_on_failure){
+          return $responses;
+        } else {
+          $lineCount=0;
+          $batch='';
+        }
+      }
+    }
+    if(!empty($batch)){
+      $responses[]=$this->submit_turtle($batch);
+    }
+    return $responses;
+  }
+
   /**
    * Obtain the graph's bounded description of a given resource
    * @see http://n2.talis.com/wiki/Metabox#Describing_a_Resource
