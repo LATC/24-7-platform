@@ -65,24 +65,29 @@ foreach($results as $row){
       }
     }
 
+    if(isset($ckanArray['resources'])){
+      foreach($ckanArray['resources'] as $resource){
+        if($resource['format'] == 'meta/rdf-schema'){
+          $graph->add_resource_triple($uri, VOID.'vocabulary', $resource['url']);
+        }
+      }
+    }
+
     $graphURIs = array();
     foreach($graph->get_index() as $s => $ps){
-      if(strpos($s, 'http://ckan.net/package/')===0) $graphURIs[]=$s;
-      else if(strpos($s, 'http://ckan.net/tag')===0) $graphURIs[]=$s;
-
+      if(strpos($s, 'http://ckan.net/package/')===0 OR strpos($s, 'http://ckan.net/tag')===0) $graphURIs[]=$s;
       foreach($ps as $p => $os){
         foreach($os as $o){
           if($o['type']=='uri'){
-            if(strpos($o['value'], 'http://ckan.net/package')===0) $graphURIs[]=$o['value'];
-            else if(strpos($o['value'], 'http://ckan.net/tag')===0) $graphURIs[]=$o['value'];
+            if(strpos($o['value'], 'http://ckan.net/package')===0 OR strpos($o['value'], 'http://ckan.net/tag')===0) $graphURIs[]=$o['value'];
           }
         }
       }
     }
   $graphURIs = array_unique($graphURIs);
     foreach($graphURIs as $oldUri){
-      $lodCloudUri = str_replace('http://ckan.net/package/', 'http://lod-cloud.net/', $oldUri);
-      $lodCloudUri = str_replace('http://ckan.net/tag/', 'http://lod-cloud.net/tag/', $oldUri);
+      if(strpos($oldUri, 'http://ckan.net/package/')===0) $lodCloudUri = str_replace('http://ckan.net/package/', 'http://lod-cloud.net/', $oldUri);
+      else if(strpos($oldUri, 'http://ckan.net/tag/')===0) $lodCloudUri = str_replace('http://ckan.net/tag/', 'http://lod-cloud.net/tag/', $oldUri);
       $graph->replace_resource($oldUri, $lodCloudUri);
       $graph->add_resource_triple($lodCloudUri, OWL_SAMEAS, $oldUri);
     }
@@ -100,9 +105,8 @@ foreach($results as $row){
     }
     if(!$response['success']){
       error_log(date('c')."\t{$uri} was not mirrored to the triple store.\n", 3, 'import_errors.log');
-      file_put_contents('import.json', json_encode($response));
-    }
-    
+      file_put_contents('failed_import.json', json_encode($response));
+    } 
 }
 
 

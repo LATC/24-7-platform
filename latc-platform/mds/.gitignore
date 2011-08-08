@@ -1,3 +1,5 @@
 cache/*
 api-keys.php
 talis-store-credentials.php
+lib/moriarty/.svn
+lib/moriarty/*/.svn
