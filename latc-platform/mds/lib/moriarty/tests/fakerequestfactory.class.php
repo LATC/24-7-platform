@@ -11,15 +11,21 @@ class FakeRequestFactory extends HttpRequestFactory {
   }
 
   function register($method, $uri, $request ) {
-    $this->_requests[$method . ' ' . $uri] = $request;
+    $key = $method . ' ' . $uri;
+    $this->_requests[$key][] = $request;
+  }
+
+  function get_registered_request($method, $uri){
+      $key = $method . ' ' . $uri;
+      if(isset($this->_requests[$key])) return array_shift($this->_requests[$key]);
+      else return false;
   }
 
   function make( $method, $uri, $credentials = null) {
     $this->_received[] = $method . ' ' . $uri;
     
-    if (array_key_exists( $method . ' ' . $uri, $this->_requests) ) {
-      $request = $this->_requests[$method . ' ' . $uri];
-      if ( $credentials != null) {
+    if ($request = $this->get_registered_request($method,$uri)) {
+     if ( $credentials != null) {
         $request->set_auth( $credentials->get_auth());
       }
       return $request;

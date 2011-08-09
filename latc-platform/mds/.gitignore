@@ -1,5 +1,11 @@
 cache/*
 api-keys.php
 talis-store-credentials.php
-lib/moriarty/.svn
-lib/moriarty/*/.svn
+lib/moriarty/.svn*
+lib/moriarty/.svn/*
+lib/moriarty/*/.svn*
+lib/moriarty/*/*/.svn*
+import.json
+last_imported_from_ckan
+import_errors.log
+lib/moriarty/.svn/*

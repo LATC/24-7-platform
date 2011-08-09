@@ -18,6 +18,11 @@ $latcStore = new Store(LATC_STORE_URI, new Credentials('latc', LATC_STORE_PASSWO
 $RequestFactory = new HttpRequestFactory();
 $SparqlEndpoint = new SparqlService("http://semantic.ckan.net/sparql/");
 
+
+$Prefixes = json_decode($RequestFactory->make('GET', 'http://prefix.cc/popular/all.file.json')->execute()->body, 1);
+$Prefixes = array_filter($Prefixes, create_function('$a', 'return $a;'));
+
+
 $pageSize = 500;
 if(file_exists('last_imported_from_ckan')){
   $lastModTime = date('c', filemtime('last_imported_from_ckan'));
@@ -71,6 +76,17 @@ foreach($results as $row){
           $graph->add_resource_triple($uri, VOID.'vocabulary', $resource['url']);
         }
       }
+    }
+
+    
+    foreach($ckanArray['tags'] as $tag){
+      if(strpos($tag, 'format-')===0){
+        $prefix = str_replace('format-', '', $tag);
+        if(isset($Prefixes[$prefix])){
+          $graph->add_resource_triple($uri, VOID.'vocabulary', $Prefixes[$prefix]);
+        }
+      }
+      
     }
 
     $graphURIs = array();

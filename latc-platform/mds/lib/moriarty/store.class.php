@@ -210,7 +210,9 @@ class Store {
    *
    * @return array of responses from http requests, and overall success status 
    * @author Keith Alexander
-   **/
+   *
+   *
+  **/
   function mirror_from_url($url, $rdf_content=false)
   {
 
@@ -265,6 +267,13 @@ class Store {
       $return['update_data'] = $this->get_metabox()->apply_changeset($Changeset);
       if($return['update_data']->is_success()){
         $return['success'] = true;
+      } else if($return['update_data']->status_code=='409'){ # Conflict. some statements already removed.
+        $before_graph = new SimpleGraph($before);
+        $return['reapply_before_triples'] = $this->get_metabox()->submit_turtle($before_graph->to_turtle());
+        if($return['reapply_before_triples']->status_code=='204'){ #Succeeded. No content
+          $return['update_data'] = $this->get_metabox()->apply_changeset($Changeset);
+          $return['success'] = $return['update_data']->is_success();
+        }
       } else {
         return $return;
       } 
@@ -273,6 +282,7 @@ class Store {
       $put_page_request->set_content_type('application/json');
       $put_page_response = $put_page_request->execute();
       $return['put_page'] = $put_page_response;
+      $return['success'] = $put_page_response->is_success(); 
       return $return;
     } else {
        $return['success'] = true;

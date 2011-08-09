@@ -1,14 +1,14 @@
 10
 
 dir
-319
+320
 http://moriarty.googlecode.com/svn/trunk
 http://moriarty.googlecode.com/svn
 
 
 
-2011-08-07T10:54:49.468378Z
-319
+2011-08-09T08:22:12.294040Z
+320
 k.j.w.alexander@gmail.com
 has-props
 
@@ -168,10 +168,10 @@ file
 
 
 
-2011-08-07T10:55:24.000000Z
-c624d1e613495ad45a3e435737b72df5
-2011-08-07T10:54:49.468378Z
-319
+2011-08-09T08:23:14.000000Z
+967c57a49e4897f4273ce6b863f2148d
+2011-08-09T08:22:12.294040Z
+320
 k.j.w.alexander@gmail.com
 
 
@@ -194,7 +194,7 @@ k.j.w.alexander@gmail.com
 
 
 
-9279
+9880
 
 credentials.class.php
 file
@@ -440,9 +440,6 @@ jhigman@gmail.com
 tools
 dir
 
-tests
-dir
-
 storecollection.class.php
 file
 
@@ -476,6 +473,9 @@ jhigman@gmail.com
 
 
 2588
+
+tests
+dir
 
 moriarty.inc.php
 file
@@ -514,17 +514,17 @@ K.J.W.Alexander@gmail.com
 lib
 dir
 
-sparqlservicebase.class.php
+httpclient.class.php
 file
 
 
 
 
-2011-08-07T08:24:58.000000Z
-07b0d9507a61d08c383ee9de5cdab6db
-2011-08-02T08:13:40.906503Z
-313
-jhigman@gmail.com
+2011-06-14T12:02:48.000000Z
+653372fe3f2d03922cae940ca0900b56
+2009-08-18T11:48:44.011566Z
+120
+mmmmmrob
 
 
 
@@ -546,41 +546,7 @@ jhigman@gmail.com
 
 
 
-13966
-
-graphpath.class.php
-file
-
-
-
-
-2011-08-07T08:24:58.000000Z
-01507d307df18e8f4d6d6bb090880716
-2011-08-02T08:13:40.906503Z
-313
-jhigman@gmail.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-36646
+1062
 
 COPYING
 file
@@ -616,48 +582,14 @@ me@iandavis.com
 
 17989
 
-httpclient.class.php
-file
-
-
-
-
-2011-06-14T12:02:48.000000Z
-653372fe3f2d03922cae940ca0900b56
-2009-08-18T11:48:44.011566Z
-120
-mmmmmrob
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1062
-
-datatableresult.class.php
+graphpath.class.php
 file
 
 
 
 
 2011-08-07T08:24:58.000000Z
-e69c0e83bb9d3321fa8dc51674aadc5c
+01507d307df18e8f4d6d6bb090880716
 2011-08-02T08:13:40.906503Z
 313
 jhigman@gmail.com
@@ -682,7 +614,41 @@ jhigman@gmail.com
 
 
 
-5545
+36646
+
+sparqlservicebase.class.php
+file
+
+
+
+
+2011-08-07T08:24:58.000000Z
+07b0d9507a61d08c383ee9de5cdab6db
+2011-08-02T08:13:40.906503Z
+313
+jhigman@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13966
 
 constants.inc.php
 file
@@ -718,14 +684,14 @@ jhigman@gmail.com
 
 141
 
-datatable.class.php
+datatableresult.class.php
 file
 
 
 
 
 2011-08-07T08:24:58.000000Z
-066706dcaa6082480ca94440760f0871
+e69c0e83bb9d3321fa8dc51674aadc5c
 2011-08-02T08:13:40.906503Z
 313
 jhigman@gmail.com
@@ -750,7 +716,7 @@ jhigman@gmail.com
 
 
 
-33101
+5545
 
 augmentservice.class.php
 file
@@ -786,6 +752,40 @@ jhigman@gmail.com
 
 1856
 
+datatable.class.php
+file
+
+
+
+
+2011-08-07T08:24:58.000000Z
+066706dcaa6082480ca94440760f0871
+2011-08-02T08:13:40.906503Z
+313
+jhigman@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+33101
+
 sparqlservice.class.php
 file
 
@@ -820,40 +820,6 @@ jhigman@gmail.com
 
 305
 
-phphttpclient.class.php
-file
-
-
-
-
-2011-08-07T08:24:58.000000Z
-f3f60389627bc65de16436159a4a120a
-2011-08-02T08:13:40.906503Z
-313
-jhigman@gmail.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2432
-
 queryprofile.class.php
 file
 
@@ -887,6 +853,40 @@ jhigman@gmail.com
 
 
 3464
+
+phphttpclient.class.php
+file
+
+
+
+
+2011-08-07T08:24:58.000000Z
+f3f60389627bc65de16436159a4a120a
+2011-08-02T08:13:40.906503Z
+313
+jhigman@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2432
 
 union.class.php
 file

@@ -1,14 +1,14 @@
 10
 
 dir
-319
+320
 http://moriarty.googlecode.com/svn/trunk/tests
 http://moriarty.googlecode.com/svn
 
 
 
-2011-08-07T00:17:14.170305Z
-318
+2011-08-09T08:22:12.294040Z
+320
 k.j.w.alexander@gmail.com
 
 
@@ -304,10 +304,10 @@ file
 
 
 
-2011-08-07T08:24:58.000000Z
-ec538b7e048d89a4efdea3c7c6668e57
-2011-08-07T00:17:14.170305Z
-318
+2011-08-09T08:23:14.000000Z
+ada6a3ca3d40b20cf67cc911b2369c6b
+2011-08-09T08:22:12.294040Z
+320
 k.j.w.alexander@gmail.com
 
 
@@ -330,7 +330,7 @@ k.j.w.alexander@gmail.com
 
 
 
-23557
+26909
 
 multisparqlservice.test.php
 file
@@ -536,40 +536,6 @@ me@iandavis.com
 
 8634
 
-httpcache.test.php
-file
-
-
-
-
-2011-06-14T12:02:47.000000Z
-71e5fcd64a34c988b29ee2419d74b528
-2009-03-23T22:37:51.531358Z
-60
-me@iandavis.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-207
-
 facetservice.test.php
 file
 
@@ -603,6 +569,40 @@ K.J.W.Alexander
 
 
 7185
+
+httpcache.test.php
+file
+
+
+
+
+2011-06-14T12:02:47.000000Z
+71e5fcd64a34c988b29ee2419d74b528
+2009-03-23T22:37:51.531358Z
+60
+me@iandavis.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+207
 
 fakehttprequest.class.php
 file
@@ -706,40 +706,6 @@ me@iandavis.com
 
 7280
 
-runtests.php
-file
-
-
-
-
-2011-08-07T08:24:58.000000Z
-07e938b6701b9fddebbd663c96ce05f1
-2011-08-02T08:13:40.906503Z
-313
-jhigman@gmail.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4529
-
 storegroup.test.php
 file
 
@@ -773,6 +739,40 @@ me@iandavis.com
 
 
 270
+
+runtests.php
+file
+
+
+
+
+2011-08-07T08:24:58.000000Z
+07e938b6701b9fddebbd663c96ce05f1
+2011-08-02T08:13:40.906503Z
+313
+jhigman@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4529
 
 fakecredentials.class.php
 file
@@ -808,40 +808,6 @@ me@iandavis.com
 
 300
 
-fakehttpresponse.class.php
-file
-
-
-
-
-2011-06-14T12:02:47.000000Z
-c051e025476bf81927c5a909af6757f2
-2009-05-01T08:50:10.682236Z
-70
-me@iandavis.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-205
-
 simplegraph.test.php
 file
 
@@ -876,16 +842,16 @@ jhigman@gmail.com
 
 49876
 
-sparqlservicebase.test.php
+fakehttpresponse.class.php
 file
 
 
 
 
 2011-06-14T12:02:47.000000Z
-fd6551217c994d89b5c7d43ad5ac2f79
-2009-09-28T09:09:24.106204Z
-125
+c051e025476bf81927c5a909af6757f2
+2009-05-01T08:50:10.682236Z
+70
 me@iandavis.com
 
 
@@ -908,7 +874,7 @@ me@iandavis.com
 
 
 
-33128
+205
 
 graphpath.test.php
 file
@@ -943,6 +909,40 @@ innovateer
 
 
 26117
+
+sparqlservicebase.test.php
+file
+
+
+
+
+2011-06-14T12:02:47.000000Z
+fd6551217c994d89b5c7d43ad5ac2f79
+2009-09-28T09:09:24.106204Z
+125
+me@iandavis.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+33128
 
 jobqueue.test.php
 file
@@ -1225,11 +1225,11 @@ file
 
 
 
-2011-06-14T12:02:47.000000Z
-b8be2fe2ead16c367b472dd5b4900920
-2009-03-23T22:37:51.531358Z
-60
-me@iandavis.com
+2011-08-09T08:23:14.000000Z
+0dd7e5a0114fd54e5a72dec556db0f8c
+2011-08-09T08:22:12.294040Z
+320
+k.j.w.alexander@gmail.com
 
 
 
@@ -1251,7 +1251,7 @@ me@iandavis.com
 
 
 
-1105
+1267
 
 credentials.test.php
 file
