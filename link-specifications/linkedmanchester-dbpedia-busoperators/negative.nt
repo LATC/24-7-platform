@@ -1,0 +1,13 @@
+<http://linkedmanchester.org/id/buses/operator/TWM>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Geldards_Coaches> .
+<http://linkedmanchester.org/id/buses/operator/CHC>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Countryliner_Coaches> .
+<http://linkedmanchester.org/id/buses/operator/MRT>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/AM_PM_Travel> .
+<http://linkedmanchester.org/id/buses/operator/OLY>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Thames_Travel> .
+<http://linkedmanchester.org/id/buses/operator/BUV>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Central_Buses> .
+<http://linkedmanchester.org/id/buses/operator/COU>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Courtney_Coaches> .
+<http://linkedmanchester.org/id/buses/operator/SUR>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Sunray_Travel> .
+<http://linkedmanchester.org/id/buses/operator/HBC>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Oxford_Bus_Company> .
+<http://linkedmanchester.org/id/buses/operator/CNC>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Countryliner_Coaches> .
+<http://linkedmanchester.org/id/buses/operator/MTR>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Central_Buses> .
+
+
+

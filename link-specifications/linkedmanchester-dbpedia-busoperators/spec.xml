@@ -26,7 +26,7 @@
   </Prefixes>
   <DataSources>
     <DataSource type="sparqlEndpoint" id="greater-manchester-bus-timetable-linked-data">
-      <Param value="http://linkedmanchester.org/sparql.xml" name="endpointURI"></Param>
+      <Param value="http://linkedmanchester.org/sparql.xml?_per_page=1000" name="endpointURI"></Param>
       <Param value="3" name="retryCount"></Param>
       <Param value="1000" name="retryPause"></Param>
     </DataSource>
@@ -43,7 +43,7 @@
         <RestrictTo>?a rdf:type &lt;http://vocab.org/transit/terms/Operator&gt; .</RestrictTo>
       </SourceDataset>
       <TargetDataset var="b" dataSource="dbpedia">
-        <RestrictTo>?b dcterms:subject &lt;http://dbpedia.org/resource/Category:Bus_operators_in_England&gt; .</RestrictTo>
+        <RestrictTo> { ?b dcterms:subject &lt;http://dbpedia.org/resource/Category:Bus_operators_in_England&gt; . } UNION { ?b dcterms:subject &lt;http://dbpedia.org/resource/Category:Transport_in_Greater_Manchester&gt;  }</RestrictTo>
       </TargetDataset>
       <LinkCondition>
         <Aggregate type="average" required="false" weight="1">
@@ -53,9 +53,9 @@
           </Compare>
         </Aggregate>
       </LinkCondition>
-      <Filter limit="1" threshold="0.90"></Filter>
+      <Filter limit="1" threshold="0.70"></Filter>
       <Outputs>
-        <Output minConfidence="0.90" type="file">
+        <Output minConfidence="0.85" type="file">
           <Param name="file" value="linkedmanchester-dbpedia-busoperators.nt"/>
           <Param name="format" value="ntriples"/>
         </Output> 
