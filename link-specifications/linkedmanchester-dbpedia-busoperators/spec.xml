@@ -55,7 +55,7 @@
       </LinkCondition>
       <Filter limit="1" threshold="0.70"></Filter>
       <Outputs>
-        <Output minConfidence="0.85" type="file">
+        <Output minConfidence="0.95" type="file">
           <Param name="file" value="linkedmanchester-dbpedia-busoperators.nt"/>
           <Param name="format" value="ntriples"/>
         </Output> 
