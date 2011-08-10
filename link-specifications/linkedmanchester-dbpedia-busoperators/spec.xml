@@ -1,0 +1,65 @@
+<Silk>
+  <Prefixes>
+    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://dbpedia.org/property/" id="dbpp"></Prefix>
+    <Prefix namespace="http://data.bl.uk/schema/bibliographic#" id="bibliographic"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/spatialrelations/" id="spatial"></Prefix>
+    <Prefix namespace="http://climb.dataincubator.org/vocabs/climb/" id="climb"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/50kGazetteer/" id="gazetteer"></Prefix>
+    <Prefix namespace="http://transport.data.gov.uk/def/naptan/" id="naptan"></Prefix>
+    <Prefix namespace="http://www.geonames.org/ontology#" id="geonames"></Prefix>
+    <Prefix namespace="http://open.vocab.org/terms/" id="ov"></Prefix>
+    <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/postcode/" id="postcode"></Prefix>
+    <Prefix namespace="http://purl.org/dc/terms/" id="dcterms"></Prefix>
+    <Prefix namespace="http://statistics.data.gov.uk/def/administrative-geography/" id="dgadmingeo"></Prefix>
+    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+    <Prefix namespace="http://dbpedia.org/class/yago/" id="yago"></Prefix>
+    <Prefix namespace="http://www.w3.org/2004/02/skos/core#" id="skos"></Prefix>
+    <Prefix namespace="http://xmlns.com/foaf/0.1/" id="foaf"></Prefix>
+    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+    <Prefix namespace="http://dbpedia.org/ontology/" id="dbpediaowl"></Prefix>
+    <Prefix namespace="http://data.ordnancesurvey.co.uk/ontology/admingeo/" id="admingeo"></Prefix>
+    <Prefix namespace="http://transport.data.gov.uk/def/traffic/" id="traffic"></Prefix>
+    <Prefix namespace="http://metoffice.dataincubator.org/vocabs/metoffice/" id="metoffice"></Prefix>
+    <Prefix namespace="http://ontologi.es/rail/vocab#" id="rail"></Prefix>
+  </Prefixes>
+  <DataSources>
+    <DataSource type="sparqlEndpoint" id="greater-manchester-bus-timetable-linked-data">
+      <Param value="http://linkedmanchester.org/sparql.xml" name="endpointURI"></Param>
+      <Param value="3" name="retryCount"></Param>
+      <Param value="1000" name="retryPause"></Param>
+    </DataSource>
+    <DataSource type="sparqlEndpoint" id="dbpedia">
+      <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
+      <Param value="3" name="retryCount"></Param>
+      <Param value="1000" name="retryPause"></Param>
+    </DataSource>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="busoperators-in-manchester">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset var="a" dataSource="greater-manchester-bus-timetable-linked-data">
+        <RestrictTo>?a rdf:type &lt;http://vocab.org/transit/terms/Operator&gt; .</RestrictTo>
+      </SourceDataset>
+      <TargetDataset var="b" dataSource="dbpedia">
+        <RestrictTo>?b dcterms:subject &lt;http://dbpedia.org/resource/Category:Bus_operators_in_England&gt; .</RestrictTo>
+      </TargetDataset>
+      <LinkCondition>
+        <Aggregate type="average" required="false" weight="1">
+          <Compare required="true" metric="jaroWinkler" weight="1">
+            <Input path="?a/rdfs:label"></Input>
+            <Input path="?b/rdfs:label[@lang = 'en']"></Input>
+          </Compare>
+        </Aggregate>
+      </LinkCondition>
+      <Filter limit="1" threshold="0.90"></Filter>
+      <Outputs>
+        <Output minConfidence="0.90" type="file">
+          <Param name="file" value="linkedmanchester-dbpedia-busoperators.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output> 
+      </Outputs>
+    </Interlink>
+  </Interlinks>
+</Silk>
