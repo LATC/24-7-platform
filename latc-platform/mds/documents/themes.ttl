@@ -1,0 +1,57 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix ov: <http://open.vocab.org/terms/> .
+@prefix tag: <http://www.holygoat.co.uk/owl/redwood/0.1/tags/> .
+
+<http://lod-cloud.net/themes> a skos:ConceptScheme;
+    skos:prefLabel "LOD Cloud Themes" .
+
+<http://lod-cloud.net/themes/media> a skos:Concept;
+    skos:prefLabel "Media";
+    skos:inScheme <http://lod-cloud.net/themes> .
+
+<http://lod-cloud.net/themes/geographic> a skos:Concept;
+    skos:prefLabel "Geography";
+    skos:inScheme <http://lod-cloud.net/themes> .
+
+<http://lod-cloud.net/themes/lifesciences> a skos:Concept;
+    skos:prefLabel "Life sciences";
+    skos:inScheme <http://lod-cloud.net/themes> .
+
+<http://lod-cloud.net/themes/publications> a skos:Concept;
+    skos:prefLabel "Publications";
+    skos:scopeNote "Including library and museum data";
+    skos:inScheme <http://lod-cloud.net/themes> .
+
+<http://lod-cloud.net/themes/government> a skos:Concept;
+    skos:prefLabel "Government";
+    skos:inScheme <http://lod-cloud.net/themes> .
+
+<http://lod-cloud.net/themes/ecommerce> a skos:Concept;
+    skos:prefLabel "eCommerce";
+    skos:inScheme <http://lod-cloud.net/themes> .
+
+<http://lod-cloud.net/themes/socialweb> a skos:Concept;
+    skos:prefLabel "Social Web";
+    skos:scopeNote "People and their activities";
+    skos:inScheme <http://lod-cloud.net/themes> .
+
+<http://lod-cloud.net/themes/usergeneratedcontent> a skos:Concept;
+    skos:prefLabel "User-generated content";
+    skos:scopeNote "Blog posts, discussions, pictures, etc.";
+    skos:inScheme <http://lod-cloud.net/themes> .
+
+<http://lod-cloud.net/themes/schemata> a skos:Concept;
+    skos:prefLabel "Schemata";
+    skos:scopeNote "Structural resources, including vocabularies, ontologies, classifications, thesauri";
+    skos:inScheme <http://lod-cloud.net/themes> .
+
+<http://lod-cloud.net/themes/crossdomain> a skos:Concept;
+    skos:prefLabel "Cross-domain";
+    skos:inScheme <http://lod-cloud.net/themes> .
+

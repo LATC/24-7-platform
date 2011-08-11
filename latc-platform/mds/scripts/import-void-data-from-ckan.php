@@ -85,6 +85,13 @@ foreach($results as $row){
       if(isset($ckanArray['extras']['uriSpace'])){
         $graph->add_literal_triple($uri, VOID.'uriSpace', $ckanArray['extras']['uriSpace']);
       }
+      else if(isset($ckanArray['extras']['namespace'])){
+        $graph->add_literal_triple($uri, VOID.'uriSpace', $ckanArray['extras']['namespace']);
+      }
+ 
+    }
+  if(isset($ckanArray['title'])){
+        $graph->add_literal_triple($uri, RDFS_LABEL,  $ckanArray['title']);
     }
 
     if(isset($ckanArray['resources'])){
@@ -128,6 +135,8 @@ foreach($results as $row){
     }
 
     $packageName = str_replace('http://ckan.net/package/', '', $uri);
+
+    $graph->add_literal_triple($uri, OPENVOCAB.'shortName', $packageName);
 
     $graph->skolemise_bnodes('http://lod-cloud.net/'.$packageName.'/');
     for ($i = 0; $i < 5; $i++) {
