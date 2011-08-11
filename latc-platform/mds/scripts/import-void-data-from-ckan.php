@@ -5,6 +5,7 @@ define('MORIARTY_HTTP_CACHE_DIR', BASE_DIR.'/cache/');
 define('MORIARTY_ARC_DIR', LIB_DIR.'arc/');
 define('VOID', 'http://rdfs.org/ns/void#');
 define('OPENVOCAB', 'http://open.vocab.org/terms/');
+define('DCT', 'http://purl.org/dc/terms/');
 
 require_once LIB_DIR.'/moriarty/store.class.php';
 require_once LIB_DIR.'/moriarty/credentials.class.php';
@@ -13,6 +14,22 @@ require_once LIB_DIR.'/moriarty/sparqlservice.class.php';
 require_once LIB_DIR.'/moriarty/simplegraph.class.php';
 
 require BASE_DIR.'/talis-store-credentials.php';
+define('LOD', 'http://lod-cloud.net/');
+define('lodThemes', LOD.'themes/');
+
+$lodTopics = array(
+
+  'geographic',
+  'government',
+  'media',
+  'crossdomain',
+  'lifesciences',
+  'usergeneratedcontent',
+  'ecommerce',
+  'schemata',
+
+);
+
 
 $latcStore = new Store(LATC_STORE_URI, new Credentials('latc', LATC_STORE_PASSWORD));
 $RequestFactory = new HttpRequestFactory();
@@ -26,7 +43,7 @@ $Prefixes = array_filter($Prefixes, create_function('$a', 'return $a;'));
 $pageSize = 500;
 if(file_exists('last_imported_from_ckan')){
   $lastModTime = date('c', filemtime('last_imported_from_ckan'));
-  $modifiedClause = '?s dc:modified ?mod . FILTER(?mod > "'.$lastModTime.'"^^xsd:dateTime ) .';
+  $modifiedClause = 'OPTIONAL { ?s dc:modified ?mod . FILTER(?mod > "'.$lastModTime.'"^^xsd:dateTime ) . } OPTIONAL { ?s dc:created ?created . FILTER(?created > "'.$lastModTime.'"^^xsd:dateTime ) . } ';
 } else {
   $modifiedClause = '';
 }
@@ -85,6 +102,8 @@ foreach($results as $row){
         if(isset($Prefixes[$prefix])){
           $graph->add_resource_triple($uri, VOID.'vocabulary', $Prefixes[$prefix]);
         }
+      } else if(in_array($tag, $lodTopics)) {
+          $graph->add_resource_triple($uri, DCT.'subject', lodThemes.$tag);
       }
       
     }

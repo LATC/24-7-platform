@@ -1,1 +1,4 @@
-http://linkedmanchester.org/id/buses/operator/TWM
+<http://linkedmanchester.org/id/buses/operator/BWS>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Bowers_%28bus_company%29> .
+<http://linkedmanchester.org/id/buses/operator/NBE>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Northern_Blue> .
+<http://linkedmanchester.org/id/buses/operator/WBT>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Warrington_Borough_Transport> .
+
