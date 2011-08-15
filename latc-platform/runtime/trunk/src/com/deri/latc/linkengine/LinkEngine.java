@@ -192,7 +192,7 @@ public class LinkEngine {
                 {
                 	st = status.ongoing;
                 	Void.setRemarks("Unpredicted");
-                	client.postReport(id, Void,Parameters.API_KEY);
+                	client.postReport(id, Void,Parameters.API_KEY_CONSOLE);
                 	report.putData(id, title, Void.getSpec(), 0, st, Void.getRemarks(),Void.getStatItem(),specAuthor);
                 	continue;
                 }
@@ -202,7 +202,7 @@ public class LinkEngine {
 	            	{
 	            		Date errDate = new Date();
 	            		Void.setRemarks(Void.getSourceSparqlEndpoint()+" DOWN");
-	            		client.postReport(id, Void,Parameters.API_KEY);
+	            		client.postReport(id, Void,Parameters.API_KEY_CONSOLE);
 	            		 report.putData(id, title, Void.getSpec(), errDate.getTime()-startDate.getTime(), st, Void.getRemarks(),Void.getStatItem(),specAuthor);
 	            		continue;
 	            	}
@@ -210,7 +210,7 @@ public class LinkEngine {
 	            	{
 	            		Date errDate = new Date();	
 	            		Void.setRemarks(Void.getTargetSparqlEndpoint()+" DOWN");
-	            		client.postReport(id, Void,Parameters.API_KEY);
+	            		client.postReport(id, Void,Parameters.API_KEY_CONSOLE);
 	            		 report.putData(id, title, Void.getSpec(), errDate.getTime()-startDate.getTime(), st, Void.getRemarks(),Void.getStatItem(),specAuthor);
 	            		continue;
 	            	}
@@ -218,7 +218,7 @@ public class LinkEngine {
 	            	{
 	            	Date errDate = new Date();	
 	            	Void.setRemarks(Void.getSourceUriLookupEndpoint()+" DOWN");
-	            		client.postReport(id, Void,Parameters.API_KEY);
+	            		client.postReport(id, Void,Parameters.API_KEY_CONSOLE);
 	            		 report.putData(id, title, Void.getSpec(), errDate.getTime()-startDate.getTime(), st, Void.getRemarks(),Void.getStatItem(),specAuthor);
 	            		continue;
 	            	}
@@ -226,7 +226,7 @@ public class LinkEngine {
 	            	{
 	            	Date errDate = new Date();
 	            		Void.setRemarks(Void.getTargetUriLookupEndpoint()+" DOWN");
-	            		client.postReport(id, Void, Parameters.API_KEY);
+	            		client.postReport(id, Void, Parameters.API_KEY_CONSOLE);
 	            		 report.putData(id, title, Void.getSpec(), errDate.getTime()-startDate.getTime(), st, Void.getRemarks(),Void.getStatItem(),specAuthor);
 	            		continue;
 	            	}
@@ -258,7 +258,7 @@ public class LinkEngine {
 	            	st= status.ongoing;
 	            
 	            report.putData(id, title, Void.getSpec(), endDate.getTime()-startDate.getTime(), st, Void.getRemarks(),Void.getStatItem(),specAuthor);
-	            client.postReport(id, Void,Parameters.API_KEY);
+	            client.postReport(id, Void,Parameters.API_KEY_CONSOLE);
 	            }
         } // for loop
         report.close();    
@@ -277,7 +277,7 @@ public class LinkEngine {
 
     	
     	Logger loghadoop;
-    	HadoopClient HC = new HadoopClient(Parameters.HADOOP_PATH,Parameters.HDFS_USER);
+    	HadoopClient HC = new HadoopClient(Parameters.HADOOP_PATH,Parameters.HADOOP_USER);
     	String err=null;
     	
           try {
@@ -356,7 +356,11 @@ public class LinkEngine {
                   loghadoop.info(numbLine+" links Generated");
                   vi.setStatItem(numbLine);
                   if(numbLine >0)
+                  {
                 	  logfile.info( "storing result at "+resultdir+'/' + title + '/'+Parameters.LINKS_FILE_STORE);
+                	  MDSConnection mds = new MDSConnection();
+                	  mds.putVOID(RESULTDIR +'/'+ title + '/'+ Parameters.VOID_FILE, vi.getDataDump());
+                  }
                   fh.close();
                   return true;
               } 
