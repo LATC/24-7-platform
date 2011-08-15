@@ -22,14 +22,7 @@ public class VoidPrefix {
 			Pattern pattern = Pattern.compile(patternStr);
 			String readLine;
 			 while ((readLine = in.readLine()) != null) {
-				/* if(!readLine.startsWith("@prefix"))
-					 break;
-				 final String [] split = readLine.split("[\t ]");
-			     // wrong format
-				    if (split.length<2  || split.length>2)
-			        {
-			        	continue;
-			        }*/
+		
 				 Matcher matcher = pattern.matcher(readLine);
 				 if(matcher.find())
 				    prefix.put(matcher.group(1),matcher.group(2));

@@ -22,8 +22,8 @@
 
 :**linksetname** a void:Linkset ;
 	void:linkPredicate **linktype**;
-    	void:target :**source**;
-	void:target :**target**;
+    void:subjectsTarget :**source**;
+	void:objectsTarget :**target**;
 	void:triples  **triples**;
 	void:dataDump <**datadump**>;
     	void:feature <http://www.w3.org/ns/formats/Turtle>;
