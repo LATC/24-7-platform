@@ -2,15 +2,15 @@
 @prefix msg0: <http://dsi.lod-cloud.net/vocab#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 
-<http://lod-cloud.net/themes/usergeneratedcontent> msg0:numberOfDatasetsInTheme "17"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/themes/usergeneratedcontent> msg0:numberOfDatasetsInTheme "18"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/themes/media> msg0:numberOfDatasetsInTheme "29"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/themes/geographic> msg0:numberOfDatasetsInTheme "28"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/themes/schemata> msg0:numberOfDatasetsInTheme "7"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/themes/schemata> msg0:numberOfDatasetsInTheme "8"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/themes/government> msg0:numberOfDatasetsInTheme "43"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/themes/government> msg0:numberOfDatasetsInTheme "44"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/themes/lifesciences> msg0:numberOfDatasetsInTheme "45"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -30,7 +30,7 @@
 
 <http://purl.org/okfn/licenses/gpl-2.0> msg0:numberOfDatasetsUsingLicense "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://purl.org/okfn/licenses/cc-by-sa> msg0:numberOfDatasetsUsingLicense "18"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://purl.org/okfn/licenses/cc-by-sa> msg0:numberOfDatasetsUsingLicense "19"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://purl.org/okfn/licenses/notspecified> msg0:numberOfDatasetsUsingLicense "74"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -42,7 +42,7 @@
 
 <http://purl.org/okfn/licenses/other-closed> msg0:numberOfDatasetsUsingLicense "12"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://purl.org/okfn/licenses/cc-nc> msg0:numberOfDatasetsUsingLicense "12"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://purl.org/okfn/licenses/cc-nc> msg0:numberOfDatasetsUsingLicense "13"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://purl.org/okfn/licenses/other-nc> msg0:numberOfDatasetsUsingLicense "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -66,7 +66,7 @@
 
 <http://rest.bioontology.org/bioportal/ontologies/download/45415?apikey=4ea81d74-8960-4525-810b-fa1baab576ff> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://www.w3.org/2004/02/skos/core> msg0:numberOfDatasetsUsingVocabulary "45"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://www.w3.org/2004/02/skos/core> msg0:numberOfDatasetsUsingVocabulary "48"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://purl.org/vocab/vann/> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -134,7 +134,7 @@
 
 <http://www.w3.org/2006/vcard/ns> msg0:numberOfDatasetsUsingVocabulary "7"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://rdfs.org/sioc/ns> msg0:numberOfDatasetsUsingVocabulary "9"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://rdfs.org/sioc/ns> msg0:numberOfDatasetsUsingVocabulary "10"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://www.w3.org/1999/02/22-rdf-syntax-ns#> msg0:numberOfDatasetsUsingVocabulary "236"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -166,7 +166,7 @@
 
 <http://www.rdfabout.com/rdf/schema/politico/> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://xmlns.com/foaf/0.1/> msg0:numberOfDatasetsUsingVocabulary "73"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://xmlns.com/foaf/0.1/> msg0:numberOfDatasetsUsingVocabulary "75"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://www.w3.org/2000/01/rdf-schema#> msg0:numberOfDatasetsUsingVocabulary "38"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -196,7 +196,7 @@
 
 <http://courseware.rkbexplorer.com/ontologies/courseware> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://www.w3.org/2002/07/owl> msg0:numberOfDatasetsUsingVocabulary "28"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://www.w3.org/2002/07/owl> msg0:numberOfDatasetsUsingVocabulary "30"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://disi.unitn.it/~knowdive/dataset/delicious/tags2con> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -208,7 +208,7 @@
 
 <http://purl.org/ontology/po> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://www.w3.org/2003/01/geo/wgs84_pos> msg0:numberOfDatasetsUsingVocabulary "22"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://www.w3.org/2003/01/geo/wgs84_pos> msg0:numberOfDatasetsUsingVocabulary "23"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://climb.dataincubator.org/vocabs/climb/> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -226,9 +226,9 @@
 
 <http://www.w3.org/2006/03/wn/wn20/schema/> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://www.w3.org/2004/03/trix/rdfg-1/> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://www.w3.org/2004/03/trix/rdfg-1/> msg0:numberOfDatasetsUsingVocabulary "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://purl.org/dc/terms/> msg0:numberOfDatasetsUsingVocabulary "75"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://purl.org/dc/terms/> msg0:numberOfDatasetsUsingVocabulary "39"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://purl.org/NET/c4dm/timeline.owl> msg0:numberOfDatasetsUsingVocabulary "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -248,7 +248,7 @@
 
 <http://purl.oclc.org/NET/nknouf/ns/bibtex#> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://www.w3.org/2000/01/rdf-schema> msg0:numberOfDatasetsUsingVocabulary "38"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://www.w3.org/2000/01/rdf-schema> msg0:numberOfDatasetsUsingVocabulary "39"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://purl.org/NET/scovo#> msg0:numberOfDatasetsUsingVocabulary "3"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -296,7 +296,7 @@
 
 <http://www.w3.org/2006/vcard/ns#> msg0:numberOfDatasetsUsingVocabulary "7"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://gnoss.com/gnoss.owl> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://gnoss.com/gnoss.owl> msg0:numberOfDatasetsUsingVocabulary "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://vitro.mannlib.cornell.edu/ns/vitro/public#> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -306,7 +306,7 @@
 
 <http://reference.data.gov.uk/def/central-government> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://purl.org/dc/dcam/> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://purl.org/dc/dcam/> msg0:numberOfDatasetsUsingVocabulary "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://aseg.cs.concordia.ca/ontologies/2010/11/veron.rdf> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -326,7 +326,7 @@
 
 <http://lod.gesis.org/thesoz/ext/thesoz_ext.rdf> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://xmlns.com/wot/0.1/> msg0:numberOfDatasetsUsingVocabulary "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://xmlns.com/wot/0.1/> msg0:numberOfDatasetsUsingVocabulary "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://www.w3.org/2004/02/skos/core#> msg0:numberOfDatasetsUsingVocabulary "45"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -380,7 +380,7 @@
 
 <http://ckan.net/tag/constituencies> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/sp> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/sp> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/format-univ-ont> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -410,7 +410,7 @@
 
 <http://ckan.net/tag/climbing> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/lod> msg0:numberOfDatasetsUsingTag "267"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/lod> msg0:numberOfDatasetsUsingTag "269"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/dbtune> msg0:numberOfDatasetsUsingTag "7"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -468,7 +468,7 @@
 
 <http://ckan.net/tag/format-http> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/format-dc> msg0:numberOfDatasetsUsingTag "89"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/format-dc> msg0:numberOfDatasetsUsingTag "90"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/country-japan> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -548,7 +548,7 @@
 
 <http://ckan.net/tag/economics> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/license-metadata> msg0:numberOfDatasetsUsingTag "34"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/license-metadata> msg0:numberOfDatasetsUsingTag "35"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/local-government> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -594,6 +594,8 @@
 
 <http://lod-cloud.net/tag/electronics> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
+<http://lod-cloud.net/tag/fire-brigade> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+
 <http://lod-cloud.net/tag/mountaineering> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/genetics> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
@@ -612,7 +614,7 @@
 
 <http://lod-cloud.net/tag/format-metalex> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/format-rdfs> msg0:numberOfDatasetsUsingTag "38"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/format-rdfs> msg0:numberOfDatasetsUsingTag "39"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/miur> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -664,7 +666,7 @@
 
 <http://ckan.net/tag/format-osag> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/skos> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/skos> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/demographics> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -740,7 +742,7 @@
 
 <http://lod-cloud.net/tag/impact-analysis> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/format-geo> msg0:numberOfDatasetsUsingTag "22"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/format-geo> msg0:numberOfDatasetsUsingTag "23"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/access-good> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -878,7 +880,7 @@
 
 <http://lod-cloud.net/tag/genetics> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/no-vocab-mappings> msg0:numberOfDatasetsUsingTag "199"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/no-vocab-mappings> msg0:numberOfDatasetsUsingTag "200"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/ocean> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -916,7 +918,7 @@
 
 <http://lod-cloud.net/tag/format-politico> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/usergeneratedcontent> msg0:numberOfDatasetsUsingTag "17"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/usergeneratedcontent> msg0:numberOfDatasetsUsingTag "18"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/corporations> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -934,7 +936,7 @@
 
 <http://lod-cloud.net/tag/europe> msg0:numberOfDatasetsUsingTag "3"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/country.es> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/country.es> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/local-authorities> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -980,7 +982,7 @@
 
 <http://lod-cloud.net/tag/biographical> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/e-learning> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/e-learning> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/format-bibtex> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1084,7 +1086,7 @@
 
 <http://lod-cloud.net/tag/holland> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/education> msg0:numberOfDatasetsUsingTag "15"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/education> msg0:numberOfDatasetsUsingTag "16"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/format-ov> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1098,7 +1100,7 @@
 
 <http://lod-cloud.net/tag/bio> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/foaf> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/foaf> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/save-energy> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1128,7 +1130,7 @@
 
 <http://lod-cloud.net/tag/linked> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/format-sioc> msg0:numberOfDatasetsUsingTag "9"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/format-sioc> msg0:numberOfDatasetsUsingTag "10"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/geographic> msg0:numberOfDatasetsUsingTag "20"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1144,7 +1146,7 @@
 
 <http://lod-cloud.net/tag/book> msg0:numberOfDatasetsUsingTag "3"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/educational> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/educational> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/food> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1186,9 +1188,9 @@
 
 <http://ckan.net/tag/format-geospecies> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/spain> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/spain> msg0:numberOfDatasetsUsingTag "3"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/format-foaf> msg0:numberOfDatasetsUsingTag "73"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/format-foaf> msg0:numberOfDatasetsUsingTag "75"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/format-msm> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1200,7 +1202,7 @@
 
 <http://lod-cloud.net/tag/scholarometer> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/government> msg0:numberOfDatasetsUsingTag "43"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/government> msg0:numberOfDatasetsUsingTag "44"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/access-api> msg0:numberOfDatasetsUsingTag "5"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1238,7 +1240,7 @@
 
 <http://ckan.net/tag/historical> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/provenance-metadata> msg0:numberOfDatasetsUsingTag "79"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/provenance-metadata> msg0:numberOfDatasetsUsingTag "80"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/published-by-producer> msg0:numberOfDatasetsUsingTag "70"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1256,7 +1258,7 @@
 
 <http://lod-cloud.net/tag/library> msg0:numberOfDatasetsUsingTag "20"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/format-dcterms> msg0:numberOfDatasetsUsingTag "75"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/format-dcterms> msg0:numberOfDatasetsUsingTag "39"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/ordnance-survey> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1284,7 +1286,7 @@
 
 <http://ckan.net/tag/socialnetwork> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/format-rdfg> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/format-rdfg> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/edubase> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1308,15 +1310,15 @@
 
 <http://lod-cloud.net/tag/holy-bible> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/format-dcam> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/format-dcam> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/linked-open-data> msg0:numberOfDatasetsUsingTag "3"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/socialweb> msg0:numberOfDatasetsUsingTag "3"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/socialweb> msg0:numberOfDatasetsUsingTag "4"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/format-wl> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/language-spa> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/language-spa> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/insolvency> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1346,7 +1348,7 @@
 
 <http://ckan.net/tag/format-vitro> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/hellenic> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/hellenic> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/instants> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1374,7 +1376,7 @@
 
 <http://ckan.net/tag/access-json> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/published-by-third-party> msg0:numberOfDatasetsUsingTag "172"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/published-by-third-party> msg0:numberOfDatasetsUsingTag "174"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/geographic> msg0:numberOfDatasetsUsingTag "28"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1470,7 +1472,9 @@
 
 <http://lod-cloud.net/tag/vu> msg0:numberOfDatasetsUsingTag "4"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/no-proprietary-vocab> msg0:numberOfDatasetsUsingTag "92"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/no-proprietary-vocab> msg0:numberOfDatasetsUsingTag "94"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+
+<http://lod-cloud.net/tag/hellenic-fire-brigade> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/sparql-endpoint> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1484,9 +1488,9 @@
 
 <http://ckan.net/tag/access-api> msg0:numberOfDatasetsUsingTag "4"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/format-dc11> msg0:numberOfDatasetsUsingTag "3"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/format-dc11> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/format-wot> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/format-wot> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/italy> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1528,11 +1532,11 @@
 
 <http://lod-cloud.net/tag/census> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/country-spain> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/country-spain> msg0:numberOfDatasetsUsingTag "3"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/biodiversity> msg0:numberOfDatasetsUsingTag "4"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/schemata> msg0:numberOfDatasetsUsingTag "7"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/schemata> msg0:numberOfDatasetsUsingTag "8"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/stations> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1586,7 +1590,7 @@
 
 <http://lod-cloud.net/tag/license-nonefordb> msg0:numberOfDatasetsUsingTag "3"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/lodcloud.candidate> msg0:numberOfDatasetsUsingTag "47"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/lodcloud.candidate> msg0:numberOfDatasetsUsingTag "48"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/university> msg0:numberOfDatasetsUsingTag "3"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1700,7 +1704,7 @@
 
 <http://ckan.net/tag/format-resex> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/dc> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/dc> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/nlp> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1828,7 +1832,7 @@
 
 <http://lod-cloud.net/tag/datagovuk> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/format-owl> msg0:numberOfDatasetsUsingTag "28"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/format-owl> msg0:numberOfDatasetsUsingTag "30"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/format-dcterms> msg0:numberOfDatasetsUsingTag "64"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1862,7 +1866,7 @@
 
 <http://ckan.net/tag/sparql> msg0:numberOfDatasetsUsingTag "5"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/wrapper> msg0:numberOfDatasetsUsingTag "5"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/wrapper> msg0:numberOfDatasetsUsingTag "6"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/european> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1942,7 +1946,7 @@
 
 <http://lod-cloud.net/tag/roads> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/format-skos> msg0:numberOfDatasetsUsingTag "45"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/format-skos> msg0:numberOfDatasetsUsingTag "48"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/tag/format-climb> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1954,7 +1958,7 @@
 
 <http://lod-cloud.net/tag/lem> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/tag/sioc> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/tag/sioc> msg0:numberOfDatasetsUsingTag "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://ckan.net/tag/congress> msg0:numberOfDatasetsUsingTag "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -1984,7 +1988,7 @@
 
 <http://lod-cloud.net/geonames-semantic-web> msg0:numberOfDatasetsLinkedTo "1"^^<http://www.w3.org/2001/XMLSchema#integer> ;
                                              msg0:numberOfDatasetsLinkedFrom "4"^^<http://www.w3.org/2001/XMLSchema#integer> ;
-                                             msg0:numberOfDatasetsLinkedWith "42"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+                                             msg0:numberOfDatasetsLinkedWith "43"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/latc-linksets/dbpedia-gutendata-texts/datasets/dbpedia_FU> msg0:numberOfDatasetsLinkedTo "1"^^<http://www.w3.org/2001/XMLSchema#integer> ;
                                                                                  msg0:numberOfDatasetsLinkedWith "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
@@ -2075,7 +2079,7 @@
 
 <http://lod-cloud.net/dbpedia> msg0:numberOfDatasetsLinkedTo "7"^^<http://www.w3.org/2001/XMLSchema#integer> ;
                                msg0:numberOfDatasetsLinkedFrom "9"^^<http://www.w3.org/2001/XMLSchema#integer> ;
-                               msg0:numberOfDatasetsLinkedWith "181"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+                               msg0:numberOfDatasetsLinkedWith "183"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/latc-linksets/rkbcrime-dbpedia-constabularies/datasets/rkb-explorer-crime> msg0:numberOfDatasetsLinkedTo "1"^^<http://www.w3.org/2001/XMLSchema#integer> ;
                                                                                                  msg0:numberOfDatasetsLinkedWith "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
@@ -2299,6 +2303,8 @@
 
 <http://lod-cloud.net/business-data-gov-uk> msg0:numberOfDatasetsLinkedWith "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
+<http://lod-cloud.net/hellenic-fire-brigade> msg0:numberOfDatasetsLinkedWith "4"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+
 <http://lod-cloud.net/geopolitical> msg0:numberOfDatasetsLinkedWith "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/rkb-explorer-laas> msg0:numberOfDatasetsLinkedWith "44"^^<http://www.w3.org/2001/XMLSchema#integer> . 
@@ -2307,7 +2313,7 @@
 
 <http://lod-cloud.net/rkb-explorer-wiki> msg0:numberOfDatasetsLinkedWith "56"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/fu-berlin-eurostat> msg0:numberOfDatasetsLinkedWith "6"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/fu-berlin-eurostat> msg0:numberOfDatasetsLinkedWith "7"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/enakting-crime> msg0:numberOfDatasetsLinkedWith "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -2411,7 +2417,7 @@
 
 <http://lod-cloud.net/dbtune-classical> msg0:numberOfDatasetsLinkedWith "3"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/dbpedia-el> msg0:numberOfDatasetsLinkedWith "21"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/dbpedia-el> msg0:numberOfDatasetsLinkedWith "22"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/uniref> msg0:numberOfDatasetsLinkedWith "3"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -2527,7 +2533,7 @@
 
 <http://lod-cloud.net/my-experiment> msg0:numberOfDatasetsLinkedWith "3"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/freebase> msg0:numberOfDatasetsLinkedWith "26"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/freebase> msg0:numberOfDatasetsLinkedWith "28"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/rkb-explorer-oai> msg0:numberOfDatasetsLinkedWith "24"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -2687,7 +2693,7 @@
 
 <http://lod-cloud.net/fu-berlin-eures> msg0:numberOfDatasetsLinkedWith "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/nytimes-linked-open-data> msg0:numberOfDatasetsLinkedWith "12"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+<http://lod-cloud.net/nytimes-linked-open-data> msg0:numberOfDatasetsLinkedWith "13"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/psh-subject-headings> msg0:numberOfDatasetsLinkedWith "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -2698,6 +2704,8 @@
 <http://lod-cloud.net/rechtspraak> msg0:numberOfDatasetsLinkedWith "2"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/rkb-explorer-era> msg0:numberOfDatasetsLinkedWith "1"^^<http://www.w3.org/2001/XMLSchema#integer> . 
+
+<http://lod-cloud.net/didactalia> msg0:numberOfDatasetsLinkedWith "4"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
 <http://lod-cloud.net/rkb-explorer-newcastle> msg0:numberOfDatasetsLinkedWith "48"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
@@ -2781,5 +2789,5 @@
 
 <http://lod-cloud.net/rkb-explorer-deploy> msg0:numberOfDatasetsLinkedWith "19"^^<http://www.w3.org/2001/XMLSchema#integer> . 
 
-<http://lod-cloud.net/properties-calculated-with-sparql> dct:modified "2011-08-15T23:11:00+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> . 
+<http://lod-cloud.net/properties-calculated-with-sparql> dct:modified "2011-08-16T17:10:31+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> . 
 

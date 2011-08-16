@@ -1,22 +1,5 @@
 <?php
-define('BASE_DIR', realpath(dirname(dirname(__FILE__))));
-define('LIB_DIR', BASE_DIR.'/lib/');
-define('MORIARTY_HTTP_CACHE_DIR', BASE_DIR.'/cache/');
-define('MORIARTY_ARC_DIR', LIB_DIR.'arc/');
-define('VOID', 'http://rdfs.org/ns/void#');
-define('OPENVOCAB', 'http://open.vocab.org/terms/');
-define('DCT', 'http://purl.org/dc/terms/');
-define('VANN', 'http://purl.org/vocab/vann/');
-define('xsd', 'http://www.w3.org/2001/XMLSchema#');
-
-require_once LIB_DIR.'/moriarty/store.class.php';
-require_once LIB_DIR.'/moriarty/credentials.class.php';
-require_once LIB_DIR.'/moriarty/httprequestfactory.class.php';
-require_once LIB_DIR.'/moriarty/sparqlservice.class.php';
-require_once LIB_DIR.'/moriarty/simplegraph.class.php';
-
-require BASE_DIR.'/talis-store-credentials.php';
-define('LOD', 'http://lod-cloud.net/');
+require 'inc.php';
 define('lodThemes', LOD.'themes/');
 
 $lodTopics = array(
@@ -144,6 +127,7 @@ foreach($results as $row){
         $prefix = str_replace('format-', '', $tag);
         if(isset($Prefixes[$prefix])){
           $vocabUri = rtrim($Prefixes[$prefix], '#');
+          $graph->add_literal_triple($vocabUri, RDFS_LABEL, $prefix);
           $graph->add_literal_triple($vocabUri, VANN.'preferredNamespacePrefix', $prefix);
           $graph->add_literal_triple($vocabUri, VANN.'preferredNamespaceUri', $Prefixes[$prefix]);
           $graph->add_resource_triple($uri, VOID.'vocabulary', $vocabUri);
@@ -152,6 +136,17 @@ foreach($results as $row){
           $graph->add_resource_triple($uri, DCT.'subject', lodThemes.$tag);
       }
       
+    }
+
+    foreach($graph->get_subjects_of_type(VOID.'Linkset') as $s){
+      if(!$graph->get_first_literal($s, RDFS_LABEL)){
+        $hostTargets = $graph->get_subjects_where_resource(VOID.'subset', $s);
+        $host = $hostTargets[0];
+        $targets = $graph->get_resource_triple_values($s, VOID.'target');
+        while($target = array_pop($targets)){  if($host!=$target) break; }
+        $label = $graph->get_label($host) . ' - ' . $graph->get_label($target);
+        $graph->add_literal_triple($s, RDFS_LABEL, $label);
+      }
     }
 
     $graph->skolemise_bnodes('http://lod-cloud.net/'.$packageName.'/');
