@@ -13,7 +13,7 @@ dsi:
   rdfs:label "Vocabulary of Terms Used by the Dataset Inventory"@en ;
 .
 
-dsi:number_of_datasets_in_theme 
+dsi:numberOfDatasetsInTheme 
   rdfs:label "Number of Datasets"@en ;
   rdfs:isDefinedBy dsi: ;
   a rdf:Property ;
@@ -27,7 +27,7 @@ PREFIX dcterms: <http://purl.org/dc/terms/>
 """ ;
 .
 
-dsi:number_of_datasets_using_license 
+dsi:numberOfDatasetsUsingLicense 
   rdfs:label "Number of Datasets"@en ;
   rdfs:isDefinedBy dsi: ;
   a rdf:Property ;
@@ -41,7 +41,23 @@ PREFIX dcterms: <http://purl.org/dc/terms/>
 """ ;
 .
 
-dsi:number_of_datasets_using_tag 
+dsi:numberOfDatasetsUsingVocabulary 
+  rdfs:label "Number of Datasets"@en ;
+  rdfs:isDefinedBy dsi: ;
+  a rdf:Property ;
+  dsi:calculatedFromSPARQL """
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+  SELECT ?item (count(DISTINCT ?dataset) AS ?count) {
+  ?dataset a void:Dataset ;
+          void:vocabulary ?item  .
+} GROUP BY ?item
+""" ;
+.
+
+
+
+dsi:numberOfDatasetsUsingTag 
   rdfs:label "Number of Datasets"@en ;
   rdfs:isDefinedBy dsi: ;
   a rdf:Property ;
@@ -57,7 +73,7 @@ PREFIX moat: <http://moat-project.org/ns#>
 """ ;
 .
 
-dsi:number_of_datasets_linked_to 
+dsi:numberOfDatasetsLinkedTo 
   rdfs:label "Number of Datasets Linked To"@en ;
   rdfs:isDefinedBy dsi: ;
   a rdf:Property ;
@@ -74,7 +90,7 @@ PREFIX moat: <http://moat-project.org/ns#>
 """ ;
 .
 
-dsi:number_of_datasets_linked_from 
+dsi:numberOfDatasetsLinkedFrom 
   rdfs:label "Number of Datasets Linked From"@en ;
   rdfs:isDefinedBy dsi: ;
   a rdf:Property ;
@@ -91,7 +107,7 @@ PREFIX moat: <http://moat-project.org/ns#>
 """ ;
 .
 
-dsi:number_of_datasets_linked_with 
+dsi:numberOfDatasetsLinkedWith 
   rdfs:label "Number of Datasets Linked With"@en ;
   rdfs:isDefinedBy dsi: ;
   a rdf:Property ;
