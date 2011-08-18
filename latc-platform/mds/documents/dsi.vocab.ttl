@@ -1,0 +1,138 @@
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann:    <http://purl.org/vocab/vann/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dsi:     <http://dsi.lod-cloud.net/vocab#> .
+
+
+dsi: 
+  a owl:Ontology ;
+  rdfs:label "Vocabulary of Terms Used by the Dataset Inventory"@en ;
+.
+
+dsi:numberOfDatasetsInTheme 
+  rdfs:label "Number of Datasets"@en ;
+  rdfs:isDefinedBy dsi: ;
+  a rdf:Property ;
+  dsi:calculatedFromSPARQL """
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+  SELECT ?item (count(DISTINCT ?dataset) AS ?count) {
+  ?dataset a void:Dataset ;
+          dcterms:subject ?item  .
+} GROUP BY ?item
+""" ;
+.
+
+dsi:numberOfDatasetsUsingLicense 
+  rdfs:label "Number of Datasets"@en ;
+  rdfs:isDefinedBy dsi: ;
+  a rdf:Property ;
+  dsi:calculatedFromSPARQL """
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+  SELECT ?item (count(DISTINCT ?dataset) AS ?count) {
+  ?dataset a void:Dataset ;
+          dcterms:rights ?item  .
+} GROUP BY ?item
+""" ;
+.
+
+dsi:numberOfDatasetsUsingVocabulary 
+  rdfs:label "Number of Datasets"@en ;
+  rdfs:isDefinedBy dsi: ;
+  a rdf:Property ;
+  dsi:calculatedFromSPARQL """
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+  SELECT ?item (count(DISTINCT ?dataset) AS ?count) {
+  ?dataset a void:Dataset ;
+          void:vocabulary ?item  .
+} GROUP BY ?item
+""" ;
+.
+
+
+
+dsi:numberOfDatasetsUsingTag 
+  rdfs:label "Number of Datasets"@en ;
+  rdfs:isDefinedBy dsi: ;
+  a rdf:Property ;
+  dsi:calculatedFromSPARQL """
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX moat: <http://moat-project.org/ns#>
+
+  SELECT ?item (count(DISTINCT ?dataset) AS ?count) {
+  ?dataset a void:Dataset ;
+          moat:taggedWithTag ?item  .
+} GROUP BY ?item
+""" ;
+.
+
+dsi:numberOfDatasetsLinkedTo 
+  rdfs:label "Number of Datasets Linked To"@en ;
+  rdfs:isDefinedBy dsi: ;
+  a rdf:Property ;
+  dsi:calculatedFromSPARQL """
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX moat: <http://moat-project.org/ns#>
+
+  SELECT ?item (count(DISTINCT ?dataset) AS ?count) {
+  ?linkset a void:Linkset ;
+  void:subjectsTarget ?item ;
+  void:objectsTarget ?dataset .
+} GROUP BY ?item
+""" ;
+.
+
+dsi:numberOfDatasetsLinkedFrom 
+  rdfs:label "Number of Datasets Linked From"@en ;
+  rdfs:isDefinedBy dsi: ;
+  a rdf:Property ;
+  dsi:calculatedFromSPARQL """
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX moat: <http://moat-project.org/ns#>
+
+  SELECT ?item (count(DISTINCT ?dataset) AS ?count) {
+  ?linkset a void:Linkset ;
+  void:subjectsTarget ?dataset ;
+  void:objectsTarget ?item .
+} GROUP BY ?item
+""" ;
+.
+
+dsi:numberOfDatasetsLinkedWith 
+  rdfs:label "Number of Datasets Linked With"@en ;
+  rdfs:isDefinedBy dsi: ;
+  a rdf:Property ;
+  dsi:calculatedFromSPARQL """
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX moat: <http://moat-project.org/ns#>
+
+SELECT ?item (count(DISTINCT ?dataset) AS ?count) {
+  { 
+   ?linkset a void:Linkset ;
+    void:subjectsTarget ?item ;
+    void:objectsTarget ?dataset .
+  }
+UNION 
+  {
+    ?linkset a void:Linkset ;
+    void:subjectsTarget ?dataset ;
+    void:objectsTarget ?item .
+  }
+  UNION
+  {
+    ?dataset a void:Linkset ;
+    void:target ?item .
+  }
+} GROUP BY ?item
+""" ;
+.

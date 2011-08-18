@@ -1,20 +1,5 @@
 <?php
-define('BASE_DIR', realpath(dirname(dirname(__FILE__))));
-define('LIB_DIR', BASE_DIR.'/lib/');
-define('MORIARTY_HTTP_CACHE_DIR', BASE_DIR.'/cache/');
-define('MORIARTY_ARC_DIR', LIB_DIR.'arc/');
-define('VOID', 'http://rdfs.org/ns/void#');
-define('OPENVOCAB', 'http://open.vocab.org/terms/');
-define('DCT', 'http://purl.org/dc/terms/');
-
-require_once LIB_DIR.'/moriarty/store.class.php';
-require_once LIB_DIR.'/moriarty/credentials.class.php';
-require_once LIB_DIR.'/moriarty/httprequestfactory.class.php';
-require_once LIB_DIR.'/moriarty/sparqlservice.class.php';
-require_once LIB_DIR.'/moriarty/simplegraph.class.php';
-
-require BASE_DIR.'/talis-store-credentials.php';
-define('LOD', 'http://lod-cloud.net/');
+require 'inc.php';
 define('lodThemes', LOD.'themes/');
 
 $lodTopics = array(
@@ -81,41 +66,7 @@ foreach($results as $row){
     $ckanJSON = $graph->get_first_literal($uri, 'http://semantic.ckan.net/schema#json');
     $graph->remove_literal_triple($uri,  'http://semantic.ckan.net/schema#json', $ckanJSON);
     $ckanArray = json_decode($ckanJSON, true);
-   if(isset($ckanArray['extras'])){
-      if(isset($ckanArray['extras']['uriSpace'])){
-        $graph->add_literal_triple($uri, VOID.'uriSpace', $ckanArray['extras']['uriSpace']);
-      }
-      else if(isset($ckanArray['extras']['namespace'])){
-        $graph->add_literal_triple($uri, VOID.'uriSpace', $ckanArray['extras']['namespace']);
-      }
- 
-    }
-  if(isset($ckanArray['title'])){
-        $graph->add_literal_triple($uri, RDFS_LABEL,  $ckanArray['title']);
-    }
-
-    if(isset($ckanArray['resources'])){
-      foreach($ckanArray['resources'] as $resource){
-        if($resource['format'] == 'meta/rdf-schema'){
-          $graph->add_resource_triple($uri, VOID.'vocabulary', $resource['url']);
-        }
-      }
-    }
-
-    
-    foreach($ckanArray['tags'] as $tag){
-      if(strpos($tag, 'format-')===0){
-        $prefix = str_replace('format-', '', $tag);
-        if(isset($Prefixes[$prefix])){
-          $graph->add_resource_triple($uri, VOID.'vocabulary', $Prefixes[$prefix]);
-        }
-      } else if(in_array($tag, $lodTopics)) {
-          $graph->add_resource_triple($uri, DCT.'subject', lodThemes.$tag);
-      }
-      
-    }
-
-    $graphURIs = array();
+   $graphURIs = array();
     foreach($graph->get_index() as $s => $ps){
       if(strpos($s, 'http://ckan.net/package/')===0 OR strpos($s, 'http://ckan.net/tag')===0) $graphURIs[]=$s;
       foreach($ps as $p => $os){
@@ -136,7 +87,67 @@ foreach($results as $row){
 
     $packageName = str_replace('http://ckan.net/package/', '', $uri);
 
+    $uri = LOD.$packageName;
+
     $graph->add_literal_triple($uri, OPENVOCAB.'shortName', $packageName);
+
+       if(isset($ckanArray['extras'])){
+      if(isset($ckanArray['extras']['uriSpace'])){
+        $graph->add_literal_triple($uri, VOID.'uriSpace', $ckanArray['extras']['uriSpace']);
+      }
+      else if(isset($ckanArray['extras']['namespace'])){
+        $graph->add_literal_triple($uri, VOID.'uriSpace', $ckanArray['extras']['namespace']);
+      }
+
+      foreach(array('classes', 'entities','triples', 'properties', 'distinctSubjects', 'distinctObjects', 'documents') as $statProp){
+        if(isset($ckanArray['extras'][$statProp])){
+          $graph->add_literal_triple($uri, VOID.$statProp, intval($ckanArray['extras'][$statProp]), '',xsd.'integer' );
+        }
+      }
+ 
+    }
+  if(isset($ckanArray['title'])){
+        $graph->add_literal_triple($uri, RDFS_LABEL,  $ckanArray['title']);
+    }
+
+    if(isset($ckanArray['resources'])){
+      foreach($ckanArray['resources'] as $resource){
+        if($resource['format'] == 'meta/rdf-schema'){
+          $graph->add_resource_triple($uri, VOID.'vocabulary', rtrim($resource['url'], '#'));
+        }
+        if($resource['format'] == 'meta/void'){
+          $graph->add_resource_triple($uri, RDFS_SEEALSO, $resource['url']);
+        }
+      }
+    }
+
+    
+    foreach($ckanArray['tags'] as $tag){
+      if(strpos($tag, 'format-')===0){
+        $prefix = str_replace('format-', '', $tag);
+        if(isset($Prefixes[$prefix])){
+          $vocabUri = rtrim($Prefixes[$prefix], '#');
+          $graph->add_literal_triple($vocabUri, RDFS_LABEL, $prefix);
+          $graph->add_literal_triple($vocabUri, VANN.'preferredNamespacePrefix', $prefix);
+          $graph->add_literal_triple($vocabUri, VANN.'preferredNamespaceUri', $Prefixes[$prefix]);
+          $graph->add_resource_triple($uri, VOID.'vocabulary', $vocabUri);
+        }
+      } else if(in_array($tag, $lodTopics)) {
+          $graph->add_resource_triple($uri, DCT.'subject', lodThemes.$tag);
+      }
+      
+    }
+
+    foreach($graph->get_subjects_of_type(VOID.'Linkset') as $s){
+      if(!$graph->get_first_literal($s, RDFS_LABEL)){
+        $hostTargets = $graph->get_subjects_where_resource(VOID.'subset', $s);
+        $host = $hostTargets[0];
+        $targets = $graph->get_resource_triple_values($s, VOID.'target');
+        while($target = array_pop($targets)){  if($host!=$target) break; }
+        $label = $graph->get_label($host) . ' - ' . $graph->get_label($target);
+        $graph->add_literal_triple($s, RDFS_LABEL, $label);
+      }
+    }
 
     $graph->skolemise_bnodes('http://lod-cloud.net/'.$packageName.'/');
     for ($i = 0; $i < 5; $i++) {
@@ -150,6 +161,7 @@ foreach($results as $row){
     if(!$response['success']){
       error_log(date('c')."\t{$uri} was not mirrored to the triple store.\n", 3, 'import_errors.log');
       file_put_contents('failed_import.json', json_encode($response));
+      die;
     } 
 }
 
@@ -163,6 +175,7 @@ foreach($results as $row){
 
 } //endwhile
 
+require BASE_DIR.'/scripts/calculate_statistics.php';
 //update last modifed time
 //
 touch('last_imported_from_ckan');

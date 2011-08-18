@@ -16,15 +16,16 @@ import java.util.regex.Pattern;
 public class Parameters {
 	
 	public static String HADOOP_PATH = "";
-	public static String HDFS_USER = System.getProperty("user.name");
+	public static String HADOOP_USER = System.getProperty("user.name");
 	public static String LATC_CONSOLE_HOST = "";
 	public static String LINKS_FILE_STORE  = "links.nt";
 	public static String RESULTS_HOST = "";
 	public static String RESULT_LOCAL_DIR = "results";
 	public static String SPEC_FILE = "spec.xml";
 	public static String VOID_FILE = "void.ttl";
-	public static String API_KEY ="";
-	
+	public static String API_KEY_CONSOLE ="";
+	public static String API_KEY_MDS ="";
+	public static String MDS_HOST ="";
 	/**
 	 * 
 	 * @param pathconfigfile	path of configuration file
@@ -55,11 +56,16 @@ public class Parameters {
 					        	HADOOP_PATH=removeslash(value);
 					        	requiredparam++;
 						 }
-					     else if (key.contentEquals("HDFS_USER"))
-					        	HDFS_USER=value;
+					     else if (key.contentEquals("HADOOP_USER"))
+					    	 HADOOP_USER=value;
 					     else if (key.contentEquals("LATC_CONSOLE_HOST"))
 					     {
 					        	LATC_CONSOLE_HOST=removeslash(value);
+					        	requiredparam++;
+						 }
+					     else if (key.contentEquals("MDS_HOST"))
+					     {
+					    	 	MDS_HOST=removeslash(value);
 					        	requiredparam++;
 						 }
 					     else if (key.contentEquals("LINKS_FILE_STORE"))
@@ -75,9 +81,14 @@ public class Parameters {
 					        	SPEC_FILE=value;
 					     else if (key.contentEquals("VOID_FILE"))
 					        	VOID_FILE=value;
-					     else if (key.contentEquals("API_KEY"))
+					     else if (key.contentEquals("API_KEY_CONSOLE"))
 					     {
-					    	 API_KEY=value;
+					    	 API_KEY_CONSOLE=value;
+					     	requiredparam++;
+						 }
+					     else if (key.contentEquals("API_KEY_MDS"))
+					     {
+					    	 API_KEY_MDS=value;
 					     	requiredparam++;
 						 }
 					 }
@@ -94,7 +105,7 @@ public class Parameters {
 			e.printStackTrace();
 		}
 		
-		if(requiredparam < 4)
+		if(requiredparam < 5)
 		{
 			System.err.print("more parameter required please check your configuration file");
 			System.exit(0);
