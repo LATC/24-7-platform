@@ -18,30 +18,68 @@ okfn:ukcrown-withrights
   foaf:logo <http://nationalarchives.gov.uk/images/infoman/th-gov-licence-seal-55px.jpg> ;
    .
 
-okfn:notspecified a cc:License ; terms:identifier "notspecified" ; rdfs:label "License Not Specified"@en .
+okfn:notspecified a cc:License ;
+   terms:identifier "notspecified" ; 
+  rdfs:label "License Not Specified"@en ;
+.
 
 okfn:cc-by-sa a cc:License ; terms:identifier "cc-by-sa" ;
   rdfs:label "Creative Commons Share-Alike"@en .
 
-okfn:gfdl a cc:License ; terms:identifier "gfdl" ; rdfs:label "GNU Free Documentation License" .
+okfn:gfdl a cc:License ; 
+  terms:identifier "gfdl" ; 
+  rdfs:label "GNU Free Documentation License"@en ;
+ .
 
-okfn:bsd-license a cc:License ; terms:identifier "bsd-license" .
+okfn:bsd-license a cc:License ;
+   terms:identifier "bsd-license";
+  rdfs:label "BSD License"@en ;
+.
 
-okfn:other-pd a cc:License ; terms:identifier "other-pd" .
+okfn:other-pd a cc:License ; 
+  terms:identifier "other-pd" ; 
+  rdfs:label "Public Domain (Other)"@en ;
+.
 
-okfn:other-at a cc:License ; terms:identifier "other-at" .
+okfn:other-at a cc:License ;  
+  terms:identifier "other-at";
+  rdfs:label "Attribution (Other)"@en .
 
-okfn:cc-zero a cc:License ; terms:identifier "cc-zero" .
+okfn:cc-zero a cc:License ; 
+  terms:identifier "cc-zero"  ; 
+  rdfs:label "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication "@en ;
+  owl:sameAs <http://creativecommons.org/publicdomain/zero/1.0/> ; 
+.
 
-okfn:other-open a cc:License ; terms:identifier "other-open" .
+okfn:other-open a cc:License ; 
+  terms:identifier "other-open" ; 
+  rdfs:label "Open (Other)"@en ;
+.
 
-okfn:other-nc a cc:License ; terms:identifier "other-nc" .
+okfn:other-nc a cc:License ; 
+  terms:identifier "other-nc" ;
+  rdfs:label "Non Commercial (Other)"@en ;
+.
 
-okfn:odc-pddl a cc:License ; terms:identifier "odc-pddl" ; rdfs:label "Open Data Commons Public Domain Dedication and Licence (PDDL)"@en .
+okfn:odc-pddl 
+  a cc:License ; 
+  terms:identifier "odc-pddl" ; 
+  rdfs:label "Open Data Commons Public Domain Dedication and Licence (PDDL)"@en ;
+.
 
-okfn:odc-odbl a cc:License ; terms:identifier "odc-odbl" ; rdfs:label "Open Data Commons Open Database License (ODbL)"@en .
+okfn:odc-odbl a cc:License ;
+   terms:identifier "odc-odbl" ; 
+  rdfs:label "Open Data Commons Open Database License (ODbL)"@en 
+.
 
-okfn:other-closed a cc:License ; terms:identifier "other-closed" .
+okfn:other-closed a cc:License ; terms:identifier "other-closed"  ;
+  rdfs:label "Other : Closed"@en 
+.
 
-okfn:cc-nc a cc:License ; terms:identifier "cc-nc" .
+okfn:cc-nc a cc:License ;
+  rdfs:label "Creative Commons Non-Commercial"@en ;
+  terms:identifier "cc-nc" ;
+  rdfs:seeAlso <http://creativecommons.org/licenses/by-nc/2.5/> ;
+.
+
 
