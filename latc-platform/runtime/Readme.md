@@ -1,13 +1,14 @@
-# Runtime Documentation
+Runtime Documentation
+=====================
 
+![Runtime Overview](https://github.com/LATC/24-7-platform/latc-platform/runtime/doc/runtime.png "Runtime Overview")
 
-## Input
+Input
+-----
 
 The Runtime has four following inputs :
-* Link specification 
-The link specification is in the XML format which is obtained from Console.
-* Blacklist file
-The list of specification title which are failed or you do not wish it to run due to special reason. Every title is separated by new line.
+* Link specification : The link specification is in the XML format which is obtained from Console.
+* Blacklist file : The list of specification title which are failed or you do not wish it to run due to special reason. Every title is separated by new line.
 * Void template (voidtmpl) file
 The template VOID file for easy modifying in the future. It contains the key of parameters are punctuated by \*\*.
 	* \*\*source\*\* : dataset source parameter.
@@ -36,7 +37,10 @@ The template VOID file for easy modifying in the future. It contains the key of 
 		* SPEC_FILE : the specification file name. Default : spec.xml
 		* VOID_FILE : the void file name that contains declaration of dataset and linkset.
 
-## Process
+Process
+-------
+
+![Runtime Process](https://github.com/LATC/24-7-platform/latc-platform/runtime/doc/flowprocesslatc.jpg "Runtime Process")
 
 Runtime initialises the parameter from the command line or configuration file. The first task is checking whether the console host is live or not.   If it is not down, runtime loads the blacklist file for getting the specification file that must be ignore during the running process and then it fetches all specification file in the console server and classifies which SILK spec is not in the black list in one group.   After obtaining SILK parameter from parsing each file process, it tests SPARQL endpoint and HDFS server. It one of them can not be accessed, the process is terminated. If so, it executes SILK afterwards.  All generating LinkSet are merged in one local file and the VOID that described the linkset is written afterwards. Lastly, it submit report to console regarding the running process and VOID file to MDS.
 
