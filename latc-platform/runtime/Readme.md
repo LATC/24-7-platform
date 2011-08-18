@@ -1,94 +1,47 @@
-# VOID FILE EXAMPLE 
+# Runtime Documentation
 
 
-The following void example is generated from dbpedia-lgd_island.xml.
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix void: <http://rdfs.org/ns/void#> .
-@prefix : <#> .
-:dbpedia a void:Dataset;
-        void:sparqlEndpoint <http://live.dbpedia.org/sparql/>;
-        .
-:linkedgeodata a void:Dataset;
-        void:sparqlEndpoint <http://linkedgeodata.org/sparql/>;
-        .
+## Input
 
-:dbpedia2linkedgeodata a void:Linkset ;
-        void:linkPredicate owl:sameAs;
-        void:target :dbpedia;
-         void:target :linkedgeodata ;
-        void:triples  9139;
+The Runtime has four following inputs :
+* Link specification 
+The link specification is in the XML format which is obtained from Console.
+* Blacklist file
+The list of specification title which are failed or you do not wish it to run due to special reason. Every title is separated by new line. See the example in appendix 
+* Void template (voidtmpl) file
+The template VOID file for easy modifying in the future. It contains the key of parameters are punctuated by \*\*.
+	* \*\*source\*\* : dataset source parameter.
+	* \*\*newprefix\*\* : new prefix has to be added
+	* \*\*target\*\* : dataset target parameter.
+	* \*\*linksetname\*\* : Linkset name parameter.
+	* \*\*linktype\*\* : linkset predicate parameter.
+	* \*\*triples\*\* : the number of triples generated parameter.
+	* \*\*datadump\*\* : the path of linkset parameter.
+	* \*\*linksetcreatedtime\*\* : the time linkset is generated parameter.
+	* \*\*specauthor\*\* : the author of specification file parameter.
+	* \*\*speccreatedtime\*\* : the time specification file created parameter.
+	* \*\*specretrievedtime\*\* : the time specification file retrieved parameter.
+	* \*\*specURL\*\* : the URL of specification parameter.
+	* \*\*consolehost\*\* : the URL of console host parameter.
+* Configuration could be provided as file or command line.
+	* REQUIRED
+		* HADOOP_PATH : path of hadoop, is required to run SILK and HDFS
+   		* LATC_CONSOLE_HOST : the URL of console that provides SILK Specification file
+   		* RESULTS_HOST : the URL of host for storing the linkset generated
+   		* API_KEY : the URL of host for storing the linkset generated
+   	* OPTIONAL
+		* HDFS_USER : the user who has privilege access to read and write on Hadoop Distributed FileSystem. Default : running username in the shell
+		*LINKS_FILE_STORE : the name of file for storing links generated. The links is produced in N-Triples format. Default : link.nt
+		* RESULT_LOCAL_DIR : the path of result directory. Default : results
+		* SPEC_FILE : the specification file name. Default : spec.xml
+		* VOID_FILE : the void file name that contains declaration of dataset and linkset.
 
-Example of VOID template file
+## Process
 
-@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix owl:    <http://www.w3.org/2002/07/owl#> .
-@prefix void:             <http://rdfs.org/ns/void#> .
-@prefix prv:              <http://purl.org/net/provenance/ns#> .
-@prefix prvTypes:         <http://purl.org/net/provenance/types#> .
-@prefix xsd:              <http://www.w3.org/2001/XMLSchema#> .
-@prefix foaf:             <http://xmlns.com/foaf/0.1> .
-@prefix doap:             <http://usefulinc.com/ns/doap#> .
-@prefix : <#> .
+Runtime initialises the parameter from the command line or configuration file. The first task is checking whether the console host is live or not.   If it is not down, runtime loads the blacklist file for getting the specification file that must be ignore during the running process and then it fetches all specification file in the console server and classifies which SILK spec is not in the black list in one group.   After obtaining SILK parameter from parsing each file process, it tests SPARQL endpoint and HDFS server. It one of them can not be accessed, the process is terminated. If so, it executes SILK afterwards.  All generating LinkSet are merged in one local file and the VOID that described the linkset is written afterwards. Lastly, it submit report to console regarding the running process and VOID file to MDS.
 
-**newprefix**
-:**source** a void:Dataset;
-    void:sparqlEndpoint <**sparqlsource**> .
-    void:uriLookupEndpoint <**uriLookupsource**> .
-:**target** a void:Dataset;
-    void:sparqlEndpoint <**sparqltarget**> .
-    void:uriLookupEndpoint <**uriLookuptarget**> .
-:**linksetname** a void:Linkset ;
-    void:linkPredicate **linktype**;
-           void:target :**source**;
-    void:target :**target**;
-    void:triples  **triples**;
-    void:dataDump <**datadump**>;
-    void:feature <http://www.w3.org/ns/formats/Turtle>;
-           a prv:DataItem ;
-            prv:createdBy [    a prv:DataCreation ;
-                            prv:performedAt "**linksetcreatedtime**"^^xsd:dateTime ;
-                    prv:usedData :**source** ;
-                    prv:usedData :**target** ;
-                           prv:usedGuideline :linkspec;
+## Output
 
-                    prv:performedBy :SilkMapReduce
+The output of runtime are linkset, VOID and report. The linkset and VOID are located at result host. The VOID declares  linkset and dataset. The void:Linkset is taken from concatenation of source dataset and target dataset. For example, let dbpedia and imdb as source and target dataset, the linkset should be  dbpedia2imdb.  The example of VOID is available in here.
 
-                    ] ;
-
-    .
-
-:linkspec a prv:CreationGuideline ;
-    a prvTypes:SilkLinkSpecification ;
-    prv:createdBy [    a prv:DataCreation ;
-                    prv:performedBy <**specauthor**>;
-                               prv:performedAt "**speccreatedtime**"^^xsd:dateTime
-                          ];
-    prv:retrievedBy [    a prv:DataAccess ;
-                                    prv:performedAt "**specretrievedtime**"^^xsd:dateTime ;
-                            prv:accessedResource   <**specURL**>;          
-                                prv:accessedService :console;
-                            prv:performedBy :SilkMapReduce
-                             ];
-
-.        
-
-prvTypes:SilkLinkSpecification a owl:Class ;
-        rdfs:comment "concept that represents the loading and mapping defined in a silk specification file.";
-        rdfs:isDefinedBy <http://purl.org/net/provenance/types#> ;
-        rdfs:label "Silk Link Specification"@en ;
-        rdfs:subClassOf prv:CreationGuideline .
-:console a prv:DataProvidingService;
-    foaf:homepage  <**consolehost**>.
-
-:SilkMapReduce a  prvTypes:DataCreatingService ;
-    prv:deployedSoftware :silkmr .
-
-:silkmr a doap:Version;
-        doap:revision "2.3" .
-
-:silkmrProject a doap:Project;
-        doap:release :silkmr;
-       doap:homepage <http://www4.wiwiss.fu-berlin.de/bizer/silk> .
+There are two kinds of report, success and failed. The success report submit how many links are generated as well as the URL of result host. The failed report mentions the reason why job could not generate links such as SPARQL End Point down or Time Out, HDSF problem and Invalid XML.  
