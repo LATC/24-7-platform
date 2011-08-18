@@ -1,7 +1,7 @@
 Runtime Documentation
 =====================
 
-![Runtime Overview](https://github.com/LATC/24-7-platform/raw/master/runtime/doc/runtime.png "Runtime Overview")
+![Runtime Overview](https://github.com/LATC/24-7-platform/blob/master/latc-platform/runtime/doc/runtime.png "Runtime Overview")
 
 Input
 -----
@@ -40,7 +40,7 @@ The template VOID file for easy modifying in the future. It contains the key of 
 Process
 -------
 
-![Runtime Process](https://github.com/LATC/24-7-platform/raw/master/runtime/doc/flowprocesslatc.jpg "Runtime Process")
+![Runtime Process](https://github.com/LATC/24-7-platform/blob/master/latc-platform/runtime/doc/flowprocesslatc.jpg "Runtime Process")
 
 Runtime initialises the parameter from the command line or configuration file. The first task is checking whether the console host is live or not.   If it is not down, runtime loads the blacklist file for getting the specification file that must be ignore during the running process and then it fetches all specification file in the console server and classifies which SILK spec is not in the black list in one group.   After obtaining SILK parameter from parsing each file process, it tests SPARQL endpoint and HDFS server. It one of them can not be accessed, the process is terminated. If so, it executes SILK afterwards.  All generating LinkSet are merged in one local file and the VOID that described the linkset is written afterwards. Lastly, it submit report to console regarding the running process and VOID file to MDS.
 
