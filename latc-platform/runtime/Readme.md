@@ -7,7 +7,7 @@ The Runtime has four following inputs :
 * Link specification 
 The link specification is in the XML format which is obtained from Console.
 * Blacklist file
-The list of specification title which are failed or you do not wish it to run due to special reason. Every title is separated by new line. See the example in appendix 
+The list of specification title which are failed or you do not wish it to run due to special reason. Every title is separated by new line.
 * Void template (voidtmpl) file
 The template VOID file for easy modifying in the future. It contains the key of parameters are punctuated by \*\*.
 	* \*\*source\*\* : dataset source parameter.
