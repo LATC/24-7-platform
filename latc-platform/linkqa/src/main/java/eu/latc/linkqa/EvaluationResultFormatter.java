@@ -5,7 +5,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 
 /**
- * What structure do we want?
+ * What RDF structure do we want?
  *
  * -  x a eval . x refset y . y a Dataset . ?y location http://example.org (dataset uri is different from location uri)
  *

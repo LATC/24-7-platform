@@ -23,23 +23,19 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-//http://developer.yahoo.com/hadoop/tutorial/module5.html
-//http://www.mail-archive.com/common-user@hadoop.apache.org/msg00541.html
-//http://wiki.apache.org/hadoop/HadoopMapReduce
-
-
 /**
- * CURRENTLY NOT IMPLEMENTED.
- * Should eventually be an optimized version of the linkset evaluation:
- * The reference set should be passed to each worker node (e.g. via the config object)
- * The link set is then passed on to the mapper, where each link can be compared to reference set.
- * Therefore, the mappers only need to return the counts of processed links, and the size of
- * the overlap with the refset (very low network load). Eventually, the reducer only needs
- * to aggregate the counts.
+ * Linkset Evaluation using Map-Reduce:
+ * This implementation maps each record (triple) to its source file, and
+ * eventually counts in the reducer which record occured in the first,
+ * the second, or both of them.
  *
  *
+ * @author Claus Stadler
+ *         <p/>
+ *         Date: 7/31/11
+ *         Time: 12:01 PM
  */
-public class LinkCorrectnessAnalyser extends Configured implements Tool {
+public class LinksetEvaluatorMapred extends Configured implements Tool {
 
     @Override
     public int run(String[] strings) throws Exception {
@@ -85,6 +81,8 @@ public class LinkCorrectnessAnalyser extends Configured implements Tool {
         job.getConfiguration().setLong(fileA.toString(), 0);
         job.getConfiguration().setLong(fileB.toString(), 1);
 
+        //job.getConfiguration().setStrings();
+
         //System.out.println("ORG CHECK = " + job.getConfiguration().getLong("file:/home/raven/Projects/Current/IntelliJ/latc/latc-platform/linkqa/hdfs/a.txt", 666));
 
         job.setInputFormatClass(LineSourceInputFormat.class);
@@ -109,7 +107,7 @@ public class LinkCorrectnessAnalyser extends Configured implements Tool {
             Path path = status.getPath();
             System.out.println("Reading file: " + path.toString());
             SequenceFile.Reader reader = new SequenceFile.Reader(fs, path, conf);
-        
+
             Text key = new Text();
             LongWritable value = new LongWritable();
             while (reader.next(key, value)) {
@@ -121,7 +119,7 @@ public class LinkCorrectnessAnalyser extends Configured implements Tool {
             }
             reader.close();
         }
-        
+
         return result;
     }
 
