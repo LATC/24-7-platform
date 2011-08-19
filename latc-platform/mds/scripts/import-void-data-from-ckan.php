@@ -17,6 +17,7 @@ $lodTopics = array(
 
 
 $latcStore = new Store(LATC_STORE_URI, new Credentials('latc', LATC_STORE_PASSWORD));
+
 $RequestFactory = new HttpRequestFactory();
 $SparqlEndpoint = new SparqlService("http://semantic.ckan.net/sparql/");
 
@@ -53,6 +54,13 @@ LIMIT {$pageSize} OFFSET {$offset}
 _SPARQL_;
 $requests = array();
 $results = $SparqlEndpoint->select_to_array($query);
+/*
+$results[]= array('s' => array('value' => 'http://ckan.net/package/latc-linksets'));
+$results[]= array('s' => array('value' => 'http://ckan.net/package/data-incubator-metoffice'));
+$results[]= array('s' => array('value' => 'http://ckan.net/package/data-incubator-smcjournals'));
+
+$results = array_reverse($results);
+ */
 
 foreach($results as $row){
   $uri = $row['s']['value'];
@@ -174,6 +182,8 @@ foreach($results as $row){
 
 
 } //endwhile
+
+
 
 require BASE_DIR.'/scripts/calculate_statistics.php';
 //update last modifed time

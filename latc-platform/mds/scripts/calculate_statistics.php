@@ -13,9 +13,11 @@ foreach($vocabGraph->get_subjects_of_type(RDF_PROPERTY) as $Property){
     $results = $latcStore->get_sparql_service()->select_to_array($sparqlQuery);
     if(!empty($results)){
       foreach($results as $row){
-        $uri = $row['item']['value'];
-        $object =  $row['count']['value'];
-        $statsGraph->add_literal_triple($uri, $Property, $object, false, xsd.'integer');
+        if(isset($row['item'])){  
+          $uri = $row['item']['value'];
+          $object =  $row['count']['value'];
+          $statsGraph->add_literal_triple($uri, $Property, $object, false, xsd.'integer');
+        }
       }
     }
   }
