@@ -28,7 +28,17 @@ import java.util.Set;
 //http://wiki.apache.org/hadoop/HadoopMapReduce
 
 
-
+/**
+ * CURRENTLY NOT IMPLEMENTED.
+ * Should eventually be an optimized version of the linkset evaluation:
+ * The reference set should be passed to each worker node (e.g. via the config object)
+ * The link set is then passed on to the mapper, where each link can be compared to reference set.
+ * Therefore, the mappers only need to return the counts of processed links, and the size of
+ * the overlap with the refset (very low network load). Eventually, the reducer only needs
+ * to aggregate the counts.
+ *
+ *
+ */
 public class LinkCorrectnessAnalyser extends Configured implements Tool {
 
     @Override

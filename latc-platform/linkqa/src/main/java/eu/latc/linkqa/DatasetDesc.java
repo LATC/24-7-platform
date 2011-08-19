@@ -3,6 +3,12 @@ package eu.latc.linkqa;
 import org.apache.hadoop.fs.Path;
 
 /**
+ * Information about a dataset:
+ * its location,
+ * number of triples,
+ * number of duplicates,
+ * ...
+ *
  * @author Claus Stadler
  *         <p/>
  *         Date: 7/25/11
@@ -15,7 +21,7 @@ public class DatasetDesc
     //private Date
     private int totalTripleCount;
     private int duplicateCount;
-    private int effectiveTripleCount;
+    private int effectiveTripleCount; // Number of triples withour duplicates
 
 
     public DatasetDesc()

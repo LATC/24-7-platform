@@ -3,6 +3,11 @@ package eu.latc.linkqa;
 import org.aksw.commons.collections.SampleStats;
 
 /**
+ * A class holding information about the sizes of
+ * the linkset,
+ * the reference set,
+ * and their intersection (overlap)
+ *
  * Precision recall result
  *
  * @author Claus Stadler

@@ -18,6 +18,12 @@ import java.util.*;
 
 
 /**
+ * A simple Linkset evaluator class: It reads two files
+ * from the hadoop file system, and outputs the results in RDF.
+ *
+ *
+ * Note: This implementation does not make use of Map-Reduce
+ *
  * @author Claus Stadler
  *         <p/>
  *         Date: 7/24/11
