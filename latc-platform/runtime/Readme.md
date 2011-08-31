@@ -7,10 +7,12 @@ Input
 -----
 
 The Runtime has four following inputs :
+
 *   Link specification : The link specification is in the XML format which is obtained from Console.
 *   Blacklist file : The list of specification title which are failed or you do not wish it to run due to special reason. Every title is separated by new line.
 *   Void template (voidtmpl) file
 The template VOID file for easy modifying in the future. It contains the key of parameters are punctuated by \*\*.
+
 	*   \*\*source\*\* : dataset source parameter.
 	*   \*\*newprefix\*\* : new prefix has to be added
 	*   \*\*target\*\* : dataset target parameter.
@@ -25,6 +27,7 @@ The template VOID file for easy modifying in the future. It contains the key of 
 	*   \*\*specURL\*\* : the URL of specification parameter.
 	*   \*\*consolehost\*\* : the URL of console host parameter.
 *   Configuration could be provided as file or command line.
+
 	*   REQUIRED
 		*   HADOOP_PATH : path of hadoop, is required to run SILK and HDFS
    		*   LATC_CONSOLE_HOST : the URL of console that provides SILK Specification file
