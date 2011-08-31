@@ -1,17 +1,29 @@
 # Example of Void 
 
-`@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .  `
-`@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .  `
-`@prefix owl:	<http://www.w3.org/2002/07/owl#> .  `
-`@prefix void:   <http://rdfs.org/ns/void#> .  `
-`@prefix prv:    <http://purl.org/net/provenance/ns#> .  `
+`@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+
+@prefix void:   <http://rdfs.org/ns/void#> .  
+
+@prefix prv:    <http://purl.org/net/provenance/ns#> .  
+
 @prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
 @prefix foaf:   <http://xmlns.com/foaf/0.1> .
+
 @prefix doap:   <http://usefulinc.com/ns/doap#> .
+
 @prefix dc:	<http://purl.org/dc/terms/#> .
+
 @prefix silkspec:	<http://vocab.deri.ie/LinkSpec#> .
+
 @prefix prvTypes:	<http://purl.org/net/provenance/types#> .
+
 @prefix : <#> .
+
 @prefix dbpedia: <http://dbpedia.org/ontology/>. 
 
 
@@ -67,5 +79,5 @@
 
 :silkmrProject a doap:Project;
     doap:release :silkmr;
-    doap:homepage <http://www4.wiwiss.fu-berlin.de/bizer/silk> .
+    doap:homepage <http://www4.wiwiss.fu-berlin.de/bizer/silk> .`
 
