@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
+ * A class holding information about the evaluation.
+ *
  * @author Claus Stadler
  *         <p/>
  *         Date: 7/25/11

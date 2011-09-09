@@ -3,27 +3,30 @@ package eu.latc.linkqa;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
+import fr.inrialpes.exmo.align.impl.Namespace;
+
 
 /**
+ * Vocabulary for the RDF output.
+ *
  * @author Claus Stadler
  *         <p/>
  *         Date: 7/25/11
  *         Time: 12:21 AM
- */ /*
-This is so annoying doing it like that...
-
-*/
+ */
 public class Vocab
 {
-    public static final String ns = "http://example.org/";
+    public static final String ns = "http://qa.linkeddata.org/ontology/";
+
+    public static final String ns2 = "http://www.atl.external.lmco.com/projects/ontology/ontologies/core/alignment/AlignmentEvaluation.n3#";
 
     public static final Property linksetSize = ResourceFactory.createProperty(ns + "linksetSize");
     public static final Property refsetSize = ResourceFactory.createProperty(ns + "refsetSize");
     public static final Property overlapSize = ResourceFactory.createProperty(ns + "overlapSize");
 
-    public static final Property precision = ResourceFactory.createProperty(ns + "precision");
-    public static final Property recall = ResourceFactory.createProperty(ns + "recall");
-    public static final Property fmeasure = ResourceFactory.createProperty(ns + "fmeasure");
+    public static final Property precision = ResourceFactory.createProperty(ns2 + "precision");
+    public static final Property recall = ResourceFactory.createProperty(ns2 + "recall");
+    public static final Property fmeasure = ResourceFactory.createProperty(ns2 + "fMeasure");
 
     public static final Property totalTripleCount = ResourceFactory.createProperty(ns + "totalTripleCount");
     public static final Property effectiveTripleCount = ResourceFactory.createProperty(ns + "effectiveTripleCount");
