@@ -77,20 +77,20 @@ public class ObjectManager {
 	}
 
 	/**
-	 * @param configurationID
+	 * @param identifier
 	 *            the identifier of the linking configuration file
 	 * @return the linking configuration object associated to that identifier or
 	 *         null if there is no matching object
 	 * @throws Exception
 	 */
-	public Task getTask(String configurationID) throws Exception {
+	public Task getTaskByID(String identifier) throws Exception {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
 		try {
 			tx.begin();
 
-			StringIdentity id = new StringIdentity(Task.class, configurationID);
+			StringIdentity id = new StringIdentity(Task.class, identifier);
 			Task conf = (Task) pm.getObjectById(id);
 			Task copy = (Task) pm.detachCopy(conf);
 

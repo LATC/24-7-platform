@@ -18,8 +18,8 @@ $(document).ready(function() {
 	});
 
 	// move to the next tab (for debugging)
-	// var tabs = $("ul.tabs").data("tabs");
-	// tabs.next();
+	//var tabs = $("ul.tabs").data("tabs");
+	//tabs.next();
 
 	// Plot a graph
 	/*
@@ -77,7 +77,7 @@ $(document).ready(function() {
 	$.get("statistics-template.html", function(data) {
 		$.template("statistics", data);
 	});
-	
+
 	// Load the stats
 	$.getJSON('api/statistics', function(data) {
 		$("#statistics").empty();
@@ -174,10 +174,17 @@ function reloadTasks() {
 		$.each(data.task, function(index, item) {
 			// Add a task block to the overview list
 			var task = $("<div>").addClass('taskBlock');
-			var title = $("<h3>").addClass('link').text(item.title);
+			var title = $("<h3>").addClass('link');// .text(item.title);
+			var link = $("<a>").attr("href", "#details?id=" + item.identifier)
+					.text(item.title);
+			link.appendTo(title);
 			title.appendTo(task);
 			var description = $("<p>").text(item.description);
 			description.appendTo(task);
+			description.click(function() {
+				$("ul.tabs").data("tabs").click("#details");
+				//loadTaskDetails(item.identifier);
+			});
 			task.appendTo($("#tasksList"));
 		});
 	});
@@ -273,7 +280,7 @@ function loadTaskDetails(identifier) {
 
 		var buttons = $("#yesno button").click(function(e) {
 			// get user input
-			var yes = buttons.index(this) === 0;
+			var yes = (buttons.index(this) == 0);
 			if (yes) {
 				$.ajax({
 					type : 'DELETE',

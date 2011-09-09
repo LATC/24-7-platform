@@ -57,7 +57,7 @@ public class TaskResource extends ConsoleResource {
 		// Try to get the task
 		ObjectManager manager = ((MainApplication) getApplication()).getObjectManager();
 		try {
-			task = manager.getTask(taskID);
+			task = manager.getTaskByID(taskID);
 			if (task == null) {
 				setStatus(Status.CLIENT_ERROR_NOT_FOUND);
 				setExisting(false);
@@ -107,7 +107,7 @@ public class TaskResource extends ConsoleResource {
 		ObjectManager manager = ((MainApplication) getApplication()).getObjectManager();
 
 		// Get the task
-		Task task = manager.getTask(taskID);
+		Task task = manager.getTaskByID(taskID);
 
 		// Prepare the answer
 		JSONObject entry = task.toJSON();

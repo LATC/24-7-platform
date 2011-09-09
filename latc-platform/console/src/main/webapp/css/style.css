@@ -193,6 +193,7 @@ input:invalid,textarea:invalid {
 
 a:link {
 	-webkit-tap-highlight-color: #FF5E99;
+	text-decoration: none;
 }
 
 button {
