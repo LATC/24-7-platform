@@ -58,7 +58,7 @@ $results = $SparqlEndpoint->select_to_array($query);
 $uri_prefixes_to_replace = array(
   'http://ckan.net/package',
   'http://ckan.net/tag',
-  'http://thedatahub.org/package',
+  'http://thedatahub.org/dataset',
   'http://thedatahub.org/tag',
 );
 
@@ -146,22 +146,23 @@ foreach($results as $row){
     }
 
     
-    foreach($ckanArray['tags'] as $tag){
-      if(strpos($tag, 'format-')===0){
-        $prefix = str_replace('format-', '', $tag);
-        if(isset($Prefixes[$prefix])){
-          $vocabUri = rtrim($Prefixes[$prefix], '#');
-          $graph->add_literal_triple($vocabUri, RDFS_LABEL, $prefix);
-          $graph->add_literal_triple($vocabUri, VANN.'preferredNamespacePrefix', $prefix);
-          $graph->add_literal_triple($vocabUri, VANN.'preferredNamespaceUri', $Prefixes[$prefix]);
-          $graph->add_resource_triple($uri, VOID.'vocabulary', $vocabUri);
+    if(isset($ckanArray['tags'])){
+      foreach($ckanArray['tags'] as $tag){
+        if(strpos($tag, 'format-')===0){
+          $prefix = str_replace('format-', '', $tag);
+          if(isset($Prefixes[$prefix])){
+            $vocabUri = rtrim($Prefixes[$prefix], '#');
+            $graph->add_literal_triple($vocabUri, RDFS_LABEL, $prefix);
+            $graph->add_literal_triple($vocabUri, VANN.'preferredNamespacePrefix', $prefix);
+            $graph->add_literal_triple($vocabUri, VANN.'preferredNamespaceUri', $Prefixes[$prefix]);
+            $graph->add_resource_triple($uri, VOID.'vocabulary', $vocabUri);
+          }
+        } else if(in_array($tag, $lodTopics)) {
+            $graph->add_resource_triple($uri, DCT.'subject', lodThemes.$tag);
         }
-      } else if(in_array($tag, $lodTopics)) {
-          $graph->add_resource_triple($uri, DCT.'subject', lodThemes.$tag);
+        
       }
-      
     }
-
     foreach($graph->get_subjects_of_type(VOID.'Linkset') as $s){
       if(!$graph->get_first_literal($s, RDFS_LABEL)){
         $hostTargets = $graph->get_subjects_where_resource(VOID.'subset', $s);
