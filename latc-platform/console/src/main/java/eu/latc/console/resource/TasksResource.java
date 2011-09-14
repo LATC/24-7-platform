@@ -66,11 +66,11 @@ public class TasksResource extends ConsoleResource {
 			setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
 			return null;
 		}
-		
+
 		logger.info("[POST] Received a new task " + form.toString());
 
 		logger.info(form.getNames().toString());
-		
+
 		// Load the query parameters
 		String api_key = form.getFirstValue("api_key", true);
 		String specification = form.getFirstValue("specification", true);
@@ -95,37 +95,43 @@ public class TasksResource extends ConsoleResource {
 		// Get the entity manager
 		ObjectManager manager = ((MainApplication) getApplication()).getObjectManager();
 
-		// Save the task
-		String taskID = manager.addTask(specification);
+		
+		try {
+			// Save the task, an exception may be raised if the XML is not valid
+			String taskID = manager.addTask(specification);
 
-		// Set the title
-		Task task = manager.getTask(taskID);
-		task.setTitle(title == null ? "No title" : title);
-		task.setDescription(description == null ? "No description" : description);
-		task.setAuthor(author == null ? "Unknown" : author);
-		task.setCreationDate(new Date());
-		task.setExecutable(true);
-		manager.saveTask(task);
+			// Set the title
+			Task task = manager.getTaskByID(taskID);
+			task.setTitle(title == null ? "No title" : title);
+			task.setDescription(description == null ? "No description" : description);
+			task.setAuthor(author == null ? "Unknown" : author);
+			task.setCreationDate(new Date());
+			task.setExecutable(true);
+			manager.saveTask(task);
 
-		// Add an initial upload report
-		Notification report = new Notification();
-		report.setMessage("Task created");
-		report.setSeverity("info");
-		report.setData("");
-		manager.addNotification(taskID, report);
+			// Add an initial upload report
+			Notification report = new Notification();
+			report.setMessage("Task created");
+			report.setSeverity("info");
+			report.setData("");
+			manager.addNotification(taskID, report);
 
-		// Set the return code and return the identifier
-		setStatus(Status.SUCCESS_CREATED);
+			// Set the return code and return the identifier
+			setStatus(Status.SUCCESS_CREATED);
 
-		// Return the reference information
-		JSONObject json = new JSONObject();
-		json.put("id", taskID);
-		json.put("href", getReference() + "/" + taskID);
-		logger.info("[POST] Reply " + json);
-		JsonConverter conv = new JsonConverter();
-		return conv.toRepresentation(json, null, null);
+			// Return the reference information
+			JSONObject json = new JSONObject();
+			json.put("id", taskID);
+			json.put("href", getReference() + "/" + taskID);
+			logger.info("[POST] Reply " + json);
+			JsonConverter conv = new JsonConverter();
+			return conv.toRepresentation(json, null, null);
+		} catch (Exception e) {
+			logger.warn("Exception while saving the task");
+			setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
+			return null;
+		}
 	}
-
 
 	/**
 	 * Handler for suffix based content negotiation
@@ -211,25 +217,25 @@ public class TasksResource extends ConsoleResource {
  * logger.info("[POST] Received a new task " + multipartForm);
  * 
  * // Check if the form is valid if ((multipartForm == null) ||
- * (!MediaType.MULTIPART_FORM_DATA.equals(multipartForm.getMediaType(),
- * true))) { setStatus(Status.CLIENT_ERROR_BAD_REQUEST); logger.info("got "
- * + multipartForm.getMediaType()); return null; }
+ * (!MediaType.MULTIPART_FORM_DATA.equals(multipartForm.getMediaType(), true)))
+ * { setStatus(Status.CLIENT_ERROR_BAD_REQUEST); logger.info("got " +
+ * multipartForm.getMediaType()); return null; }
  * 
- * // Create a factory for disk-based file items DiskFileItemFactory factory
- * = new DiskFileItemFactory(); factory.setSizeThreshold(1000240);
+ * // Create a factory for disk-based file items DiskFileItemFactory factory =
+ * new DiskFileItemFactory(); factory.setSizeThreshold(1000240);
  * 
  * // Parse the entity elements RestletFileUpload upload = new
  * RestletFileUpload(factory); List<FileItem> items =
  * upload.parseRepresentation(multipartForm);
  * 
- * // Process the content of the form String specification = null; String
- * title = null; String description = null; String author = null; for
- * (FileItem item : items) { if (!item.isFormField() &&
+ * // Process the content of the form String specification = null; String title
+ * = null; String description = null; String author = null; for (FileItem item :
+ * items) { if (!item.isFormField() &&
  * item.getFieldName().equals("specification")) specification =
  * item.getString(); if (item.isFormField() &&
  * item.getFieldName().equals("title")) title = item.getString(); if
- * (item.isFormField() && item.getFieldName().equals("description"))
- * description = item.getString(); if (item.isFormField() &&
+ * (item.isFormField() && item.getFieldName().equals("description")) description
+ * = item.getString(); if (item.isFormField() &&
  * item.getFieldName().equals("author")) author = item.getString(); }
  * 
  * // We need to have at least a specification to save if (specification ==
@@ -241,11 +247,11 @@ public class TasksResource extends ConsoleResource {
  * // Save the configuration file String taskID =
  * manager.addTask(specification);
  * 
- * // Set the title Task task = manager.getTask(taskID); task.setTitle(title
- * == null ? "No title" : title); task.setDescription(description == null ?
- * "No description" : description); task.setAuthor(author == null ?
- * "Unknown" : author); task.setCreationDate(new Date());
- * task.setExecutable(true); manager.saveTask(task);
+ * // Set the title Task task = manager.getTask(taskID); task.setTitle(title ==
+ * null ? "No title" : title); task.setDescription(description == null ?
+ * "No description" : description); task.setAuthor(author == null ? "Unknown" :
+ * author); task.setCreationDate(new Date()); task.setExecutable(true);
+ * manager.saveTask(task);
  * 
  * // Add an initial upload report Notification report = new Notification();
  * report.setMessage("Task created"); report.setSeverity("info");
@@ -254,8 +260,8 @@ public class TasksResource extends ConsoleResource {
  * // Set the return code and return the identifier
  * setStatus(Status.SUCCESS_CREATED);
  * 
- * JSONObject json = new JSONObject(); json.put("id", taskID);
- * json.put("href", getReference() + "/" + taskID);
- * logger.info("[POST] Reply " + json); JsonConverter conv = new
- * JsonConverter(); return conv.toRepresentation(json, null, null); }
+ * JSONObject json = new JSONObject(); json.put("id", taskID); json.put("href",
+ * getReference() + "/" + taskID); logger.info("[POST] Reply " + json);
+ * JsonConverter conv = new JsonConverter(); return conv.toRepresentation(json,
+ * null, null); }
  */

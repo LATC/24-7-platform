@@ -169,7 +169,6 @@
 
 				// call the effect
 				effects[conf.effect].call(self, i, function() {
-
 					// onClick callback
 					e.type = "onClick";
 					trigger.trigger(e, [ i ]);

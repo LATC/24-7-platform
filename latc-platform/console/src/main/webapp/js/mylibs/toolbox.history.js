@@ -12,6 +12,7 @@
 
 /**
  * FIXED bug according to http://flowplayer.org/tools/forum/25/57104
+ * and http://flowplayer.org/tools/forum/25/57104#post-60090
  */
 (function($) {
 

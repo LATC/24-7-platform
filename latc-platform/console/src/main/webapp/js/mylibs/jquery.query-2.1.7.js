@@ -1,13 +1,12 @@
 ﻿/**
- * jQuery.query - Query String Modification and Creation for jQuery
- * Written by Blair Mitchelmore (blair DOT mitchelmore AT gmail DOT com)
- * Licensed under the WTFPL (http://sam.zoy.org/wtfpl/).
- * Date: 2009/8/13
- *
+ * jQuery.query - Query String Modification and Creation for jQuery Written by
+ * Blair Mitchelmore (blair DOT mitchelmore AT gmail DOT com) Licensed under the
+ * WTFPL (http://sam.zoy.org/wtfpl/). Date: 2009/8/13
+ * 
  * @author Blair Mitchelmore
  * @version 2.1.7
- *
- **/
+ * 
+ */
 new function(settings) { 
   // Various Settings
   var $separator = settings.separator || '&';
