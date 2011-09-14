@@ -47,20 +47,20 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 select distinct ?s
 WHERE {
-  ?s dc:isPartOf <http://ckan.net/group/lodcloud> .
+  ?s <http://moat-project.org/ns#taggedWithTag> <http://ckan.net/tag/lod> .
    {$modifiedClause}
 }
 LIMIT {$pageSize} OFFSET {$offset}
 _SPARQL_;
 $requests = array();
 $results = $SparqlEndpoint->select_to_array($query);
-/*
-$results[]= array('s' => array('value' => 'http://ckan.net/package/latc-linksets'));
-$results[]= array('s' => array('value' => 'http://ckan.net/package/data-incubator-metoffice'));
-$results[]= array('s' => array('value' => 'http://ckan.net/package/data-incubator-smcjournals'));
 
-$results = array_reverse($results);
- */
+$uri_prefixes_to_replace = array(
+  'http://ckan.net/package',
+  'http://ckan.net/tag',
+  'http://thedatahub.org/package',
+  'http://thedatahub.org/tag',
+);
 
 foreach($results as $row){
   $uri = $row['s']['value'];
@@ -71,24 +71,40 @@ foreach($results as $row){
     $graph->add_rdf($response->body);
     $graph->add_resource_triple($uri, RDF_TYPE, 'http://rdfs.org/ns/void#Dataset');
     $graph->add_literal_triple($uri, OPENVOCAB.'canonicalUri', $uri);
-    $ckanJSON = $graph->get_first_literal($uri, 'http://semantic.ckan.net/schema#json');
-    $graph->remove_literal_triple($uri,  'http://semantic.ckan.net/schema#json', $ckanJSON);
+    if($ckanJSON = $graph->get_first_literal($uri, 'http://semantic.ckan.net/schema#json')){
+      $graph->remove_literal_triple($uri,  'http://semantic.ckan.net/schema#json', $ckanJSON);
+    }
     $ckanArray = json_decode($ckanJSON, true);
    $graphURIs = array();
     foreach($graph->get_index() as $s => $ps){
-      if(strpos($s, 'http://ckan.net/package/')===0 OR strpos($s, 'http://ckan.net/tag')===0) $graphURIs[]=$s;
+      foreach($uri_prefixes_to_replace as $prefix_replace){
+        if(strpos($s,$prefix_replace)===0){
+          $graphURIs[]=$s;
+        }
+      }
       foreach($ps as $p => $os){
         foreach($os as $o){
           if($o['type']=='uri'){
-            if(strpos($o['value'], 'http://ckan.net/package')===0 OR strpos($o['value'], 'http://ckan.net/tag')===0) $graphURIs[]=$o['value'];
+           foreach($uri_prefixes_to_replace as $prefix_replace){
+              if(strpos($o['value'],$prefix_replace)===0){
+                  $graphURIs[]=$o['value'];
+              }
+           }
+
           }
         }
       }
     }
   $graphURIs = array_unique($graphURIs);
     foreach($graphURIs as $oldUri){
-      if(strpos($oldUri, 'http://ckan.net/package/')===0) $lodCloudUri = str_replace('http://ckan.net/package/', 'http://lod-cloud.net/', $oldUri);
-      else if(strpos($oldUri, 'http://ckan.net/tag/')===0) $lodCloudUri = str_replace('http://ckan.net/tag/', 'http://lod-cloud.net/tag/', $oldUri);
+      foreach($uri_prefixes_to_replace as $prefix){
+        if(strpos($oldUri, $prefix)===0){
+          $lodCloudUri = str_replace('http://ckan.net/','http://lod-cloud.net/', $oldUri);
+          $lodCloudUri = str_replace('http://thedatahub.org/','http://lod-cloud.net/', $lodCloudUri);
+          $lodCloudUri = str_replace('package/', '/', $lodCloudUri);
+          break;
+        }
+      }
       $graph->replace_resource($oldUri, $lodCloudUri);
       $graph->add_resource_triple($lodCloudUri, OWL_SAMEAS, $oldUri);
     }
@@ -169,7 +185,6 @@ foreach($results as $row){
     if(!$response['success']){
       error_log(date('c')."\t{$uri} was not mirrored to the triple store.\n", 3, 'import_errors.log');
       file_put_contents('failed_import.json', json_encode($response));
-      die;
     } 
 }
 

@@ -136,3 +136,9 @@ UNION
 } GROUP BY ?item
 """ ;
 .
+
+dsi:ckanID a rdf:Property ;
+  rdfs:domain dcat:Dataset ;
+  rdfs:label "CKAN Identifier"@en ;
+  rdfs:comment "identifier used within ckan.net" ;
+.
