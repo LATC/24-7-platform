@@ -59,6 +59,7 @@ $uri_prefixes_to_replace = array(
   'http://ckan.net/package',
   'http://ckan.net/tag',
   'http://thedatahub.org/dataset',
+  'http://thedatahub.org/package',
   'http://thedatahub.org/tag',
 );
 
@@ -70,10 +71,20 @@ foreach($results as $row){
     $graph = new SimpleGraph();
     $graph->add_rdf($response->body);
     $graph->add_resource_triple($uri, RDF_TYPE, 'http://rdfs.org/ns/void#Dataset');
+    $graph->remove_resource_triple($uri, RDF_TYPE, 'http://www.w3.org/ns/dcat#');
+    if($title=$graph->get_first_literal($uri, DCT.'title', null, 'en')){
+      $graph->add_literal_triple($uri, RDFS_LABEL, $title, 'en');
+    }
     $graph->add_literal_triple($uri, OPENVOCAB.'canonicalUri', $uri);
     if($ckanJSON = $graph->get_first_literal($uri, 'http://semantic.ckan.net/schema#json')){
       $graph->remove_literal_triple($uri,  'http://semantic.ckan.net/schema#json', $ckanJSON);
     }
+    if($ckanExtras = $graph->get_resource_triple_values($uri, 'http://semantic.ckan.net/schema#extra')){
+      foreach($ckanExtras as $extraUri){
+        $graph->remove_resource_triple($uri,  'http://semantic.ckan.net/schema#extra', $extraUri);
+      }
+    }
+
     $ckanArray = json_decode($ckanJSON, true);
    $graphURIs = array();
     foreach($graph->get_index() as $s => $ps){
@@ -110,6 +121,8 @@ foreach($results as $row){
     }
 
     $packageName = str_replace('http://ckan.net/package/', '', $uri);
+    $packageName = str_replace('http://thedatahub.org/package/', '', $uri);
+    $packageName = str_replace('http://thedatahub.org/dataset/', '', $uri);
 
     $uri = LOD.$packageName;
 
@@ -174,8 +187,8 @@ foreach($results as $row){
       }
     }
 
-    $graph->skolemise_bnodes('http://lod-cloud.net/'.$packageName.'/');
-    for ($i = 0; $i < 5; $i++) {
+   $graph->skolemise_bnodes('http://lod-cloud.net/'.$packageName.'/');
+   for ($i = 0; $i < 5; $i++) {
       // try five times
       $response =   $latcStore->mirror_from_url($uri, $graph->to_json());
       if($response['success']){
