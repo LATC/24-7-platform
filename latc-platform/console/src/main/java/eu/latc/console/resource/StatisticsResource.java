@@ -45,36 +45,61 @@ public class StatisticsResource extends ServerResource {
 			long links = 0;
 			long runtime = 0;
 			int executed = 0;
+			int totalRuns = 0;
+			long totalTime = 0;
+			int totalLinks = 0;
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			for (Notification notification : manager.getNotifications(0)) {
-				Calendar cal = Calendar.getInstance();
-				cal.setTime(notification.getDate());
+				// Skip notification without payload
+				if (notification.getData().equals(""))
+					continue;
 
-				// If we find a more recent report, reset the counters
-				if (cal.get(Calendar.DAY_OF_YEAR) > lastDay && cal.get(Calendar.YEAR) > lastYear) {
-					lastDay = cal.get(Calendar.DAY_OF_YEAR);
-					lastYear = cal.get(Calendar.YEAR);
-					runDate = sdf.format(notification.getDate());
-					links = 0;
-					executed = 0;
-					runtime = 0;
-				}
+				// Only consider notifications about run execution
+				JSONObject data = new JSONObject(notification.getData());
+				if (data.has("size") && data.has("executetime")) {
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(notification.getDate());
 
-				// If that notification corresponds to our current aggregator,
-				// count it
-				if (cal.get(Calendar.DAY_OF_YEAR) == lastDay && cal.get(Calendar.YEAR) == lastYear) {
-					if (!notification.getData().equals("")) {
-						JSONObject data = new JSONObject(notification.getData());
-						if (data.has("size") && data.has("executetime")) {
-							if (data.getLong("size") > 0)
-								links += data.getLong("size");
-							executed++;
-							String[] s = data.getString("executetime").split(":");
-							runtime += Integer.parseInt(s[0]) * 24 * 60 * 60;
-							runtime += Integer.parseInt(s[1]) * 60 * 60;
-							runtime += Integer.parseInt(s[2]) * 60;
-							runtime += Integer.parseInt(s[3]);
-						}
+					// Get the time in second
+					long execTime = 0;
+					String[] s = data.getString("executetime").split(":");
+					if (s.length == 4) {
+						execTime += Integer.parseInt(s[0]) * 24 * 60 * 60;
+						execTime += Integer.parseInt(s[1]) * 60 * 60;
+						execTime += Integer.parseInt(s[2]) * 60;
+						execTime += Integer.parseInt(s[3]);
+					} else {
+						logger.info("Invalid time " + data.getString("executetime"));
+					}
+
+					// Get the number of links created
+					long execLinks = data.getLong("size");
+
+					// Increase the counters for run executions, only count when
+					// links where produced
+					if (data.getLong("size") > 0) {
+						totalRuns++;
+						totalTime += execTime;
+						totalLinks += execLinks;
+					}
+
+					// If we find a more recent report, reset the counters
+					if (cal.get(Calendar.DAY_OF_YEAR) > lastDay && cal.get(Calendar.YEAR) >= lastYear) {
+						lastDay = cal.get(Calendar.DAY_OF_YEAR);
+						lastYear = cal.get(Calendar.YEAR);
+						runDate = sdf.format(notification.getDate());
+						links = 0;
+						executed = 0;
+						runtime = 0;
+					}
+
+					// If that notification corresponds to our current
+					// aggregator, count it
+					if (cal.get(Calendar.DAY_OF_YEAR) == lastDay && cal.get(Calendar.YEAR) == lastYear
+							&& data.getLong("size") > 0) {
+						links += execLinks;
+						runtime += execTime;
+						executed++;
 					}
 				}
 			}
@@ -83,6 +108,15 @@ public class StatisticsResource extends ServerResource {
 			JSONObject json = new JSONObject();
 			json.put("queue_size", manager.getTasks(0, true).size());
 			json.put("tasks_size", manager.getTasks(0, false).size());
+			json.put("total_runs", totalRuns);
+			json.put("total_links", totalLinks);
+			if (totalRuns > 0) {
+				json.put("avg_time_per_run", (double) (totalTime) / (double) (totalRuns));
+				json.put("avg_links_per_run", (double) (totalLinks) / (double) (totalRuns));
+			} else {
+				json.put("avg_time_per_run", 0);
+				json.put("avg_links_per_run", 0);
+			}
 			json.put("last_run_size", links);
 			json.put("last_run_time", runtime);
 			json.put("last_run_date", runDate);

@@ -10,20 +10,13 @@
 			<level>INFO</level>
 		</filter>
 	</appender>
-	<appender name="ERRORFILE" class="ch.qos.logback.core.FileAppender">
-		<Append>false</Append>
-		<File>log/error.log</File>
-		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>WARN</level>
-		</filter>
-		<encoder>
-			<pattern>%d{ISO8601} [%thread] %-5level %logger{35} - %msg%n
-			</pattern>
-		</encoder>
-	</appender>
+	<!-- <appender name="ERRORFILE" class="ch.qos.logback.core.FileAppender"> 
+		<Append>false</Append> <File>log/error.log</File> <filter class="ch.qos.logback.classic.filter.ThresholdFilter"> 
+		<level>WARN</level> </filter> <encoder> <pattern>%d{ISO8601} [%thread] %-5level 
+		%logger{35} - %msg%n </pattern> </encoder> </appender> -->
 	<root level="INFO">
 		<appender-ref ref="CONSOLE" />
-		<appender-ref ref="ERRORFILE" />
+		<!-- <appender-ref ref="ERRORFILE" /> -->
 	</root>
-	<logger name="DataNucleus.MetaData" level="WARN" />
+	<!-- <logger name="DataNucleus.MetaData" level="WARN" /> -->
 </configuration>

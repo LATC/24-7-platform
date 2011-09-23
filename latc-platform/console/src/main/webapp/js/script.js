@@ -30,11 +30,12 @@ $(document).ready(function() {
 
 	// Configure the selection of task for the detail panel
 	$('#taskSelector').dataTable({
-		"bPaginate" : false,
+		"bPaginate" : true,
 		'bAutoWidth' : false,
 		"bLengthChange" : false,
 		"bSort" : true,
 		"bInfo" : false,
+		"iDisplayLength": 15,
 		"aoColumns" : [
 		/* Identifier */{
 			"bSearchable" : true,
@@ -82,6 +83,10 @@ $(document).ready(function() {
 	$.getJSON('api/statistics', function(data) {
 		$("#statistics").empty();
 		$.tmpl("statistics", [ {
+			total_runs : data.total_runs,
+			total_links : data.total_links,
+			avg_time_per_run : data.avg_time_per_run,
+			avg_links_per_run : data.avg_links_per_run,
 			last_run_date : data.last_run_date,
 			last_run_time : data.last_run_time,
 			last_run_size : data.last_run_size,
