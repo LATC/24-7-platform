@@ -3,6 +3,7 @@
  */
 package eu.latc.console.resource;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -105,14 +106,16 @@ public class StatisticsResource extends ServerResource {
 			}
 
 			// The object requested is the list of configuration files
+			DecimalFormat format = new DecimalFormat("########.00");
+
 			JSONObject json = new JSONObject();
 			json.put("queue_size", manager.getTasks(0, true).size());
 			json.put("tasks_size", manager.getTasks(0, false).size());
 			json.put("total_runs", totalRuns);
 			json.put("total_links", totalLinks);
 			if (totalRuns > 0) {
-				json.put("avg_time_per_run", (double) (totalTime) / (double) (totalRuns));
-				json.put("avg_links_per_run", (double) (totalLinks) / (double) (totalRuns));
+				json.put("avg_time_per_run", format.format((double) (totalTime) / (double) (totalRuns)));
+				json.put("avg_links_per_run", format.format((double) (totalLinks) / (double) (totalRuns)));
 			} else {
 				json.put("avg_time_per_run", 0);
 				json.put("avg_links_per_run", 0);
