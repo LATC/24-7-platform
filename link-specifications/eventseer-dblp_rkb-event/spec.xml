@@ -13,13 +13,9 @@
 	<DataSources>
 		<DataSource id="source_a" type="sparqlEndpoint">
 			<Param name="endpointURI" value="http://eculture2.cs.vu.nl:8890/sparql" />
-			<Param name="retryCount" value="10" />
-			<Param name="retryPause" value="10000" />
 		</DataSource>
 		<DataSource id="source_b" type="sparqlEndpoint">
 			<Param name="endpointURI" value="http://sparql.sindice.com/sparql/" />
-			<Param name="retryCount" value="10" />
-			<Param name="retryPause" value="10000" />
 		</DataSource>
 	</DataSources>
 
