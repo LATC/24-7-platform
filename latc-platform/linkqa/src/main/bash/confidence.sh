@@ -12,7 +12,8 @@ total=$1
 success=$2
 
 if [ "$success" -gt "$total" -o "$total" -lt 1 ]; then
-	echo "Invalid Argument: 95% confidence interval for " + success + " out of " + total + " trials cannot be estimated."
+    echo -e "0\t0"
+#	echo "Invalid Argument: 95% confidence interval for " + success + " out of " + total + " trials cannot be estimated."
 	exit -1
 fi
 
