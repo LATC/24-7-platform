@@ -1,6 +1,5 @@
 <?php
 require 'inc.php';
-define('lodThemes', LOD.'themes/');
 
 $lodTopics = array(
 
@@ -71,9 +70,10 @@ foreach($results as $row){
     $graph = new SimpleGraph();
     $graph->add_rdf($response->body);
     $graph->add_resource_triple($uri, RDF_TYPE, 'http://rdfs.org/ns/void#Dataset');
-    $graph->remove_resource_triple($uri, RDF_TYPE, 'http://www.w3.org/ns/dcat#');
+    $graph->remove_resource_triple($uri, RDF_TYPE, 'http://www.w3.org/ns/dcat#Dataset');
     if($title=$graph->get_first_literal($uri, DCT.'title', null, 'en')){
-      $graph->add_literal_triple($uri, RDFS_LABEL, $title, 'en');
+      $graph->remove_literal_triple($uri, DCT.'title',$title);
+      $graph->add_literal_triple($uri, RDFS_LABEL, $title);
     }
     $graph->add_literal_triple($uri, OPENVOCAB.'canonicalUri', $uri);
     if($ckanJSON = $graph->get_first_literal($uri, 'http://semantic.ckan.net/schema#json')){
@@ -124,7 +124,7 @@ foreach($results as $row){
     $packageName = str_replace('http://thedatahub.org/package/', '', $uri);
     $packageName = str_replace('http://thedatahub.org/dataset/', '', $uri);
 
-    $uri = LOD.$packageName;
+    $uri = LOD.'dataset/'.$packageName;
 
     $graph->add_literal_triple($uri, OPENVOCAB.'shortName', $packageName);
 
@@ -187,10 +187,11 @@ foreach($results as $row){
       }
     }
 
-   $graph->skolemise_bnodes('http://lod-cloud.net/'.$packageName.'/');
+    $graph->skolemise_bnodes('http://lod-cloud.net/dataset/'.$packageName.'/');
+    $graphName = 'http://lod-cloud.net/'. $packageName;
    for ($i = 0; $i < 5; $i++) {
       // try five times
-      $response =   $latcStore->mirror_from_url($uri, $graph->to_json());
+      $response =   $latcStore->mirror_from_url($graphName, $graph->to_json());
       if($response['success']){
         echo "\n {$uri} mirrored to triple store. \n";
         break;

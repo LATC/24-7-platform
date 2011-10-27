@@ -1,0 +1,46 @@
+<Silk>
+  <Prefixes>
+    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+  </Prefixes>
+  <DataSources>
+    <DataSource type="sparqlEndpoint" id="eumida">
+      <Param name="endpointURI" value="http://kwijibo.talis.com/kasabi/eumida/sparql"></Param>
+      <Param name="retryCount" value="3"></Param>
+      <Param name="retryPause" value="1000"></Param>
+    </DataSource>
+    <DataSource type="sparqlEndpoint" id="european-election-results">
+      <Param name="endpointURI" value="http://kwijibo.talis.com/kasabi/european-election-results/sparql"></Param>
+      <Param name="retryCount" value="3"></Param>
+      <Param name="retryPause" value="1000"></Param>
+    </DataSource>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="eumida-election-results-countries">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset dataSource="eumida" var="a">
+        <RestrictTo> ?a rdf:type &lt;http://open.vocab.org/terms/Country&gt; . </RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="european-election-results" var="b">
+        <RestrictTo> ?b rdf:type &lt;http://data.kasabi.com/dataset/european-election-results/def/Country&gt; . </RestrictTo>
+      </TargetDataset>
+      <LinkageRule>
+        <Aggregate weight="1" type="average" required="false" id="unnamed_7">
+          <Compare weight="1" threshold="0.0" required="true" metric="equality" id="unnamed_6">
+            <TransformInput function="stripUriPrefix" id="unnamed_4">
+              <Input path="?b" id="unnamed_2"></Input>
+            </TransformInput>
+            <TransformInput function="lowerCase" id="unnamed_5">
+              <TransformInput function="stripUriPrefix" id="unnamed_3">
+                <Input path="?a" id="unnamed_1"></Input>
+              </TransformInput>
+            </TransformInput>
+          </Compare>
+        </Aggregate>
+      </LinkageRule>
+      <Filter></Filter>
+      <Outputs> </Outputs>
+    </Interlink>
+  </Interlinks>
+</Silk>
