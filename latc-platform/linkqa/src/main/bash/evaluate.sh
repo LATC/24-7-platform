@@ -59,13 +59,13 @@ if [ -f "$ls" -a -f "$rs" ]; then
 	#echo "rs=$refsetSize ls=$linksetSize is=$intersectionSize"
 
 	precision="0"
-	if [[ "$refsetSize" -ne "0" ]]; then
-		precision=`echo "$intersectionSize/$refsetSize" | bc -l`
+	if [[ "$linksetSize" -ne "0" ]]; then
+		precision=`echo "$intersectionSize/$linksetSize" | bc -l`
 	fi
 
 	recall="0"
-        if [[ "$linksetSize" -ne "0" ]]; then
-	        recall=`echo "$intersectionSize/$linksetSize" | bc -l`       
+        if [[ "$refsetSize" -ne "0" ]]; then
+	        recall=`echo "$intersectionSize/$refsetSize" | bc -l`       
 	fi
 
 	refsetDuplicateSize=$(($rawRefsetSize-$refsetSize))
@@ -73,10 +73,31 @@ if [ -f "$ls" -a -f "$rs" ]; then
 
 	endDate=`date`
 
+
+	DIR="$( cd "$( dirname "$0" )" && pwd )"
+
+	estimatedPrecision=`"$DIR"/confidence.sh "$linksetSize" "$intersectionSize"`
+	estimatedPrecisionLowerBound=`echo "$estimatedPrecision" | cut -f1`
+	estimatedPrecisionUpperBound=`echo "$estimatedPrecision" | cut -f2`
+
 	#echo "val= $precision --- $recall"
 	
-	echo -e "formatVersion=0.1\nrawRefsetSize=$rawRefsetSize\nrawLinksetSize=$rawLinksetSize\nrefsetSize=$refsetSize\nlinksetSize=$linksetSize\nintersectionSize=$intersectionSize\nprecision=$precision\nrecall=$recall\nrefsetDuplicateSize=$refsetDuplicateSize\nlinksetDuplicateSize=$linksetDuplicateSize\nstartDate=$startDate\nendDate=$endDate\nlinksetErrorCount=$linksetErrorCount\nrefsetErrorCount=$refsetErrorCount"
-
+	echo "formatVersion=0.1"
+	echo "rawRefsetSize=$rawRefsetSize"
+	echo "rawLinksetSize=$rawLinksetSize"
+	echo "refsetSize=$refsetSize"
+	echo "linksetSize=$linksetSize"
+	echo "intersectionSize=$intersectionSize"
+	echo "precision=$precision"
+	echo "recall=$recall"
+	echo "refsetDuplicateSize=$refsetDuplicateSize"
+	echo "linksetDuplicateSize=$linksetDuplicateSize"
+	echo "startDate=$startDate"
+	echo "endDate=$endDate"
+	echo "linksetErrorCount=$linksetErrorCount"
+	echo "refsetErrorCount=$refsetErrorCount"
+	echo "estimatedPrecisionLowerBound=$estimatedPrecisionLowerBound"
+	echo "estimatedPrecisionUpperBound=$estimatedPrecisionUpperBound"
 
 fi
 

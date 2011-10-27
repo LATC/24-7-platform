@@ -172,21 +172,18 @@ public class ObjectManager {
 			task.addReport(report);
 
 			// Check if the task should stay executable
-			if (task.isExecutable()) {
-				// If the report is a successful creation of triples, switch
-				// off the execution flag
-				if (!report.getData().equals("")) {
-					JSONObject data = new JSONObject(report.getData());
-					if (data.has("size") && data.getLong("size") > 0)
-						task.setExecutable(false);
-				}
-			} else {
-				// If the report is an update of the task, switch on the flag
-				// FIXME String comparison is not robust
-				if (report.getMessage().equals("Configuration modified"))
-					task.setExecutable(true);
-			}
-
+			/**
+			 * if (task.isExecutable()) { // If the report is a successful
+			 * creation of triples, switch // off the execution flag if
+			 * (!report.getData().equals("")) { JSONObject data = new
+			 * JSONObject(report.getData()); if (data.has("size") &&
+			 * data.getLong("size") > 0) task.setExecutable(false); } } else {
+			 * // If the report is an update of the task, switch on the flag //
+			 * FIXME String comparison is not robust if
+			 * (report.getMessage().equals("Configuration modified"))
+			 * task.setExecutable(true); }
+			 */
+			
 			// Save the report
 			pm.makePersistent(report);
 			logger.info("Persisted report " + report.getIdentifier());

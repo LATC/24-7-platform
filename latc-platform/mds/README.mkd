@@ -1,5 +1,4 @@
 
-
 # Data Modeling
 
 The contents of the metadata store revolves primarily around datasets
@@ -20,23 +19,25 @@ The following patterns will exist within the URI space of `http://lod-cloud.net/
 ## QA Reports
 
 ``
-  <linkset> a void:Linkset ;
-    void:triples 300 ;
-    void:dataDump <links.nt> ;
-    qa:accuracyEvaluation <report> ;
-.
+    <linkset> a void:Linkset ;
+      void:triples 300 ;
+      void:dataDump <links.nt> ;
+      qa:accuracyEvaluation <report> ;
+  .
 
-<links.nt> dct:format <http://www.w3.org/ns/formats/data/N-Triples> ;
-    dcat:size "506KB";
-.
+  <links.nt> dct:format <http://www.w3.org/ns/formats/data/N-Triples> ;
+      dcat:size "506KB";
+  .
 
-<positive> a qa:PositiveReferenceSet ;
-  void:triples 10 ;
-  qa:intendedSuperset <linkset> ;
-.
+  <positive> a qa:PositiveReferenceSet ;
+    void:triples 10 ;
+    qa:intendedSuperset <linkset> ;
+  .
 
-<eval> a qa:Evaluation ;
-  qa:evaluatedDataset <linkset> ;
-  qa:positiveReference <positive> ;
-  qa:negativeReference <negative> ;
-.
+  <eval> a qa:Evaluation ;
+    qa:evaluatedDataset <linkset> ;
+    qa:positiveReference <positive> ;
+    qa:negativeReference <negative> ;
+  .
+
+``
