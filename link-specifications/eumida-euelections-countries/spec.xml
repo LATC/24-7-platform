@@ -40,7 +40,16 @@
         </Aggregate>
       </LinkageRule>
       <Filter></Filter>
-      <Outputs> </Outputs>
+      <Outputs> 
+	    <Output maxConfidence="0.97" type="file">
+          <Param name="file" value="eumida-euelections-countries.xml"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output type="file">
+          <Param name="file" value="eumida-euelections.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+      </Outputs>
     </Interlink>
   </Interlinks>
 </Silk>

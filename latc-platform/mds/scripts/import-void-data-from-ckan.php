@@ -189,6 +189,7 @@ foreach($results as $row){
 
     $graph->skolemise_bnodes('http://lod-cloud.net/dataset/'.$packageName.'/');
     $graphName = 'http://lod-cloud.net/'. $packageName;
+
    for ($i = 0; $i < 5; $i++) {
       // try five times
       $response =   $latcStore->mirror_from_url($graphName, $graph->to_json());
