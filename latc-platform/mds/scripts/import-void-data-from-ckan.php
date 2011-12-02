@@ -56,7 +56,12 @@ foreach($results as $row){
   $uri = $row['s']['value'];
   $request = $RequestFactory->make("GET", $uri);
   $request->set_accept('application/rdf+xml');
-  $response = $request->execute();
+  $response = $SparqlEndpoint->query('DESCRIBE <'.$uri.'>', 'application/rdf+xml');
+  //$response = $request->execute();
+    if(!$response->is_success()){
+      echo "Could not fetch description for {$uri} \n";
+      continue;
+    }
     $graph = new SimpleGraph();
     $graph->add_rdf($response->body);
     $graph->add_resource_triple($uri, RDF_TYPE, 'http://rdfs.org/ns/void#Dataset');
@@ -186,6 +191,24 @@ foreach($results as $row){
    for ($i = 0; $i < 5; $i++) {
       // try five times
       $response =   $latcStore->mirror_from_url($graphName, $graph->to_json());
+      if($response['get_copy']->status_code=='200'){
+        echo "\n Copy of {$uri} found in content box. ";
+      } else if($response['get_copy']->status_code=='404') {
+        echo "\n Copy of {$uri} not found in content box";
+      } else {
+        echo "\n there was a problem retrieving a copy of {$uri} from the content box";
+      }
+      if($response['update_data']){
+        switch($response['update_data']->is_success()){
+          case true:
+            echo "\n triples from {$uri} were modified successfully";
+            break;
+          case false:
+            echo "\n there was a problem modifying the triples from {$uri}";
+            var_dump($response['update_data']);
+        }
+      }
+
       if($response['success']){
         echo "\n {$uri} mirrored to triple store. \n";
         break;
