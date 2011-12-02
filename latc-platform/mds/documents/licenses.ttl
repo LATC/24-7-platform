@@ -65,11 +65,13 @@ okfn:odc-pddl
   a cc:License ; 
   terms:identifier "odc-pddl" ; 
   rdfs:label "Open Data Commons Public Domain Dedication and Licence (PDDL)"@en ;
+  owl:sameAs <http://opendatacommons.org/licenses/pddl/1-0/> ;
 .
 
 okfn:odc-odbl a cc:License ;
-   terms:identifier "odc-odbl" ; 
-  rdfs:label "Open Data Commons Open Database License (ODbL)"@en 
+  terms:identifier "odc-odbl" ; 
+  rdfs:label "Open Data Commons Open Database License (ODbL)"@en ;
+  owl:sameAs <http://opendatacommons.org/licenses/odbl/> ;
 .
 
 okfn:other-closed a cc:License ; terms:identifier "other-closed"  ;

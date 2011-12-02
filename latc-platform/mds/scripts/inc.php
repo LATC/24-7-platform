@@ -15,7 +15,8 @@ define('MOAT', 'http://moat-project.org/ns#');
 define('DSI', 'http://dsi.lod-cloud.net/vocab#');
 define('LATC_Linksets_Dataset_URI', 'http://lod-cloud.net/latc-linksets');
 define('CC', 'http://creativecommons.org/ns#');
-
+define('OKFN', 'http://purl.org/okfn/licenses/');
+define('DOAP', 'http://usefulinc.com/ns/doap#');
 
 require_once LIB_DIR.'/moriarty/store.class.php';
 require_once LIB_DIR.'/moriarty/credentials.class.php';
@@ -27,6 +28,29 @@ require BASE_DIR.'/talis-store-credentials.php';
 define('LOD', 'http://lod-cloud.net/');
 
 define('lodThemes', LOD.'themes/');
+
+
+function getLodTopics(){
+
+    return   array(
+  'geographic',
+  'government',
+  'media',
+  'crossdomain',
+  'lifesciences',
+  'usergeneratedcontent',
+  'ecommerce',
+  'schemata',
+);
+
+
+}
+function getPrefixes(){
+  $RequestFactory = new HttpRequestFactory();
+  $Prefixes = json_decode($RequestFactory->make('GET', 'http://prefix.cc/popular/all.file.json')->execute()->body, 1);
+  $Prefixes = array_filter($Prefixes, create_function('$a', 'return $a;'));
+  return $Prefixes;
+}
 
 function ckanJsonToRDF( $json){
 $lodTopics = array(
@@ -53,6 +77,7 @@ $lodTopics = array(
     $graph->add_literal_triple($uri, RDFS_LABEL, $ckanArray['title'], 'en');
     $graph->add_literal_triple($uri, DCT.'description', $ckanArray['notes'], 'en');
     $graph->add_resource_triple($uri, FOAF.'page', $ckanArray['ckan_url']);
+    $graph->add_resource_triple($uri, FOAF.'homepage', $ckanArray['url']);
     $graph->add_literal_triple($ckanArray['ckan_url'], DCT.'modified', substr($ckanArray['metadata_modified'],0,18), false, xsd.'dateTime');
     $graph->add_resource_triple($uri, VOID.'dataDump', $ckanArray['download_url']);
 

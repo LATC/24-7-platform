@@ -1,29 +1,16 @@
 <?php
 require 'inc.php';
 
-$lodTopics = array(
-
-  'geographic',
-  'government',
-  'media',
-  'crossdomain',
-  'lifesciences',
-  'usergeneratedcontent',
-  'ecommerce',
-  'schemata',
-
-);
+$lodTopics = getLodTopics();
+  
 
 
 $latcStore = new Store(LATC_STORE_URI, new Credentials('latc', LATC_STORE_PASSWORD));
 
-$RequestFactory = new HttpRequestFactory();
 $SparqlEndpoint = new SparqlService("http://semantic.ckan.net/sparql/");
 
 
-$Prefixes = json_decode($RequestFactory->make('GET', 'http://prefix.cc/popular/all.file.json')->execute()->body, 1);
-$Prefixes = array_filter($Prefixes, create_function('$a', 'return $a;'));
-
+$Prefixes = getPrefixes();
 
 $pageSize = 500;
 if(file_exists('last_imported_from_ckan')){
@@ -61,6 +48,9 @@ $uri_prefixes_to_replace = array(
   'http://thedatahub.org/package',
   'http://thedatahub.org/tag',
 );
+
+$RequestFactory = new HttpRequestFactory();
+
 
 foreach($results as $row){
   $uri = $row['s']['value'];
@@ -158,7 +148,10 @@ foreach($results as $row){
       }
     }
 
-    
+    if(isset($ckanArray['url'])){
+      $graph->add_resource_triple($uri, FOAF.'homepage', $ckanArray['url']);
+    }
+
     if(isset($ckanArray['tags'])){
       foreach($ckanArray['tags'] as $tag){
         if(strpos($tag, 'format-')===0){
