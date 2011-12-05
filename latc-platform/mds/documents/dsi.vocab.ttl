@@ -142,3 +142,9 @@ dsi:ckanID a rdf:Property ;
   rdfs:label "CKAN Identifier"@en ;
   rdfs:comment "identifier used within ckan.net" ;
 .
+
+dsi:thirdLevelDomain a rdf:Property ;
+  rdfs:range rdfs:Literal ;
+  rdfs:label "Third-level Domain"@en ;
+  rdfs:comment "The domain name used by URIs in the dataset down to the third-level."@en;
+.

@@ -79,6 +79,9 @@ foreach($results as $row){
         $graph->remove_resource_triple($uri,  'http://semantic.ckan.net/schema#extra', $extraUri);
       }
     }
+    if($tokens = $graph->get_literal_triple_values($uri, 'http://4store.org/fulltext#token')){
+      $graph->remove_property_values($uri, 'http://4store.org/fulltext#token');
+    }
 
     $ckanArray = json_decode($ckanJSON, true);
    $graphURIs = array();
@@ -129,6 +132,19 @@ foreach($results as $row){
       }
       else if(isset($ckanArray['extras']['namespace'])){
         $graph->add_literal_triple($uri, VOID.'uriSpace', $ckanArray['extras']['namespace']);
+      } else if(
+        $uriInDataset = $graph->get_first_resource($uri, VOID.'exampleResource')
+        OR
+        $uriInDataset = $graph->get_first_resource($uri, FOAF.'homepage')
+      ){
+        if(preg_match('@http://[^/]+/*@', $uriInDataset, $m)){
+          $graph->add_literal_triple($uri, VOID.'uriSpace', $m[0]);
+        }
+      }
+
+      if($uriSpace = $graph->get_first_literal($uri, VOID.'uriSpace')){
+        $host = parse_url($uri, PHP_URL_HOST);
+        $graph->add_literal_triple($uri, DSI.'thirdLevelDomain', $host);
       }
 
       foreach(array('classes', 'entities','triples', 'properties', 'distinctSubjects', 'distinctObjects', 'documents') as $statProp){
