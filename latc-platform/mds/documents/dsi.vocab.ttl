@@ -68,7 +68,7 @@ PREFIX moat: <http://moat-project.org/ns#>
 
   SELECT ?item (count(DISTINCT ?dataset) AS ?count) {
   ?dataset a void:Dataset ;
-          moat:taggedWithTag ?item  .
+          moat:taggedWith ?item  .
 } GROUP BY ?item
 """ ;
 .

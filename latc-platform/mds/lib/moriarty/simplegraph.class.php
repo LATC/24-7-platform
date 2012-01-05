@@ -1317,7 +1317,7 @@ class SimpleGraph {
     $requests = array();
     foreach ($uri_list as $uri) {
       $request = $this->request_factory->make( 'GET', $uri );
-      $request->set_accept('application/json, text/turtle, text/n3, text/rdf+n3, application/x-turtle, application/rdf+xml;q=0.8,application/xml;q=0.6, */*');
+      $request->set_accept('text/turtle, application/json;q=0.9,  text/n3, text/rdf+n3, application/x-turtle, application/rdf+xml;q=0.8,application/xml;q=0.6, */*');
       $request->execute_async();
       $requests[] = $request;
     }

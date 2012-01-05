@@ -33,7 +33,12 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 select distinct ?s
 WHERE {
-  ?s <http://moat-project.org/ns#taggedWithTag> <http://ckan.net/tag/lod> .
+  {
+    ?s <http://moat-project.org/ns#taggedWithTag> <http://ckan.net/tag/lod> .
+  } UNION 
+  {
+    ?s <http://moat-project.org/ns#taggedWith> <http://ckan.net/tag/lod> .
+  }
    {$modifiedClause}
 }
 LIMIT {$pageSize} OFFSET {$offset}
@@ -82,8 +87,26 @@ foreach($results as $row){
     if($tokens = $graph->get_literal_triple_values($uri, 'http://4store.org/fulltext#token')){
       $graph->remove_property_values($uri, 'http://4store.org/fulltext#token');
     }
+  
+    if($tags = $graph->get_resource_triple_values($uri, MOAT.'taggedWithTag')){
+      $graph->remove_property_values($uri, MOAT.'taggedWithTag');
+      foreach($tags as $tag){
+        $graph->add_resource_triple($uri, MOAT.'taggedWith', $tag);
+      }
+    }
+
+    
 
     $ckanArray = json_decode($ckanJSON, true);
+
+    if(isset($ckanArray['extras']['sparql_graph_name'])){
+      $namedGraphUri = $uri.'/sparql-graph';
+      $graph->add_resource_triple($uri, SSD.'namedGraph', $namedGraphUri);
+      $graph->add_literal_triple($namedGraphUri, SSD.'name', $ckanArray['extras']['sparql_graph_name']);
+      $graph->add_resource_triple($namedGraphUri, RDF_TYPE, SSD.'Graph');
+      $graph->add_literal_triple($namedGraphUri, RDFS_LABEL, $ckanArray['extras']['sparql_graph_name']);
+    }
+
    $graphURIs = array();
     foreach($graph->get_index() as $s => $ps){
       foreach($uri_prefixes_to_replace as $prefix_replace){
@@ -143,7 +166,7 @@ foreach($results as $row){
       }
 
       if($uriSpace = $graph->get_first_literal($uri, VOID.'uriSpace')){
-        $host = parse_url($uri, PHP_URL_HOST);
+        $host = parse_url($uriSpace, PHP_URL_HOST);
         $graph->add_literal_triple($uri, DSI.'thirdLevelDomain', $host);
       }
 

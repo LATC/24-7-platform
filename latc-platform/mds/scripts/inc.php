@@ -17,6 +17,7 @@ define('LATC_Linksets_Dataset_URI', 'http://lod-cloud.net/latc-linksets');
 define('CC', 'http://creativecommons.org/ns#');
 define('OKFN', 'http://purl.org/okfn/licenses/');
 define('DOAP', 'http://usefulinc.com/ns/doap#');
+define('SSD', 'http://www.w3.org/ns/sparql-service-description#');
 
 require_once LIB_DIR.'/moriarty/store.class.php';
 require_once LIB_DIR.'/moriarty/credentials.class.php';
