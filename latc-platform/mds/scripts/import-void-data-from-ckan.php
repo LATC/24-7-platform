@@ -43,8 +43,14 @@ WHERE {
 }
 LIMIT {$pageSize} OFFSET {$offset}
 _SPARQL_;
+
+echo "Running SPARQL query for recently changed datasets \n";
 $requests = array();
 $results = $SparqlEndpoint->select_to_array($query);
+
+$count = count($results); 
+
+echo "Got $count results \n";
 
 $uri_prefixes_to_replace = array(
   'http://ckan.net/package',
@@ -56,7 +62,7 @@ $uri_prefixes_to_replace = array(
 
 $RequestFactory = new HttpRequestFactory();
 
-
+$vocabGraph = new SimpleGraph();
 foreach($results as $row){
   $uri = $row['s']['value'];
   $request = $RequestFactory->make("GET", $uri);
@@ -66,6 +72,8 @@ foreach($results as $row){
     if(!$response->is_success()){
       echo "Could not fetch description for {$uri} \n";
       continue;
+    } else {
+      echo "fetched $uri \n";
     }
     $graph = new SimpleGraph();
     $graph->add_rdf($response->body);
@@ -100,11 +108,11 @@ foreach($results as $row){
     $ckanArray = json_decode($ckanJSON, true);
 
     if(isset($ckanArray['extras']['sparql_graph_name'])){
-      $namedGraphUri = $uri.'/sparql-graph';
-      $graph->add_resource_triple($uri, SSD.'namedGraph', $namedGraphUri);
-      $graph->add_literal_triple($namedGraphUri, SSD.'name', $ckanArray['extras']['sparql_graph_name']);
-      $graph->add_resource_triple($namedGraphUri, RDF_TYPE, SSD.'Graph');
-      $graph->add_literal_triple($namedGraphUri, RDFS_LABEL, $ckanArray['extras']['sparql_graph_name']);
+//      $namedGraphUri = $uri.'/sparql-graph';
+  //    $graph->add_resource_triple($uri, SSD.'namedGraph', $namedGraphUri);
+      $graph->add_literal_triple($uri, SSD.'name', $ckanArray['extras']['sparql_graph_name']);
+ //     $graph->add_resource_triple($namedGraphUri, RDF_TYPE, SSD.'Graph');
+ //     $graph->add_literal_triple($namedGraphUri, RDFS_LABEL, $ckanArray['extras']['sparql_graph_name']);
     }
 
    $graphURIs = array();
@@ -202,10 +210,10 @@ foreach($results as $row){
           $prefix = str_replace('format-', '', $tag);
           if(isset($Prefixes[$prefix])){
             $vocabUri = rtrim($Prefixes[$prefix], '#');
-            $graph->add_literal_triple($vocabUri, RDFS_LABEL, $prefix);
-            $graph->add_literal_triple($vocabUri, VANN.'preferredNamespacePrefix', $prefix);
-            $graph->add_literal_triple($vocabUri, VANN.'preferredNamespaceUri', $Prefixes[$prefix]);
-            $graph->add_resource_triple($uri, VOID.'vocabulary', $vocabUri);
+            $vocabGraph->add_literal_triple($vocabUri, RDFS_LABEL, $prefix);
+            $vocabGraph->add_literal_triple($vocabUri, VANN.'preferredNamespacePrefix', $prefix);
+            $vocabGraph->add_literal_triple($vocabUri, VANN.'preferredNamespaceUri', $Prefixes[$prefix]);
+            $vocabGraph->add_resource_triple($uri, VOID.'vocabulary', $vocabUri);
           }
         } else if(in_array($tag, $lodTopics)) {
             $graph->add_resource_triple($uri, DCT.'subject', lodThemes.$tag);
@@ -270,6 +278,9 @@ foreach($results as $row){
 } //endwhile
 
 
+$r = $latcStore->mirror_from_url(LOD.'vocabularies', $vocabGraph->to_turtle());
+
+var_dump($r['success']);
 
 require BASE_DIR.'/scripts/calculate_statistics.php';
 //update last modifed time

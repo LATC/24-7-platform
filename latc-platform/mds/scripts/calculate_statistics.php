@@ -14,8 +14,8 @@ foreach($vocabGraph->get_subjects_of_type(RDF_PROPERTY) as $Property){
     if(!empty($results)){
       foreach($results as $row){
         if(isset($row['item'])){  
-          $uri = $row['item']['value'];
-          $object =  $row['count']['value'];
+          $uri = trim($row['item']['value']);
+          $object =  trim($row['count']['value']);
           $statsGraph->add_literal_triple($uri, $Property, $object, false, xsd.'integer');
         }
       }
@@ -29,8 +29,9 @@ $turtle = $statsGraph->to_turtle();
 
 $results = $latcStore->mirror_from_url($GraphUri, $turtle);
 file_put_contents(BASE_DIR.'/documents/properties-calculated-with-sparql.ttl', $turtle);
-if($results['success']){
-  echo "\n Calculated Properties added to Metadata Store \n";
+
+if($results['success']==true){
+  echo "\n Calculated Properties added to Metadata Store $GraphUri \n";
 } else {
   echo "\n Something went wrong adding Calculated Properties to Metadata Store: \n";
   foreach($results as $k => $v){
@@ -39,4 +40,7 @@ if($results['success']){
     }
   }
 }
+$results = $latcStore->mirror_from_url(LOD.'themes', file_get_contents(BASE_DIR.'/documents/themes.ttl'));
+$results = $latcStore->mirror_from_url(LOD.'licenses', file_get_contents(BASE_DIR.'/documents/licenses.ttl'));
+
 ?>
