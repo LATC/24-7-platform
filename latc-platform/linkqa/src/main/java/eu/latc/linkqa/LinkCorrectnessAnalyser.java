@@ -46,7 +46,6 @@ public class LinkCorrectnessAnalyser extends Configured implements Tool {
         //PropertyConfigurator
         //Configuration conf = new Configuration();
 
-        Configuration conf = this.getConf();
         GenericOptionsParser parser = new GenericOptionsParser(this.getConf(), strings);
         //Configuration conf = parser.getConfiguration();
 
@@ -57,6 +56,25 @@ public class LinkCorrectnessAnalyser extends Configured implements Tool {
             System.exit(2);
         }
 
+        Path fileA = new Path(otherArgs[0]);
+        Path fileB = new Path(otherArgs[1]);
+
+        Configuration conf = this.getConf();
+
+
+        fileA = fileA.makeQualified(fileA.getFileSystem(conf));
+        fileB = fileB.makeQualified(fileB.getFileSystem(conf));
+        Path outPath = new Path(otherArgs[2]);
+
+
+        int result = runEval(conf, fileA, fileB, outPath);
+
+        return result;
+    }
+
+
+    public int runEval(Configuration conf, Path fileA, Path fileB, Path outPath)
+            throws IOException, ClassNotFoundException, InterruptedException {
         Job job = new Job(conf, "eu.latc.linkqa.LinkCorrectnessAnalyser");
 
 
@@ -77,10 +95,6 @@ public class LinkCorrectnessAnalyser extends Configured implements Tool {
         job.setOutputValueClass(LongWritable.class);
 
 
-        Path fileA = new Path(otherArgs[0]);
-        Path fileB = new Path(otherArgs[1]);
-        fileA = fileA.makeQualified(fileA.getFileSystem(conf));
-        fileB = fileB.makeQualified(fileB.getFileSystem(conf));
 
         job.getConfiguration().setLong(fileA.toString(), 0);
         job.getConfiguration().setLong(fileB.toString(), 1);
@@ -95,19 +109,20 @@ public class LinkCorrectnessAnalyser extends Configured implements Tool {
 
         //System.out.println("ORG PATH: " + fileA.toString());
 
-        Path outPath = new Path(otherArgs[2]);
         FileOutputFormat.setOutputPath(job, outPath);
 
 
 
         int result = job.waitForCompletion(true) ? 0 : 1;
 
+
+        // Print the result to console
         FileSystem fs = FileSystem.get(this.getConf());
 
         FileStatus[] fss = fs.globStatus(outPath.suffix("/part*"));
         for (FileStatus status : fss) {
             Path path = status.getPath();
-            System.out.println("Reading file: " + path.toString());
+            //System.out.println("Reading file: " + path.toString());
             SequenceFile.Reader reader = new SequenceFile.Reader(fs, path, conf);
         
             Text key = new Text();
