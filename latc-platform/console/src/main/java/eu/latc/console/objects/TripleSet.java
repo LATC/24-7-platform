@@ -46,6 +46,10 @@ public class TripleSet implements Serializable {
 	@Persistent
 	private Date lastModificationDate = null;
 
+	// The name
+	@Persistent
+	private String name = null;
+
 	/**
 	 * The identifier is an immutable name associated to the triple set when it
 	 * is created
@@ -64,7 +68,8 @@ public class TripleSet implements Serializable {
 	}
 
 	/**
-	 * @param lastModificationDate the lastModificationDate to set
+	 * @param lastModificationDate
+	 *            the lastModificationDate to set
 	 */
 	public void setLastModificationDate(Date lastModificationDate) {
 		this.lastModificationDate = lastModificationDate;
@@ -78,9 +83,25 @@ public class TripleSet implements Serializable {
 	}
 
 	/**
-	 * @param triples the triples to set
+	 * @param triples
+	 *            the triples to set
 	 */
 	public void setTriples(String triples) {
 		this.triples = triples;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name
+	 *            the name to set
+	 */
+	public void setName(String name) {
+		this.name = name.toLowerCase();
 	}
 }

@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import eu.latc.console.objects.Notification;
 import eu.latc.console.objects.Task;
+import eu.latc.console.objects.TripleSet;
 
 /**
  * The manager interfaces with all the modifications performed to the
@@ -66,6 +67,44 @@ public class ObjectManager {
 			pm.deletePersistentAll(c2);
 
 			tx.commit();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
+	 * Return the processing queue as a list of LinkingConfiguration
+	 * 
+	 * @param limit
+	 * @param filter
+	 * 
+	 * @return a sorted collection of LinkingConfiguration
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public Collection<Task> getTasks(int limit, boolean filter) throws Exception {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+
+			// Query for all the LinkingConfiguration files, sorted by position
+			Query query = pm.newQuery(Task.class);
+			query.setOrdering("creationDate descending");
+
+			// Create collection of detached instances of the
+			Collection<Task> res = new ArrayList<Task>();
+			for (Task task : (Collection<Task>) query.execute())
+				if (limit == 0 || res.size() < limit)
+					if (task.isExecutable() || !filter)
+						res.add(pm.detachCopy(task));
+
+			return res;
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -152,16 +191,16 @@ public class ObjectManager {
 	public void deleteTask(String taskID) throws Exception {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
-	
+
 		try {
 			tx.begin();
-	
+
 			// Request the deletion
 			StringIdentity id = new StringIdentity(Task.class, taskID);
 			Task conf = (Task) pm.getObjectById(id);
 			if (conf != null)
 				pm.deletePersistent(conf);
-	
+
 			// Apply the changes
 			tx.commit();
 		} catch (Exception e) {
@@ -182,16 +221,16 @@ public class ObjectManager {
 	public void saveTask(Task task) throws Exception {
 		// Update the last modification field
 		task.setLastModificationDate(new Date());
-	
+
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
-	
+
 		try {
 			tx.begin();
-	
+
 			// Apply the changes
 			pm.makePersistent(task);
-	
+
 			tx.commit();
 		} catch (Exception e) {
 			throw e;
@@ -251,44 +290,6 @@ public class ObjectManager {
 			tx.commit();
 
 			return report.getIdentifier();
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			if (tx.isActive())
-				tx.rollback();
-			pm.close();
-		}
-	}
-
-	/**
-	 * Return the processing queue as a list of LinkingConfiguration
-	 * 
-	 * @param limit
-	 * @param filter
-	 * 
-	 * @return a sorted collection of LinkingConfiguration
-	 * @throws Exception
-	 */
-	@SuppressWarnings("unchecked")
-	public Collection<Task> getTasks(int limit, boolean filter) throws Exception {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		try {
-			tx.begin();
-
-			// Query for all the LinkingConfiguration files, sorted by position
-			Query query = pm.newQuery(Task.class);
-			query.setOrdering("creationDate descending");
-
-			// Create collection of detached instances of the
-			Collection<Task> res = new ArrayList<Task>();
-			for (Task task : (Collection<Task>) query.execute())
-				if (limit == 0 || res.size() < limit)
-					if (task.isExecutable() || !filter)
-						res.add(pm.detachCopy(task));
-
-			return res;
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -370,4 +371,35 @@ public class ObjectManager {
 		}
 	}
 
+	/**
+	 * @param taskID
+	 * @param triplesetName
+	 * @return
+	 * @throws Exception
+	 */
+	public TripleSet getTripleSetForTask(String taskID, String triplesetName) throws Exception {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+
+			// First get the task
+			Task task = this.getTaskByID(taskID);
+
+			// Then get the triple set with the requested name
+			TripleSet targetSet = null;
+			for (TripleSet tripleSet : task.getTripleSets())
+				if (tripleSet.getName().toLowerCase() == triplesetName)
+					targetSet = pm.detachCopy(tripleSet);
+
+			return targetSet;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
 }
