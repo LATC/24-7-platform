@@ -39,7 +39,7 @@ public class TripleSet implements Serializable {
 
 	// The triple set, stored as raw text
 	@Persistent
-	@Column(jdbcType = "VARCHAR", length = 40000)
+	@Column(jdbcType = "BLOB", length = 100000)
 	private String triples = "";
 
 	// The last modification date
@@ -117,7 +117,8 @@ public class TripleSet implements Serializable {
 	}
 
 	/**
-	 * @param task the task to set
+	 * @param task
+	 *            the task to set
 	 */
 	public void setTask(Task task) {
 		this.task = task;

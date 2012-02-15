@@ -4,14 +4,14 @@ import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
-import eu.latc.console.resource.APIKey;
-import eu.latc.console.resource.Notifications;
-import eu.latc.console.resource.Statistics;
-import eu.latc.console.resource.TaskConfiguration;
-import eu.latc.console.resource.TaskNotifications;
-import eu.latc.console.resource.TaskResource;
-import eu.latc.console.resource.TaskTripleSets;
-import eu.latc.console.resource.Tasks;
+import eu.latc.console.resources.APIKey;
+import eu.latc.console.resources.Notifications;
+import eu.latc.console.resources.Statistics;
+import eu.latc.console.resources.TaskConfiguration;
+import eu.latc.console.resources.TaskNotifications;
+import eu.latc.console.resources.TaskResource;
+import eu.latc.console.resources.TaskTripleSets;
+import eu.latc.console.resources.Tasks;
 
 public class MainApplication extends Application {
 	// Instance of the manager for configuration files

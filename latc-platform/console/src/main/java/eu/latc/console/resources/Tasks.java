@@ -1,4 +1,4 @@
-package eu.latc.console.resource;
+package eu.latc.console.resources;
 
 import java.util.Date;
 import java.util.HashSet;

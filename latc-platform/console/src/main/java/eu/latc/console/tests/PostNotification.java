@@ -7,7 +7,7 @@ import org.apache.commons.httpclient.URI;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.json.JSONObject;
 
-import eu.latc.console.resource.APIKey;
+import eu.latc.console.resources.APIKey;
 
 public class PostNotification {
 	// Where the application is deployed

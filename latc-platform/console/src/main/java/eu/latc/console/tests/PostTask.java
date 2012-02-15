@@ -6,7 +6,7 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.URI;
 import org.apache.commons.httpclient.methods.PostMethod;
 
-import eu.latc.console.resource.APIKey;
+import eu.latc.console.resources.APIKey;
 
 public class PostTask {
 	// Where the application is deployed

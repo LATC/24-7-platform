@@ -300,37 +300,6 @@ public class ObjectManager {
 	}
 
 	/**
-	 * @return
-	 * @throws Exception
-	 */
-	// TODO Move this method to the Task object (if possible)
-	@SuppressWarnings("unchecked")
-	public Collection<Notification> getNotificationsFor(String configurationID) throws Exception {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		try {
-			tx.begin();
-
-			// Query for all the reports
-			Query query = pm.newQuery(Notification.class);
-			query.setOrdering("date ascending");
-			Collection<Notification> res = new ArrayList<Notification>();
-			for (Notification report : (Collection<Notification>) query.execute())
-				if (report.getTask().getIdentifier().equals(configurationID))
-					res.add(pm.detachCopy(report));
-
-			return res;
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			if (tx.isActive())
-				tx.rollback();
-			pm.close();
-		}
-	}
-
-	/**
 	 * @param limit
 	 *            the maximum number of reports to return, set to 0 for all of
 	 *            them
@@ -372,11 +341,43 @@ public class ObjectManager {
 	}
 
 	/**
+	 * @return
+	 * @throws Exception
+	 */
+	// TODO Move this method to the Task object (if possible)
+	@SuppressWarnings("unchecked")
+	public Collection<Notification> getNotificationsForTask(String configurationID) throws Exception {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+
+			// Query for all the notifications
+			Query query = pm.newQuery(Notification.class);
+			query.setOrdering("date ascending");
+			Collection<Notification> res = new ArrayList<Notification>();
+			for (Notification report : (Collection<Notification>) query.execute())
+				if (report.getTask().getIdentifier().equals(configurationID))
+					res.add(pm.detachCopy(report));
+
+			return res;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
 	 * @param taskID
 	 * @param triplesetName
 	 * @return
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	public TripleSet getTripleSetForTask(String taskID, String triplesetName) throws Exception {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -384,14 +385,14 @@ public class ObjectManager {
 		try {
 			tx.begin();
 
-			// First get the task
-			Task task = this.getTaskByID(taskID);
-
-			// Then get the triple set with the requested name
 			TripleSet targetSet = null;
-			for (TripleSet tripleSet : task.getTripleSets())
-				if (tripleSet.getName().toLowerCase() == triplesetName)
-					targetSet = pm.detachCopy(tripleSet);
+
+			// Browse all the triple sets
+			Query query = pm.newQuery(TripleSet.class);
+			for (TripleSet set : (Collection<TripleSet>) query.execute())
+				if (set.getTask().getIdentifier().equals(taskID))
+					if (set.getName().toLowerCase().equals(triplesetName))
+						targetSet = pm.detachCopy(set);
 
 			return targetSet;
 		} catch (Exception e) {

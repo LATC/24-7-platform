@@ -115,7 +115,7 @@ public class Task implements Serializable {
 	 * 
 	 * @param report
 	 */
-	public void addNotification(final Notification notification) {
+	public void addNotification(Notification notification) {
 		notifications.add(notification);
 	}
 
@@ -131,7 +131,7 @@ public class Task implements Serializable {
 	/**
 	 * @param tripleSet
 	 */
-	public void addTripleSet(final TripleSet tripleSet) {
+	public void addTripleSet(TripleSet tripleSet) {
 		triplesets.add(tripleSet);
 	}
 

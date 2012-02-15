@@ -1,7 +1,7 @@
 /**
  * 
  */
-package eu.latc.console.resource;
+package eu.latc.console.resources;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.Get;
-import org.restlet.resource.Put;
+import org.restlet.resource.Post;
 import org.restlet.resource.ResourceException;
 
 import eu.latc.console.MainApplication;
@@ -44,7 +44,7 @@ public class TaskTripleSets extends TaskResource {
 		triplesetName = (String) getRequest().getAttributes().get("NAME");
 
 		// If no NAME has been given, return a 404
-		if (triplesetName == null) {
+		if (triplesetName == null || triplesetName == "") {
 			setStatus(Status.CLIENT_ERROR_NOT_FOUND);
 			setExisting(false);
 		}
@@ -58,6 +58,9 @@ public class TaskTripleSets extends TaskResource {
 	@Override
 	@Get
 	public Representation get() {
+		// Log message
+		logger.info("[GET] Return the triple set " + triplesetName + " of " + taskID);
+
 		// Try to get the triple set
 		ObjectManager manager = ((MainApplication) getApplication()).getObjectManager();
 		try {
@@ -65,25 +68,19 @@ public class TaskTripleSets extends TaskResource {
 		} catch (Exception e) {
 			setStatus(Status.CLIENT_ERROR_NOT_FOUND);
 			setExisting(false);
+			return new StringRepresentation("", MediaType.TEXT_PLAIN);
 		}
 
 		// If no matching triple set has been found, return a 404
+		logger.info("fdfsfdf " + tripleSet);
 		if (tripleSet == null) {
 			setStatus(Status.CLIENT_ERROR_NOT_FOUND);
 			setExisting(false);
+			return new StringRepresentation("", MediaType.TEXT_PLAIN);
 		}
 
-		try {
-			// A specific configuration file has been asked
-			logger.info("[GET] Return the triple set " + triplesetName + " of " + taskID);
-			return new StringRepresentation(tripleSet.getTriples(), MediaType.TEXT_PLAIN);
-		} catch (Exception e) {
-			e.printStackTrace();
-
-			// If anything goes wrong, just report back on an internal error
-			setStatus(Status.SERVER_ERROR_INTERNAL);
-			return null;
-		}
+		// A specific configuration file has been asked
+		return new StringRepresentation(tripleSet.getTriples(), MediaType.TEXT_PLAIN);
 	}
 
 	/**
@@ -93,10 +90,10 @@ public class TaskTripleSets extends TaskResource {
 	 *            the form with the request parameters
 	 * @throws Exception
 	 */
-	@Put
+	@Post
 	public Representation update(Form form) throws Exception {
 		// Parse the identifier
-		logger.info("[PUT] Update the triple set " + triplesetName + " of " + taskID);
+		logger.info("[POST] Update the triple set " + triplesetName + " of " + taskID);
 
 		// Check credentials
 		if (form.getFirstValue("api_key", true) == null || !form.getFirstValue("api_key", true).equals(APIKey.KEY)) {
@@ -131,7 +128,7 @@ public class TaskTripleSets extends TaskResource {
 		// Add a notification
 		Notification notification = new Notification();
 		notification.setSeverity("warn");
-		notification.setMessage("triple set modified");
+		notification.setMessage("Triple set modified");
 		manager.addNotification(taskID, notification);
 
 		setStatus(Status.SUCCESS_OK);
