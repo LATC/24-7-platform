@@ -61,7 +61,7 @@ public class ConsoleResource extends ServerResource {
 			MailSender mailSender = new MailSender();
 			mailSender.setTopic("[LATC] Exception in Console");
 			mailSender.addRecepient("christophe.gueret@gmail.com");
-			//mailSender.addRecepient("anja@anjeve.de");
+			// mailSender.addRecepient("anja@anjeve.de");
 			mailSender.setMessage(buffer.toString());
 			mailSender.send();
 		} catch (Exception e) {
@@ -69,5 +69,4 @@ public class ConsoleResource extends ServerResource {
 			e.printStackTrace();
 		}
 	}
-
 }

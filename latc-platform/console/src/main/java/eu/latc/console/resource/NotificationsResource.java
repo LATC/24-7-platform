@@ -2,7 +2,6 @@ package eu.latc.console.resource;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import org.restlet.data.Form;
 import org.restlet.ext.atom.Entry;
 import org.restlet.ext.atom.Feed;
@@ -27,7 +26,8 @@ public class NotificationsResource extends ConsoleResource {
 
 	/**
 	 * Return the notifications about the task
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 * 
 	 */
 	@Get("json")
@@ -57,7 +57,7 @@ public class NotificationsResource extends ConsoleResource {
 
 	/**
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@Get("atom")
 	public Feed toAtom() throws Exception {
@@ -81,5 +81,4 @@ public class NotificationsResource extends ConsoleResource {
 		}
 		return result;
 	}
-
 }

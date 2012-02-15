@@ -33,11 +33,11 @@ public class Notification implements Serializable {
 	// Logger instance
 	protected static final Logger logger = LoggerFactory.getLogger(Notification.class);
 
-	// The identifier for this report
+	// The identifier for this notification
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.UUIDHEX)
 	@Column(jdbcType = "VARCHAR", length = 32)
-	private String identifier = null;
+	private final String identifier = null;
 
 	// The status message
 	@Persistent

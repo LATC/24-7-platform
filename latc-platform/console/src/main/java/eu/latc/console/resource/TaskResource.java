@@ -89,7 +89,7 @@ public class TaskResource extends ConsoleResource {
 		ObjectManager manager = ((MainApplication) getApplication()).getObjectManager();
 
 		// Try to get the configuration file associated to the ID
-		manager.eraseTask(taskID);
+		manager.deleteTask(taskID);
 
 		return new StringRepresentation("deleted configuration file", MediaType.TEXT_HTML);
 	}

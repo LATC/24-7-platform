@@ -40,7 +40,7 @@ public class TaskNotificationsResource extends TaskResource {
 
 		JSONArray array = new JSONArray();
 		ObjectManager manager = ((MainApplication) getApplication()).getObjectManager();
-		for (Notification report : manager.getReportsFor(taskID))
+		for (Notification report : manager.getNotificationsFor(taskID))
 			array.put(report.toJSON());
 
 		JSONObject json = new JSONObject();
@@ -64,7 +64,7 @@ public class TaskNotificationsResource extends TaskResource {
 		result.setTitle(new Text("LATC latest notifications"));
 		Entry entry;
 
-		for (Notification report : manager.getReportsFor(taskID)) {
+		for (Notification report : manager.getNotificationsFor(taskID)) {
 			entry = new Entry();
 			entry.setTitle(new Text("(" + report.getSeverity() + ")" + report.getMessage()));
 			StringBuffer summary = new StringBuffer();

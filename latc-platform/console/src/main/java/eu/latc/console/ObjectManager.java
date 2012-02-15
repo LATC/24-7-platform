@@ -12,7 +12,6 @@ import javax.jdo.Query;
 import javax.jdo.Transaction;
 import javax.jdo.identity.StringIdentity;
 
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -92,7 +91,7 @@ public class ObjectManager {
 
 			StringIdentity id = new StringIdentity(Task.class, identifier);
 			Task conf = (Task) pm.getObjectById(id);
-			Task copy = (Task) pm.detachCopy(conf);
+			Task copy = pm.detachCopy(conf);
 
 			return copy;
 		} catch (Exception e) {
@@ -122,18 +121,78 @@ public class ObjectManager {
 		try {
 			tx.begin();
 
-			// Create the LinkingConfiguration and persist it
-			Task linkingConfiguration = new Task();
-			linkingConfiguration.setConfiguration(configuration);
-			linkingConfiguration.setDescription("no description");
-			linkingConfiguration.setTitle("no title");
-			pm.makePersistent(linkingConfiguration);
-			logger.info("Persisted task " + linkingConfiguration.getIdentifier());
+			// Create the Task and persist it
+			Task task = new Task();
+			task.setConfiguration(configuration);
+			task.setDescription("no description");
+			task.setTitle("no title");
+			pm.makePersistent(task);
+			logger.info("Persisted task " + task.getIdentifier());
 
 			// Apply
 			tx.commit();
 
-			return linkingConfiguration.getIdentifier();
+			return task.getIdentifier();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
+	 * Erase a configuration file from the data base
+	 * 
+	 * @param taskID
+	 *            the identifier of the LinkingConfiguration to delete
+	 * @throws Exception
+	 */
+	public void deleteTask(String taskID) throws Exception {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+	
+		try {
+			tx.begin();
+	
+			// Request the deletion
+			StringIdentity id = new StringIdentity(Task.class, taskID);
+			Task conf = (Task) pm.getObjectById(id);
+			if (conf != null)
+				pm.deletePersistent(conf);
+	
+			// Apply the changes
+			tx.commit();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
+	 * Update a persisted, detached, instance
+	 * 
+	 * @param config
+	 * @throws Exception
+	 */
+	public void saveTask(Task task) throws Exception {
+		// Update the last modification field
+		task.setLastModificationDate(new Date());
+	
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+	
+		try {
+			tx.begin();
+	
+			// Apply the changes
+			pm.makePersistent(task);
+	
+			tx.commit();
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -169,7 +228,7 @@ public class ObjectManager {
 			Date now = new Date();
 			report.setDate(now);
 			report.setTask(task);
-			task.addReport(report);
+			task.addNotification(report);
 
 			// Check if the task should stay executable
 			/**
@@ -183,7 +242,7 @@ public class ObjectManager {
 			 * (report.getMessage().equals("Configuration modified"))
 			 * task.setExecutable(true); }
 			 */
-			
+
 			// Save the report
 			pm.makePersistent(report);
 			logger.info("Persisted report " + report.getIdentifier());
@@ -227,7 +286,7 @@ public class ObjectManager {
 			for (Task task : (Collection<Task>) query.execute())
 				if (limit == 0 || res.size() < limit)
 					if (task.isExecutable() || !filter)
-						res.add((Task) pm.detachCopy(task));
+						res.add(pm.detachCopy(task));
 
 			return res;
 		} catch (Exception e) {
@@ -245,7 +304,7 @@ public class ObjectManager {
 	 */
 	// TODO Move this method to the Task object (if possible)
 	@SuppressWarnings("unchecked")
-	public Collection<Notification> getReportsFor(String configurationID) throws Exception {
+	public Collection<Notification> getNotificationsFor(String configurationID) throws Exception {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
@@ -258,7 +317,7 @@ public class ObjectManager {
 			Collection<Notification> res = new ArrayList<Notification>();
 			for (Notification report : (Collection<Notification>) query.execute())
 				if (report.getTask().getIdentifier().equals(configurationID))
-					res.add((Notification) pm.detachCopy(report));
+					res.add(pm.detachCopy(report));
 
 			return res;
 		} catch (Exception e) {
@@ -295,73 +354,13 @@ public class ObjectManager {
 				if (limit == 0 || res.size() < limit) {
 					// FIXME Hack to get the title of the concerned task
 					String title = report.getTask().getTitle();
-					Notification reportCopy = (Notification) pm.detachCopy(report);
+					Notification reportCopy = pm.detachCopy(report);
 					reportCopy.setTaskTitle(title);
 					res.add(reportCopy);
 				}
 			}
 
 			return res;
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			if (tx.isActive())
-				tx.rollback();
-			pm.close();
-		}
-	}
-
-	/**
-	 * Erase a configuration file from the data base
-	 * 
-	 * @param taskID
-	 *            the identifier of the LinkingConfiguration to delete
-	 * @throws Exception
-	 */
-	public void eraseTask(String taskID) throws Exception {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		try {
-			tx.begin();
-
-			// Request the deletion
-			StringIdentity id = new StringIdentity(Task.class, taskID);
-			Task conf = (Task) pm.getObjectById(id);
-			if (conf != null)
-				pm.deletePersistent(conf);
-
-			// Apply the changes
-			tx.commit();
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			if (tx.isActive())
-				tx.rollback();
-			pm.close();
-		}
-	}
-
-	/**
-	 * Update a persisted, detached, instance
-	 * 
-	 * @param config
-	 * @throws Exception
-	 */
-	public void saveTask(Task task) throws Exception {
-		// Update the last modification field
-		task.setLastModificationDate(new Date());
-
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		try {
-			tx.begin();
-
-			// Apply the changes
-			pm.makePersistent(task);
-
-			tx.commit();
 		} catch (Exception e) {
 			throw e;
 		} finally {

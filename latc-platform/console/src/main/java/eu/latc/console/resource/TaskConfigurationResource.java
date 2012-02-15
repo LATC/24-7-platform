@@ -28,7 +28,7 @@ public class TaskConfigurationResource extends TaskResource {
 	 * 
 	 * @param form
 	 *            the configuration file content to put under the identifier
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@Put
 	public Representation update(Form form) throws Exception {
@@ -68,6 +68,7 @@ public class TaskConfigurationResource extends TaskResource {
 	 * Return a the XML configuration of the task
 	 * 
 	 */
+	@Override
 	@Get
 	public Representation get() {
 		try {
