@@ -25,7 +25,7 @@ public class NotificationsResource extends ConsoleResource {
 	protected final Logger logger = LoggerFactory.getLogger(NotificationsResource.class);
 
 	/**
-	 * Return the notifications about the task
+	 * Return all the notifications stored in the system
 	 * 
 	 * @throws Exception
 	 * 

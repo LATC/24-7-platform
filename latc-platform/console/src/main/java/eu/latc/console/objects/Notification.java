@@ -37,7 +37,7 @@ public class Notification implements Serializable {
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.UUIDHEX)
 	@Column(jdbcType = "VARCHAR", length = 32)
-	private final String identifier = null;
+	private String identifier = null;
 
 	// The status message
 	@Persistent

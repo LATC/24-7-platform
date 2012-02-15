@@ -7,10 +7,11 @@ import org.restlet.routing.Router;
 import eu.latc.console.resource.APIKeyResource;
 import eu.latc.console.resource.NotificationsResource;
 import eu.latc.console.resource.StatisticsResource;
-import eu.latc.console.resource.TaskResource;
-import eu.latc.console.resource.TasksResource;
-import eu.latc.console.resource.TaskNotificationsResource;
 import eu.latc.console.resource.TaskConfigurationResource;
+import eu.latc.console.resource.TaskNotificationsResource;
+import eu.latc.console.resource.TaskResource;
+import eu.latc.console.resource.TaskTripleSetsResource;
+import eu.latc.console.resource.TasksResource;
 
 public class MainApplication extends Application {
 	// Instance of the manager for configuration files
@@ -27,7 +28,7 @@ public class MainApplication extends Application {
 		// Handler for login
 		// GET returns an API key matching a given login/password combination
 		router.attach("/api_key", APIKeyResource.class);
-		
+
 		// Handler for the processing queue
 		// GET returns the list of tasks
 		// POST to create a new task
@@ -38,15 +39,21 @@ public class MainApplication extends Application {
 
 		// GET returns a bunch of statistics
 		router.attach("/statistics", StatisticsResource.class);
-		
-		// Handler for the raw linking specification file
+
+		// Handler for the configuration file associated to the task
 		// GET to get the raw XML linking configuration
+		// PUT to update the configuration file with a new version
 		router.attach("/task/{ID}/configuration", TaskConfigurationResource.class);
 
-		// Handler for the reports
+		// Handler for the notifications
 		// GET to get a sorted list of reports
 		// POST to this address to save a new report
 		router.attach("/task/{ID}/notifications", TaskNotificationsResource.class);
+
+		// Handler for the notifications
+		// GET to get the content of the triple set named {NAME}
+		// PUT to update or create a triple set named {NAME}
+		router.attach("/task/{ID}/tripleset/{NAME}", TaskTripleSetsResource.class);
 
 		// Task resource
 		// GET to get the description of the task

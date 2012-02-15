@@ -2,7 +2,6 @@ package eu.latc.console.resource;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.data.Status;
@@ -31,8 +30,8 @@ public class TaskNotificationsResource extends TaskResource {
 
 	/**
 	 * Return the notifications about the task
-	 * @throws Exception 
 	 * 
+	 * @throws Exception
 	 */
 	@Get("json")
 	public Representation toJSON() throws Exception {
@@ -52,7 +51,7 @@ public class TaskNotificationsResource extends TaskResource {
 
 	/**
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@Get("atom")
 	public Feed toAtom() throws Exception {
@@ -79,7 +78,8 @@ public class TaskNotificationsResource extends TaskResource {
 
 	/**
 	 * Adds a new report for this task
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 * 
 	 */
 	@Post

@@ -199,6 +199,20 @@ public class Task implements Serializable {
 	}
 
 	/**
+	 * @return
+	 */
+	public Date getLastModificationDate() {
+		return lastModificationDate;
+	}
+
+	/**
+	 * @param lastModificationDate
+	 */
+	public void setLastModificationDate(Date lastModificationDate) {
+		this.lastModificationDate = lastModificationDate;
+	}
+
+	/**
 	 * Get the description of the configuration file
 	 * 
 	 * @return
@@ -247,20 +261,6 @@ public class Task implements Serializable {
 	 */
 	public String getIdentifier() {
 		return identifier;
-	}
-
-	/**
-	 * @return
-	 */
-	public Date getLastModificationDate() {
-		return lastModificationDate;
-	}
-
-	/**
-	 * @param lastModificationDate
-	 */
-	public void setLastModificationDate(Date lastModificationDate) {
-		this.lastModificationDate = lastModificationDate;
 	}
 
 	/**
