@@ -12,22 +12,22 @@ import org.apache.commons.httpclient.methods.PutMethod;
 
 import com.deri.latc.utility.Parameters;
 
-
 public class MDSConnection {
-	
-	 private String message=null;
-	public boolean putVOID(String voidfile, String linkset ){
+
+	private String message = null;
+
+	public boolean putVOID(String voidfile, String linkset) {
 		boolean res = false;
-		 HttpClient client = new HttpClient();
-		String URL = Parameters.MDS_HOST+"?apiKey="+Parameters.API_KEY_MDS+"&graph="+linkset;
-		 PutMethod pm = new PutMethod(URL);
-		 File f = new File(voidfile);
-	      try {
+		HttpClient client = new HttpClient();
+		String URL = Parameters.MDS_HOST + "?apiKey=" + Parameters.API_KEY_MDS + "&graph=" + linkset;
+		PutMethod pm = new PutMethod(URL);
+		File f = new File(voidfile);
+		try {
 			pm.setRequestBody(new FileInputStream(f));
-		    pm.setRequestHeader("Content-type", "text/turtle");
-		      int statusCode = client.executeMethod(pm);
-		      if(statusCode == HttpStatus.SC_ACCEPTED)
-		    	  res=true;
+			pm.setRequestHeader("Content-type", "text/turtle");
+			int statusCode = client.executeMethod(pm);
+			if (statusCode == HttpStatus.SC_ACCEPTED)
+				res = true;
 		} catch (FileNotFoundException e) {
 			this.message = e.getMessage();
 		} catch (HttpException e) {
@@ -37,16 +37,12 @@ public class MDSConnection {
 		}
 		return res;
 	}
-	
-	public String getMessage()
-	{
+
+	public String getMessage() {
 		return this.message;
 	}
-  public static void main(String[] args) throws Exception {
-    
-   
-      
 
-  }
+	public static void main(String[] args) throws Exception {
+
+	}
 }
-
