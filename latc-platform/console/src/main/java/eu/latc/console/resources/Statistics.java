@@ -109,8 +109,8 @@ public class Statistics extends ServerResource {
 			DecimalFormat format = new DecimalFormat("########.00");
 
 			JSONObject json = new JSONObject();
-			json.put("queue_size", manager.getTasks(0, true).size());
-			json.put("tasks_size", manager.getTasks(0, false).size());
+			json.put("queue_size", manager.getTasks(0, true, true).size());
+			json.put("tasks_size", manager.getTasks(0, false, false).size());
 			json.put("total_runs", totalRuns);
 			json.put("total_links", totalLinks);
 			if (totalRuns > 0) {
