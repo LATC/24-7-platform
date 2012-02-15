@@ -1,4 +1,4 @@
-package eu.latc.misc;
+package eu.latc.console.tests;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
@@ -9,11 +9,11 @@ import org.json.JSONObject;
 
 import eu.latc.console.resource.APIKey;
 
-public class PostReport {
+public class PostNotification {
 	// Where the application is deployed
 	static String HOST = "http://latc-console.few.vu.nl/";
 
-	// The identifier of the configuration to send a report about
+	// The identifier of the configuration to send a notification about
 	static String ID = "ff8081812e2e36ce012e2e36cf7c0002";
 
 	/**
@@ -28,13 +28,11 @@ public class PostReport {
 
 		// Prepare the message
 		// "message" is mandatory
-		// "severity" defaults to 'info' if not precised
+		// "severity" defaults to 'info' if not indicated
 		// "data" is optional
 		// (note: The date/time is automatically set to the POST date/time)
-		NameValuePair[] request = { 
-				new NameValuePair("message", "Generated some triples"),
-				new NameValuePair("severity", "info"), 
-				new NameValuePair("api_key", APIKey.KEY), 
+		NameValuePair[] request = { new NameValuePair("message", "Generated some triples"),
+				new NameValuePair("severity", "info"), new NameValuePair("api_key", APIKey.KEY),
 				new NameValuePair("data", data.toString()) };
 
 		// Diplay the result

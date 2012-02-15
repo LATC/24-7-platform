@@ -1,4 +1,4 @@
-package eu.latc.misc;
+package eu.latc.console.tests;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;

@@ -50,6 +50,10 @@ public class TripleSet implements Serializable {
 	@Persistent
 	private String name = null;
 
+	// The task this triple set relates to
+	@Persistent
+	private Task task;
+
 	/**
 	 * The identifier is an immutable name associated to the triple set when it
 	 * is created
@@ -103,5 +107,19 @@ public class TripleSet implements Serializable {
 	 */
 	public void setName(String name) {
 		this.name = name.toLowerCase();
+	}
+
+	/**
+	 * @return the task
+	 */
+	public Task getTask() {
+		return task;
+	}
+
+	/**
+	 * @param task the task to set
+	 */
+	public void setTask(Task task) {
+		this.task = task;
 	}
 }

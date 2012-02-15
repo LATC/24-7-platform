@@ -243,13 +243,13 @@ public class ObjectManager {
 
 	/**
 	 * @param configuration
-	 * @param report
+	 * @param notification
 	 * @return
 	 * @throws Exception
 	 */
-	public String addNotification(String taskID, Notification report) throws Exception {
+	public String addNotification(String taskID, Notification notification) throws Exception {
 		// Check if the report is valid
-		if (report == null)
+		if (notification == null)
 			return null;
 
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -265,9 +265,9 @@ public class ObjectManager {
 
 			// Set the date to the report and bind it to the task
 			Date now = new Date();
-			report.setDate(now);
-			report.setTask(task);
-			task.addNotification(report);
+			notification.setDate(now);
+			notification.setTask(task);
+			task.addNotification(notification);
 
 			// Check if the task should stay executable
 			/**
@@ -283,13 +283,13 @@ public class ObjectManager {
 			 */
 
 			// Save the report
-			pm.makePersistent(report);
-			logger.info("Persisted report " + report.getIdentifier());
+			pm.makePersistent(notification);
+			logger.info("Persisted report " + notification.getIdentifier());
 
 			// Apply
 			tx.commit();
 
-			return report.getIdentifier();
+			return notification.getIdentifier();
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -394,6 +394,74 @@ public class ObjectManager {
 					targetSet = pm.detachCopy(tripleSet);
 
 			return targetSet;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
+	 * @param tripleSet
+	 * @throws Exception
+	 */
+	public void saveTripleSet(TripleSet tripleSet) throws Exception {
+		// Update the last modification field
+		tripleSet.setLastModificationDate(new Date());
+
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+
+			// Apply the changes
+			pm.makePersistent(tripleSet);
+
+			tx.commit();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
+	 * @param taskID
+	 * @param tripleSet
+	 * @throws Exception
+	 */
+	public String addTripleSet(String taskID, TripleSet tripleSet) throws Exception {
+		// Check if the report is valid
+		if (tripleSet == null)
+			return null;
+
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			// Open a transaction
+			tx.begin();
+
+			// Get the task
+			StringIdentity id = new StringIdentity(Task.class, taskID);
+			Task task = (Task) pm.getObjectById(id);
+
+			tripleSet.setTask(task);
+			task.addTripleSet(tripleSet);
+
+			// Save the triple set
+			pm.makePersistent(tripleSet);
+			logger.info("Persisted triple set " + tripleSet.getIdentifier());
+
+			// Apply
+			tx.commit();
+
+			return tripleSet.getIdentifier();
 		} catch (Exception e) {
 			throw e;
 		} finally {
