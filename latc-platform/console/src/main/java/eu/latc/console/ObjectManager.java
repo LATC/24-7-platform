@@ -80,13 +80,17 @@ public class ObjectManager {
 	 * Return the processing queue as a list of LinkingConfiguration
 	 * 
 	 * @param limit
-	 * @param filter
+	 * @param filterExecutable
+	 *            if true only return tasks having the executable flag set to
+	 *            executableStatus
+	 * @param executableStatus
+	 *            if filterExecutable is true, value of executable for the tasks
 	 * 
 	 * @return a sorted collection of LinkingConfiguration
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
-	public Collection<Task> getTasks(int limit, boolean filter) throws Exception {
+	public Collection<Task> getTasks(int limit, boolean filterExecutable, boolean executableStatus) throws Exception {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
@@ -101,7 +105,7 @@ public class ObjectManager {
 			Collection<Task> res = new ArrayList<Task>();
 			for (Task task : (Collection<Task>) query.execute())
 				if (limit == 0 || res.size() < limit)
-					if (task.isExecutable() || !filter)
+					if (filterExecutable == false || (task.isExecutable() == executableStatus))
 						res.add(pm.detachCopy(task));
 
 			return res;
@@ -121,7 +125,7 @@ public class ObjectManager {
 	 *         null if there is no matching object
 	 * @throws Exception
 	 */
-	public Task getTaskByID(String identifier) throws Exception {
+	public Task getTaskByID(String identifier) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
@@ -130,11 +134,39 @@ public class ObjectManager {
 
 			StringIdentity id = new StringIdentity(Task.class, identifier);
 			Task conf = (Task) pm.getObjectById(id);
-			Task copy = pm.detachCopy(conf);
 
-			return copy;
+			return pm.detachCopy(conf);
 		} catch (Exception e) {
-			throw e;
+			return null;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
+	 * @param taskID
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public Task getTaskBySlug(String taskID) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+
+			// Browse through all the tasks
+			Task task = null;
+			Query query = pm.newQuery(Task.class);
+			for (Task res : (Collection<Task>) query.execute())
+				if (res.getSlug().equals(taskID))
+					task = pm.detachCopy(res);
+
+			return task;
+		} catch (Exception e) {
+			return null;
 		} finally {
 			if (tx.isActive())
 				tx.rollback();

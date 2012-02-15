@@ -57,7 +57,14 @@ public class TaskResource extends BaseResource {
 		// Try to get the task
 		ObjectManager manager = ((MainApplication) getApplication()).getObjectManager();
 		try {
+			// Try the ID
 			task = manager.getTaskByID(taskID);
+
+			// If nothing is found, try again with the slug
+			if (task == null)
+				task = manager.getTaskBySlug(taskID);
+
+			// Ok, that doesn't exist. Complain and exit
 			if (task == null) {
 				setStatus(Status.CLIENT_ERROR_NOT_FOUND);
 				setExisting(false);
@@ -143,6 +150,8 @@ public class TaskResource extends BaseResource {
 			task.setAuthor(form.getFirstValue("author"));
 		if (keys.contains("executable"))
 			task.setExecutable(Boolean.parseBoolean(form.getFirstValue("executable")));
+		if (keys.contains("vetted"))
+			task.setVetted(Boolean.parseBoolean(form.getFirstValue("vetted")));
 
 		// Save the task
 		ObjectManager manager = ((MainApplication) getApplication()).getObjectManager();

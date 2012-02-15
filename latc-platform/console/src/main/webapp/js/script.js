@@ -1,5 +1,5 @@
 /**
- * Author: Christophe Gueret <c.d.m.gueret@vu.nl>
+ * Author: Christophe Guéret <c.d.m.gueret@vu.nl>
  */
 
 // The API key used to issue write RPCs
@@ -18,8 +18,8 @@ $(document).ready(function() {
 	});
 
 	// move to the next tab (for debugging)
-	//var tabs = $("ul.tabs").data("tabs");
-	//tabs.next();
+	// var tabs = $("ul.tabs").data("tabs");
+	// tabs.next();
 
 	// Plot a graph
 	/*
@@ -35,7 +35,7 @@ $(document).ready(function() {
 		"bLengthChange" : false,
 		"bSort" : true,
 		"bInfo" : false,
-		"iDisplayLength": 15,
+		"iDisplayLength" : 15,
 		"aoColumns" : [
 		/* Identifier */{
 			"bSearchable" : true,
@@ -122,12 +122,12 @@ $(document).keydown(function(e) {
  * Change the task currently displayed
  */
 function set_current_task(identifier) {
-	console.log(identifier);
-	console.log(location.search);
-	console.log(location.href);
-	console.log(location.hash);
-	console.log(jHash.val("id"));
-	console.log(jHash.val("id", identifier));
+	// console.log(identifier);
+	// console.log(location.search);
+	// console.log(location.href);
+	// console.log(location.hash);
+	// console.log(jHash.val("id"));
+	// console.log(jHash.val("id", identifier));
 	// location.search = $.query.set("id", identifier);
 }
 
@@ -171,7 +171,7 @@ function logout() {
  */
 function reloadTasks() {
 	setLoading($("#tasksList"));
-	$.getJSON('api/tasks.json?limit=5&filter=false', function(data) {
+	$.getJSON('api/tasks.json?limit=5', function(data) {
 		// Clean the previous content for the overview table
 		$("#tasksList").empty();
 
@@ -179,22 +179,23 @@ function reloadTasks() {
 		$.each(data.task, function(index, item) {
 			// Add a task block to the overview list
 			var task = $("<div>").addClass('taskBlock');
-			var title = $("<h3>").addClass('link');// .text(item.title);
-			var link = $("<a>").attr("href", "#details?id=" + item.identifier)
-					.text(item.title);
-			link.appendTo(title);
+			var title = $("<h3>").text(item.title);
+			// var link = $("<a>").attr("href", "#details?id=" +
+			// item.identifier)
+			// .text(item.title);
+			// link.appendTo(title);
 			title.appendTo(task);
 			var description = $("<p>").text(item.description);
 			description.appendTo(task);
 			description.click(function() {
 				$("ul.tabs").data("tabs").click("#details");
-				//loadTaskDetails(item.identifier);
+				// loadTaskDetails(item.identifier);
 			});
 			task.appendTo($("#tasksList"));
 		});
 	});
 
-	$.getJSON('api/tasks.json?filter=false', function(data) {
+	$.getJSON('api/tasks.json', function(data) {
 		// Clean the previous content for the task selector
 		$('#taskSelector').dataTable().fnClearTable();
 
@@ -247,6 +248,7 @@ function loadTaskDetails(identifier) {
 		if (api_key == "") {
 			$.tmpl("taskDetails", [ {
 				identifier : identifier,
+				slug : data.slug,
 				title : data.title,
 				author : data.author,
 				description : data.description
@@ -254,6 +256,7 @@ function loadTaskDetails(identifier) {
 		} else {
 			$.tmpl("taskDetailsAdmin", [ {
 				identifier : identifier,
+				slug : data.slug,
 				author : data.author,
 				title : data.title,
 				description : data.description,
@@ -262,6 +265,9 @@ function loadTaskDetails(identifier) {
 		}
 		if (data.executable == true) {
 			$("[name=task-execution]").attr('checked', true);
+		}
+		if (data.vetted == true) {
+			$("[name=task-vetted]").attr('checked', true);
 		}
 		// Initialise the table
 		$('#taskReports').dataTable({
@@ -348,7 +354,8 @@ function saveDetails() {
 			title : $("[name=task-title]").val(),
 			author : $("[name=task-author]").val(),
 			description : $("[name=task-description]").val(),
-			executable : $("[name=task-execution]").attr('checked')
+			executable : $("[name=task-execution]").attr('checked'),
+			vetted : $("[name=task-vetted]").attr('checked')
 		},
 		dataType : "text",
 		success : function(data) {

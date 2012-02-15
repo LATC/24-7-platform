@@ -344,7 +344,7 @@ public class Task implements Serializable {
 		entry.put("description", this.getDescription());
 		entry.put("author", this.getAuthor());
 		entry.put("executable", this.isExecutable());
-		entry.put("testing", this.isVetted());
+		entry.put("vetted", this.isVetted());
 		entry.put("slug", this.getSlug());
 		if (creationDate != null)
 			entry.put("created", DateToXSDateTime.format(creationDate));

@@ -21,8 +21,8 @@ public class PostTripleSet {
 	static String HOST = "http://latc-console.few.vu.nl/";
 
 	// The identifier of the configuration to send a notification about
-	// static String ID = "ff8081812e2e36ce012e2e36cf7c0002";
-	static String ID = "ff80808130b290420130b290421e0000";
+	// static String ID = "ff80808130b290420130b290421e0000";
+	static String ID = "ff8081812e2e36ce012e2e36cf7c0002";
 
 	/**
 	 * @param args

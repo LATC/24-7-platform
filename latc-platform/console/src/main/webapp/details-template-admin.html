@@ -1,10 +1,12 @@
 <h2>Task information</h2>
 <form id="task-details-about-form" action="javascript:saveDetails();" class="clearfix">
 <label>Identifier:<input name="task-identifier" value="${identifier}" type="text" readonly="true"></label>
+<label>Slug:<input name="task-slug" value="${slug}" type="text" readonly="true"></label>
 <label>Title:<input name="task-title" value="${title}" type="text"></label>
 <label>Author:<input name="task-author" value="${author}" type="text"></label>
 <label>Description:<textarea name="task-description">${description}</textarea></label>
-<label><input name="task-execution" type="checkbox"/> Scheduled for execution</label>
+<label><input name="task-execution" type="checkbox"/> This task is scheduled for execution</label>
+<label><input name="task-vetted" type="checkbox"/> This task is vetted</label>
 <input class="submit" name="submit" value="Save changes" type="submit"/> 
 </form>
 <h2>Messages <a href="api/task/${identifier}/notifications.atom" class="feed-link"></a></h2>

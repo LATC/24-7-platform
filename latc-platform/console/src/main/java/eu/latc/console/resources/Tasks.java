@@ -95,7 +95,6 @@ public class Tasks extends BaseResource {
 		// Get the entity manager
 		ObjectManager manager = ((MainApplication) getApplication()).getObjectManager();
 
-		
 		try {
 			// Save the task, an exception may be raised if the XML is not valid
 			String taskID = manager.addTask(specification);
@@ -161,10 +160,13 @@ public class Tasks extends BaseResource {
 		if (params.getFirstValue("limit", true) != null)
 			limit = Integer.parseInt(params.getFirstValue("limit", true));
 
-		// Handle the "all" parameter
-		boolean filter = true;
-		if (params.getFirstValue("filter", true) != null)
-			filter = Boolean.parseBoolean(params.getFirstValue("filter", true));
+		// Handle the "executable" filter
+		boolean filterExecutable = false;
+		boolean executable = false;
+		if (params.getFirstValue("executable", true) != null) {
+			filterExecutable = true;
+			executable = Boolean.parseBoolean(params.getFirstValue("executable", true));
+		}
 
 		logger.info("[GET-JSON] Return a list of tasks " + limit);
 
@@ -174,7 +176,7 @@ public class Tasks extends BaseResource {
 		// The object requested is the list of configuration files
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
-		for (Task task : manager.getTasks(limit, filter))
+		for (Task task : manager.getTasks(limit, filterExecutable, executable))
 			array.put(task.toJSON());
 		json.put("task", array);
 
@@ -197,7 +199,7 @@ public class Tasks extends BaseResource {
 		result.setTitle(new Text("Tasks created for LATC"));
 		Entry entry;
 
-		for (Task task : manager.getTasks(5, false)) {
+		for (Task task : manager.getTasks(5, false, false)) {
 			entry = new Entry();
 			entry.setTitle(new Text(task.getTitle()));
 			StringBuffer summary = new StringBuffer();
