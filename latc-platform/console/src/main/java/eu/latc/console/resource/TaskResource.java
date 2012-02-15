@@ -28,7 +28,7 @@ import eu.latc.console.objects.Task;
  * @author cgueret
  * 
  */
-public class TaskResource extends ConsoleResource {
+public class TaskResource extends BaseResource {
 	// Logger instance
 	protected final Logger logger = LoggerFactory.getLogger(TaskResource.class);
 
@@ -75,13 +75,14 @@ public class TaskResource extends ConsoleResource {
 
 	/**
 	 * Delete a configuration file
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Delete
 	public Representation remove(Form parameters) throws Exception {
 		// Check credentials
 		if (parameters.getFirstValue("api_key", true) == null
-				|| !parameters.getFirstValue("api_key", true).equals(APIKeyResource.KEY)) {
+				|| !parameters.getFirstValue("api_key", true).equals(APIKey.KEY)) {
 			setStatus(Status.CLIENT_ERROR_FORBIDDEN);
 			return null;
 		}
@@ -96,7 +97,8 @@ public class TaskResource extends ConsoleResource {
 
 	/**
 	 * Return information about the linking specification
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 * 
 	 */
 	@Get
@@ -119,15 +121,14 @@ public class TaskResource extends ConsoleResource {
 
 	/**
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@Put
 	public Representation updateInformation(Form form) throws Exception {
 		logger.info("[PUT] Update details for " + taskID + " with " + form);
 
 		// Check credentials
-		if (form.getFirstValue("api_key", true) == null
-				|| !form.getFirstValue("api_key", true).equals(APIKeyResource.KEY)) {
+		if (form.getFirstValue("api_key", true) == null || !form.getFirstValue("api_key", true).equals(APIKey.KEY)) {
 			setStatus(Status.CLIENT_ERROR_FORBIDDEN);
 			return null;
 		}

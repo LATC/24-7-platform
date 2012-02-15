@@ -27,9 +27,9 @@ import eu.latc.console.ObjectManager;
 import eu.latc.console.objects.Notification;
 import eu.latc.console.objects.Task;
 
-public class TasksResource extends ConsoleResource {
+public class Tasks extends BaseResource {
 	// Logger instance
-	protected final Logger logger = LoggerFactory.getLogger(TasksResource.class);
+	protected final Logger logger = LoggerFactory.getLogger(Tasks.class);
 
 	/*
 	 * (non-Javadoc)
@@ -79,7 +79,7 @@ public class TasksResource extends ConsoleResource {
 		String author = form.getFirstValue("author", true);
 
 		// Check credentials
-		if (api_key == null || !api_key.equals(APIKeyResource.KEY)) {
+		if (api_key == null || !api_key.equals(APIKey.KEY)) {
 			logger.warn("Invalid key " + api_key);
 			setStatus(Status.CLIENT_ERROR_FORBIDDEN);
 			return null;

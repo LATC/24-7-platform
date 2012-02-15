@@ -20,9 +20,9 @@ import eu.latc.console.objects.Notification;
  * @author cgueret
  * 
  */
-public class NotificationsResource extends ConsoleResource {
+public class Notifications extends BaseResource {
 	// Logger instance
-	protected final Logger logger = LoggerFactory.getLogger(NotificationsResource.class);
+	protected final Logger logger = LoggerFactory.getLogger(Notifications.class);
 
 	/**
 	 * Return all the notifications stored in the system

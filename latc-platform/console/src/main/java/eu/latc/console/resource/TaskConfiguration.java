@@ -19,9 +19,9 @@ import eu.latc.console.objects.Notification;
  * @author cgueret
  * 
  */
-public class TaskConfigurationResource extends TaskResource {
+public class TaskConfiguration extends TaskResource {
 	// Logger instance
-	protected final Logger logger = LoggerFactory.getLogger(TaskConfigurationResource.class);
+	protected final Logger logger = LoggerFactory.getLogger(TaskConfiguration.class);
 
 	/**
 	 * Update an existing configuration file
@@ -37,7 +37,7 @@ public class TaskConfigurationResource extends TaskResource {
 
 		// Check credentials
 		if (form.getFirstValue("api_key", true) == null
-				|| !form.getFirstValue("api_key", true).equals(APIKeyResource.KEY)) {
+				|| !form.getFirstValue("api_key", true).equals(APIKey.KEY)) {
 			setStatus(Status.CLIENT_ERROR_FORBIDDEN);
 			return null;
 		}

@@ -19,9 +19,9 @@ import org.slf4j.LoggerFactory;
  * @author Christophe Guéret <christophe.gueret@gmail.com>
  * 
  */
-public class APIKeyResource extends ConsoleResource {
+public class APIKey extends BaseResource {
 	// Logger instance
-	protected final Logger logger = LoggerFactory.getLogger(APIKeyResource.class);
+	protected final Logger logger = LoggerFactory.getLogger(APIKey.class);
 	
 	private final static String LOGIN = "admin";
 	private final static String PASSWORD = "LATCPassw0rD";

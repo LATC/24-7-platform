@@ -24,9 +24,9 @@ import eu.latc.console.objects.Notification;
  * @author Christophe Guéret <christophe.gueret@gmail.com>
  * 
  */
-public class StatisticsResource extends ServerResource {
+public class Statistics extends ServerResource {
 	// Logger instance
-	protected final Logger logger = LoggerFactory.getLogger(StatisticsResource.class);
+	protected final Logger logger = LoggerFactory.getLogger(Statistics.class);
 
 	/**
 	 * Return the list of tasks

@@ -7,7 +7,7 @@ import org.apache.commons.httpclient.URI;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.json.JSONObject;
 
-import eu.latc.console.resource.APIKeyResource;
+import eu.latc.console.resource.APIKey;
 
 public class PostReport {
 	// Where the application is deployed
@@ -34,7 +34,7 @@ public class PostReport {
 		NameValuePair[] request = { 
 				new NameValuePair("message", "Generated some triples"),
 				new NameValuePair("severity", "info"), 
-				new NameValuePair("api_key", APIKeyResource.KEY), 
+				new NameValuePair("api_key", APIKey.KEY), 
 				new NameValuePair("data", data.toString()) };
 
 		// Diplay the result

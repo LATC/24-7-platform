@@ -18,9 +18,9 @@ import eu.latc.misc.MailSender;
  * @author Christophe Guéret <christophe.gueret@gmail.com>
  * 
  */
-public class ConsoleResource extends ServerResource {
+public class BaseResource extends ServerResource {
 	// Logger instance
-	protected final Logger logger = LoggerFactory.getLogger(ConsoleResource.class);
+	protected final Logger logger = LoggerFactory.getLogger(BaseResource.class);
 
 	/*
 	 * (non-Javadoc)

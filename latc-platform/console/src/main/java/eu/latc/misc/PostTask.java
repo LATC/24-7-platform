@@ -6,7 +6,7 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.URI;
 import org.apache.commons.httpclient.methods.PostMethod;
 
-import eu.latc.console.resource.APIKeyResource;
+import eu.latc.console.resource.APIKey;
 
 public class PostTask {
 	// Where the application is deployed
@@ -25,7 +25,7 @@ public class PostTask {
 		NameValuePair[] request = { 
 				new NameValuePair("specification", "<xml></xml>"),
 				new NameValuePair("title", "test"), 
-				new NameValuePair("api_key", APIKeyResource.KEY), 
+				new NameValuePair("api_key", APIKey.KEY), 
 				new NameValuePair("author", "Admin"),
 				new NameValuePair("description", "A test"),
 				};
