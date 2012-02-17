@@ -72,7 +72,6 @@ public class TaskTripleSets extends TaskResource {
 		}
 
 		// If no matching triple set has been found, return a 404
-		logger.info("fdfsfdf " + tripleSet);
 		if (tripleSet == null) {
 			setStatus(Status.CLIENT_ERROR_NOT_FOUND);
 			setExisting(false);
