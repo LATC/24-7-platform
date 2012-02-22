@@ -5,7 +5,7 @@
 	<artifactId>console</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>LATC-Console</name>
+	<name>console</name>
 	<url>http://maven.apache.org</url>
 	<repositories>
 		<repository>
@@ -138,6 +138,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>console</finalName>
+		<finalName>LATC-Console</finalName>
 	</build>
 </project>
