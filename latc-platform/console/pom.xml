@@ -14,6 +14,36 @@
 			<url>http://maven.restlet.org</url>
 		</repository>
 	</repositories>
+<!--
+	<properties>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+	<properties>
+-->
+	<build>
+		<finalName>LATC-Console</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.datanucleus</groupId>
+				<artifactId>maven-datanucleus-plugin</artifactId>
+				<version>2.0.0-release</version>
+				<!--
+				<configuration>
+				<log4jConfiguration>${basedir}/log4j.properties</log4jConfiguration>
+				<verbose>true</verbose>
+				</configuration>
+				-->
+				<executions>
+				<execution>
+				<phase>process-classes</phase>
+				<goals>
+				<goal>enhance</goal>
+				</goals>
+				</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -137,7 +167,4 @@
 			<version>20090211</version>
 		</dependency>
 	</dependencies>
-	<build>
-		<finalName>LATC-Console</finalName>
-	</build>
 </project>
