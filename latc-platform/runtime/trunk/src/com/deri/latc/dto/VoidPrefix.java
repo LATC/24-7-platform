@@ -10,25 +10,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class VoidPrefix {
-
-	private final static Map<String, String> prefix = new HashMap<String, String>();
-
-	public static void loadPrefix() {
+	
+	private final static Map <String,String> prefix=new HashMap<String, String>();
+	
+	public static void loadPrefix()
+	{
 		BufferedReader in;
 		try {
 			in = new BufferedReader(new FileReader("voidtmpl"));
 			String patternStr = "[ \t]*@prefix[ \t]*(.*):[ \t]*<(.*)>";
 			Pattern pattern = Pattern.compile(patternStr);
 			String readLine;
-			while ((readLine = in.readLine()) != null) {
-
-				Matcher matcher = pattern.matcher(readLine);
-				if (matcher.find())
-					prefix.put(matcher.group(1), matcher.group(2));
-				if (readLine.startsWith("**newprefix**"))
-					break;
-
-			}
+			 while ((readLine = in.readLine()) != null) {
+		
+				 Matcher matcher = pattern.matcher(readLine);
+				 if(matcher.find())
+				    prefix.put(matcher.group(1),matcher.group(2));
+				 if(readLine.startsWith("**newprefix**"))
+					 break;
+				    
+			 }
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,29 +37,32 @@ public class VoidPrefix {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		 
 	}
-
-	public static Map<String, String> getPrefix() {
-		if (prefix.size() == 0) {
+	
+	public static Map <String,String> getPrefix()
+	{
+		if(prefix.size()==0)
+		{
 			System.err.print("run loadPrefix first or please make sure file voidprefix is exist");
 			System.exit(0);
 			return null;
-		} else
+		}
+		else
 			return prefix;
-
+				
 	}
-
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
+		
 		VoidPrefix.loadPrefix();
-		Map<String, String> prefixes = VoidPrefix.getPrefix();
-		if (prefixes.size() > 0) {
-			for (final String ns : prefixes.keySet())
-				System.out.print("@prefix " + ns + ": <" + prefixes.get(ns) + ">. \n");
+		Map <String,String> prefixes = VoidPrefix.getPrefix();
+		if(prefixes.size()>0)
+		{
+			for (final String ns : prefixes.keySet() )
+				System.out.print("@prefix "+ns+": <"+prefixes.get(ns)+">. \n");
 		}
 
 	}
