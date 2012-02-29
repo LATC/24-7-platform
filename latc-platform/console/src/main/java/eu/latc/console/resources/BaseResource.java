@@ -6,6 +6,7 @@ package eu.latc.console.resources;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import org.restlet.data.MediaType;
 import org.restlet.data.Status;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.ServerResource;
@@ -56,17 +57,19 @@ public class BaseResource extends ServerResource {
 		}
 
 		try {
-			logger.info("Send mail");
+			// logger.info("Send mail");
 			// Send a mail
 			MailSender mailSender = new MailSender();
 			mailSender.setTopic("[LATC] Exception in Console");
 			mailSender.addRecepient("christophe.gueret@gmail.com");
 			// mailSender.addRecepient("anja@anjeve.de");
 			mailSender.setMessage(buffer.toString());
-			mailSender.send();
+			// mailSender.send();
 		} catch (Exception e) {
 			// Ignore the exception if we fail sending the mail
 			e.printStackTrace();
 		}
+
+		getResponse().setEntity(new StringRepresentation(buffer.toString(), MediaType.TEXT_HTML));
 	}
 }

@@ -91,6 +91,13 @@ public class Task implements Serializable {
 	@Persistent
 	private boolean isExecutable = true;
 
+	// Flag for the possible execution of the task.
+	// FIXME: This was used in an earlier version of the schema, need to keep it
+	// now
+	@SuppressWarnings("unused")
+	@Persistent
+	private boolean isTesting = false;
+
 	// The last modification date
 	@Persistent
 	private Date lastModificationDate = null;

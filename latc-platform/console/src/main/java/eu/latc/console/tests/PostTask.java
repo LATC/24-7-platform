@@ -22,13 +22,9 @@ public class PostTask {
 		// "title" is mandatory
 		// "author" is optional
 		// "description" is optional
-		NameValuePair[] request = { 
-				new NameValuePair("specification", "<xml></xml>"),
-				new NameValuePair("title", "test"), 
-				new NameValuePair("api_key", APIKey.KEY), 
-				new NameValuePair("author", "Admin"),
-				new NameValuePair("description", "A test"),
-				};
+		NameValuePair[] request = { new NameValuePair("specification", "<xml></xml>"),
+				new NameValuePair("title", "test"), new NameValuePair("api_key", APIKey.KEY),
+				new NameValuePair("author", "Admin"), new NameValuePair("description", "A test"), };
 
 		// Diplay the result
 		System.out.println("Message to send -> " + request.toString());
@@ -48,5 +44,6 @@ public class PostTask {
 		if (status != HttpStatus.SC_CREATED) {
 			throw new Exception("Received error status " + status);
 		}
+		System.out.println("response -> " + post.getResponseBodyAsString());
 	}
 }
