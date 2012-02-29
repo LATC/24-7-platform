@@ -7,13 +7,73 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>console</name>
 	<url>http://maven.apache.org</url>
+
+	<properties>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>maven-restlet</id>
 			<name>Public online Restlet repository</name>
 			<url>http://maven.restlet.org</url>
 		</repository>
+
+		<repository>
+			<id>DataNucleus_Repos2</id>
+			<name>DataNucleus Repository</name>
+			<url>http://www.datanucleus.org/downloads/maven2</url>
+		</repository>
+		<repository> <!-- Required for transaction-api transitive dep -->
+			<id>Java_Net_LEGACY</id>
+			<name>Java.Net legacy</name>
+			<url>http://download.java.net/maven/1/</url>
+			<layout>legacy</layout>
+		</repository>
 	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>DataNucleus_2</id>
+			<url>http://www.datanucleus.org/downloads/maven2/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<finalName>LATC-Console</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.datanucleus</groupId>
+				<artifactId>maven-datanucleus-plugin</artifactId>
+				<version>3.0.0-release</version>
+<!--
+				<configuration>
+					<verbose>true</verbose>
+					<!- - <log4jConfiguration>${basedir}/log4j.properties</log4jConfiguration> 
+						<props>${basedir}/datanucleus.properties </props> - ->
+				</configuration>
+				<executions>
+					<execution>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>enhance</goal>
+						</goals>
+					</execution>
+				</executions>
+-->
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<configuration>
+					<server>tomcat_local</server>
+					<url>http://localhost:8080/manager</url>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -137,7 +197,4 @@
 			<version>20090211</version>
 		</dependency>
 	</dependencies>
-	<build>
-		<finalName>console</finalName>
-	</build>
 </project>
