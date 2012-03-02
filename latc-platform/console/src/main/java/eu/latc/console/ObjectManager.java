@@ -220,12 +220,20 @@ public class ObjectManager {
 	 *            the identifier of the LinkingConfiguration to delete
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	public void deleteTask(String taskID) throws Exception {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
 		try {
 			tx.begin();
+
+			// Delete all the notifications
+			Query query = pm.newQuery(Notification.class);
+			query.setOrdering("date ascending");
+			for (Notification report : (Collection<Notification>) query.execute())
+				if (report.getTask().getIdentifier().equals(taskID))
+					pm.deletePersistent(report);
 
 			// Request the deletion
 			StringIdentity id = new StringIdentity(Task.class, taskID);

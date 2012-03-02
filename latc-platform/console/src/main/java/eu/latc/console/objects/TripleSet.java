@@ -8,6 +8,8 @@ import java.util.Date;
 
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.DatastoreIdentity;
+import javax.jdo.annotations.ForeignKey;
+import javax.jdo.annotations.ForeignKeyAction;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -52,6 +54,7 @@ public class TripleSet implements Serializable {
 
 	// The task this triple set relates to
 	@Persistent
+	@ForeignKey(name = "TRIPLESET_FK1", deleteAction = ForeignKeyAction.CASCADE)
 	private Task task;
 
 	/**

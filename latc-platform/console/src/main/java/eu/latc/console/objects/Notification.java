@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.DatastoreIdentity;
+import javax.jdo.annotations.ForeignKey;
+import javax.jdo.annotations.ForeignKeyAction;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.NotPersistent;
@@ -53,6 +55,7 @@ public class Notification implements Serializable {
 
 	// The task this notification relates to
 	@Persistent
+	@ForeignKey(name = "NOTIFICATION_FK1", deleteAction = ForeignKeyAction.CASCADE)
 	private Task task;
 
 	// Data (extra information related to this notification)
