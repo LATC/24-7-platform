@@ -1,6 +1,8 @@
 package com.deri.latc.utility;
 
 
+import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -26,6 +28,7 @@ public class HadoopClient {
 	private static FileSystem hdfs = null;
 	private String ErrorMessage = null;
 	private final  	Configuration conf=new Configuration();
+	private String jobID =null;
 	
 	
 	/**
@@ -61,6 +64,15 @@ public class HadoopClient {
 	        }
 	}
 	
+	public void storeJobID()
+	{
+		File unjar = this.lastFileModified(conf.get("hadoop.tmp.dir"));
+		if(unjar!=null)
+		{
+		this.jobID=unjar.getPath();
+		System.out.println(this.jobID);
+		}
+	}
 	/**
 	 * Create file in HDFS
 	 * @param path	path of file in HDFS
@@ -158,8 +170,12 @@ public class HadoopClient {
 	{
 		boolean delete =false;
 		try {
-			Path tmp= new Path(conf.get("hadoop.tmp.dir"));
-			delete=tmp.getFileSystem(conf).delete(tmp, true);
+			
+			if(this.jobID!=null)
+			{
+				Path tmp= new Path(this.jobID);
+				delete=tmp.getFileSystem(conf).delete(tmp, true);
+			}
 			} catch(Exception e) {
 	            
 	        }
@@ -334,13 +350,40 @@ public class HadoopClient {
         }
 	    }
 
+	 private File lastFileModified(String dir) {
+	        File fl = new File(dir);
+	        File[] files = fl.listFiles(new FileFilter() {                  
+	                public boolean accept(File file) {
+	                        return file.isFile();
+	                }
+	        });
+	        long lastMod = Long.MIN_VALUE;
+	        File choise = null;
+	        if(files!=null)
+	        {
+	        for (File file : files) {
+	                if (file.lastModified() > lastMod) {
+	                        choise = file;
+	                        lastMod = file.lastModified();
+	                }
+	        }
+	        if(choise.isDirectory())
+	        	return choise;
+	        else
+	        	return null;
+	        }
+	        else 
+	        	return null;
+	}
+
 	
 	/**
 	 * @param args
 	 * @throws IOException 
 	 */
 	public static void main(String[] args)  {
-		
+		HadoopClient hc = new HadoopClient("/home/nurrak/KeyForPhD/latc/hadoop-1.0.0");
+		hc.storeJobID();
 	}
 
 }
