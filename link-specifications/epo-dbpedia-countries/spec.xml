@@ -1,0 +1,60 @@
+<Silk>
+  <Prefixes>
+    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://dbpedia.org/property/" id="dbp"></Prefix>
+    <Prefix namespace="http://epo.publicdata.eu/ebd/ontology/" id="epo"></Prefix>
+    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+    <Prefix namespace="http://www.w3.org/2004/02/skos/core#" id="skos"></Prefix>
+    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+    <Prefix namespace="http://dbpedia.org/ontology/" id="dbpediaowl"></Prefix>
+    <Prefix namespace="http://vocab.sciencewise.info/ontology#" id="sw"></Prefix>
+    <Prefix namespace="http://www.aktors.org/ontology/portal#" id="akt"></Prefix>
+  </Prefixes>
+  <DataSources>
+    <DataSource type="sparqlEndpoint" id="EPO">
+      <Param name="pageSize" value="1000"></Param>
+      <Param name="pauseTime" value="0"></Param>
+      <Param name="retryCount" value="3"></Param>
+      <Param name="endpointURI" value="http://epo.publicdata.eu/sparql"></Param>
+      <Param name="retryPause" value="1000"></Param>
+      <Param name="graph" value=""></Param>
+      <Param name="login" value=""></Param>
+      <Param name="entityList" value=""></Param>
+      <Param name="password" value=""></Param>
+      <Param name="additionalParameters" value=""></Param>
+    </DataSource>
+    <DataSource type="sparqlEndpoint" id="DBpedia">
+      <Param name="pageSize" value="1000"></Param>
+      <Param name="pauseTime" value="0"></Param>
+      <Param name="retryCount" value="3"></Param>
+      <Param name="endpointURI" value="http://dbpedia.org/sparql"></Param>
+      <Param name="retryPause" value="1000"></Param>
+      <Param name="graph" value=""></Param>
+      <Param name="login" value=""></Param>
+      <Param name="entityList" value=""></Param>
+      <Param name="password" value=""></Param>
+      <Param name="additionalParameters" value=""></Param>
+    </DataSource>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="EPODBpediaCountry">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset dataSource="EPO" var="a">
+        <RestrictTo>
+          ?a &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://epo.publicdata.eu/ebd/ontology/Country&gt; .
+        </RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="DBpedia" var="b">
+        <RestrictTo> ?b &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://dbpedia.org/ontology/Country&gt; . </RestrictTo>
+      </TargetDataset>
+      <LinkageRule>
+        <Compare weight="1" threshold="0.0" required="false" metric="equality" id="unnamed_3">
+          <Input path="?a/rdfs:label" id="unnamed_1"></Input>
+          <Input path="?b/rdfs:label" id="unnamed_2"></Input>
+        </Compare>
+      </LinkageRule>
+      <Filter></Filter>
+      <Outputs> </Outputs>
+    </Interlink>
+  </Interlinks>
+</Silk>
