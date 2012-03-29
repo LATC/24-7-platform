@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="/css/latc.css" type="text/css" media="screen" charset="utf-8">
+  <link rel="shortcut icon" href="http://latc-project.eu/sites/default/files/latc-favicon.gif" type="image/gif">
+  <title>LATC Dataset Finder</title>
+</head>
+<body>
+<div class="container">
+  <header class="page-header">
+    <h1><img alt="LATC" src="http://latc-project.eu/sites/default/files/latc-logo.gif"> Dataset Finder</h1>
+  </header>
+  <form action="" method="get" accept-charset="utf-8">
+  <p><label for="text">Text:</label><input type="text" name="text" value=""></p>
+  <p><input type="submit" value="Search &rarr;"></p>
+
+  <p>
+    This service uses the <a href="http://dsi.lod-cloud.net/">LATC Dataset Inventory</a> and <a href="http://sindice.com/">Sindice</a>
+    to return URIs of datasets that match a text keyword search.
+    </p>
+    <p>
+      It takes your input and searches Sindice for domains that publish RDF documents with matching text, then finds matching LOD cloud datasets for those domains.
+    </p>
+    <p>
+    Results are returned in JSON, for example, a search for <em>Hummingbird</em> will return:
+    <pre><code>
+{
+http://lod-cloud.net/dataset/dbpedia-live: {
+  domain: "dbpedia.org",
+  count: 1983,
+  search_url: "http://api.sindice.com/v3/search?fq=domain%3adbpedia.org&format=json&fq=format%3ardf&q=hummingbird"
+},
+http://lod-cloud.net/dataset/freebase: {
+  domain: "rdf.freebase.com",
+  count: 287,
+  search_url: "http://api.sindice.com/v3/search?fq=domain%3ardf.freebase.com&format=json&fq=format%3ardf&q=hummingbird"
+},
+http://lod-cloud.net/dataset/geospecies: {
+  domain: "lod.geospecies.org",
+  count: 77,
+  search_url: "http://api.sindice.com/v3/search?fq=domain%3alod.geospecies.org&format=json&fq=format%3ardf&q=hummingbird"
+},
+http://lod-cloud.net/dataset/bbc-wildlife-finder: {
+  domain: "www.bbc.co.uk",
+  count: 65,
+  search_url: "http://api.sindice.com/v3/search?fq=domain%3awww.bbc.co.uk&format=json&fq=format%3ardf&q=hummingbird"
+},
+http://lod-cloud.net/dataset/taxonconcept: {
+  domain: "lod.taxonconcept.org",
+  count: 58,
+  search_url: "http://api.sindice.com/v3/search?fq=domain%3alod.taxonconcept.org&format=json&fq=format%3ardf&q=hummingbird"
+},
+http://lod-cloud.net/dataset/rkb-explorer-oai: {
+  domain: "oai.rkbexplorer.com",
+  count: 53,
+  search_url: "http://api.sindice.com/v3/search?fq=domain%3aoai.rkbexplorer.com&format=json&fq=format%3ardf&q=hummingbird"
+}
+}
+</code></pre>
+
+  </form>
+<footer class="page-footer">
+  <p>LATC, Linked Open Data Around-The-Clock is a Specific Support Action in the context of the <a href="http://cordis.europa.eu/fp7/ict/">FP7 ICT Programme</a>. Our mission is to support people and organisations to better publish and consume Linked Open Data.</p>
+</footer>
+  
+</div>
+</body>
+</html>

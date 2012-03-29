@@ -1,4 +1,5 @@
 cache/*
+documents/properties-calculated-with-sparql.ttl
 api-keys.php
 talis-store-credentials.php
 lib/moriarty/.svn*
@@ -9,4 +10,4 @@ import.json
 last_imported_from_ckan
 import_errors.log
 lib/moriarty/.svn/*
-documents/properties-calculated-with-sparql.ttl
+
