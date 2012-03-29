@@ -1,0 +1,24 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix qa: <http://qa.linkeddata.org/ontology/> .
+
+<http://linkset.org>
+    qa:duplicates "0"^^<http://www.w3.org/2001/XMLSchema#int> ;
+    qa:errors "0"^^<http://www.w3.org/2001/XMLSchema#int> ;
+    qa:negEstPrecHigh ".01261615891430123241"^^<http://www.w3.org/2001/XMLSchema#float> ;
+    qa:negEstPrecLow ".01261615891430123241"^^<http://www.w3.org/2001/XMLSchema#float> ;
+    qa:negIntersection "3"^^<http://www.w3.org/2001/XMLSchema#int> ;
+    qa:negPrec ".05084745762711864406"^^<http://www.w3.org/2001/XMLSchema#float> ;
+    qa:negRec "1.00000000000000000000"^^<http://www.w3.org/2001/XMLSchema#float> ;
+    qa:negRefsetDuplicates "0"^^<http://www.w3.org/2001/XMLSchema#int> ;
+    qa:negRefsetErrors "0"^^<http://www.w3.org/2001/XMLSchema#int> ;
+    qa:negRefsetTriples "3"^^<http://www.w3.org/2001/XMLSchema#int> ;
+    qa:posEstPrecHigh ".85388600018414250226"^^<http://www.w3.org/2001/XMLSchema#float> ;
+    qa:posEstPrecLow ".85388600018414250226"^^<http://www.w3.org/2001/XMLSchema#float> ;
+    qa:posIntersection "56"^^<http://www.w3.org/2001/XMLSchema#int> ;
+    qa:posPrec ".94915254237288135593"^^<http://www.w3.org/2001/XMLSchema#float> ;
+    qa:posRec "1.00000000000000000000"^^<http://www.w3.org/2001/XMLSchema#float> ;
+    qa:posRefsetDuplicates "0"^^<http://www.w3.org/2001/XMLSchema#int> ;
+    qa:posRefsetErrors "0"^^<http://www.w3.org/2001/XMLSchema#int> ;
+    qa:posRefsetTriples "56"^^<http://www.w3.org/2001/XMLSchema#int> ;
+    <http://rdfs.org/ns/void#triples> "59"^^<http://www.w3.org/2001/XMLSchema#int> .
+

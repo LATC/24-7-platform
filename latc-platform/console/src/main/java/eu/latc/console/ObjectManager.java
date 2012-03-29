@@ -12,12 +12,12 @@ import javax.jdo.Query;
 import javax.jdo.Transaction;
 import javax.jdo.identity.StringIdentity;
 
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import eu.latc.console.objects.Notification;
 import eu.latc.console.objects.Task;
+import eu.latc.console.objects.TripleSet;
 
 /**
  * The manager interfaces with all the modifications performed to the
@@ -77,13 +77,55 @@ public class ObjectManager {
 	}
 
 	/**
+	 * Return the processing queue as a list of LinkingConfiguration
+	 * 
+	 * @param limit
+	 * @param filterExecutable
+	 *            if true only return tasks having the executable flag set to
+	 *            executableStatus
+	 * @param executableStatus
+	 *            if filterExecutable is true, value of executable for the tasks
+	 * 
+	 * @return a sorted collection of LinkingConfiguration
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public Collection<Task> getTasks(int limit, boolean filterExecutable, boolean executableStatus) throws Exception {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+
+			// Query for all the LinkingConfiguration files, sorted by position
+			Query query = pm.newQuery(Task.class);
+			query.setOrdering("creationDate descending");
+
+			// Create collection of detached instances of the
+			Collection<Task> res = new ArrayList<Task>();
+			for (Task task : (Collection<Task>) query.execute())
+				if (limit == 0 || res.size() < limit)
+					if (filterExecutable == false || (task.isExecutable() == executableStatus))
+						res.add(pm.detachCopy(task));
+
+			return res;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
 	 * @param identifier
 	 *            the identifier of the linking configuration file
 	 * @return the linking configuration object associated to that identifier or
 	 *         null if there is no matching object
 	 * @throws Exception
 	 */
-	public Task getTaskByID(String identifier) throws Exception {
+	public Task getTaskByID(String identifier) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
@@ -92,11 +134,39 @@ public class ObjectManager {
 
 			StringIdentity id = new StringIdentity(Task.class, identifier);
 			Task conf = (Task) pm.getObjectById(id);
-			Task copy = (Task) pm.detachCopy(conf);
 
-			return copy;
+			return pm.detachCopy(conf);
 		} catch (Exception e) {
-			throw e;
+			return null;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
+	 * @param taskID
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public Task getTaskBySlug(String taskID) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+
+			// Browse through all the tasks
+			Task task = null;
+			Query query = pm.newQuery(Task.class);
+			for (Task res : (Collection<Task>) query.execute())
+				if (res.getSlug().equals(taskID))
+					task = pm.detachCopy(res);
+
+			return task;
+		} catch (Exception e) {
+			return null;
 		} finally {
 			if (tx.isActive())
 				tx.rollback();
@@ -122,186 +192,18 @@ public class ObjectManager {
 		try {
 			tx.begin();
 
-			// Create the LinkingConfiguration and persist it
-			Task linkingConfiguration = new Task();
-			linkingConfiguration.setConfiguration(configuration);
-			linkingConfiguration.setDescription("no description");
-			linkingConfiguration.setTitle("no title");
-			pm.makePersistent(linkingConfiguration);
-			logger.info("Persisted task " + linkingConfiguration.getIdentifier());
+			// Create the Task and persist it
+			Task task = new Task();
+			task.setConfiguration(configuration);
+			task.setDescription("no description");
+			task.setTitle("no title");
+			pm.makePersistent(task);
+			logger.info("Persisted task " + task.getIdentifier());
 
 			// Apply
 			tx.commit();
 
-			return linkingConfiguration.getIdentifier();
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			if (tx.isActive())
-				tx.rollback();
-			pm.close();
-		}
-	}
-
-	/**
-	 * @param configuration
-	 * @param report
-	 * @return
-	 * @throws Exception
-	 */
-	public String addNotification(String taskID, Notification report) throws Exception {
-		// Check if the report is valid
-		if (report == null)
-			return null;
-
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		try {
-			// Open a transaction
-			tx.begin();
-
-			// Get the configuration
-			StringIdentity id = new StringIdentity(Task.class, taskID);
-			Task task = (Task) pm.getObjectById(id);
-
-			// Set the date to the report and bind it to the task
-			Date now = new Date();
-			report.setDate(now);
-			report.setTask(task);
-			task.addReport(report);
-
-			// Check if the task should stay executable
-			/**
-			 * if (task.isExecutable()) { // If the report is a successful
-			 * creation of triples, switch // off the execution flag if
-			 * (!report.getData().equals("")) { JSONObject data = new
-			 * JSONObject(report.getData()); if (data.has("size") &&
-			 * data.getLong("size") > 0) task.setExecutable(false); } } else {
-			 * // If the report is an update of the task, switch on the flag //
-			 * FIXME String comparison is not robust if
-			 * (report.getMessage().equals("Configuration modified"))
-			 * task.setExecutable(true); }
-			 */
-			
-			// Save the report
-			pm.makePersistent(report);
-			logger.info("Persisted report " + report.getIdentifier());
-
-			// Apply
-			tx.commit();
-
-			return report.getIdentifier();
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			if (tx.isActive())
-				tx.rollback();
-			pm.close();
-		}
-	}
-
-	/**
-	 * Return the processing queue as a list of LinkingConfiguration
-	 * 
-	 * @param limit
-	 * @param filter
-	 * 
-	 * @return a sorted collection of LinkingConfiguration
-	 * @throws Exception
-	 */
-	@SuppressWarnings("unchecked")
-	public Collection<Task> getTasks(int limit, boolean filter) throws Exception {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		try {
-			tx.begin();
-
-			// Query for all the LinkingConfiguration files, sorted by position
-			Query query = pm.newQuery(Task.class);
-			query.setOrdering("creationDate descending");
-
-			// Create collection of detached instances of the
-			Collection<Task> res = new ArrayList<Task>();
-			for (Task task : (Collection<Task>) query.execute())
-				if (limit == 0 || res.size() < limit)
-					if (task.isExecutable() || !filter)
-						res.add((Task) pm.detachCopy(task));
-
-			return res;
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			if (tx.isActive())
-				tx.rollback();
-			pm.close();
-		}
-	}
-
-	/**
-	 * @return
-	 * @throws Exception
-	 */
-	// TODO Move this method to the Task object (if possible)
-	@SuppressWarnings("unchecked")
-	public Collection<Notification> getReportsFor(String configurationID) throws Exception {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		try {
-			tx.begin();
-
-			// Query for all the reports
-			Query query = pm.newQuery(Notification.class);
-			query.setOrdering("date ascending");
-			Collection<Notification> res = new ArrayList<Notification>();
-			for (Notification report : (Collection<Notification>) query.execute())
-				if (report.getTask().getIdentifier().equals(configurationID))
-					res.add((Notification) pm.detachCopy(report));
-
-			return res;
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			if (tx.isActive())
-				tx.rollback();
-			pm.close();
-		}
-	}
-
-	/**
-	 * @param limit
-	 *            the maximum number of reports to return, set to 0 for all of
-	 *            them
-	 * @return
-	 * @throws Exception
-	 */
-	@SuppressWarnings("unchecked")
-	public Collection<Notification> getNotifications(int limit) throws Exception {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		try {
-			tx.begin();
-
-			// Query for all the reports
-			Query query = pm.newQuery(Notification.class);
-			query.setOrdering("date descending");
-
-			// Compose the result set
-			Collection<Notification> res = new ArrayList<Notification>();
-			for (Notification report : (Collection<Notification>) query.execute()) {
-				if (limit == 0 || res.size() < limit) {
-					// FIXME Hack to get the title of the concerned task
-					String title = report.getTask().getTitle();
-					Notification reportCopy = (Notification) pm.detachCopy(report);
-					reportCopy.setTaskTitle(title);
-					res.add(reportCopy);
-				}
-			}
-
-			return res;
+			return task.getIdentifier();
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -318,12 +220,20 @@ public class ObjectManager {
 	 *            the identifier of the LinkingConfiguration to delete
 	 * @throws Exception
 	 */
-	public void eraseTask(String taskID) throws Exception {
+	@SuppressWarnings("unchecked")
+	public void deleteTask(String taskID) throws Exception {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
 		try {
 			tx.begin();
+
+			// Delete all the notifications
+			Query query = pm.newQuery(Notification.class);
+			query.setOrdering("date ascending");
+			for (Notification report : (Collection<Notification>) query.execute())
+				if (report.getTask().getIdentifier().equals(taskID))
+					pm.deletePersistent(report);
 
 			// Request the deletion
 			StringIdentity id = new StringIdentity(Task.class, taskID);
@@ -371,4 +281,234 @@ public class ObjectManager {
 		}
 	}
 
+	/**
+	 * @param configuration
+	 * @param notification
+	 * @return
+	 * @throws Exception
+	 */
+	public String addNotification(String taskID, Notification notification) throws Exception {
+		// Check if the report is valid
+		if (notification == null)
+			return null;
+
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			// Open a transaction
+			tx.begin();
+
+			// Get the configuration
+			StringIdentity id = new StringIdentity(Task.class, taskID);
+			Task task = (Task) pm.getObjectById(id);
+
+			// Set the date to the report and bind it to the task
+			Date now = new Date();
+			notification.setDate(now);
+			notification.setTask(task);
+			task.addNotification(notification);
+
+			// Check if the task should stay executable
+			/**
+			 * if (task.isExecutable()) { // If the report is a successful
+			 * creation of triples, switch // off the execution flag if
+			 * (!report.getData().equals("")) { JSONObject data = new
+			 * JSONObject(report.getData()); if (data.has("size") &&
+			 * data.getLong("size") > 0) task.setExecutable(false); } } else {
+			 * // If the report is an update of the task, switch on the flag //
+			 * FIXME String comparison is not robust if
+			 * (report.getMessage().equals("Configuration modified"))
+			 * task.setExecutable(true); }
+			 */
+
+			// Save the report
+			pm.makePersistent(notification);
+			logger.info("Persisted report " + notification.getIdentifier());
+
+			// Apply
+			tx.commit();
+
+			return notification.getIdentifier();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
+	 * @param limit
+	 *            the maximum number of reports to return, set to 0 for all of
+	 *            them
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public Collection<Notification> getNotifications(int limit) throws Exception {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+
+			// Query for all the reports
+			Query query = pm.newQuery(Notification.class);
+			query.setOrdering("date descending");
+
+			// Compose the result set
+			Collection<Notification> res = new ArrayList<Notification>();
+			for (Notification report : (Collection<Notification>) query.execute()) {
+				if (limit == 0 || res.size() < limit) {
+					// FIXME Hack to get the title of the concerned task
+					String title = report.getTask().getTitle();
+					Notification reportCopy = pm.detachCopy(report);
+					reportCopy.setTaskTitle(title);
+					res.add(reportCopy);
+				}
+			}
+
+			return res;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
+	 * @return
+	 * @throws Exception
+	 */
+	// TODO Move this method to the Task object (if possible)
+	@SuppressWarnings("unchecked")
+	public Collection<Notification> getNotificationsForTask(String configurationID) throws Exception {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+
+			// Query for all the notifications
+			Query query = pm.newQuery(Notification.class);
+			query.setOrdering("date ascending");
+			Collection<Notification> res = new ArrayList<Notification>();
+			for (Notification report : (Collection<Notification>) query.execute())
+				if (report.getTask().getIdentifier().equals(configurationID))
+					res.add(pm.detachCopy(report));
+
+			return res;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
+	 * @param taskID
+	 * @param triplesetName
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public TripleSet getTripleSetForTask(String taskID, String triplesetName) throws Exception {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+
+			TripleSet targetSet = null;
+
+			// Browse all the triple sets
+			Query query = pm.newQuery(TripleSet.class);
+			for (TripleSet set : (Collection<TripleSet>) query.execute())
+				if (set.getTask().getIdentifier().equals(taskID))
+					if (set.getName().toLowerCase().equals(triplesetName))
+						targetSet = pm.detachCopy(set);
+
+			return targetSet;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
+	 * @param tripleSet
+	 * @throws Exception
+	 */
+	public void saveTripleSet(TripleSet tripleSet) throws Exception {
+		// Update the last modification field
+		tripleSet.setLastModificationDate(new Date());
+
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+
+			// Apply the changes
+			pm.makePersistent(tripleSet);
+
+			tx.commit();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+	/**
+	 * @param taskID
+	 * @param tripleSet
+	 * @throws Exception
+	 */
+	public String addTripleSet(String taskID, TripleSet tripleSet) throws Exception {
+		// Check if the report is valid
+		if (tripleSet == null)
+			return null;
+
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			// Open a transaction
+			tx.begin();
+
+			// Get the task
+			StringIdentity id = new StringIdentity(Task.class, taskID);
+			Task task = (Task) pm.getObjectById(id);
+
+			tripleSet.setTask(task);
+			task.addTripleSet(tripleSet);
+
+			// Save the triple set
+			pm.makePersistent(tripleSet);
+			logger.info("Persisted triple set " + tripleSet.getIdentifier());
+
+			// Apply
+			tx.commit();
+
+			return tripleSet.getIdentifier();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
 }

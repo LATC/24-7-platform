@@ -62,7 +62,7 @@ public class LinksetEvaluator extends Configured implements Tool
         Model model = ModelFactory.createDefaultModel();
         EvaluationResultFormatter.toModel(model, eval, evalUri);
 
-        model.write(System.out, "TTL");
+        model.write(System.out, "N-TRIPLES");
 
         return 0;
     }

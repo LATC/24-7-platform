@@ -1,0 +1,109 @@
+Jul 7, 2011 10:31:42 AM de.fuberlin.wiwiss.silk.linkspec.LinkFilter$ fromXML
+WARNING: The use of a global threshold is deprecated. Please use per-comparison thresholds.
+Jul 7, 2011 10:31:42 AM de.fuberlin.wiwiss.silk.util.Task$class apply
+INFO: Loading started
+Jul 7, 2011 10:31:42 AM de.fuberlin.wiwiss.silk.LoadTask$LoadingThread run
+INFO: Loading instances of dataset http://eculture2.cs.vu.nl:8890/sparql
+Jul 7, 2011 10:31:42 AM de.fuberlin.wiwiss.silk.LoadTask$LoadingThread run
+INFO: Loading instances of dataset http://dblp.l3s.de/d2r/sparql
+Jul 7, 2011 10:31:42 AM de.fuberlin.wiwiss.silk.util.Task$class apply
+INFO: Matching started
+Jul 7, 2011 10:31:43 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 0 of block 0
+Jul 7, 2011 10:31:44 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 1 of block 0
+Jul 7, 2011 10:31:44 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 2 of block 0
+Jul 7, 2011 10:31:44 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 3 of block 0
+Jul 7, 2011 10:31:44 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 4 of block 0
+Jul 7, 2011 10:31:44 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 5 of block 0
+Jul 7, 2011 10:31:44 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 6 of block 0
+Jul 7, 2011 10:31:45 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 7 of block 0
+Jul 7, 2011 10:31:45 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 8 of block 0
+Jul 7, 2011 10:31:45 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 9 of block 0
+Jul 7, 2011 10:31:45 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 10 of block 0
+Jul 7, 2011 10:31:46 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 11 of block 0
+Jul 7, 2011 10:31:46 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 12 of block 0
+Jul 7, 2011 10:31:46 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 13 of block 0
+Jul 7, 2011 10:31:46 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 14 of block 0
+Jul 7, 2011 10:31:47 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 15 of block 0
+Jul 7, 2011 10:31:47 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 16 of block 0
+Jul 7, 2011 10:31:47 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 17 of block 0
+Jul 7, 2011 10:31:47 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 18 of block 0
+Jul 7, 2011 10:31:48 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 19 of block 0
+Jul 7, 2011 10:31:48 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 20 of block 0
+Jul 7, 2011 10:31:48 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 21 of block 0
+Jul 7, 2011 10:31:49 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 22 of block 0
+Jul 7, 2011 10:31:49 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 23 of block 0
+Jul 7, 2011 10:31:49 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 24 of block 0
+Jul 7, 2011 10:31:50 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 25 of block 0
+Jul 7, 2011 10:31:50 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 26 of block 0
+Jul 7, 2011 10:31:50 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 27 of block 0
+Jul 7, 2011 10:31:51 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 28 of block 0
+Jul 7, 2011 10:31:51 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 29 of block 0
+Jul 7, 2011 10:31:52 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 30 of block 0
+Jul 7, 2011 10:31:52 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 31 of block 0
+Jul 7, 2011 10:31:52 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 32 of block 0
+Jul 7, 2011 10:31:52 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache write
+INFO: Finished writing 33190 instances with type '?a rdf:type swc:AcademicEvent .' in 10.06 seconds
+Jul 7, 2011 10:31:52 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache$Block writePartitionToFile
+INFO: Written partition 33 of block 0
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.instance.FileInstanceCache write
+INFO: Finished writing 0 instances with type '?b rdf:type foaf:Document .' in 74.057 seconds
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.util.Task$class liftedTree1$1
+INFO: Loading done
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.MatchTask execute
+INFO: Executed matching in 74.075 seconds
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.util.Task$class liftedTree1$1
+INFO: Matching done
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.util.Task$class apply
+INFO: Filtering started
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.util.Task$class update
+INFO: Filtering output (0.0%)
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.FilterTask execute
+INFO: Filtered 0 links yielding 0 links
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.util.Task$class liftedTree1$1
+INFO: Filtering done
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.util.Task$class apply
+INFO: Writing output started
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.output.Output close
+INFO: Wrote 0 links
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.output.Output close
+INFO: Wrote 0 links
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.util.Task$class liftedTree1$1
+INFO: Writing output done
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.Silk$ de$fuberlin$wiwiss$silk$Silk$$executeLinkSpec
+INFO: Total time: 74.245 seconds
+Jul 7, 2011 10:32:56 AM de.fuberlin.wiwiss.silk.Silk$ main
+WARNING: The following warnings haven been generated during the execution:
+- The use of a global threshold is deprecated. Please use per-comparison thresholds.

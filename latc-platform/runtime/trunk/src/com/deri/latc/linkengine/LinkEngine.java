@@ -10,14 +10,17 @@ import com.deri.latc.dto.VoidInfoDto;
 import com.deri.latc.utility.OngoingHandling;
 import com.deri.latc.utility.Parameters;
 import com.deri.latc.utility.LogFormatter;
+import com.deri.latc.utility.SparqlEndpointConnection;
 import com.deri.latc.utility.SpecParser;
 import com.deri.latc.utility.TestHTTP;
 import com.deri.latc.utility.HadoopClient;
 import com.deri.latc.utility.ReportCSV;
 import com.deri.latc.utility.ReportCSV.status;
+import com.hp.hpl.jena.rdf.model.Model;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,6 +32,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 
+import org.apache.hadoop.ipc.Client;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -46,8 +50,9 @@ public class LinkEngine {
 
 	private static final Logger logfile = Logger.getLogger("RuntimeLog");
 	private String RESULTDIR;
+	private String RESULTHOST;
 	private Map <String,String> toDoList = new TreeMap<String, String>();
-
+	private boolean qa=false; // flag to run QA eval or not 
 
 	/**
 	 * 
@@ -80,6 +85,7 @@ public class LinkEngine {
 		String datepattern = "yyyy-MM-dd";
 		SimpleDateFormat sdf =new SimpleDateFormat(datepattern);
 		 RESULTDIR = Parameters.RESULT_LOCAL_DIR+'/'+sdf.format(new Date());
+		 RESULTHOST=Parameters.RESULTS_HOST+'/'+sdf.format(new Date());
 		 boolean exists = (new File(Parameters.RESULT_LOCAL_DIR)).exists();
 		 if (!exists)
 			 (new File(Parameters.RESULT_LOCAL_DIR)).mkdirs();
@@ -152,8 +158,7 @@ public class LinkEngine {
             if (!exists)
    			 (new File(RESULTDIR +'/'+ title )).mkdirs();
            
-          
-            
+           qa =false;          
         	
             
             /*
@@ -184,6 +189,7 @@ public class LinkEngine {
 //	         	6- data dump
 	            datepattern = "yyyy-MM-dd";
 	    		sdf.applyPattern(datepattern);
+	    		
                 Void.setDataDump(Parameters.RESULTS_HOST + '/' +sdf.format(new Date())+'/'+title + "/"+Parameters.LINKS_FILE_STORE);
                 Void.setSpec(Parameters.RESULTS_HOST + '/' +sdf.format(new Date())+'/'+title + "/"+Parameters.SPEC_FILE);
                 
@@ -198,7 +204,7 @@ public class LinkEngine {
                 }
                 
 	        	//testing endpoint
-	            if(Void.getSourceSparqlEndpoint()!=null && !this.testConn(Void.getSourceSparqlEndpoint()))
+	            if(Void.getSourceSparqlEndpoint()!=null && !SparqlEndpointConnection.connection(Void.getSourceSparqlEndpoint()))
 	            	{
 	            		Date errDate = new Date();
 	            		Void.setRemarks(Void.getSourceSparqlEndpoint()+" DOWN");
@@ -206,7 +212,7 @@ public class LinkEngine {
 	            		 report.putData(id, title, Void.getSpec(), errDate.getTime()-startDate.getTime(), st, Void.getRemarks(),Void.getStatItem(),specAuthor);
 	            		continue;
 	            	}
-	            if(Void.getTargetSparqlEndpoint()!=null && !this.testConn(Void.getTargetSparqlEndpoint()))
+	            if(Void.getTargetSparqlEndpoint()!=null && !SparqlEndpointConnection.connection(Void.getTargetSparqlEndpoint()))
 	            	{
 	            		Date errDate = new Date();	
 	            		Void.setRemarks(Void.getTargetSparqlEndpoint()+" DOWN");
@@ -214,7 +220,7 @@ public class LinkEngine {
 	            		 report.putData(id, title, Void.getSpec(), errDate.getTime()-startDate.getTime(), st, Void.getRemarks(),Void.getStatItem(),specAuthor);
 	            		continue;
 	            	}
-	            if(Void.getSourceUriLookupEndpoint()!=null && !this.testConn(Void.getSourceUriLookupEndpoint()))
+	            if(Void.getSourceUriLookupEndpoint()!=null && !SparqlEndpointConnection.connection(Void.getSourceUriLookupEndpoint()))
 	            	{
 	            	Date errDate = new Date();	
 	            	Void.setRemarks(Void.getSourceUriLookupEndpoint()+" DOWN");
@@ -222,7 +228,7 @@ public class LinkEngine {
 	            		 report.putData(id, title, Void.getSpec(), errDate.getTime()-startDate.getTime(), st, Void.getRemarks(),Void.getStatItem(),specAuthor);
 	            		continue;
 	            	}
-	            if(Void.getTargetUriLookupEndpoint()!=null && !this.testConn(Void.getTargetUriLookupEndpoint()))
+	            if(Void.getTargetUriLookupEndpoint()!=null && !SparqlEndpointConnection.connection(Void.getTargetUriLookupEndpoint()))
 	            	{
 	            	Date errDate = new Date();
 	            		Void.setRemarks(Void.getTargetUriLookupEndpoint()+" DOWN");
@@ -244,11 +250,38 @@ public class LinkEngine {
 	                // 2-e
 	                Void.setRemarks(Void.getStatItem()+" Links generated successfully");
 	                logfile.info( "Processing id "+id+" title "+title+ " success");
+	                if(qa && client.getPositive(id))
+	                {
+	                	 cw.writeIt("positive.nt", client.getMessage());
+	                	 String resource = "http://test.org/";
+	                	 String polarity = "";
+	                	 File linksFile = new File(RESULTDIR +'/'+ title + '/'+Parameters.LINKS_FILE_STORE);
+	                     File refsFile = new File("positive.nt");
+	                     FileOutputStream fout=new FileOutputStream(RESULTDIR +'/'+ title + '/'+"positiveQA.nt");
+	                     Model model = LinksetEvaluatorBashWrapper.evaluate(resource, linksFile, refsFile, polarity);
+	                     model.write(fout, "N-TRIPLES");
+	                     if(!MDSConnection.put(null,RESULTHOST +'/'+ title + '/'+"positiveQA.nt"))
+	                		  logfile.severe("Error sending positiveQA to MDS "+MDSConnection.message);
+	                }
+	                if(qa && client.getNegative(id))
+	                {
+	                	cw.writeIt("negative.nt", client.getMessage());
+	                	 String resource = "http://test.org/";
+	                	 String polarity = "";
+	                	 File linksFile = new File(RESULTDIR +'/'+ title + '/'+Parameters.LINKS_FILE_STORE);
+	                     File refsFile = new File("negative.nt");
+	                     FileOutputStream fout=new FileOutputStream(RESULTDIR +'/'+ title + '/'+"negativeQA.nt");
+	                     Model model = LinksetEvaluatorBashWrapper.evaluate(resource, linksFile, refsFile, polarity);
+	                     model.write(fout, "N-TRIPLES");
+	                     if(!MDSConnection.put(null,RESULTHOST +'/'+ title + '/'+"negativeQA.nt"))
+	                		  logfile.severe("Error sending negativeQA to MDS "+MDSConnection.message);
+	                }
+	                	
 	
 	            } // if hadoop
 	            else {
 	            	logfile.severe( "Processing id "+id+" title "+title+ " failed");
-         	 
+	            	
 	            }
 	            Date endDate = new Date();
 	            
@@ -321,23 +354,27 @@ public class LinkEngine {
               loghadoop.info(command);
         
               process = Runtime.getRuntime().exec(command);
+              
               OngoingHandling ongoing = new OngoingHandling(process,vi);
               returnCode = process.waitFor();
-              
+              HC.storeJobID();
              
               // SILK LOAD success
               if (returnCode == 0) {
             	  ongoing.done();
+            	 
                   command = hadoop+ " jar silkmr.jar match ./cache ./r" + title + " ";
                   loghadoop.info(command);
                   process = Runtime.getRuntime().exec(command);
                   returnCode = process.waitFor();
+                  HC.storeJobID();
                   if (returnCode != 0)
                   {
                 	  err=this.readProcess(process);
                 	  loghadoop.severe(err);
                 	  vi.setRemarks(err);
                       logfile.severe("Job Failed: Error in Matching Data");
+                      HC.deleteTmpDir();
                       fh.close();
                       return false;
                   }
@@ -357,9 +394,11 @@ public class LinkEngine {
                   vi.setStatItem(numbLine);
                   if(numbLine >0)
                   {
+                	  qa=true;	  
                 	  logfile.info( "storing result at "+resultdir+'/' + title + '/'+Parameters.LINKS_FILE_STORE);
-                	  MDSConnection mds = new MDSConnection();
-                	  mds.putVOID(RESULTDIR +'/'+ title + '/'+ Parameters.VOID_FILE, vi.getDataDump());
+                	  if(!MDSConnection.put(null,RESULTHOST +'/'+ title + '/'+ Parameters.VOID_FILE))
+                		  logfile.severe("Error sending VOID to MDS "+MDSConnection.message);
+                	  
                   }
                   fh.close();
                   return true;
@@ -371,6 +410,7 @@ public class LinkEngine {
             		  loghadoop.severe("killing loading process");
                 	  vi.setRemarks("Terminates Process due to long loading time");
                 	  logfile.severe("Terminates Process due to long loading time");
+                	  HC.deleteTmpDir();
             	  }
             	  else
             	  {
@@ -378,8 +418,9 @@ public class LinkEngine {
             		  loghadoop.severe(err);
                 	  vi.setRemarks(err);
                 	  logfile.severe("Job Failed: Error in Loading Data");
+                	  HC.deleteTmpDir();
             	  }
-                  
+            	  
                   fh.close();
                   return false;
               }
@@ -450,7 +491,7 @@ public class LinkEngine {
      */
   
     
-    private boolean testConn(String URL)
+    /*private boolean testConn(String URL)
     {
 
         if(TestHTTP.test(URL))
@@ -461,7 +502,7 @@ public class LinkEngine {
         	return false;
         }
     }
-    
+    */
     public static void main(String[] args) throws Exception {
 
         LinkEngine le;

@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.Map;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -39,14 +40,16 @@ public class ListTranslator {
     	final ArrayList <String> blacklist = new ArrayList<String>();
     	
 		try {
+			if(new File("blacklist").exists())
+			{
 			final BufferedReader in= new BufferedReader(new FileReader("blacklist"));
 			
-		 String readLine;
-		 while ((readLine = in.readLine()) != null) {
+			String readLine;
+			while ((readLine = in.readLine()) != null) {
 			 readLine = readLine.replace("->", "To");
 			 blacklist.add(readLine.toLowerCase());
 			  }
-		 
+			}
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -67,6 +70,7 @@ public class ListTranslator {
                 title = title.replace("->", "To");
                 if(blacklist.contains(title.toLowerCase()))
                 	title = "**"+title;
+                if(item.getBoolean("executable"))
                 	LinkingConfigs.put(title,item.getString("identifier")+'#'+item.getString("created")+'#'+item.getString("modified")+'#'+item.getString("author"));  
             }
 

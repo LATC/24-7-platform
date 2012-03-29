@@ -6,6 +6,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.DatastoreIdentity;
@@ -34,6 +35,14 @@ import eu.latc.misc.DateToXSDateTime;
  * @author cgueret
  * 
  */
+/**
+ * @author Christophe Guéret <christophe.gueret@gmail.com>
+ *
+ */
+/**
+ * @author Christophe Guéret <christophe.gueret@gmail.com>
+ * 
+ */
 @PersistenceCapable(detachable = "true", identityType = IdentityType.APPLICATION)
 @DatastoreIdentity(strategy = IdGeneratorStrategy.UUIDHEX)
 @PrimaryKey(name = "identifier")
@@ -44,6 +53,13 @@ public class Task implements Serializable {
 	// Serialization ID
 	private static final long serialVersionUID = -8292316878407319874L;
 
+	// The identifier for this task
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.UUIDHEX)
+	@Column(name = "TASK_ID", jdbcType = "VARCHAR", length = 32)
+	private String identifier;
+
+	// The author of the task
 	@Persistent
 	private String author = "Administrator";
 
@@ -52,6 +68,7 @@ public class Task implements Serializable {
 	@Column(jdbcType = "VARCHAR", length = 20000)
 	private String configuration = "";
 
+	// The creation date
 	@Persistent
 	private Date creationDate = null;
 
@@ -64,22 +81,22 @@ public class Task implements Serializable {
 	@NotPersistent
 	private Document document = null;
 
-	// The identifier for this configuration file
-	@PrimaryKey
-	@Persistent(valueStrategy = IdGeneratorStrategy.UUIDHEX)
-	@Column(name = "TASK_ID", jdbcType = "VARCHAR", length = 32)
-	private String identifier;
-
 	// Flag for the maturity of the task.
-	// The idea is that results of "testing" configuration runs should not be
+	// The idea is that results of non vetted configuration runs should not be
 	// published through the API.
 	@Persistent
-	private boolean isTesting = false;
+	private boolean isVetted = false;
 
 	// Flag for the possible execution of the task.
-	// Under some conditions, a task may not be desired for execution
 	@Persistent
 	private boolean isExecutable = true;
+
+	// Flag for the possible execution of the task.
+	// FIXME: This was used in an earlier version of the schema, need to keep it
+	// now
+	@SuppressWarnings("unused")
+	@Persistent
+	private boolean isTesting = false;
 
 	// The last modification date
 	@Persistent
@@ -88,7 +105,12 @@ public class Task implements Serializable {
 	// Collection of notifications
 	@Persistent
 	@Element(types = Notification.class, column = "TASK_ID", dependent = "true", mappedBy = "task")
-	private Collection<Notification> notifications = new ArrayList<Notification>();
+	private final Collection<Notification> notifications = new ArrayList<Notification>();
+
+	// Collection of triple sets
+	@Persistent
+	@Element(types = TripleSet.class, column = "TASK_ID", dependent = "true", mappedBy = "task")
+	private final Collection<TripleSet> triplesets = new ArrayList<TripleSet>();
 
 	// A title
 	@Persistent
@@ -96,10 +118,37 @@ public class Task implements Serializable {
 	private String title = "";
 
 	/**
+	 * Add a new notification to the list
+	 * 
 	 * @param report
 	 */
-	public void addReport(Notification report) {
-		notifications.add(report);
+	public void addNotification(Notification notification) {
+		notifications.add(notification);
+	}
+
+	/**
+	 * Get all the notifications associated with that task
+	 * 
+	 * @return
+	 */
+	public Collection<Notification> getNotifications() {
+		return notifications;
+	}
+
+	/**
+	 * @param tripleSet
+	 */
+	public void addTripleSet(TripleSet tripleSet) {
+		triplesets.add(tripleSet);
+	}
+
+	/**
+	 * Get all the triple sets associated with that task
+	 * 
+	 * @return the triple sets
+	 */
+	public Collection<TripleSet> getTripleSets() {
+		return triplesets;
 	}
 
 	/**
@@ -112,116 +161,19 @@ public class Task implements Serializable {
 	/**
 	 * @return
 	 */
-	public String getConfiguration() {
-		return configuration;
-	}
-
-	/**
-	 * @return
-	 */
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	/**
-	 * Get the description of the configuration file
-	 * 
-	 * @return
-	 */
-	public String getDescription() {
-		if (description == null)
-			return "No description";
-		return description;
-	}
-
-	/**
-	 * Return the XML document of the configuration file stored for this object
-	 * 
-	 * @return an XML document or <code>null</code> of the current configuration
-	 *         file is not valid (should never happen, this is checked at
-	 *         assignment time)
-	 */
-	public Document getDocument() {
-		// If the document has not been parsed yet, do it now
-		if (this.document == null) {
-			try {
-				this.document = parseLinkingConfiguration(this.configuration);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		return this.document;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getIdentifier() {
-		return identifier;
-	}
-
-	/**
-	 * @return
-	 */
-	public Date getLastModificationDate() {
-		return lastModificationDate;
-	}
-
-	/**
-	 * @return
-	 */
-	public Collection<Notification> getReports() {
-		return notifications;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getTitle() {
-		return title;
-	}
-
-	/**
-	 * @return
-	 */
-	public boolean isTesting() {
-		return isTesting;
-	}
-
-	/**
-	 * @param linkingConfiguration
-	 * @return
-	 * @throws Exception
-	 */
-	private Document parseLinkingConfiguration(String linkingConfiguration) {
-		Document doc = null;
-		try {
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			StringReader reader = new StringReader(linkingConfiguration);
-			InputSource inputSource = new InputSource(reader);
-			doc = builder.parse(inputSource);
-			reader.close();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return doc;
-	}
-
-	/**
-	 * @return
-	 */
 	public void setAuthor(String author) {
 		this.author = author;
 	}
 
 	/**
-	 * Assign a new configuration file to the LinkingConfiguration object
+	 * @return
+	 */
+	public String getConfiguration() {
+		return configuration;
+	}
+
+	/**
+	 * Assign a new configuration file to this task
 	 * 
 	 * @param configuration
 	 *            The configuration file expressed in the XML format used by
@@ -246,11 +198,43 @@ public class Task implements Serializable {
 	}
 
 	/**
+	 * @return
+	 */
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	/**
 	 * @param creationDate
 	 */
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 		this.lastModificationDate = this.creationDate;
+	}
+
+	/**
+	 * @return
+	 */
+	public Date getLastModificationDate() {
+		return lastModificationDate;
+	}
+
+	/**
+	 * @param lastModificationDate
+	 */
+	public void setLastModificationDate(Date lastModificationDate) {
+		this.lastModificationDate = lastModificationDate;
+	}
+
+	/**
+	 * Get the description of the configuration file
+	 * 
+	 * @return
+	 */
+	public String getDescription() {
+		if (description == null)
+			return "No description";
+		return description;
 	}
 
 	/**
@@ -264,31 +248,42 @@ public class Task implements Serializable {
 	}
 
 	/**
-	 * @param lastModificationDate
+	 * Return the XML document of the configuration file stored for this object
+	 * 
+	 * @return an XML document or <code>null</code> of the current configuration
+	 *         file is not valid (should never happen, this is checked at
+	 *         assignment time)
 	 */
-	public void setLastModificationDate(Date lastModificationDate) {
-		this.lastModificationDate = lastModificationDate;
+	public Document getDocument() {
+		// If the document has not been parsed yet, do it now
+		if (this.document == null) {
+			try {
+				this.document = parseLinkingConfiguration(this.configuration);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return this.document;
 	}
 
 	/**
-	 * @param isTesting
+	 * The identifier is an immutable name associated to the task when it is
+	 * created
+	 * 
+	 * @return the identifier of the task (a UUID string)
 	 */
-	public void setTesting(boolean isTesting) {
-		this.isTesting = isTesting;
+	public String getIdentifier() {
+		return identifier;
 	}
 
 	/**
-	 * @param isExecutable the isExecutable to set
+	 * The title is a free text string used to shortly describe the task
+	 * 
+	 * @return the title associated to the task
 	 */
-	public void setExecutable(boolean isExecutable) {
-		this.isExecutable = isExecutable;
-	}
-
-	/**
-	 * @return the isExecutable
-	 */
-	public boolean isExecutable() {
-		return isExecutable;
+	public String getTitle() {
+		return title;
 	}
 
 	/**
@@ -299,22 +294,94 @@ public class Task implements Serializable {
 	}
 
 	/**
+	 * Create a slug from the name of the task. Code grabbed from
+	 * ListTranslator.java in the Runtime to ensure consistent creation of names
+	 * 
+	 * @return a slug for the task
+	 */
+	public String getSlug() {
+		StringTokenizer st = new StringTokenizer(this.getTitle(), " ", false);
+		String slug = "";
+		while (st.hasMoreElements())
+			slug += st.nextElement();
+		slug = slug.replace("->", "To");
+		return slug;
+	}
+
+	/**
+	 * @param isVetted
+	 */
+	public void setVetted(boolean isVetted) {
+		this.isVetted = isVetted;
+	}
+
+	/**
+	 * @return
+	 */
+	public boolean isVetted() {
+		return isVetted;
+	}
+
+	/**
+	 * To blacklist a task, set this flag to false. It won't be returned when a
+	 * call on the list of tasks will be is.sued
+	 * 
+	 * @param isExecutable
+	 *            the isExecutable value to set
+	 */
+	public void setExecutable(boolean isExecutable) {
+		this.isExecutable = isExecutable;
+	}
+
+	/**
+	 * @return true if the task can be executed, false otherwise
+	 */
+	public boolean isExecutable() {
+		return isExecutable;
+	}
+
+	/**
 	 * @return
 	 * @throws JSONException
 	 */
 	public JSONObject toJSON() throws JSONException {
 		JSONObject entry = new JSONObject();
-		entry.put("identifier", identifier);
-		entry.put("title", title);
-		entry.put("description", description);
-		entry.put("author", author);
-		entry.put("executable", isExecutable);
+		entry.put("identifier", this.getIdentifier());
+		entry.put("title", this.getTitle());
+		entry.put("description", this.getDescription());
+		entry.put("author", this.getAuthor());
+		entry.put("executable", this.isExecutable());
+		entry.put("vetted", this.isVetted());
+		entry.put("slug", this.getSlug());
 		if (creationDate != null)
 			entry.put("created", DateToXSDateTime.format(creationDate));
 		if (lastModificationDate != null)
 			entry.put("modified", DateToXSDateTime.format(lastModificationDate));
-		entry.put("testing", isTesting);
 		return entry;
+	}
+
+	/**
+	 * @param linkingConfiguration
+	 * @return
+	 * @throws Exception
+	 */
+	private Document parseLinkingConfiguration(String linkingConfiguration) {
+		Document doc = null;
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			StringReader reader = new StringReader(linkingConfiguration);
+			InputSource inputSource = new InputSource(reader);
+			doc = builder.parse(inputSource);
+			reader.close();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return doc;
 	}
 }
 

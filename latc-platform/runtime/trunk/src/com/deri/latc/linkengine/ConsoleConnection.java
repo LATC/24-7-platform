@@ -163,6 +163,29 @@ public class ConsoleConnection {
    }
    
    /**
+    * Get positive link file, given specified ID
+    * @param id	ID of task
+    * @return	true if get specification successfully	
+    */
+   public boolean getPositive(String id)
+   {
+	   final String url = consolehost + "/task/" + id + "/triplesets/positive";
+	   return this.getData(url);	 
+   }
+   
+   /**
+    * Get megative link file, given specified ID
+    * @param id	ID of task
+    * @return	true if get specification successfully	
+    */
+   public boolean getNegative(String id)
+   {
+	   final String url = consolehost + "/task/" + id + "/triplesets/negative";
+	   return this.getData(url);	 
+   }
+   
+   
+   /**
     * Get specification file, given specified ID
     * @param id	ID of task
     * @return	true if get specification successfully	

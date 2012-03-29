@@ -58,7 +58,7 @@ public class SpecParser extends DefaultHandler {
     	{
 	    	for(final String ds : this.datasource)
 	    	{
-	    		String [] dsSplit = ds.split("-",3);
+	    		String [] dsSplit = ds.split("#",3);
 	    		if(dsSplit[0].equalsIgnoreCase(Void.getSourceDatasetName()))
 	    			if(dsSplit[1].startsWith("0"))
 	    				Void.setSourceSparqlEndpoint(dsSplit[2]);
@@ -82,15 +82,15 @@ public class SpecParser extends DefaultHandler {
     	{
     		datasource[i]=atts.getValue("id");
     		if(atts.getValue("type").equalsIgnoreCase("sparqlEndpoint"))
-    			datasource[i]+="-0";	
+    			datasource[i]+="#0";	
     		else
-    			datasource[i]+="-1";	
+    			datasource[i]+="#1";	
     		
     	}
     	//sparqlEndpoint OR URILookUp
     	if(qName.equalsIgnoreCase("param") && atts.getValue("name").equalsIgnoreCase("endpointURI"))
     	{
-    		datasource[i]+='-'+atts.getValue("value");	
+    		datasource[i]+='#'+atts.getValue("value");	
     	}
     	    	
     	//LinkType
@@ -151,7 +151,7 @@ public class SpecParser extends DefaultHandler {
 		SpecParser handler = new SpecParser();
 		xr.setContentHandler(handler);
 		xr.setErrorHandler(handler);
-    	 FileReader r = new FileReader(args[0]);
+    	 FileReader r = new FileReader("/tmp/spec.xml");
 				xr.parse(new InputSource(r));
 				VoidInfoDto Vi=handler.getVoid();
 				System.out.println(Vi.getSourceDatasetName());

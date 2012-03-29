@@ -9,10 +9,23 @@
 ls=$1
 rs=$2
 
+
+if [ ! -f "$ls" ]; then
+	echo "Error: No link set specified or not a name of a file (arg is '$ls')"
+        exit -1
+fi
+
+if [ ! -f "$rs" ]; then
+        echo "Error: No reference set specified or not a name of a file (arg is '$rs')"
+        exit -1
+fi
+
+
+
 # Check if a positive.nt file exists
 if [ -f "$ls" -a -f "$rs" ]; then
 
-	startDate=`date`
+	startDate=`date +%s`
 
 	refsetTmp=`tempfile`
 	linksetTmp=`tempfile`
@@ -71,7 +84,7 @@ if [ -f "$ls" -a -f "$rs" ]; then
 	refsetDuplicateSize=$(($rawRefsetSize-$refsetSize))
 	linksetDuplicateSize=$(($rawLinksetSize-$linksetSize))
 
-	endDate=`date`
+	endDate=`date +%s`
 
 
 	DIR="$( cd "$( dirname "$0" )" && pwd )"

@@ -30,124 +30,148 @@ messages = {
     ERROR      : '[!!] %s',
 }
 
-def synchronize_directory(dir):
-    '''
-    Push the content of a directory to the LATC console
-    '''
-    tasks = [f for f in os.listdir(dir) if os.path.isdir(f)]
-    for task in sorted(tasks):
-        res = synchronize_task(dir, task)
-        print messages.get(res) % task
 
-def push_new(dir, task, spec):
+def push_new_spec(dir, task, content):
 	'''
 	Push a new file to the server
 	'''
+	# Call parameters
+	data = [
+		('api_key', 'aa4967eb8b7a5ccab7dbb57aa2368c7f'),
+		('specification', content)
+	]
+	
+	# Read meta information if they are provided
+	meta = {}
 	meta_file = '%s/%s/README.txt' % (dir, task)
-	spec_file = '%s/%s/spec.xml' % (dir, task)
-    
-	if os.path.exists(spec_file):
-		# Read meta information and generate title
-		meta = {}
-		if os.path.exists(meta_file):
-			tmp = map(lambda x:re.sub(r'[\r\n]+', '', x), open(meta_file, 'r').readlines())
-			meta = dict((tmp[i * 2], tmp[i * 2 + 1]) for i in range(len(tmp) / 2))
-			tmp = task.split('-')
-			meta['Title:'] = "%s -> %s (%s)" % (tmp[0], tmp[1], "".join(tmp[2:]))
-		
-		# Upload the file
-		curl = pycurl.Curl()
-		response = cStringIO.StringIO()
-		values = [
-			('api_key', 'aa4967eb8b7a5ccab7dbb57aa2368c7f'),
-			('specification', spec),
-			('title', meta['Title:'])
-		]
+	if os.path.exists(meta_file):
+		tmp = map(lambda x:re.sub(r'[\r\n]+', '', x), open(meta_file, 'r').readlines())
+		meta = dict((tmp[i * 2], tmp[i * 2 + 1]) for i in range(len(tmp) / 2))
+		tmp = task.split('-')
+		meta['Title:'] = "%s -> %s (%s)" % (tmp[0], tmp[1], "".join(tmp[2:]))
+		if 'Title:' in meta.keys():
+			data.append(('title', meta['Title:']))
 		if 'Description:' in meta.keys():
-			values.append(('description', meta['Description:']))
+			data.append(('description', meta['Description:']))
 		if 'Creator:' in meta.keys():
-			values.append(('author', meta['Creator:']))
-		curl.setopt(curl.URL, SERVER + "/tasks")
-		curl.setopt(curl.POSTFIELDS, urllib.urlencode(values))
-		curl.setopt(curl.WRITEFUNCTION, response.write)
-		curl.perform()
-		
-		# Get the ID
-		if curl.getinfo(pycurl.HTTP_CODE) != 201:
-			print SERVER + "/tasks"
-			print curl.getinfo(pycurl.HTTP_CODE)
-			print values
-			print response.getvalue()
-		res = json.loads(response.getvalue())
-		curl.close()
-		
-		return res['id']
-	else:
-		return 0
+			data.append(('author', meta['Creator:']))
 
-def push_update(id, spec):
+	# Upload the file
+	curl = pycurl.Curl()
+	response = cStringIO.StringIO()
+	curl.setopt(curl.URL, SERVER + "/tasks")
+	curl.setopt(curl.POSTFIELDS, urllib.urlencode(data))
+	curl.setopt(curl.WRITEFUNCTION, response.write)
+	curl.perform()
+	if curl.getinfo(pycurl.HTTP_CODE) != 201:
+		return None
+	
+	# Get the ID
+	res = json.loads(response.getvalue())
+	curl.close()
+	return res['id']
+
+def push_update(id, target, content):
 	'''
 	Push an updated file to the server
 	'''
-	curl = pycurl.Curl()
 	data = [
 	     ('api_key', 'aa4967eb8b7a5ccab7dbb57aa2368c7f'),
-	     ('configuration', spec)
 	]
-	body = urllib.urlencode(data)
-	curl.setopt(curl.URL, SERVER + '/task/' + id + '/configuration')
-	curl.setopt(curl.HTTPHEADER, [ 'Content-Type:application/x-www-form-urlencoded; charset=utf-8', 'Expect: ']);
-	curl.setopt(curl.UPLOAD, 1)
-	request_buffer = cStringIO.StringIO(body)
-	curl.setopt(pycurl.READFUNCTION, request_buffer.read)
-	curl.setopt(curl.INFILESIZE, len(body))
 	response = cStringIO.StringIO()
+	
+	curl = pycurl.Curl()
 	curl.setopt(curl.WRITEFUNCTION, response.write)
+	curl.setopt(curl.URL, SERVER + '/task/' + id + target)
+	
+	if target == '/configuration':
+		# Send the content of configuration for tasks with a PUT
+		data.append(('configuration', content))
+		body = urllib.urlencode(data)
+		request_buffer = cStringIO.StringIO(body)
+		curl.setopt(pycurl.READFUNCTION, request_buffer.read)
+		curl.setopt(curl.HTTPHEADER, [ 'Content-Type:application/x-www-form-urlencoded; charset=utf-8', 'Expect: ']);
+		curl.setopt(curl.UPLOAD, 1)
+		curl.setopt(curl.INFILESIZE, len(body))
+	else:
+		# Send the content of triple sets with a POST
+		data.append(('triples', content))
+		response = cStringIO.StringIO()
+		curl.setopt(curl.POSTFIELDS, urllib.urlencode(data))
+		
 	curl.perform()
 	curl.close()
-    
+ 
 def synchronize_task(dir, task):
 	'''
 	Push a specific task and return a status code
 	'''
-	spec_file = '%s/%s/spec.xml' % (dir, task)
-	if os.path.exists(spec_file):
-		spec_local = "".join(open(spec_file).readlines())
-	    	
-		id_file = '%s/%s/id.txt' % (dir, task)
-		
-		# Retrieve the ID from a previous upload
-		id = None
-		if os.path.isfile(id_file):
-			id = open(id_file).readlines()[0]
-		
-		# If there is no ID, upload the file
-		if id == None:
-			id = push_new(dir, task, spec_local)
-			open(id_file, 'w').write(id)
-			return UPLOADED
-		else:
-			# Dowload the current specification from the server
-			spec_server = urllib2.urlopen(SERVER + '/task/' + id + '/configuration').read()
-		
-		# Compare the two versions
-		try:
-			disk = md5.new(parseString(spec_local).toxml()).hexdigest()
-			server = md5.new(parseString(spec_server).toxml()).hexdigest()
-			
-			# Push an update if needed
-			if disk == server:
-				return UP_TO_DATE            
-			else:
-				push_update(id, spec_local)
-				return UPDATED
-		except:
-			pass
-		
-	# We should not reach that line
-	return ERROR
+	
+	# We need to have all the content files to be able to push the spec
+	ok = True
+	for f in ['spec.xml', 'positive.nt', 'negative.nt']:
+		file = '%s/%s/%s' % (dir, task, f)
+		ok = ok and os.path.exists(file)
+	if not ok:
+		return ERROR
 
+	# default status
+	status = UP_TO_DATE
+	
+	#	
+	# Push the configuration file of the task
+	#
+	spec_file = '%s/%s/spec.xml' % (dir, task)
+	spec_local = "".join(open(spec_file).readlines())
+    	
+	# Retrieve the ID from a previous upload
+	id = None
+	id_file = '%s/%s/id.txt' % (dir, task)
+	if os.path.isfile(id_file):
+		id = open(id_file).readlines()[0]
+	
+	if id == None:
+		# If there is no ID, upload the file
+		id = push_new_spec(dir, task, spec_local)
+		if id != None:
+			open(id_file, 'w').write(id)
+	else:
+		# Download the current specification from the server
+		spec_server = urllib2.urlopen(SERVER + '/task/' + id + '/configuration').read()
+	
+		# Compare the two versions
+		disk = md5.new(parseString(spec_local).toxml()).hexdigest()
+		server = md5.new(parseString(spec_server).toxml()).hexdigest()
+		if disk != server:
+			push_update(id, '/configuration', spec_local)
+			status = UPDATED
+
+	#	
+	# If the task is on the server try to push its positive/negative triples
+	#
+	if id != None:
+		for f in  ['positive.nt', 'negative.nt']:
+			target = "/tripleset/%s" % f.split('.')[0]
+			content_local = "".join(open('%s/%s/%s' % (dir, task, f)).readlines())
+			try:
+				content_server = urllib2.urlopen(SERVER + '/task/' + id + target).read()
+			except:
+				content_server = ''
+			disk = md5.new(content_local.strip()).hexdigest()
+			server = md5.new(content_server.strip()).hexdigest()
+			if disk != server:
+				push_update(id, target, content_local)
+				status = UPDATED
+
+	return status
 
 if __name__ == '__main__':
-	synchronize_directory('.')
+	'''
+	Push the content of a directory to the LATC console
+	'''
+	dir = '.'
+	tasks = [f for f in os.listdir(dir) if os.path.isdir(f)]
+	for task in sorted(tasks):
+		res = synchronize_task(dir, task)
+		print messages.get(res) % task
 	
