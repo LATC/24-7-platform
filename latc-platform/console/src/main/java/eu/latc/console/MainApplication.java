@@ -1,8 +1,12 @@
 package eu.latc.console;
 
+import java.io.IOException;
+
 import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import eu.latc.console.resources.APIKey;
 import eu.latc.console.resources.Notifications;
@@ -14,14 +18,27 @@ import eu.latc.console.resources.TaskTripleSets;
 import eu.latc.console.resources.Tasks;
 
 public class MainApplication extends Application {
+	// Logger instance
+	protected final Logger logger = LoggerFactory.getLogger(MainApplication.class);
+
 	// Instance of the manager for configuration files
 	private ObjectManager manager = new ObjectManager();
+
+	// Parameters for the console
+	private Parameters parameters = new Parameters();
 
 	/**
 	 * Creates a root Restlet that will receive all incoming calls.
 	 */
 	@Override
 	public Restlet createInboundRoot() {
+		// Load the parameters
+		try {
+			parameters.loadFrom(getContext(), "war:///WEB-INF/configuration.properties");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		// Create a router
 		Router router = new Router(getContext());
 
@@ -72,5 +89,12 @@ public class MainApplication extends Application {
 	 */
 	public ObjectManager getObjectManager() {
 		return manager;
+	}
+
+	/**
+	 * @return
+	 */
+	public Parameters getParameters() {
+		return parameters;
 	}
 }

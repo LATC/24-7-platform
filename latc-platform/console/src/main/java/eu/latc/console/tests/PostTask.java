@@ -10,7 +10,8 @@ import eu.latc.console.resources.APIKey;
 
 public class PostTask {
 	// Where the application is deployed
-	final static String HOST = "http://latc-console.few.vu.nl/";
+	// final static String HOST = "http://latc-console.few.vu.nl/";
+	final static String HOST = "http://127.0.0.1:58080/LATC-console";
 
 	/**
 	 * @param args
