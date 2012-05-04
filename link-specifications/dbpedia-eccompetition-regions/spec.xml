@@ -1,0 +1,346 @@
+<Silk>
+  <Prefixes>
+    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://umbel.org/umbel/sc/" id="umbel-sc"></Prefix>
+    <Prefix namespace="http://dbpedia.org/property/" id="dbpedia-prop"></Prefix>
+    <Prefix namespace="http://purl.org/uF/hCard/terms/" id="hcterms"></Prefix>
+    <Prefix namespace="http://linkedgeodata.org/triplify/" id="linkedgeodata"></Prefix>
+    <Prefix namespace="http://purl.org/dc/dcmitype/" id="dctype"></Prefix>
+    <Prefix namespace="http://purl.org/dc/terms/" id="dc"></Prefix>
+    <Prefix namespace="http://dbpedia.org/ontology/" id="dbpedia"></Prefix>
+    <Prefix namespace="http://www.geonames.org/ontology#" id="geonames"></Prefix>
+    <Prefix namespace="http://open.vocab.org/terms/" id="ov"></Prefix>
+    <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="geo"></Prefix>
+    <Prefix namespace="http://purl.org/net7/vocab/scuole/" id="scuole"></Prefix>
+    <Prefix namespace="http://www.yovisto.com/ontology/0.9/" id="yo"></Prefix>
+    <Prefix namespace="http://dbpedia.org/property/" id="dbprop"></Prefix>
+    <Prefix namespace="http://www4.wiwiss.fu-berlin.de/eures/resource/eures/" id="eures"></Prefix>
+    <Prefix namespace="http://www4.wiwiss.fu-berlin.de/competition/resource/competition/" id="competition"></Prefix>
+    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+    <Prefix namespace="http://dbpedia.org/resource/" id="dbpedia-resource"></Prefix>
+    <Prefix namespace="http://dbpedia.org/class/yago/" id="yago"></Prefix>
+    <Prefix namespace="http://www.w3.org/2003/01/geo/wgs84_pos#" id="wgs84"></Prefix>
+    <Prefix namespace="http://www.w3.org/2004/02/skos/core#" id="skos"></Prefix>
+    <Prefix namespace="http://www.w3.org/2006/vcard/ns#" id="v"></Prefix>
+    <Prefix namespace="http://xmlns.com/foaf/0.1/" id="foaf"></Prefix>
+    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+    <Prefix namespace="http://purl.org/vocab/aiiso/schema#" id="aiiso"></Prefix>
+    <Prefix namespace="http://www4.wiwiss.fu-berlin.de/diseasome/resource/diseasome/" id="diseasome"></Prefix>
+    <Prefix namespace="http://linkedgeodata.org/ontology/" id="lgdo"></Prefix>
+    <Prefix namespace="http://dbpedia.org/ontology/" id="dbpedia-owl"></Prefix>
+    <Prefix namespace="http://data.linkedmdb.org/resource/movie/" id="linkedmdb"></Prefix>
+    <Prefix namespace="http://www.lotico.com/ontology/" id="loticoowl"></Prefix>
+    <Prefix namespace="http://linkedgeodata.org/property/" id="lgdp"></Prefix>
+  </Prefixes>
+  <DataSources>
+    <DataSource type="sparqlEndpoint" id="fu-berlin-eccompetition">
+      <Param name="endpointURI" value="http://www4.wiwiss.fu-berlin.de/eccompetition/sparql"></Param>
+      <Param name="retryCount" value="100"></Param>
+      <Param name="retryPause" value="1000"></Param>
+    </DataSource>
+    <DataSource type="sparqlEndpoint" id="dbpedia">
+      <Param value="http://dbpedia.org/sparql" name="endpointURI"></Param>
+      <Param value="http://dbpedia.org" name="graph"></Param>
+      <Param name="retryCount" value="100"></Param>
+      <Param name="retryPause" value="1000"></Param>
+    </DataSource>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="fu-berlin-eccompetition">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset dataSource="fu-berlin-eccompetition" var="a">
+        <RestrictTo> ?a rdf:type competition:Region </RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="dbpedia" var="b">
+        <RestrictTo> ?b rdf:type dbpedia-owl:Place </RestrictTo>
+      </TargetDataset>
+      <LinkCondition>
+<Aggregate type="max" required="false" weight="1">
+          <Compare required="false" metric="qGrams" weight="1" threshold="0.1">
+				<!-- <TransformInput function="regexReplace"> 
+				<TransformInput function="regexReplace"> -->
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+					<TransformInput function="regexReplace">
+						<TransformInput function="regexReplace">
+							<TransformInput function="regexReplace">
+							<TransformInput function="lowerCase">
+								<Input path="?a/rdfs:label"/>
+							</TransformInput>								
+								<Param value="é" name="regex"></Param>
+								<Param value="e" name="replace"></Param>
+							</TransformInput>
+						<Param value="-" name="regex"></Param>
+						<Param value=" " name="replace"></Param>
+						</TransformInput>
+					<Param value="ç" name="regex"></Param>
+					<Param value="c" name="replace"></Param>
+				</TransformInput>
+				<Param value="á" name="regex"></Param>
+				<Param value="a" name="replace"></Param>
+				</TransformInput>
+				<Param value="(\()([^\)]*)(\))" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>
+				<Param value="ü" name="regex"></Param>
+				<Param value="u" name="replace"></Param>
+				</TransformInput>
+			    <Param value="s(\s|$)" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>
+				<Param value="\'" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>				
+				<Param value="^the\s" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>							
+				<Param value="\." name="regex"></Param>
+				<Param value=" " name="replace"></Param>
+				</TransformInput>				
+				<Param value="^\." name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>				
+				<Param value="\.$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>				
+				<Param value="\," name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>				
+				<Param value="\/" name="regex"></Param>
+				<Param value=" " name="replace"></Param>
+				</TransformInput>					
+<!--				<Param value="\\&" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					-->
+				<Param value="ê" name="regex"></Param>
+				<Param value="e" name="replace"></Param>
+				</TransformInput>					
+				<Param value="ñ" name="regex"></Param>
+				<Param value="n" name="replace"></Param>
+				</TransformInput>				
+				<Param value="\+" name="regex"></Param>
+				<Param value=" " name="replace"></Param>
+				</TransformInput>					
+				<Param value="è" name="regex"></Param>
+				<Param value="e" name="replace"></Param>
+				</TransformInput>					
+				<Param value="ó" name="regex"></Param>
+				<Param value="o" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\sco$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>				
+				<Param value="\sag$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\sltd$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\scorporation$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\scompany$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\splc$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\sairline$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>				
+				<Param value="ú" name="regex"></Param>
+				<Param value="u" name="replace"></Param>
+				</TransformInput>					
+				<Param value="ø" name="regex"></Param>
+				<Param value="o" name="replace"></Param>
+				</TransformInput>					
+<!--				<Param value="\"" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					 -->
+				<Param value="\!" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\sand\s" name="regex"></Param>
+				<Param value=" " name="replace"></Param>
+				</TransformInput>					
+				<Param value="(i)(i)$" name="regex"></Param>
+				<Param value="$1" name="replace"></Param>
+				</TransformInput>							
+<TransformInput function="regexReplace">
+				<!-- <TransformInput function="regexReplace"> 
+				<TransformInput function="regexReplace"> -->
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+				<TransformInput function="regexReplace">
+					<TransformInput function="regexReplace">
+						<TransformInput function="regexReplace">
+							<TransformInput function="regexReplace">
+							<TransformInput function="lowerCase">
+								<Input path="?b/rdfs:label"/>
+							</TransformInput>								
+							<Param value="é" name="regex"></Param>
+								<Param value="e" name="replace"></Param>
+							</TransformInput>
+						<Param value="-" name="regex"></Param>
+						<Param value=" " name="replace"></Param>
+						</TransformInput>
+					<Param value="ç" name="regex"></Param>
+					<Param value="c" name="replace"></Param>
+				</TransformInput>
+				<Param value="á" name="regex"></Param>
+				<Param value="a" name="replace"></Param>
+				</TransformInput>
+				<Param value="(\()([^\)]*)(\))" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>
+				<Param value="ü" name="regex"></Param>
+				<Param value="u" name="replace"></Param>
+				</TransformInput>
+			    <Param value="s(\s|$)" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>
+				<Param value="\'" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>				
+				<Param value="^the\s" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>							
+				<Param value="\." name="regex"></Param>
+				<Param value=" " name="replace"></Param>
+				</TransformInput>				
+				<Param value="^\." name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>				
+				<Param value="\.$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>				
+				<Param value="\," name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>				
+				<Param value="\/" name="regex"></Param>
+				<Param value=" " name="replace"></Param>
+				</TransformInput>					
+<!--				<Param value="\\&" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					-->
+				<Param value="ê" name="regex"></Param>
+				<Param value="e" name="replace"></Param>
+				</TransformInput>					
+				<Param value="ñ" name="regex"></Param>
+				<Param value="n" name="replace"></Param>
+				</TransformInput>				
+				<Param value="\+" name="regex"></Param>
+				<Param value=" " name="replace"></Param>
+				</TransformInput>					
+				<Param value="è" name="regex"></Param>
+				<Param value="e" name="replace"></Param>
+				</TransformInput>					
+				<Param value="ó" name="regex"></Param>
+				<Param value="o" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\sco$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>				
+				<Param value="\sag$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\sltd$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\scorporation$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\scompany$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\splc$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\sairline$" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>				
+				<Param value="ú" name="regex"></Param>
+				<Param value="u" name="replace"></Param>
+				</TransformInput>					
+				<Param value="ø" name="regex"></Param>
+				<Param value="o" name="replace"></Param>
+				</TransformInput>					
+<!--				<Param value="\"" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					 -->
+				<Param value="\!" name="regex"></Param>
+				<Param value="" name="replace"></Param>
+				</TransformInput>					
+				<Param value="\sand\s" name="regex"></Param>
+				<Param value=" " name="replace"></Param>
+				</TransformInput>					
+				<Param value="(i)(i)$" name="regex"></Param>
+				<Param value="$1" name="replace"></Param>
+				</TransformInput>
+          </Compare>
+		</Aggregate>
+	  </LinkCondition>
+<Filter limit="1"></Filter>
+       <Outputs>
+        <Output maxConfidence="0.92" type="file" >
+          <Param name="file" value="dbpedia-eccompetition-regions.xml"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output minConfidence="0.92" type="file">
+          <Param name="file" value="dbpedia-eccompetition-companies.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+	   </Outputs>
+    </Interlink>
+  </Interlinks>
+</Silk>
