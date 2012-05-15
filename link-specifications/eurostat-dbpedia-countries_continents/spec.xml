@@ -36,7 +36,7 @@
     <Interlink id="CountriesAndContinents">
       <LinkType>owl:sameAs</LinkType>
       <SourceDataset dataSource="Eurostat" var="a">
-        <RestrictTo> ?a skos0:inScheme dic:c_birth . </RestrictTo>
+        <RestrictTo> {?a skos0:inScheme dic:c_birth .} UNION {?a skos0:inScheme dic:c_ctrl .} . </RestrictTo>
       </SourceDataset>
       <TargetDataset dataSource="DBpedia" var="b">
         <RestrictTo> {?b rdf:type dbo:Country .} UNION {?b rdf:type dbo:Continent .} . </RestrictTo>
