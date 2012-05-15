@@ -1,4 +1,4 @@
-<http://eurostat.linked-statistics.org/dic/c_ctrl#VA>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Vatican_City> .
+<http://eurostat.linked-statistics.org/dic/c_ctrl#VA>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Vatican_City> . 
 <http://eurostat.linked-statistics.org/dic/c_ctrl#EG>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Egypt> .
 <http://eurostat.linked-statistics.org/dic/c_ctrl#US>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/United_States> .
 <http://eurostat.linked-statistics.org/dic/c_ctrl#SB>  <http://www.w3.org/2002/07/owl#sameAs>  <http://dbpedia.org/resource/Solomon_Islands> .

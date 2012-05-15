@@ -1,5 +1,5 @@
 <Silk>
-  <Prefixes>
+  <Prefixes> 
     <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
     <Prefix namespace="http://eurostat.linked-statistics.org/dic/" id="dic"></Prefix>
     <Prefix namespace="http://dbpedia.org/ontology/" id="dbo"></Prefix>
