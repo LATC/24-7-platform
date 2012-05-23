@@ -13,7 +13,7 @@ class VoiDGraph extends SimpleGraph {
     if(!$rdf){
       $this->read_data($uri);
     }
-    $this->licenceGraph = new SimpleGraph(file_get_contents('documents/licenses.ttl'));
+    $this->licenceGraph = new SimpleGraph(file_get_contents((dirname(__FILE__)).'/../documents/licenses.ttl'));
     $this->Sparql = new SparqlService('http://mds.lod-cloud.net/sparql');
     $this->lodTopics = getLodTopics();
     parent::__construct($rdf);
@@ -78,13 +78,13 @@ class VoiDGraph extends SimpleGraph {
     }
   }
 
-  function to_ckan_json(){
+  function to_ckan_json($package_name=false){
     
     $struct = array(
       'resources' => array(),
       'relationships' => array(),
-      'tags' => array('lod'),
-      'groups' => array('lodcloud'),
+      'tags' => array('lod', 'lodcloud.candidate'),
+      'groups' => array(),
       'extras' => array(),
       'state' => 'active',
     );
@@ -95,7 +95,7 @@ class VoiDGraph extends SimpleGraph {
     $struct['resources'][] = $this->make_json_resource($this->uri, 'meta/void', 'VoID Dataset URI');
     $struct['resources'][] = $this->make_json_resource($this->get_sparqlendpoint($this->uri), 'api/sparql', 'SPARQL endpoint' );
     foreach($this->get_resource_triple_values($this->uri, VOID.'exampleResource') as $exampleResource){
-      $struct['resources'][] = $this->make_json_resource($this->uri, 'example/rdf', 'Example Resource');
+      $struct['resources'][] = $this->make_json_resource($exampleResource, 'example/rdf', 'Example Resource');
     }
 
     $prefixes = array_flip(getPrefixes());
@@ -114,19 +114,28 @@ class VoiDGraph extends SimpleGraph {
     if($namespace = $this->get_first_literal($this->uri, VOID.'uriSpace')){
       $struct['extras']['namespace'] = $namespace;
     }
-    if($triples = $this->get_first_literal($this->uri, VOID.'triples')){
-      $struct['extras']['triples'] = $triples;
+
+    /* voiD literals */
+
+    foreach(array('classes', 'entities','triples', 'properties', 'distinctSubjects', 'distinctObjects', 'documents', 'uriRegexPattern') as $literalProp){
+      if($val = $this->get_first_literal($this->uri, VOID.$literalProp)){
+        $struct['extras'][$literalProp] = $val;
+      }
     }
+    
+
+
     /**
      *  extras : links
      **/
-    
+    $nolinks = true; 
     foreach($this->get_resource_triple_values($this->uri, VOID.'subset') as $subsetUri){
       if($this->has_resource_triple($subsetUri, RDF_TYPE, VOID.'Linkset')){
         if($target = $this->get_linkset_target($subsetUri)){
           $targetName = $this->get_dataset_package_name($target);
           $tripleCount = $this->get_first_literal($target, VOID.'triples');
           $struct['extras']['links:'.$targetName]=$tripleCount; 
+          $nolinks = false;
         }
       }
     }
@@ -141,7 +150,26 @@ class VoiDGraph extends SimpleGraph {
       $struct['tags'][]= preg_replace('/[^a-zA-Z_0-9-]/', '-', $label);
     }
 
-   $struct['name'] = $this->get_dataset_package_name($this->uri); 
+    /* tags: provenance */
+
+    $provenanceTag = $this->has_provenance_metadata()? 'provenance-metadata' : 'no-provenance-metadata';
+    $struct['tags'][]=$provenanceTag;
+
+    /* tags: license */
+
+    $license = $this->get_license();
+    if($license){
+        $struct['tags'][]='license-metadata';
+    } else {
+      $struct['tags'][]='no-license-metadata';
+    }
+
+    /* links */
+    if($nolinks){
+      $struct['tags'][]='lodcloud.nolinks';
+    }
+
+   $struct['name'] = $package_name ? $package_name : $this->get_dataset_package_name($this->uri); 
    $struct['title'] =  $this->get_label($this->uri);
    $struct['notes'] = $this->get_description($this->uri);
    $struct['url'] = $this->get_homepage($this->uri);
@@ -162,18 +190,18 @@ class VoiDGraph extends SimpleGraph {
   }
 
   function get_dataset_author(){
-    if($author = $this->get_first_resource($this->uri, DCT.'creator')){
-      return $author;
-    } else if($maker = $this->get_first_resource($this->uri, FOAF.'maker')) {
-      return $maker;
-    } else {
-      return false;
-    }
-
+    return $this->get_first_resource($this->uri, array(DCT.'creator', FOAF.'maker'));
   }
 
   function get_dataset_date(){
-    return $this->get_first_literal();
+    return $this->get_first_literal($this->uri, array(
+      DCT.'modified',
+      DC.'modified',
+      DCT.'date',
+      DC.'date',
+      DCT.'created',
+      DC.'created',
+    ));
   }
 
   function has_provenance_metadata(){
@@ -188,12 +216,16 @@ class VoiDGraph extends SimpleGraph {
     $this->add_literal_triple($this->uri, OPENVOCAB.'shortName', $name);
   }
 
+  function get_license(){
+    return $this->get_first_resource($this->uri, array(DCT.'license', DCT.'rights'));
+  }
+
   function get_ckan_license(){
 
     if(
-      $license = $this->get_first_resource($this->uri, DCT.'license')
+      $license = $this->get_license()
       AND
-      $ckanLicenses = $this->get_subjects_where_resource(OWL_SAMEAS, $license)
+      $ckanLicenses = $this->licenceGraph->get_subjects_where_resource(OWL_SAMEAS, $license)
       AND 
       !empty($ckanLicenses)
     ){
@@ -215,38 +247,10 @@ class VoiDGraph extends SimpleGraph {
   function get_dataset_package_name($uri){
       if($packageName = $this->get_first_literal($uri, OPENVOCAB.'shortName')){
         return $packageName;
-      } 
-      $query = "PREFIX void: <".VOID.">
-        PREFIX ov: <http://open.vocab.org/terms/> \n 
-        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-        SELECT ?shortname WHERE {
-       \n";
-      if(strpos($uri, 'http://lod-cloud.net/')){
-        $query.= "<{$uri}> ov:shortName ?shortName .";
-      } else if($homepage = $this->get_homepage($uri)){
-        $query.=" ?dataset ov:shortName ?shortName ; foaf:homepage <{$homepage}>. ";
-      } else if($endpoint = $this->get_sparqlendpoint($uri)){
-        $query.="?dataset ov:shortName ?shortName ; void:sparqlEndpoint <{$endpoint}> . ";
       } else {
         return $this->create_package_name($uri);
       }
-       $query .= "} LIMIT 1";
-       var_dump($query); 
-       die;
-       $response = $this->Sparql->select($query, 'json');
-       if($response->is_success()
-       ){
-         $results = json_decode($response->body,true);
-         if(isset($results['bindings'][0])){
-            return $results['bindings'][0]['shortName']['value'];
-         } else {
-           return $this->create_package_name($uri);
-         }
-       } else {
-         var_dump($query, $response->body);
-        return $this->create_package_name($uri);
-      }
-    }
+  }
   
   
 
