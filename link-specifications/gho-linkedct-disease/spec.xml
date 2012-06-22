@@ -40,13 +40,11 @@
             </TargetDataset>
            <LinkCondition>
   			<Aggregate type="max">
-  			    <Compare metric="alternative">
+				<Compare metric="levenshtein">
 						<Input path="?diseasename/rdfs:label" />
 						<Input path="?b/rdfs:label" />
-						<Param name="metric" value="levenshtein" />
-						<Param name="filename" value="allparts.csv" />
-			</Compare>
-     		 </Aggregate>
+				</Compare>
+     		</Aggregate>
           </LinkCondition>
 
 <!-- 0.95 with limit 1 for just the links, the bottom one for evaluation -->
