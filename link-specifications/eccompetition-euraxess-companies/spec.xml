@@ -31,6 +31,7 @@
     <Prefix namespace="http://data.linkedmdb.org/resource/movie/" id="linkedmdb"></Prefix>
     <Prefix namespace="http://www.lotico.com/ontology/" id="loticoowl"></Prefix>
     <Prefix namespace="http://linkedgeodata.org/property/" id="lgdp"></Prefix>
+	<Prefix namespace="http://www4.wiwiss.fu-berlin.de/eccompetition/resource/eccompetition/" id="eccompetition"></Prefix>
 	<Prefix namespace="http://www4.wiwiss.fu-berlin.de/euraxess/resource/euraxess/" id="euraxess"></Prefix>
   </Prefixes>
   <DataSources>

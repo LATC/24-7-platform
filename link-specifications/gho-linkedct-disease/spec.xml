@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Silk>
 	<Prefixes>
+		<Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#" />
         <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
         <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#"/>
-	<Prefix id="dc" namespace="http://purl.org/dc/elements/1.1/" />
-	<Prefix id="meshr" namespace="http://bio2rdf.org/ns/mesh#" />
-	<Prefix id="gho" namespace="http://ghodata/" />
+		<Prefix id="dc" namespace="http://purl.org/dc/elements/1.1/" />
+		<Prefix id="meshr" namespace="http://bio2rdf.org/ns/mesh#" />
+		<Prefix id="gho" namespace="http://ghodata/" />
         <Prefix id="linkedct" namespace="http://data.linkedct.org/vocab/"/>
     </Prefixes>
 
