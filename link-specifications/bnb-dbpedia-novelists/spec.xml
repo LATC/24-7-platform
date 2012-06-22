@@ -23,6 +23,7 @@
     <Prefix namespace="http://transport.data.gov.uk/def/traffic/" id="traffic"></Prefix>
     <Prefix namespace="http://metoffice.dataincubator.org/vocabs/metoffice/" id="metoffice"></Prefix>
     <Prefix namespace="http://ontologi.es/rail/vocab#" id="rail"></Prefix>
+    <Prefix namespace="http://purl.org/ontology/bibo/" id="bibo"></Prefix>
   </Prefixes>
   <DataSources>
     <DataSource type="sparqlEndpoint" id="bluk-bnb">
