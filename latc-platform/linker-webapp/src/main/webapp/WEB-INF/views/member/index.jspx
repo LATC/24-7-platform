@@ -18,16 +18,27 @@
 		    <p>Use workbench to create new ...</p>
 		    <a href="${contextPrefix}workbench/" class="btn btn-primary" >Access workbench &#187;</a>
 	    </div>
-	    <div class="span4">
-	    	<h2>Your latest jobs</h2>
-		    <p>Use workbench to create new ...</p>
-		</div>
+	    
 	    <div class="span4">
 	    	<h2>Subscribe to rss </h2>
 		    <p>Use workbench to create new ...</p>
 		    <a href="" class="btn" >Subscribe &#187;</a>
 	    </div>
 	    
+	    <div class="span11" >
+          <h2>Latest jobs:</h2>
+       		<div id="latestJobs">
+       			LATEST JOBS
+       		</div>
+       </div>
 	    
+       <script type="text/javascript">
+     //<![CDATA[  
+      var username = "${user.username}";
+      $(document).ready(function(){
+          getLatestJobs(username);
+       });
+    //]]>
+       </script>
     </div>
 </div>

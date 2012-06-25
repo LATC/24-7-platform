@@ -59,8 +59,16 @@ public class HomeController {
     public ModelAndView latestJobs(Model uiModel,final HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
     	final String mdsUrl = (String) httpServletRequest.getSession().getServletContext().getAttribute(com.sindice.linker.servlet.AppServletConfigurationContextListener.MDS_URL);
     	final String mdsQueryLastJobs = (String) httpServletRequest.getSession().getServletContext().getAttribute(com.sindice.linker.servlet.AppServletConfigurationContextListener.MDS_QUERY_LAST_JOBS);
-		long mdsTimeout = 30;
-		
+    	final String mdsQueryLastUserJobs = (String) httpServletRequest.getSession().getServletContext().getAttribute(com.sindice.linker.servlet.AppServletConfigurationContextListener.MDS_QUERY_LAST_USER_JOBS);
+    	long mdsTimeout = 30;
+    	
+    	final String query;
+        if(httpServletRequest.getParameter("username")!=null){
+    		query = mdsQueryLastUserJobs.replaceAll("##USERNAME##", httpServletRequest.getParameter("username").trim());
+        }else{
+        	query =  mdsQueryLastJobs;
+        }
+    	
 		Map<String, Object> res = new HashMap<String,Object>();
 		res.put("status", "nok");
 		res.put("error", "");
@@ -68,7 +76,7 @@ public class HomeController {
 		ExecutorService executor = Executors.newCachedThreadPool();
 		Callable<Object> task = new Callable<Object>() {
 		   public Object call() {
-		      return getLastJobs(mdsUrl,mdsQueryLastJobs,httpServletRequest);
+		      return getLastJobs(mdsUrl,query,httpServletRequest);
 		   }
 		};
 		

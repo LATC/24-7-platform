@@ -50,6 +50,23 @@
 		LIMIT 100
 	</mdsQueryLastJobs>
 	<mdsQueryLastUserJobs>
+		PREFIX silkspec:  &lt;http://vocab.deri.ie/LinkSpec#&gt;
+		PREFIX purl: &lt;http://purl.org/net/provenance/ns#&gt;
+		PREFIX dc: &lt;http://purl.org/dc/terms/#&gt;
+		SELECT ?createdBy ?createdAt ?performedBy ?performedAt  WHERE {
+		?s  a  silkspec:SilkSpec;
+		    dc:created ?created;
+		    purl:createdBy ?createdByO;
+		    purl:retrievedBy ?retrievedByO.
+		
+		?createdByO purl:performedBy ?createdBy;
+			            purl:performedAt ?createdAt.
+		
+		?retrievedByO purl:performedBy ?performedBy;
+			              purl:performedAt ?performedAt.
+		}
+		FILTER regex(str(?createdBy), "^.*##USERNAME##$")
+		ORDER BY DESC (?performedBy)
+		LIMIT 100
 	</mdsQueryLastUserJobs>
-	
 </configuration>

@@ -38,6 +38,7 @@
             <ul class="dropdown-menu">
               <li><a href="${changepassword}">Change password</a></li>
               <li class="divider"><!--  --></li>
+              <li><a href="${contextPrefix}member/">Member area</a></li>
               <li><a href="${logout}"><spring:message code="security_logout"/></a></li>
             </ul>
           </div>

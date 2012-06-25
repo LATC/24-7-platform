@@ -1,7 +1,10 @@
-$(document).ready(function(){
-    function getLatestJobs(){
-    		jQuery.ajax({
-    		     url: contextPrefix+"latest-jobs",
+    function getLatestJobs(username){
+    	var url = contextPrefix+"latest-jobs";
+    	if(username){
+    		url +="?username="+encodeURIComponent(username);
+    	}
+    	jQuery.ajax({
+    		     url:url,
     		     dataType:"json",
     		     success:function(json){
     		         var entriesNo = 100;
@@ -15,7 +18,7 @@ $(document).ready(function(){
       		        
     				 html.push('</tr></thead><tbody>');
      		         
-    		    	 if(json.status && json.status =="ok" && json.entries ){
+    		    	 if(json.status && json.status =="ok" && json.entries && json.entries.results && json.entries.results.bindings ){
     		        	 //ok 
     		        	 var entries = json.entries.results.bindings;
     		        	 if(entriesNo>entries.length){
@@ -52,8 +55,5 @@ $(document).ready(function(){
     		    	 }
     		    	 
     		     }
-    		 });	
+    		 });
     }
-    
-    getLatestJobs();
-});

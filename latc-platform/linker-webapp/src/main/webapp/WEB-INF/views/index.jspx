@@ -50,7 +50,13 @@
        			LATEST JOBS
        		</div>
        </div>
-       
+       <script type="text/javascript">
+       //<![CDATA[  
+       $(document).ready(function(){
+        getLatestJobs();
+        });
+     //]]>
+       </script>
         
   </div>
 	

@@ -13,6 +13,7 @@
 		<spring:url context="" value="${contextPrefix}resources/bootstrap/css/bootstrap-responsive.css" var="bootstrap_responsive_css_url" />
 		
 		<spring:url context="" value="${contextPrefix}resources/bootstrap/js/bootstrap.min.js" var="bootstrap_js_url" />
+		<spring:url context="" value="${contextPrefix}resources/js/home.js" var="home_js_url" />
 		
 		<link  href="${bootstrap_css_url}" rel="stylesheet" type="text/css"/>
 		<style type="text/css">
@@ -30,8 +31,10 @@
 			//here load jquery locally if CDN failed
 			document.write(unescape("%3Cscript src='${contextPrefix}js/jquery-1.7.2.min.js' type='text/javascript'%3E%3C/script%3E"));
 		}
+		var contextPrefix ="${contextPrefix}";
 		</script>
 		<script type="text/javascript" src="${bootstrap_js_url}"><!-- --></script>
+		<script type="text/javascript" src="${home_js_url}"><!-- --></script>
 		
 		
 		<spring:message code="application_name" var="app_name" htmlEscape="false"/>
