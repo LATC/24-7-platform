@@ -35,7 +35,7 @@
  <Blocking blocks="100"/>
 
   <Interlinks>
-    <Interlink id="bus stop">
+    <Interlink id="busStop">
       <LinkType>owl:sameAs</LinkType>
 
       <SourceDataset dataSource="geonames" var="a">
