@@ -1,0 +1,57 @@
+<div xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0" >
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  <spring:message var="app_name" code="application_name" htmlEscape="false" />
+  <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
+  
+  
+  
+  
+  <div class="hero-unit span10">
+        <h1><spring:message code="welcome_h3" arguments="${app_name}" />!</h1>
+        <p><spring:message code="welcome_text" /></p>
+        <p><a class="btn btn-primary btn-large" href="http://latc-project.eu/">Learn more &#187;</a></p>
+  </div>
+  
+
+  <div class="row span12">
+        <div class="span5">
+          <h2>About the platform</h2>
+           <p>
+           The following components are available so far, online
+           <ul>
+               <li>The Dataset Inventory to find datasets to interlink</li>
+               <li>The Workbench, to generate links</li>
+               <li>The Console to monitor the link generation progress</li>
+               <li>The Linkset API to download the generated links</li>
+               <li>The Quality Assurance to asses the quality of the generated links.</li>
+           </ul>
+          </p>
+          <p>
+          <a class="btn" href="#">Learn more &#187;</a></p>
+        </div>
+        
+        <div class="span3">
+          <h2>How to start</h2>
+           <p>As there are several components involved in the system it is important that you try to understand it a little before you puts your hands on. See the tutorial  
+          		</p>
+          <p><a class="btn" href="#">Tutorial &#187;</a></p>
+       </div>
+       
+       <div class="span3">
+          <h2>Ready to start ?</h2>
+          <p>It is really easy to start. If your are ready (read the tutorial) just sign in and you are ready to go ...</p>
+          <p><a class="btn btn-primary" href="${contextPrefix}login/">Sign in or register &#187;</a></p>
+        </div>
+        
+       <div class="span11" >
+          <h2>Latest jobs:</h2>
+       		<div id="latestJobs">
+       			LATEST JOBS
+       		</div>
+       </div>
+       
+        
+  </div>
+	
+</div>

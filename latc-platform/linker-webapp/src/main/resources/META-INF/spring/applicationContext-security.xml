@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans:beans 
+xmlns="http://www.springframework.org/schema/security" 
+xmlns:beans="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+					http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+					http://www.springframework.org/schema/security 
+					http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<!-- HTTP security configurations -->
+    <http auto-config="true" use-expressions="true">
+    	<form-login 
+		authentication-success-handler-ref="authSuccessHandler"
+		authentication-failure-handler-ref="authFailureHandler"
+    	login-processing-url="/resources/j_spring_security_check" 
+    	login-page="/login"  />
+        
+        <logout logout-url="/resources/j_spring_security_logout" success-handler-ref="authLogoutSuccessHandler"  />
+        
+        <!-- Configure these elements to secure URIs in your application -->
+        <intercept-url access="permitAll" pattern="/"/>
+        <intercept-url filters="none" pattern="/favicon.ico" />
+        <intercept-url access="permitAll"  pattern="/forgotpassword/**"/>
+        <!-- important as resources is used to do authentication do not use filters="none" here -->
+        <intercept-url access="permitAll"  pattern="/resources/**"/>
+        <intercept-url access="permitAll" pattern="/login/**" 									/>
+        <intercept-url access="permitAll" pattern="/signup/**" 									/>
+        
+        <intercept-url access="hasRole('ROLE_ADMIN')"  pattern="/admin/**" 						/>
+        <intercept-url access="isFullyAuthenticated()" pattern="/member/**" 					/>
+        <intercept-url access="isFullyAuthenticated()" pattern="/changepassword/**" 			/>
+        <intercept-url access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" pattern="/workbench/**"	/>
+        <intercept-url access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" pattern="/console/**" 		/>
+        
+        <openid-login
+        	user-service-ref="openIdUserDetailsService"
+        	authentication-success-handler-ref="openIdAuthSuccessHandler"
+    		authentication-failure-handler-ref="openIdAuthFailureHandler">
+        	 <attribute-exchange>
+    			<openid-attribute name="email" 		type="http://openid.net/schema/contact/email" 		required="true"/>
+  			    <openid-attribute name="firstname" 	type="http://openid.net/schema/namePerson/first" 	required="true"/>
+				<openid-attribute name="lastname" 	type="http://openid.net/schema/namePerson/last" 	required="true"/>
+				<openid-attribute name="nick" 		type="http://openid.net/schema/namePerson/friendly" required="true"/>
+  			 
+  			 	<!-- for google -->
+  			 	<openid-attribute name="email" 		type="http://axschema.org/contact/email" 			required="true"/>
+  			 	<openid-attribute name="firstname" 	type="http://axschema.org/namePerson/first" 		required="true"/>
+  			    <openid-attribute name="lastname" 	type="http://axschema.org/namePerson/last" 			required="true"/>
+  			    <openid-attribute name="nick" 		type="http://axschema.org/namePerson/friendly" 		required="true"/>
+  			 </attribute-exchange>
+        </openid-login>
+        <custom-filter before="OPENID_FILTER" ref="myBeforeOpenIDFilter" />
+    </http>
+
+	<!-- 
+	this custom filter is needed to modify the request getRequestURL on the fly  
+	so the proper openid.return_to parameter is produced when application is deployed behind proxy server	
+	 -->
+	<beans:bean id="myBeforeOpenIDFilter" class="com.sindice.linker.provider.openid.MyBeforeOpenIdFilter" />
+    
+    
+    <authentication-manager alias="authenticationManager">
+    	<!-- SHA-256 values can be produced using 'echo -n your_desired_password | sha256sum' (using normal *nix environments) -->
+    	<authentication-provider ref="databaseAuthenticationProvider">
+            <password-encoder ref="passwordEncoder">
+            	<salt-source user-property="username" />
+            </password-encoder>
+        </authentication-provider>
+        <authentication-provider ref="hashAuthenticationProvider"></authentication-provider>
+	</authentication-manager>
+
+	<!-- been for hash authentication provider -->
+	<beans:bean id="hashAuthenticationProvider" class="com.sindice.linker.provider.HashAuthenticationProvider" />
+ 
+	
+	<!-- beans used for openid login -->
+	<beans:bean id="openIdUserDetailsService" class="com.sindice.linker.provider.openid.OpenIdUserDetailsService" />
+    
+    <beans:bean id="openIdAuthSuccessHandler" class="com.sindice.linker.provider.openid.OpenIdAuthenticationSuccessHandler">
+  		<beans:property name="defaultTargetUrl" value="/"/>
+	</beans:bean>
+    
+    <beans:bean id="openIdAuthFailureHandler" class="com.sindice.linker.provider.openid.OpenIDAuthenticationFailureHandler">
+  		<beans:property name="defaultFailureUrl" value="/login?login_error=t"/>
+	</beans:bean>
+	
+    
+	<!-- Configure authentication handlers for form based authentication  -->
+    <beans:bean id="authSuccessHandler" class="com.sindice.linker.provider.AuthenticationSuccessHandler">
+  		<beans:property name="defaultTargetUrl" value="/"/>
+	</beans:bean>
+	
+	<beans:bean id="authFailureHandler" class="com.sindice.linker.provider.AuthenticationFailureHandler">
+  		<beans:property name="targetUrl" value="/login?login_error=t"/>
+	</beans:bean>
+	
+	<beans:bean id="authLogoutSuccessHandler" class="com.sindice.linker.provider.AuthenticationLogoutSuccessHandler">
+  		<beans:property name="targetUrl" value="/" />
+	</beans:bean>
+	
+    <beans:bean id="databaseAuthenticationProvider" class="com.sindice.linker.provider.DatabaseAuthenticationProvider" >
+        <!-- 
+        admin user and password are no longer used 
+        <beans:property name="adminUser" value="admin"/>
+        no salt
+        <beans:property name="adminPassword" value="8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"/>
+        salt = admin 
+        <beans:property name="adminPassword" value="a4a88c0872bf652bb9ed803ece5fd6e82354838a9bf59ab4babb1dab322154e1"/>
+         -->
+    </beans:bean>
+    
+    <beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+  		<beans:constructor-arg value="256" />
+  		<beans:property name="iterations" value="1024"/> 
+	</beans:bean>
+	
+	<beans:bean id="reCaptcha" class="net.tanesha.recaptcha.ReCaptchaImpl">
+	    <beans:property name="privateKey" value="6LdfmL8SAAAAAHKPqUQV5SxrRX9Id6a8cQo-mgpE" />
+	    <beans:property name="publicKey"  value="6LdfmL8SAAAAAFnT0l3UNPOV8mkpHIown-ysSR1g" />
+	    <beans:property name="includeNoscript" value="false" />
+    </beans:bean>
+    
+    <beans:bean class="com.sindice.linker.provider.CustomRequestResponseActionCookie" id="customRequestResponseAction" />
+</beans:beans>

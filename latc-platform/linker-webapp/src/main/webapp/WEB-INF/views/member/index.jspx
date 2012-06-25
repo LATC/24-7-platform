@@ -1,0 +1,33 @@
+ <div xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0" class="span9">
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  <spring:message var="app_name" code="application_name" htmlEscape="false" />
+  <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
+    
+    <div class="hero-unit">
+    <h1>
+      ${app_name}
+    </h1>
+    <p>
+      <spring:message code="welcome_text" />
+    </p>
+    </div>
+    <div class="row-fluid">
+	    <div class="span4">
+	    	<h2>Generate link spec</h2>
+		    <p>Use workbench to create new ...</p>
+		    <a href="${contextPrefix}workbench/" class="btn btn-primary" >Access workbench &#187;</a>
+	    </div>
+	    <div class="span4">
+	    	<h2>Your latest jobs</h2>
+		    <p>Use workbench to create new ...</p>
+		</div>
+	    <div class="span4">
+	    	<h2>Subscribe to rss </h2>
+		    <p>Use workbench to create new ...</p>
+		    <a href="" class="btn" >Subscribe &#187;</a>
+	    </div>
+	    
+	    
+    </div>
+</div>

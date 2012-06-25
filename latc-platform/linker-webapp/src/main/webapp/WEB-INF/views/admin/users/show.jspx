@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_sindice_linker_domain_User" object="${user}" path="/admin/users" z="gkLWvX7abxxB7PdXY7XALf0qheU=">
+        <field:display field="firstName" id="s_com_sindice_linker_domain_User_firstName" object="${user}" z="DnWdysUZ+STn3bY60ZNRXk7sTrs="/>
+        <field:display field="lastName" id="s_com_sindice_linker_domain_User_lastName" object="${user}" z="iM/QjoxRlOqI9t/TRJq6yKvTMeg="/>
+        <field:display field="username" id="s_com_sindice_linker_domain_User_username" object="${user}" z="YTlFm6EhlYeFPVWAr+IIx9UKLbI="/>
+        <field:display field="emailAddress" id="s_com_sindice_linker_domain_User_emailAddress" object="${user}" z="AnO4t8nCuQXxCt0gX1iZyX50xYU="/>
+        <field:display field="password" id="s_com_sindice_linker_domain_User_password" object="${user}" z="Xqd4Z5kcYH6DMxsg9BiiUxW7tgs="/>
+        <field:display date="true" dateTimePattern="${user_activationdate_date_format}" field="activationDate" id="s_com_sindice_linker_domain_User_activationDate" object="${user}" z="KPadRErf64k44STrPHTkF/szn3g="/>
+        <field:display field="activationKey" id="s_com_sindice_linker_domain_User_activationKey" object="${user}" z="jwuWwZmMM/MElbWkFZtlDE/O2Ys="/>
+        <field:display field="enabled" id="s_com_sindice_linker_domain_User_enabled" object="${user}" z="hNNBXEwliJJIiVfsmzdZuvJry+E="/>
+        <field:display field="locked" id="s_com_sindice_linker_domain_User_locked" object="${user}" z="GC3OmASj43f6R1DZIgn8itnrNVk="/>
+        <field:display field="openIdIdentifier" id="s_com_sindice_linker_domain_User_openIdIdentifier" object="${user}" z="JPvC4IFSXeN8RxLq75SFCSO2RPs="/>
+    </page:show>
+</div>

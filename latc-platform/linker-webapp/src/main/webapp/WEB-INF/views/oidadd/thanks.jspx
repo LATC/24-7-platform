@@ -1,0 +1,16 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" 
+    xmlns:form="http://www.springframework.org/tags/form" 
+    xmlns:jsp="http://java.sun.com/JSP/Page" 
+    xmlns:spring="http://www.springframework.org/tags" version="2.0">
+  <jsp:output omit-xml-declaration="yes"/>
+  <script type="text/javascript">dojo.require('dijit.TitlePane');dojo.require('dijit.form.SimpleTextarea');dojo.require('dijit.form.FilteringSelect');</script>
+  <div id="_title_div">
+    
+    <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_title_div', widgetType : 'dijit.TitlePane', widgetAttrs : {title: 'Addind an openID Successful'}})); </script>
+    <spring:url value="/oidsignup" var="form_url"/>
+    SignUp Successful
+    <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_title_div', widgetType : 'dijit.TitlePane', widgetAttrs : {title: 'Addind an openID Successful'}})); </script>
+
+    <h3>Your successfully added an openID to your profile. An email about that was sent.</h3>
+  </div>
+</div>
