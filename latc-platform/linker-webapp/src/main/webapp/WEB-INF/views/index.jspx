@@ -5,7 +5,11 @@
   <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
   
   
-  
+  <div class="row span12" style="margin-bottom:8px;">
+  <a href="http://latc-project.eu/"><img src="images/logo/latc-logo.gif" /></a>
+  <a href="http://www4.wiwiss.fu-berlin.de/"><img src="images/logo/fu-logo.gif" height="50" style="margin-left:10px;"/></a>
+  <a href="http://deri.ie"><img src="images/logo/deri-logo.gif" height="50" style="margin-left:10px;"/></a>
+  </div>
   
   <div class="hero-unit span10">
         <h1><spring:message code="welcome_h3" arguments="${app_name}" />!</h1>
@@ -28,14 +32,15 @@
            </ul>
           </p>
           <p>
-          <a class="btn" href="#">Learn more &#187;</a></p>
+          <a class="btn" href="http://latc-project.eu/platform/" >Learn more &#187;</a></p>
         </div>
         
         <div class="span3">
           <h2>How to start</h2>
-           <p>As there are several components involved in the system it is important that you try to understand it a little before you puts your hands on. See the tutorial  
-          		</p>
-          <p><a class="btn" href="#">Tutorial &#187;</a></p>
+          <p>As there are several components involved in the system it is important that you try to understand it a little
+            before you put your hands on. See the tutorial how to use the workbench
+          </p>
+          <p><a class="btn" href="http://wiki.lod2.eu/display/LOD2DOC/4+-+SILK+Webinar" >Tutorial &#187;</a></p>
        </div>
        
        <div class="span3">
@@ -47,7 +52,7 @@
        <div class="span11" >
           <h2>Latest jobs:</h2>
        		<div id="latestJobs">
-       			LATEST JOBS
+       			Loading ...
        		</div>
        </div>
        <script type="text/javascript">
