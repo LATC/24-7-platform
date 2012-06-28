@@ -37,11 +37,24 @@ Note: for developers about working with jspx templates
 Jspx are cool :-) but at the start they might give you a little headache
 Have a look at some toutorials before you start 
 http://jspx-bay.sourceforge.net/
+
+Views are in:
+linker-webapp/src/main/webapp/WEB-INF/views
+Specifically:
+index page:
+linker-webapp/src/main/webapp/WEB-INF/views/index.jspx
+meber index page:
+linker-webapp/src/main/webapp/WEB-INF/views/member/index.jspx
  
 Remeber that the template file has to be valid xml file:
 1) No empty elements like <p></p>  If you need them do  <p><!-- --></p>
 2) No html entities, use unicode representation so instead &copy; put &#169;
 add here more points if you think something should be added 
- 
+
+In case of any problems please contact me via email or skype
+I will be happy to help you setup the project and start coding
+
+Szymon Danielczyk 
+28 June 2012
 
 
