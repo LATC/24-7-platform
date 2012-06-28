@@ -36,11 +36,13 @@
     		        		var createdBy = entry.createdBy.value;
     		        		var index = createdBy.lastIndexOf("/");
     		        		var createdByName  = createdBy.substring(index+1);
-    		        			
+    		        		var performedAt = entry.performedAt.value.replace(/-/g, "/").replace("T"," ").replace(/[+,-]\d\d\d\d$/,""); 
+    		        		var createdAt =   entry.createdAt.value.replace(/-/g, "/").replace("T"," ").replace(/[+,-]\d\d\d\d$/,""); 
+    		        		
     		        		html.push('<tr>');
-    		        		html.push('<td>'+(new Date(entry.performedAt.value))+'</td>');
+    		        		html.push('<td>'+performedAt+'</td>');
     		        		html.push('<td><a href="'+performedBy+'">'+performedByName+'</a></td>');
-    		        		html.push('<td>'+(new Date(entry.createdAt.value))+'</td>');
+    		        		html.push('<td>'+createdAt+'</td>');
     		        		html.push('<td><a href="'+createdBy+'">'+createdByName+'</a></td>');
      		        		html.push('</tr>');
     		        	 }
