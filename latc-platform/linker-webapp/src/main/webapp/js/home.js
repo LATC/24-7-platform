@@ -15,7 +15,8 @@
     				 html.push('<th>Performed by:</th>');
     				 html.push('<th>Created at:</th>');
     				 html.push('<th>Created by:</th>');
-      		        
+    				 html.push('<th>Rss feed:</th>');
+       		        
     				 html.push('</tr></thead><tbody>');
      		         
     		    	 if(json.status && json.status =="ok" && json.entries && json.entries.results && json.entries.results.bindings ){
@@ -38,13 +39,15 @@
     		        		var createdByName  = createdBy.substring(index+1);
     		        		var performedAt = entry.performedAt.value.replace(/-/g, "/").replace("T"," ").replace(/[+,-]\d\d\d\d$/,""); 
     		        		var createdAt =   entry.createdAt.value.replace(/-/g, "/").replace("T"," ").replace(/[+,-]\d\d\d\d$/,""); 
+    		        		var feedLink = contextPrefix+"rss/"+entry.id.value+"/notifications.atom";
     		        		
     		        		html.push('<tr>');
     		        		html.push('<td>'+performedAt+'</td>');
     		        		html.push('<td><a href="'+performedBy+'">'+performedByName+'</a></td>');
     		        		html.push('<td>'+createdAt+'</td>');
     		        		html.push('<td><a href="'+createdBy+'">'+createdByName+'</a></td>');
-     		        		html.push('</tr>');
+    		        		html.push('<td><a class="rssFeed" href="'+feedLink+'"></td>');
+    		        		html.push('</tr>');
     		        	 }
     		         }
     		         html.push("</tbody></table>")
