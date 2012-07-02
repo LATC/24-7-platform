@@ -37,6 +37,7 @@
     		        		var createdBy = entry.createdBy.value;
     		        		var index = createdBy.lastIndexOf("/");
     		        		var createdByName  = createdBy.substring(index+1);
+    		        		var createdByLink  = createdBy.substring(0,index+1)+"links.nt";
     		        		var performedAt = entry.performedAt.value.replace(/-/g, "/").replace("T"," ").replace(/[+,-]\d\d\d\d$/,""); 
     		        		var createdAt =   entry.createdAt.value.replace(/-/g, "/").replace("T"," ").replace(/[+,-]\d\d\d\d$/,""); 
     		        		var feedLink = contextPrefix+"rss/"+entry.id.value+"/notifications.atom";
@@ -45,7 +46,7 @@
     		        		html.push('<td>'+performedAt+'</td>');
     		        		html.push('<td><a href="'+performedBy+'">'+performedByName+'</a></td>');
     		        		html.push('<td>'+createdAt+'</td>');
-    		        		html.push('<td><a href="'+createdBy+'">'+createdByName+'</a></td>');
+    		        		html.push('<td><a href="'+createdByLink+'">'+createdByName+'</a></td>');
     		        		html.push('<td><a class="rssFeed" href="'+feedLink+'"></td>');
     		        		html.push('</tr>');
     		        	 }

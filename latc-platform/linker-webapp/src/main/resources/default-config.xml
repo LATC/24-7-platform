@@ -7,6 +7,8 @@
 	<!-- 
 	used in email templates to create correct links for activation 
 	also when doing open-id authentication used as the correct come back url 
+	for production use this one 
+	<applicationBaseUrl>http://linker.demo.sindice.net/main</applicationBaseUrl>
 	-->
 	<applicationBaseUrl>http://localhost:9090/linker-webapp</applicationBaseUrl>
 	
