@@ -1,0 +1,56 @@
+<Silk>
+  <Prefixes> 
+    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://eurostat.linked-statistics.org/dic/" id="dic"></Prefix>
+    <Prefix namespace="http://dbpedia.org/ontology/" id="dbo"></Prefix>
+    <Prefix namespace="http://www.w3.org/2004/02/skos#" id="skos0"></Prefix>
+    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+    <Prefix namespace="http://www.w3.org/2004/02/skos/core#" id="skos"></Prefix>
+    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+  </Prefixes>
+  <DataSources>
+    <DataSource type="sparqlEndpoint" id="Eurostat">
+      <Param name="pageSize" value="1000"></Param>
+      <Param name="pauseTime" value="0"></Param>
+      <Param name="retryCount" value="3"></Param>
+      <Param name="endpointURI" value="http://eurostat.linked-statistics.org/sparql"></Param>
+      <Param name="retryPause" value="1000"></Param>
+      <Param name="graph" value=""></Param>
+      <Param name="login" value=""></Param>
+      <Param name="entityList" value=""></Param>
+      <Param name="password" value=""></Param>
+    </DataSource>
+    <DataSource type="sparqlEndpoint" id="DBpedia">
+      <Param name="pageSize" value="1000"></Param>
+      <Param name="pauseTime" value="0"></Param>
+      <Param name="retryCount" value="3"></Param>
+      <Param name="endpointURI" value="http://dbpedia.org/sparql"></Param>
+      <Param name="retryPause" value="1000"></Param>
+      <Param name="graph" value=""></Param>
+      <Param name="login" value=""></Param>
+      <Param name="entityList" value=""></Param>
+      <Param name="password" value=""></Param>
+    </DataSource>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="CountriesAndContinents">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset dataSource="Eurostat" var="a">
+        <RestrictTo> {?a skos0:inScheme dic:c_birth .} UNION {?a skos0:inScheme dic:c_ctrl .} . </RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="DBpedia" var="b">
+        <RestrictTo> {?b rdf:type dbo:Country .} UNION {?b rdf:type dbo:Continent .} . </RestrictTo>
+      </TargetDataset>
+      <LinkageRule>
+        <Compare weight="1" threshold="0.0" required="false" metric="levenshteinDistance" id="unnamed_3">
+          <Input path="?a/skos0:prefLabel" id="unnamed_1"></Input>
+          <Input path="?b/rdfs:label" id="unnamed_2"></Input>
+          <Param name="minChar" value="0"></Param>
+          <Param name="maxChar" value="z"></Param>
+        </Compare>
+      </LinkageRule>
+      <Filter></Filter>
+      <Outputs> </Outputs>
+    </Interlink>
+  </Interlinks>
+</Silk>

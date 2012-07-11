@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_sindice_linker_domain_UserRole" modelAttribute="userRole" path="/admin/userroles" render="${empty dependencies}" z="1k72WmaP2tc+f5jCLGBJ0kjG//8=">
+        <field:select field="userEntry" id="c_com_sindice_linker_domain_UserRole_userEntry" itemValue="id" items="${users}" path="/admin/users" required="true" z="kbtk7Tg8bJ77+IM+WPxP62Oo8n8="/>
+        <field:select field="roleEntry" id="c_com_sindice_linker_domain_UserRole_roleEntry" itemValue="id" items="${roles}" path="/admin/roles" required="true" z="JoDRmf7urni4N2D88YnNGt0JmPI="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_sindice_linker_domain_UserRole" render="${not empty dependencies}" z="+Scl9RJmvO3aOcFBHrzNQ+dtmiQ="/>
+</div>

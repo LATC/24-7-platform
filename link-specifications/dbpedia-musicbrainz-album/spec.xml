@@ -33,6 +33,7 @@
   <!-- Blocking / -->
 
   <Interlinks>
+	<Interlink id="album">
       <LinkType>owl:sameAs</LinkType>
       <SourceDataset dataSource="dbpedia" var="a">
         <RestrictTo>

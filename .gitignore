@@ -17,3 +17,8 @@ latc-platform/runtime/trunk/myreport.csv
 latc-platform/runtime/trunk/bin
 link-specifications/.project
 link-specifications/.pydevproject
+
+latc-platform/linker-webapp/target/
+latc-platform/linker-webapp/.classpath
+latc-platform/linker-webapp/.project
+latc-platform/linker-webapp/.settings/

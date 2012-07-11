@@ -73,6 +73,7 @@ $lodTopics = array(
     $packageName = $ckanArray['name'];
     $uri = LOD.'dataset/'.$packageName;
 
+    $Prefixes = getPrefixes();
     $graph->add_resource_triple($uri, RDF_TYPE, VOID.'Dataset');
     $graph->add_literal_triple($uri, OPENVOCAB.'shortName', $packageName);
     $graph->add_literal_triple($uri, RDFS_LABEL, $ckanArray['title'], 'en');
