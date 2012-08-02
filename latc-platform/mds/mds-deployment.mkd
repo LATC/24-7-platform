@@ -1,0 +1,73 @@
+## LATC Data Source Inventory (DSI) and Meta data store (MDS)
+
+### Data Source Inventory (DSI) ###
+
+- the DSI is based on the [Puelia](https://code.google.com/p/puelia-php/) implementation of the [Linked Data API](http://code.google.com/p/linked-data-api/)
+
+### Meta data store (MDS) ###
+
+#### Source Code ####
+
+- the MDS is available as part of the LATC 24-7-platform on github: https://github.com/LATC/24-7-platform
+- the MDS is implemented in php
+- the instructions are assuming that the MDS will be installed on a typical Linux server
+- the instructions are assuming that that the URI of the MDS will be http://mds.lod-cloud.net - replace this value in the instructions below if you want to host the MDS elsewhere
+- since the MDS is not available as its own repository, we need to clone the whole LATC 24-7-platform repository from github and then create a symbolic link to the MDS folder:
+
+```
+cd /var/www
+git clone git://github.com/LATC/24-7-platform latc
+ln -s latc/latc-platform/mds/ mds.lod-cloud.net
+```
+
+#### Server Configuration ####
+
+- in addition to the MDS code, the setup also requires an Apache virtual host config file, most likely to be located in ```/etc/httpd/vhosts.d```
+- since the triple store used by the MDS currently is a remote store on the Talis Platform (as opposed to a local store), the config file defines a number of rewrite rules for the APIs offered by the Talis Platform (i.e., SPARQL, textual search, and describe) - if the backend store were to change, these rewrite rules would have to be adapted
+- here is what the current config file ```mds.lod-cloud.net.config``` looks like:
+
+```
+	<VirtualHost *:80>
+	    DocumentRoot /var/www/mds.lod-cloud.net/htdocs
+	    ServerName mds.lod-cloud.net
+	    LogFormat "%v %h %l %u %D %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" apilogformat
+	    ErrorLog logs/mds.lod-cloud.net.error.log
+	    CustomLog logs/mds.lod-cloud.net.access.log apilogformat
+	    RewriteLog logs/mds.lod-cloud.net.rewrite.log
+
+	    RewriteLogLevel 1
+	    RewriteEngine On
+
+	    RewriteRule ^/sparql$        http://api.talis.com/stores/latc-mds/services/sparql    [P,L,NE]
+	    RewriteRule ^/search$        http://api.talis.com/stores/latc-mds/items              [P,L,NE]
+	    RewriteRule ^/describe$      http://api.talis.com/stores/latc-mds/meta               [P,L,NE]
+	    RewriteRule ^/data$          http://api.talis.com/stores/latc-mds/meta               [P,L,NE]
+
+	    LogLevel notice
+	    ProxyPreserveHost Off
+	    Options FollowSymLinks
+	</VirtualHost>
+
+	<Directory /var/www/mds.lod-cloud.net/htdocs>
+	    Options FollowSymLinks
+	    AllowOverride All
+	</Directory>
+```
+#### CKAN Import Scripts ####
+
+- the MDS is based on data imported for "lod"-tagged datasets on http://thedatahub.org (the canonical CKAN installation)
+- this data is being imported periodically by the ```import-ckan-json-as-void.php``` script in the ```mds/scripts``` folder
+- to set up the periodic data import, the script needs to be added to the crontab
+- the crontab can be edited as follows:
+
+```
+crontab -e
+```
+
+- this opens a vi-shell editor
+- add the following line, then save and quit (```:wq```)
+- modify the path to the script if necessary, and the time information as desired (e.g., to ```hourly```)
+
+```
+@daily php /var/www/latc/latc-platform/mds/scripts/import-ckan-json-as-void.php 2>&1
+```
