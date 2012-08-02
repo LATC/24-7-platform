@@ -14,7 +14,7 @@
     				 html.push('<th>Performed at:</th>');
     				 html.push('<th>Performed by:</th>');
     				 html.push('<th>Created at:</th>');
-    				 html.push('<th>Created by:</th>');
+    				 html.push('<th>Triples created by:</th>');
     				 html.push('<th>Rss feed:</th>');
        		        
     				 html.push('</tr></thead><tbody>');
@@ -25,7 +25,7 @@
     		        	 if(entriesNo>entries.length){
     		        		 entriesNo = entries.length;
     		        	 }
-    	    		         
+    	    
     		        	 for(var i=0;i<entriesNo;i++){
     		        		var entry = entries[i];
     		        		
@@ -34,6 +34,7 @@
     		        		var performedByName  = performedBy .substring(index+1);
     		        		
     		        		
+    		        		var generatedTriples = entry.generatedTriples.value;
     		        		var createdBy = entry.createdBy.value;
     		        		var index = createdBy.lastIndexOf("/");
     		        		var createdByName  = createdBy.substring(index+1);
@@ -46,7 +47,7 @@
     		        		html.push('<td>'+performedAt+'</td>');
     		        		html.push('<td><a href="'+performedBy+'">'+performedByName+'</a></td>');
     		        		html.push('<td>'+createdAt+'</td>');
-    		        		html.push('<td><a href="'+createdByLink+'">'+createdByName+'</a></td>');
+    		        		html.push('<td><a href="'+createdByLink+'">'+ generatedTriples +' by '+createdByName+' </a></td>');
     		        		html.push('<td><a class="rssFeed" href="'+feedLink+'"></td>');
     		        		html.push('</tr>');
     		        	 }
