@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<USE_MEMCACHED>true</USE_MEMCACHED>
+    <MEMCACHED_HOST>localhost</MEMCACHED_HOST>
+    <MEMCACHED_PORT>11211</MEMCACHED_PORT>
+    
+	<!-- 
+	used in email templates to create correct links for activation 
+	also when doing open-id authentication used as the correct come back url 
+	for production use this one 
+	<applicationBaseUrl>http://linker.demo.sindice.net/main</applicationBaseUrl>
+	-->
+	<applicationBaseUrl>http://localhost:9090/linker-webapp</applicationBaseUrl>
+	
+	<mdsUrl>http://mds.lod-cloud.net/sparql</mdsUrl>
+	<!-- 
+	Example of linkspec data 
+	:linkspec a silkspec:SilkSpec ;
+	silkspec:ID "0c4b1b0837a8c1670137ac1d37500004"^^xsd:hexBinary ;
+	silkspec:accessedResource <http://demo.sindice.net:8080/LATC-Console/api/task/0c4b1b0837a8c1670137ac1d37500004/configuration>;
+	silkspec:Title "0c4b1b0837a8c1670137ac1d37500004";
+	dc:created "2012-06-02T08:33:44"^^xsd:dateTime;
+	dc:modified "2012-06-02T08:35:37"^^xsd:dateTime;
+	prv:createdBy [	a prv:DataCreation ;
+			prv:performedBy <Unknown>;
+                   	prv:performedAt "2012-06-02T08:33:44"^^xsd:dateTime
+	          	];
+	prv:retrievedBy [	a prv:DataAccess ;
+                        	prv:performedAt "2012-06-18T15:00:21+0100"^^xsd:dateTime ;
+				prv:accessedResource   <http://demo.sindice.net/latctemp/2012-06-18/Euraxess-DBpedia-Country/spec.xml>;      
+		        	prv:accessedService :console;
+				prv:performedBy :SilkMapReduce
+        		 ];
+	 -->
+  <mdsQueryLastJobs>
+    PREFIX silkspec:  &lt;http://vocab.deri.ie/LinkSpec#&gt;
+    PREFIX purl: &lt;http://purl.org/net/provenance/ns#&gt;
+    PREFIX dc: &lt;http://purl.org/dc/terms/#&gt;
+    SELECT ?id ?createdBy ?createdAt ?performedBy ?performedAt  WHERE {
+    ?s  a  silkspec:SilkSpec;
+      silkspec:ID ?id;
+      dc:created ?created;
+      purl:createdBy ?createdByO;
+      purl:retrievedBy ?retrievedByO.
+      
+      ?createdByO purl:performedBy ?createdBy;
+                  purl:performedAt ?createdAt.
+
+      ?retrievedByO purl:performedBy ?performedBy;
+                    purl:performedAt ?performedAt.
+    }
+    ORDER BY DESC (?performedBy)
+    LIMIT 100
+</mdsQueryLastJobs>
+<mdsQueryLastUserJobs>
+    PREFIX silkspec:  &lt;http://vocab.deri.ie/LinkSpec#&gt;
+    PREFIX purl: &lt;http://purl.org/net/provenance/ns#&gt;
+    PREFIX dc: &lt;http://purl.org/dc/terms/#&gt;
+    SELECT ?id ?createdBy ?createdAt ?performedBy ?performedAt  WHERE {
+    ?s  a  silkspec:SilkSpec;
+      silkspec:ID ?id;
+      dc:created ?created;
+      purl:createdBy ?createdByO;
+      purl:retrievedBy ?retrievedByO.
+      
+      ?createdByO purl:performedBy ?createdBy;
+                  purl:performedAt ?createdAt.
+
+      ?retrievedByO purl:performedBy ?performedBy;
+                    purl:performedAt ?performedAt.
+    }
+    FILTER regex(str(?createdBy), "^.*##USERNAME##$")
+    ORDER BY DESC (?performedBy)
+    LIMIT 100
+</mdsQueryLastUserJobs>
+</configuration>

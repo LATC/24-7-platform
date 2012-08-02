@@ -32,6 +32,7 @@
   <!-- Blocking / -->
 
   <Interlinks>
+	<Interlink id="band">
       <LinkType>owl:sameAs</LinkType>
       <SourceDataset dataSource="dbpedia" var="a">
         <RestrictTo>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <jsp:output omit-xml-declaration="yes"/>
+  <spring:message code="security_login_traditional_title" htmlEscape="false" var="title"/>
+  
+
+	<c:if test="${not empty param.login_error}">
+      <div class="alert alert-error">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+		<h4 class="alert-heading">Warning!</h4>
+        <p>
+          <spring:message code="security_login_unsuccessful"/>
+          <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>
+        </p>
+      </div>
+    </c:if>
+    <c:if test="${empty param.login_error}">
+      <p>
+        <spring:message code="security_login_message"/>
+      </p>
+    </c:if>
+    
+    <spring:url context="" value="${contextPrefix}resources/j_spring_security_check" var="form_url"/>
+    
+    
+  
+ 	<!-- here construct urls with contextPrefix  and baseUrl so I will need a login controller as well --> 
+  <spring:url  var="form_url_openid" value="${contextPrefix}j_spring_openid_security_check" />
+  <spring:url  var="google" value="${contextPrefix}resources/images/openid/google-account-logo.png" />
+  <spring:url  var="yahoo" value="${contextPrefix}resources/images/openid/yahoo-account-logo.gif" />
+  <spring:url  var="openid" value="${contextPrefix}resources/images/openid/openid-logo.png" />
+
+  
+  
+	<div class="row">
+		<div class="span2b">
+			<h2>Traditional login</h2>
+<form action="${fn:escapeXml(form_url)}" method="POST" name="f" id="loginForm">
+      <div class="control-group">
+        <label for="j_username"><spring:message code="security_login_form_name"/></label>
+        <input id="j_username" name="j_username" style="width:150px" type="text" class="required email" />
+      </div>
+      
+      <div class="control-group">
+        <label for="j_password"><spring:message code="security_login_form_password"/></label>
+        <input id="j_password" name="j_password" style="width:150px" type="password" class="required" minlength="2"/>
+      </div>
+        <spring:message code="button_submit" htmlEscape="false" var="submit_label"/>
+        <input id="proceed" type="submit" value="${fn:escapeXml(submit_label)}" class="btn"/>
+        <spring:message code="button_reset" htmlEscape="false" var="reset_label"/>
+        <input id="reset" type="reset" value="${fn:escapeXml(reset_label)}" class="btn"/>
+</form>
+  
+  
+  <a href ="${contextPrefix}forgotpassword/index">Forgot Password</a> 
+      
+
+		
+		</div>
+
+		<div class="span2a">
+			<h2>Google login</h2>
+			<img src="${google}" height="120"/>
+			    <form action="${fn:escapeXml(form_url_openid)}" method="post">
+			        <input name="openid_identifier" size="50"
+			               maxlength="100" type="hidden"
+			               value="http://www.google.com/accounts/o8/id"/>
+			            <input id="proceed_google" type="submit" value="Sign in with Google" class="btn"/>
+			    </form>
+		</div>
+
+
+		<div class="span2a">
+			<h2>Yahoo login</h2>
+		    <img src="${yahoo}" />
+			<form action="${fn:escapeXml(form_url_openid)}" method="post">
+	        <input name="openid_identifier" size="50"
+	               maxlength="100" type="hidden"
+	               value="http://yahoo.com"/>
+	            <input id="proceed_yahoo" type="submit" value="Sign in with Yahoo" class="btn" />
+	    	</form>
+		</div>
+		
+		<div class="span4">
+			<h2>Open ID login</h2>
+		    
+		    <a href="http://openid.net/get-an-openid/" target="_blank" title="Where do I get one?">
+		        <img src="${openid}" height="72"/>
+		    </a>
+		    <form action="${fn:escapeXml(form_url_openid)}" method="post" id="openidForm">
+		     <div class="control-group">
+              	<input id="openid_identifier" name="openid_identifier" type="text" class="url"/>
+		    </div>
+		        <input id="proceed_openid" type="submit" value="Sign in with openid" class="btn" />
+			</form>
+			<a href="http://openid.net/get-an-openid/" target="_blank" title="Where do I get one?">
+		    What is an OpenID, and how to get one ? 
+		    </a>
+		</div>
+		
+		<div class="span10" style="text-align: center;">
+      		<hr />
+      		<h3>Not a User Yet? <a href ="${contextPrefix}signup/?form">Sign Up</a> for traditional accout</h3>
+      </div>
+      
+	</div>
+	<script type="text/javascript">
+	//<![CDATA[  
+	$(document).ready(function(){
+	    $("#loginForm").validate({
+	    	highlight:function(element, errorClass, validClass){
+	    		$(element).closest(".control-group").removeClass("success").addClass("error");
+	    	},
+	    	unhighlight: function(element, errorClass, validClass) {
+	    		$(element).closest(".control-group").removeClass("error").addClass("success");
+	    	}
+	    });
+
+	    $("#openidForm").validate({
+	    	highlight:function(element, errorClass, validClass){
+	    		$(element).closest(".control-group").removeClass("success").addClass("error");
+	    	},
+	    	unhighlight: function(element, errorClass, validClass) {
+	    		$(element).closest(".control-group").removeClass("error").addClass("success");
+	    	}
+	    });
+
+	
+	});
+	//]]>
+	</script>
+  
+  
+  
+    
+
+  
+  
+
+  
+  
+  
+  
+</div>

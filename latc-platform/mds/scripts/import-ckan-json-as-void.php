@@ -46,6 +46,7 @@ LIMIT {$pageSize} OFFSET {$offset}
 _SPARQL_;
 
 echo "Running SPARQL query for recently changed datasets \n";
+echo $query;
 $requests = array();
 $results = $SparqlEndpoint->select_to_array($query);
 

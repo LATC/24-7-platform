@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="adminLayout" name="admin/users/list">
+        <put-attribute name="body" value="/WEB-INF/views/admin/users/list.jspx"/>
+    </definition>
+<definition extends="adminLayout" name="admin/users/show">
+        <put-attribute name="body" value="/WEB-INF/views/admin/users/show.jspx"/>
+    </definition>
+<definition extends="adminLayout" name="admin/users/create">
+        <put-attribute name="body" value="/WEB-INF/views/admin/users/create.jspx"/>
+    </definition>
+<definition extends="adminLayout" name="admin/users/update">
+        <put-attribute name="body" value="/WEB-INF/views/admin/users/update.jspx"/>
+    </definition>
+<definition extends="adminLayout" name="admin/users/findUsersByActivationKeyAndEmailAddress">
+        <put-attribute name="body" value="/WEB-INF/views/admin/users/findUsersByActivationKeyAndEmailAddress.jspx"/>
+    </definition>
+<definition extends="adminLayout" name="admin/users/findUsersByEmailAddress">
+        <put-attribute name="body" value="/WEB-INF/views/admin/users/findUsersByEmailAddress.jspx"/>
+    </definition>
+<definition extends="adminLayout" name="admin/users/findUsersByOpenIdIdentifier">
+        <put-attribute name="body" value="/WEB-INF/views/admin/users/findUsersByOpenIdIdentifier.jspx"/>
+    </definition>
+<definition extends="adminLayout" name="admin/users/findUsersByUsername">
+        <put-attribute name="body" value="/WEB-INF/views/admin/users/findUsersByUsername.jspx"/>
+    </definition>
+</tiles-definitions>

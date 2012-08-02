@@ -1,0 +1,22 @@
+.span2a{
+	width:170px;
+}
+.span2b{
+	width:185px;
+}
+
+
+#signupForm .controls label.error{
+	display: inline;
+	margin-left:10px;
+}
+
+.control-group.error .controls label.error{
+    color: #B94A48;
+}
+
+.rssFeed{
+	background: url("../../images/feed.png") top left no-repeat;
+	padding-left:16px;
+	line-height: 16px;
+}

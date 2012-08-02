@@ -17,3 +17,13 @@ latc-platform/runtime/trunk/myreport.csv
 latc-platform/runtime/trunk/bin
 link-specifications/.project
 link-specifications/.pydevproject
+
+latc-platform/linker-webapp/target/
+latc-platform/linker-webapp/.classpath
+latc-platform/linker-webapp/.project
+latc-platform/linker-webapp/.settings/
+latc-platform/linker-webapp/src/main/resources/META-INF/spring/database.properties
+
+latc-platform/linker-webapp/src/main/resources/META-INF/spring/email.properties
+
+latc-platform/linker-webapp/src/test/resources/META-INF/spring-test/email.properties

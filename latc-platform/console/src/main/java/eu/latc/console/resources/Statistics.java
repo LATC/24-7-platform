@@ -3,9 +3,17 @@
  */
 package eu.latc.console.resources;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.json.JSONObject;
 import org.restlet.data.Status;
@@ -15,6 +23,10 @@ import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 import eu.latc.console.MainApplication;
 import eu.latc.console.ObjectManager;
@@ -40,8 +52,6 @@ public class Statistics extends ServerResource {
 			ObjectManager manager = ((MainApplication) getApplication()).getObjectManager();
 
 			// Go through all the notifications to get stats for the latest run
-			int lastYear = 1900;
-			int lastDay = 1;
 			String runDate = "";
 			long links = 0;
 			long runtime = 0;
@@ -49,7 +59,8 @@ public class Statistics extends ServerResource {
 			int totalRuns = 0;
 			long totalTime = 0;
 			int totalLinks = 0;
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+			// Count the internal notifications
 			for (Notification notification : manager.getNotifications(0)) {
 				// Skip notification without payload
 				if (notification.getData().equals(""))
@@ -70,7 +81,7 @@ public class Statistics extends ServerResource {
 						execTime += Integer.parseInt(s[2]) * 60;
 						execTime += Integer.parseInt(s[3]);
 					} else {
-						logger.info("Invalid time " + data.getString("executetime"));
+						logger.error("Invalid time " + data.getString("executetime"));
 					}
 
 					// Get the number of links created
@@ -83,27 +94,40 @@ public class Statistics extends ServerResource {
 						totalTime += execTime;
 						totalLinks += execLinks;
 					}
-
-					// If we find a more recent report, reset the counters
-					if (cal.get(Calendar.DAY_OF_YEAR) > lastDay && cal.get(Calendar.YEAR) >= lastYear) {
-						lastDay = cal.get(Calendar.DAY_OF_YEAR);
-						lastYear = cal.get(Calendar.YEAR);
-						runDate = sdf.format(notification.getDate());
-						links = 0;
-						executed = 0;
-						runtime = 0;
-					}
-
-					// If that notification corresponds to our current
-					// aggregator, count it
-					if (cal.get(Calendar.DAY_OF_YEAR) == lastDay && cal.get(Calendar.YEAR) == lastYear
-							&& data.getLong("size") > 0) {
-						links += execLinks;
-						runtime += execTime;
-						executed++;
-					}
 				}
 			}
+
+			// Query the MDS
+			String req = "select (SUM(?t) as ?total) where {";
+			req += "?s a <http://rdfs.org/ns/void#Linkset>.";
+			req += "?s a <http://purl.org/net/provenance/ns#DataItem>.";
+			req += "?s <http://rdfs.org/ns/void#triples> ?t.";
+			req += "filter (?t > 0)}";
+
+			// Send the query
+			String sparqlQuery = URLEncoder.encode(req, "utf-8");
+			StringBuffer urlString = new StringBuffer("http://mds.lod-cloud.net/sparql");
+			urlString.append("?query=").append(sparqlQuery);
+			URL url = new URL(urlString.toString());
+			StringBuffer response = new StringBuffer();
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				response.append(line);
+			}
+			reader.close();
+
+			// Parse the response
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			InputSource is = new InputSource();
+			is.setCharacterStream(new StringReader(response.toString()));
+			Document doc = db.parse(is);
+			NodeList results = doc.getElementsByTagName("literal");
+			Element element = (Element) results.item(0);
+			int count = Integer.parseInt(element.getTextContent());
+			totalLinks += count;
 
 			// The object requested is the list of configuration files
 			DecimalFormat format = new DecimalFormat("########.00");

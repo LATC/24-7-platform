@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="user-menu" version="2.0" class="span3">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <menu:menu id="user_menu" z="user-managed">
+        <menu:category id="c_first_category" z="user-managed">
+            <menu:item id="i_custom_link" messageCode="global_user_menu_changepassword" url="/changepassword/index" z="user-managed"/>
+        </menu:category>
+    </menu:menu>
+</div>

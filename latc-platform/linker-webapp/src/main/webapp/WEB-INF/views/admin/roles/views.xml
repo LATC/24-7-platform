@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="adminLayout" name="admin/roles/list">
+        <put-attribute name="body" value="/WEB-INF/views/admin/roles/list.jspx"/>
+    </definition>
+<definition extends="adminLayout" name="admin/roles/show">
+        <put-attribute name="body" value="/WEB-INF/views/admin/roles/show.jspx"/>
+    </definition>
+<definition extends="adminLayout" name="admin/roles/create">
+        <put-attribute name="body" value="/WEB-INF/views/admin/roles/create.jspx"/>
+    </definition>
+<definition extends="adminLayout" name="admin/roles/update">
+        <put-attribute name="body" value="/WEB-INF/views/admin/roles/update.jspx"/>
+    </definition>
+<definition extends="adminLayout" name="admin/roles/findRolesByRoleName">
+        <put-attribute name="body" value="/WEB-INF/views/admin/roles/findRolesByRoleName.jspx"/>
+    </definition>
+</tiles-definitions>

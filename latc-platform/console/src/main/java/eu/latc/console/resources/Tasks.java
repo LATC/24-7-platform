@@ -1,5 +1,6 @@
 package eu.latc.console.resources;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,11 +10,14 @@ import org.json.JSONObject;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.data.Method;
+import org.restlet.data.Reference;
 import org.restlet.data.Status;
 import org.restlet.ext.atom.Entry;
 import org.restlet.ext.atom.Feed;
 import org.restlet.ext.atom.Text;
 import org.restlet.ext.json.JsonConverter;
+import org.restlet.ext.rdf.Graph;
+import org.restlet.ext.rdf.Literal;
 import org.restlet.representation.Representation;
 import org.restlet.representation.Variant;
 import org.restlet.resource.Get;
@@ -26,6 +30,11 @@ import eu.latc.console.MainApplication;
 import eu.latc.console.ObjectManager;
 import eu.latc.console.objects.Notification;
 import eu.latc.console.objects.Task;
+import eu.latc.misc.MDSConnection;
+import eu.latc.vocabularies.DCTERMS;
+import eu.latc.vocabularies.RDF;
+import eu.latc.vocabularies.SILKSPEC;
+import eu.latc.vocabularies.XSD;
 
 public class Tasks extends BaseResource {
 	// Logger instance
@@ -99,7 +108,7 @@ public class Tasks extends BaseResource {
 			// Save the task, an exception may be raised if the XML is not valid
 			String taskID = manager.addTask(specification);
 
-			// Set the title
+			// Set the title and persist the task
 			Task task = manager.getTaskByID(taskID);
 			task.setTitle(title == null ? "No title" : title);
 			task.setDescription(description == null ? "No description" : description);
@@ -108,12 +117,28 @@ public class Tasks extends BaseResource {
 			task.setExecutable(true);
 			manager.saveTask(task);
 
-			// Add an initial upload report
+			// Add an upload report
 			Notification report = new Notification();
 			report.setMessage("Task created");
 			report.setSeverity("info");
 			report.setData("");
 			manager.addNotification(taskID, report);
+
+			// Generate a bunch of triples to be sent to the MDS
+			Reference r = new Reference(getRequest().getOriginalRef().getHostIdentifier() + "/task/" + taskID);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZZ");
+			Graph graph = new Graph();
+			graph.add(r, RDF.TYPE, SILKSPEC.SPEC);
+			graph.add(r, SILKSPEC.ID, new Literal(taskID, XSD.HEXBINARY));
+			graph.add(r, DCTERMS.CREATOR, new Literal(author == null ? "Unknown" : author));
+			graph.add(r, DCTERMS.CREATED, new Literal(sdf.format(task.getCreationDate()), XSD.DATETIME));
+			String graphText = graph.getRdfNTriplesRepresentation().getText();
+
+			// Send this to the MDS
+			String mdsHost = ((MainApplication) getApplication()).getParameters().get("MDS_HOST");
+			String mdsKey = ((MainApplication) getApplication()).getParameters().get("API_KEY_MDS");
+			MDSConnection mds = new MDSConnection(mdsHost, mdsKey);
+			mds.put(graphText, r.toUrl().toString());
 
 			// Set the return code and return the identifier
 			setStatus(Status.SUCCESS_CREATED);
@@ -212,58 +237,3 @@ public class Tasks extends BaseResource {
 	}
 
 }
-
-/*
- * @Post("multipart/form-data") public Representation
- * addMultiPartForm(Representation multipartForm) throws Exception {
- * logger.info("[POST] Received a new task " + multipartForm);
- * 
- * // Check if the form is valid if ((multipartForm == null) ||
- * (!MediaType.MULTIPART_FORM_DATA.equals(multipartForm.getMediaType(), true)))
- * { setStatus(Status.CLIENT_ERROR_BAD_REQUEST); logger.info("got " +
- * multipartForm.getMediaType()); return null; }
- * 
- * // Create a factory for disk-based file items DiskFileItemFactory factory =
- * new DiskFileItemFactory(); factory.setSizeThreshold(1000240);
- * 
- * // Parse the entity elements RestletFileUpload upload = new
- * RestletFileUpload(factory); List<FileItem> items =
- * upload.parseRepresentation(multipartForm);
- * 
- * // Process the content of the form String specification = null; String title
- * = null; String description = null; String author = null; for (FileItem item :
- * items) { if (!item.isFormField() &&
- * item.getFieldName().equals("specification")) specification =
- * item.getString(); if (item.isFormField() &&
- * item.getFieldName().equals("title")) title = item.getString(); if
- * (item.isFormField() && item.getFieldName().equals("description")) description
- * = item.getString(); if (item.isFormField() &&
- * item.getFieldName().equals("author")) author = item.getString(); }
- * 
- * // We need to have at least a specification to save if (specification ==
- * null) { setStatus(Status.CLIENT_ERROR_BAD_REQUEST); return null; }
- * 
- * // Get the entity manager ObjectManager manager = ((MainApplication)
- * getApplication()).getObjectManager();
- * 
- * // Save the configuration file String taskID =
- * manager.addTask(specification);
- * 
- * // Set the title Task task = manager.getTask(taskID); task.setTitle(title ==
- * null ? "No title" : title); task.setDescription(description == null ?
- * "No description" : description); task.setAuthor(author == null ? "Unknown" :
- * author); task.setCreationDate(new Date()); task.setExecutable(true);
- * manager.saveTask(task);
- * 
- * // Add an initial upload report Notification report = new Notification();
- * report.setMessage("Task created"); report.setSeverity("info");
- * report.setData(""); manager.addNotification(taskID, report);
- * 
- * // Set the return code and return the identifier
- * setStatus(Status.SUCCESS_CREATED);
- * 
- * JSONObject json = new JSONObject(); json.put("id", taskID); json.put("href",
- * getReference() + "/" + taskID); logger.info("[POST] Reply " + json);
- * JsonConverter conv = new JsonConverter(); return conv.toRepresentation(json,
- * null, null); }
- */

@@ -73,6 +73,7 @@ $lodTopics = array(
     $packageName = $ckanArray['name'];
     $uri = LOD.'dataset/'.$packageName;
 
+    $Prefixes = getPrefixes();
     $graph->add_resource_triple($uri, RDF_TYPE, VOID.'Dataset');
     $graph->add_literal_triple($uri, OPENVOCAB.'shortName', $packageName);
     $graph->add_literal_triple($uri, RDFS_LABEL, $ckanArray['title'], 'en');
@@ -128,6 +129,15 @@ $lodTopics = array(
         }
       }
 
+      if(isset($ckanArray['groups'])){
+        foreach($ckanArray['groups'] as $group){
+          $groupUri = LOD.'group/'.$group;
+          $graph->add_resource_triple($uri, DCT.'isPartOf', $groupUri);
+          $graph->add_resource_triple($groupUri, DCT.'hasPart', $uri);
+          $graph->add_resource_triple($groupUri, RDF_TYPE, FOAF.'Group');
+          $graph->add_literal_triple($groupUri, RDFS_LABEL, $group);
+        }
+      }
       foreach($ckanArray['extras'] as $key => $value){
         if(strpos($key, 'links:')===0){
           $targetDatasetName = substr($key, 6);
@@ -208,6 +218,90 @@ $lodTopics = array(
   return $graph->to_turtle();
 
 }
+
+function findDatasetsMatchingText($text){
+  $Sindice = new Sindice();
+  $MDS = new MDS();
+  $domains = $Sindice->findDomainsMatchingSearch($text);
+  $datasets = $MDS->findDatasetsMatchingDomains(array_keys($domains));
+  
+  $output = array();
+  $urlencodedSearch = urlencode($text);
+  foreach($datasets as $domain => $lodUri){
+    $output[$lodUri] = array(
+      'domain' => $domain,
+      'count' => $domains[$domain],
+      'search_url' =>  "http://api.sindice.com/v3/search?fq=domain%3A{$domain}&format=json&fq=format%3ARDF&q={$urlencodedSearch}",
+    );
+  }
+  return $output;
+ }
+
+class Sindice {
+
+  var $requestFactory = false;
+
+  function __construct(){
+    $this->requestFactory = new HttpRequestFactory();
+  }
+
+  function findDomainsMatchingSearch($search){
+    $urlencodedSearch = urlencode($search);
+    $apiCallUrl = "http://api.sindice.com/v3/search?q={$urlencodedSearch}&facet.field=domain&format=json&fq=format%3ARDF";
+    $response = $this->requestFactory->make('GET', $apiCallUrl)->execute();
+    if(!$response->is_success()){
+      die("500 Sindice error");
+    }
+    $json = $response->body;
+    $results = json_decode($json, true);
+    $domains = $results['facet_counts']['facet_fields']['domain_facet'];
+    $output = array();
+    foreach ($domains as $i => $domain) {
+      if(preg_match('/[a-z]/', $domains[$i])){
+        $output[$domain]=$domains[$i+1];
+      }
+    }
+    return $output;
+  }
+
+}
+
+class MDS {
+
+  var $Sparql;
+
+  function __construct(){
+    $this->Sparql = new SparqlService(LATC_STORE_URI.'/services/sparql');
+  }
+
+  function findDatasetsMatchingDomains($domains){
+    
+    $query = "prefix dsi: <".DSI."> \n SELECT ?ds_uri ?domain { ";
+    foreach($domains as $no => $domain){
+      $query.="{ ?ds_uri dsi:thirdLevelDomain \"{$domain}\" , ?domain . }";
+      if(isset($domains[$no+1])){
+        $query.= " UNION ";
+      }
+    }
+    $query.=" }";
+    $response = $this->Sparql->query($query, 'json');
+    if($response->is_success()){
+      $results = json_decode($response->body,1);
+      $return = array();
+      foreach($results['results']['bindings'] as $row){
+        $domain = $row['domain']['value'];
+        $return[$domain] = $row['ds_uri']['value']; // "http://api.sindice.com/v3/search?fq=domain%3A{$domain}&format=json&fq=format%3ARDF";
+      }
+      return $return;
+    } else {
+      header("HTTP/1.1 500");
+      die($response->body);
+    }
+  }
+
+
+}
+
 
 
 ?>

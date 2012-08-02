@@ -35,7 +35,7 @@
  <Blocking blocks="100"/>
 
   <Interlinks>
-    <Interlink id="medical centre">
+    <Interlink id="medicalCentre">
       <LinkType>owl:sameAs</LinkType>
 
       <SourceDataset dataSource="geonames" var="a">

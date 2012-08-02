@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_sindice_linker_domain_User" items="${users}" z="lU2TlA3ghSYhZT0q+o/FXNxACp8=">
+        <table:table data="${users}" id="l_com_sindice_linker_domain_User" path="/admin/users" z="I9wkEADq78EG6qqieCpOlKvashg=">
+            <table:column id="c_com_sindice_linker_domain_User_firstName" property="firstName" z="GtCWdhl05VJCwMKVQGAr3Y3+WGg="/>
+            <table:column id="c_com_sindice_linker_domain_User_lastName" property="lastName" z="NsHNL3fGvTkyulmlf/wZQD8Wqkw="/>
+            <table:column id="c_com_sindice_linker_domain_User_username" property="username" z="nHWeqlUrZedFu1mYZ7ur8sc606k="/>
+            <table:column id="c_com_sindice_linker_domain_User_emailAddress" property="emailAddress" z="r+hPqIqDA70CtPuPYV+6l4wRWnc="/>
+            <table:column id="c_com_sindice_linker_domain_User_password" property="password" z="fJu0lWhVJcOkMvvF1Q6qbC1HXpo="/>
+            <table:column date="true" dateTimePattern="${user_activationdate_date_format}" id="c_com_sindice_linker_domain_User_activationDate" property="activationDate" z="oXry7QswNgxAUpzXcske783grFg="/>
+        </table:table>
+    </page:list>
+</div>

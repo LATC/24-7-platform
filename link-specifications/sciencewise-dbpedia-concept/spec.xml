@@ -1,0 +1,55 @@
+<Silk>
+  <Prefixes>
+    <Prefix namespace="http://www.w3.org/2002/07/owl#" id="owl"></Prefix>
+    <Prefix namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="rdf"></Prefix>
+    <Prefix namespace="http://www.w3.org/2000/01/rdf-schema#" id="rdfs"></Prefix>
+    <Prefix namespace="http://vocab.sciencewise.info/ontology#" id="sw"></Prefix>
+  </Prefixes>
+  <DataSources>
+    <DataSource type="sparqlEndpoint" id="Sciencewise">
+      <Param name="pageSize" value="1000"></Param>
+      <Param name="pauseTime" value="0"></Param>
+      <Param name="retryCount" value="3"></Param>
+      <Param name="endpointURI" value="http://sparql.sciencewise.info"></Param>
+      <Param name="retryPause" value="1000"></Param>
+      <Param name="graph" value=""></Param>
+      <Param name="login" value=""></Param>
+      <Param name="entityList" value=""></Param>
+      <Param name="password" value=""></Param>
+      <Param name="additionalParameters" value=""></Param>
+    </DataSource>
+    <DataSource type="sparqlEndpoint" id="DBpedia">
+      <Param name="pageSize" value="1000"></Param>
+      <Param name="pauseTime" value="0"></Param>
+      <Param name="retryCount" value="3"></Param>
+      <Param name="endpointURI" value="http://dbpedia.org/sparql"></Param>
+      <Param name="retryPause" value="1000"></Param>
+      <Param name="graph" value=""></Param>
+      <Param name="login" value=""></Param>
+      <Param name="entityList" value=""></Param>
+      <Param name="password" value=""></Param>
+      <Param name="additionalParameters" value=""></Param>
+    </DataSource>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="Concepts">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset dataSource="Sciencewise" var="a">
+        <RestrictTo>
+          ?a &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://vocab.sciencewise.info/ontology#Concept&gt; .
+        </RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="DBpedia" var="b">
+        <RestrictTo> ?b &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/2002/07/owl#Thing&gt; . </RestrictTo>
+      </TargetDataset>
+      <LinkageRule>
+        <Compare weight="1" threshold="0.0" required="false" metric="equality" id="unnamed_1">
+          <Input path="?a/&lt;http://www.w3.org/2004/02/skos/core#definition&gt;" id="def"></Input>
+          <Input path="?b/&lt;http://xmlns.com/foaf/0.1/page&gt;" id="unnamed_5"></Input>
+        </Compare>
+      </LinkageRule>
+      <Filter limit="3"></Filter>
+      <Outputs> </Outputs>
+    </Interlink>
+  </Interlinks>
+</Silk>
