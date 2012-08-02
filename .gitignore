@@ -27,3 +27,5 @@ latc-platform/linker-webapp/src/main/resources/META-INF/spring/database.properti
 latc-platform/linker-webapp/src/main/resources/META-INF/spring/email.properties
 
 latc-platform/linker-webapp/src/test/resources/META-INF/spring-test/email.properties
+
+latc-platform/dsi/cache/*

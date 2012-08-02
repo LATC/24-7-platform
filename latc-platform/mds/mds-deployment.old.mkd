@@ -1,0 +1,14 @@
+
+_the following is broken, for the moment use <http://dsi-test.lod-cloud.net/> and <http://mds-test.lod-cloud.net/>_
+
+1. Download the [DSI](http://puelia-php.googlecode.com/svn/branches/dsi/archive.zip)
+1. Unpack the zip file and copy the directory ```puelia-php``` into $WWW
+1. Browse to ```$APACHE/puelia-php``` to start using the DSI
+1. For the MDS, download and install [Fuseki](http://incubator.apache.org/jena/documentation/serving_data/)
+
+Notes/Pitfalls
+
+* You must give write permissions to the file log/puelia.log
+* The application does not work with sub-paths (e.g. localhost/dsi). Instead, deploy at e.g. dsi.localhost:
+* Add the entry "127.0.0.1  dsi.localhost" to /etc/hosts.
+* Create a virtual host for this domain.
