@@ -11,10 +11,11 @@
     		    	 var html =['<table class="table"><thead>'];
     				 
     		    	 html.push('<tr>');
+    		    	 html.push('<th>Linkset name and spec:</th>');
+    		    	 html.push('<th>Created at:</th>');
+    		    	 html.push('<th>Created by:</th>');
     				 html.push('<th>Performed at:</th>');
-    				 html.push('<th>Performed by:</th>');
-    				 html.push('<th>Created at:</th>');
-    				 html.push('<th>Triples created by:</th>');
+    				 html.push('<th>Triples,report:</th>');
     				 html.push('<th>Rss feed:</th>');
        		        
     				 html.push('</tr></thead><tbody>');
@@ -29,9 +30,9 @@
     		        	 for(var i=0;i<entriesNo;i++){
     		        		var entry = entries[i];
     		        		
-    		        		var performedBy  = entry.performedBy.value;
-    		        		var index = performedBy.lastIndexOf("#");
-    		        		var performedByName  = performedBy .substring(index+1);
+    		        		var linkset  = entry.linkset.value;
+    		        		var index = linkset.lastIndexOf("#");
+    		        		var linksetName  = linkset.substring(index+1);
     		        		
     		        		
     		        		var generatedTriples = entry.generatedTriples.value;
@@ -39,20 +40,23 @@
     		        		var index = createdBy.lastIndexOf("/");
     		        		var createdByName  = createdBy.substring(index+1);
     		        		var createdByLink  = createdBy.substring(0,index+1)+"links.nt";
+    		        		var reportLink  = createdBy.substring(0,index+1)+"report.log";
+    		        		var specLink  = createdBy.substring(0,index+1)+"spec.xml";
     		        		var performedAt = entry.performedAt.value.replace(/-/g, "/").replace("T"," ").replace(/[+,-]\d\d\d\d$/,""); 
     		        		var createdAt =   entry.createdAt.value.replace(/-/g, "/").replace("T"," ").replace(/[+,-]\d\d\d\d$/,""); 
     		        		var feedLink = contextPrefix+"rss/"+entry.id.value+"/notifications.atom";
     		        		
     		        		html.push('<tr>');
-    		        		html.push('<td>'+performedAt+'</td>');
-    		        		html.push('<td><a href="'+performedBy+'">'+performedByName+'</a></td>');
+    		        		html.push('<td><a href="'+linkset+'">'+linksetName+'</a>, <a href="'+specLink+'">spec</a></td>');
     		        		html.push('<td>'+createdAt+'</td>');
-    		        		html.push('<td><a href="'+createdByLink+'">'+ generatedTriples +' by '+createdByName+' </a></td>');
+    		        		html.push('<td>'+createdByName+'</td>');
+    		        		html.push('<td>'+performedAt+'</td>');
+    		        		html.push('<td><a href="'+createdByLink+'">'+ generatedTriples+ ' triples</a>, <a href="'+reportLink+'">report</a></td>');
     		        		html.push('<td><a class="rssFeed" href="'+feedLink+'"></td>');
     		        		html.push('</tr>');
     		        	 }
     		         }
-    		         html.push("</tbody></table>")
+    		         html.push("</tbody></table>");
     		         jQuery("#latestJobs").html(html.join(""));
     		     },error:function(a,b,c){
     		    	 if(console){
