@@ -1,0 +1,6 @@
+# LATC Dataset Inventory (DSI)
+
+The DSI allows to browse and search datasets in the [Linked Open Data cloud](http://richard.cyganiak.de/2007/10/lod/). It is based on the [Linked Data API](http://code.google.com/p/linked-data-api/) implementation [Puelia](https://code.google.com/p/puelia-php/).
+
+The configuration is located in ```api-config-files/void.ttl```, interface design is defined in ```/views/xslt-styles/result.xsl```. In addition, the DSI extends Puelia with some custom search functionality in ```/scripts/dsi.js```.
+

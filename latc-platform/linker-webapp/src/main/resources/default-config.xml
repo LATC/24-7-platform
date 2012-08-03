@@ -33,11 +33,21 @@
         		 ];
 	 -->
   <mdsQueryLastJobs>
-    PREFIX silkspec:  &lt;http://vocab.deri.ie/LinkSpec#&gt;
-    PREFIX purl: &lt;http://purl.org/net/provenance/ns#&gt;
-    PREFIX dc: &lt;http://purl.org/dc/terms/#&gt;
-    SELECT ?id ?createdBy ?createdAt ?performedBy ?performedAt  WHERE {
-    ?s  a  silkspec:SilkSpec;
+    PREFIX silkspec:&lt;http://vocab.deri.ie/LinkSpec#&gt;
+    PREFIX purl:    &lt;http://purl.org/net/provenance/ns#&gt;
+    PREFIX dc:      &lt;http://purl.org/dc/terms/#&gt;
+    PREFIX void:    &lt;http://rdfs.org/ns/void#&gt;
+    PREFIX prv:     &lt;http://purl.org/net/provenance/ns#&gt;
+    
+    
+    SELECT ?linkset ?generatedTriples ?id ?createdBy ?createdAt ?performedBy ?performedAt  WHERE {
+    
+    ?linkset a void:Linkset;
+      void:triples  ?generatedTriples;
+      prv:createdBy ?x.
+    ?x prv:usedGuideline ?linkspec.
+    
+    ?linkspec  a  silkspec:SilkSpec;
       silkspec:ID ?id;
       dc:created ?created;
       purl:createdBy ?createdByO;
@@ -53,11 +63,20 @@
     LIMIT 100
 </mdsQueryLastJobs>
 <mdsQueryLastUserJobs>
-    PREFIX silkspec:  &lt;http://vocab.deri.ie/LinkSpec#&gt;
-    PREFIX purl: &lt;http://purl.org/net/provenance/ns#&gt;
-    PREFIX dc: &lt;http://purl.org/dc/terms/#&gt;
-    SELECT ?id ?createdBy ?createdAt ?performedBy ?performedAt  WHERE {
-    ?s  a  silkspec:SilkSpec;
+    PREFIX silkspec: &lt;http://vocab.deri.ie/LinkSpec#&gt;
+    PREFIX purl:     &lt;http://purl.org/net/provenance/ns#&gt;
+    PREFIX dc:       &lt;http://purl.org/dc/terms/#&gt;
+    PREFIX void:     &lt;http://rdfs.org/ns/void#&gt;
+    PREFIX prv:      &lt;http://purl.org/net/provenance/ns#&gt;
+    
+    SELECT ?linkset ?generatedTriples ?id ?createdBy ?createdAt ?performedBy ?performedAt  WHERE {
+    
+    ?linkset a void:Linkset;
+      void:triples  ?generatedTriples;
+      prv:createdBy ?x.
+    ?x prv:usedGuideline ?linkspec.
+    
+    ?linkspec  a  silkspec:SilkSpec;
       silkspec:ID ?id;
       dc:created ?created;
       purl:createdBy ?createdByO;
@@ -73,4 +92,11 @@
     ORDER BY DESC (?performedBy)
     LIMIT 100
 </mdsQueryLastUserJobs>
+<mdsQueryTotalGeneratedTriples>
+    PREFIX void:     &lt;http://rdfs.org/ns/void#&gt;
+    
+    SELECT ( count(?generatedTriples) as ?generatedTriplesTotal) WHERE {
+      ?linkset  void:triples  ?generatedTriples;
+    }
+</mdsQueryTotalGeneratedTriples>
 </configuration>

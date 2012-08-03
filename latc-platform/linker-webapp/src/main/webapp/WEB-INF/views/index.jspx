@@ -14,7 +14,7 @@
   <div class="hero-unit span10">
         <h1><spring:message code="welcome_h3" arguments="${app_name}" />!</h1>
         <p><spring:message code="welcome_text" /></p>
-        <p><a class="btn btn-primary btn-large" href="http://latc-project.eu/">Learn more &#187;</a></p>
+        <p><span class="badge badge-success" style="display:none; font-size:29px; margin:0 4px 0 0; vertical-align: middle;"  id="totalGeneratedLinks">&#160;</span> <a class="btn btn-primary btn-large" href="http://latc-project.eu/">Learn more &#187;</a></p>
   </div>
   
 
@@ -59,6 +59,7 @@
        //<![CDATA[  
        $(document).ready(function(){
         getLatestJobs();
+        getGeneratedTriples();
         });
      //]]>
        </script>

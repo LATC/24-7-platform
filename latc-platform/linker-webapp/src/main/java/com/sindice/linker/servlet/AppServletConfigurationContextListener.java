@@ -26,9 +26,10 @@ import com.sindice.linker.cache.MemcachedClientWrapper;
 public class AppServletConfigurationContextListener extends ServletConfigurationContextListener  {
 
 		public static final String APPLICATION_BASE_URL = "applicationBaseUrl";
+		public static final String MDS_URL = "mdsUrl";
 		public static final String MDS_QUERY_LAST_USER_JOBS = "mdsQueryLastUserJobs";
 		public static final String MDS_QUERY_LAST_JOBS = "mdsQueryLastJobs";
-		public static final String MDS_URL = "mdsUrl";
+		public static final String MDS_QUERY_TOTAL_GENERATED_TRIPLES = "mdsQueryTotalGeneratedTriples";
 
 		private static final Logger LOGGER = LoggerFactory.getLogger(AppServletConfigurationContextListener.class);
 		
@@ -85,11 +86,15 @@ public class AppServletConfigurationContextListener extends ServletConfiguration
 			        String mdsUrl = getParameterWithLogging(appConfig , MDS_URL, "");
 			        String mdsQueryLastJobs = getParameterWithLogging(appConfig , MDS_QUERY_LAST_JOBS, "");
 			        String mdsQueryLastUserJobs = getParameterWithLogging(appConfig , MDS_QUERY_LAST_USER_JOBS, "");
+			        String mdsQueryTotalGeneratedTriples = getParameterWithLogging(appConfig , MDS_QUERY_TOTAL_GENERATED_TRIPLES, "");
+			        
+			        
 			        
 			        servletContext.setAttribute(APPLICATION_BASE_URL, applicationBaseUrl);
 			        servletContext.setAttribute(MDS_URL, mdsUrl);
 			        servletContext.setAttribute(MDS_QUERY_LAST_JOBS, mdsQueryLastJobs);
 			        servletContext.setAttribute(MDS_QUERY_LAST_USER_JOBS, mdsQueryLastUserJobs);
+			        servletContext.setAttribute(MDS_QUERY_TOTAL_GENERATED_TRIPLES, mdsQueryTotalGeneratedTriples);
 			        
 			        
 			        String useMemcached = getParameterWithLogging(appConfig,"USE_MEMCACHED","false");
