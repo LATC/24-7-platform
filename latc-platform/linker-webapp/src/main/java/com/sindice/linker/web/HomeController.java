@@ -60,14 +60,22 @@ public class HomeController {
     	final String mdsUrl = (String) httpServletRequest.getSession().getServletContext().getAttribute(com.sindice.linker.servlet.AppServletConfigurationContextListener.MDS_URL);
     	final String mdsQueryLastJobs = (String) httpServletRequest.getSession().getServletContext().getAttribute(com.sindice.linker.servlet.AppServletConfigurationContextListener.MDS_QUERY_LAST_JOBS);
     	final String mdsQueryLastUserJobs = (String) httpServletRequest.getSession().getServletContext().getAttribute(com.sindice.linker.servlet.AppServletConfigurationContextListener.MDS_QUERY_LAST_USER_JOBS);
+    	final String mdsQueryTotalGeneratedTriples = (String) httpServletRequest.getSession().getServletContext().getAttribute(com.sindice.linker.servlet.AppServletConfigurationContextListener.MDS_QUERY_TOTAL_GENERATED_TRIPLES);
+    	
     	long mdsTimeout = 30;
     	
     	final String query;
-        if(httpServletRequest.getParameter("username")!=null){
-    		query = mdsQueryLastUserJobs.replaceAll("##USERNAME##", httpServletRequest.getParameter("username").trim());
-        }else{
-        	query =  mdsQueryLastJobs;
-        }
+        
+    	if(httpServletRequest.getParameter("generatedTriples")!=null && httpServletRequest.getParameter("generatedTriples").equals("total")){
+    		query = mdsQueryTotalGeneratedTriples;
+    	}else{
+        	if(httpServletRequest.getParameter("username")!=null){
+        		query = mdsQueryLastUserJobs.replaceAll("##USERNAME##", httpServletRequest.getParameter("username").trim());
+            }else{
+            	query =  mdsQueryLastJobs;
+            }
+    	}
+    	
     	
 		Map<String, Object> res = new HashMap<String,Object>();
 		res.put("status", "nok");

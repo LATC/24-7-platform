@@ -1,4 +1,24 @@
-    function getLatestJobs(username){
+    function getGeneratedTriples(username){
+    	var url = contextPrefix+"latest-jobs?generatedTriples=total";
+    	if(username){
+    		url +="&username="+encodeURIComponent(username);
+    	}
+    	jQuery.ajax({
+		     url:url,
+		     dataType:"json",
+		     success:function(json){
+		         if(json.status && json.status =="ok" && json.entries && json.entries.results && json.entries.results.bindings && json.entries.results.bindings.length==1 ){
+		        	 //ok 
+		        	 var entry = json.entries.results.bindings[0];
+		        	 var generatedTriplesTotal = entry.generatedTriplesTotal.value;
+		        	 $("#totalGeneratedLinks").text(generatedTriplesTotal +" links generated so far !!!").show();
+		         }
+		     }
+    	});
+    }
+
+
+	function getLatestJobs(username){
     	var url = contextPrefix+"latest-jobs";
     	if(username){
     		url +="?username="+encodeURIComponent(username);
