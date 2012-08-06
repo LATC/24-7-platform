@@ -1,2 +1,4 @@
-creator: Keith Alexander
-description: Climbing Venues within 15km of places in Geonames
+Creator:
+Knud Möller
+description: 
+Climbing Venues within 15km of places in Geonames

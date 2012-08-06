@@ -1,2 +1,2 @@
-creator: KA
-description:
+Creator:
+Knud Möller
