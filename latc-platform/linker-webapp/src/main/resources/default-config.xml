@@ -95,8 +95,9 @@
 <mdsQueryTotalGeneratedTriples>
     PREFIX void:     &lt;http://rdfs.org/ns/void#&gt;
     
-    SELECT ( count(?generatedTriples) as ?generatedTriplesTotal) WHERE {
-      ?linkset  void:triples  ?generatedTriples;
+    SELECT ( sum(?generatedTriples) as ?generatedTriplesTotal) WHERE {
+      ?linkset a void:Linkset;
+         void:triples  ?generatedTriples.
     }
 </mdsQueryTotalGeneratedTriples>
 </configuration>

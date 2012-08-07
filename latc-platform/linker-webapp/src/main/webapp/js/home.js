@@ -1,4 +1,6 @@
-    function getGeneratedTriples(username){
+"use strict";
+
+function getGeneratedTriples(username){
     	var url = contextPrefix+"latest-jobs?generatedTriples=total";
     	if(username){
     		url +="&username="+encodeURIComponent(username);
@@ -31,7 +33,7 @@
     		    	 var html =['<table class="table"><thead>'];
     				 
     		    	 html.push('<tr>');
-    		    	 html.push('<th>Linkset name and spec:</th>');
+    		    	 html.push('<th>Linkset name void and spec:</th>');
     		    	 html.push('<th>Created at:</th>');
     		    	 html.push('<th>Created by:</th>');
     				 html.push('<th>Performed at:</th>');
@@ -56,18 +58,24 @@
     		        		
     		        		
     		        		var generatedTriples = entry.generatedTriples.value;
-    		        		var createdBy = entry.createdBy.value;
-    		        		var index = createdBy.lastIndexOf("/");
-    		        		var createdByName  = createdBy.substring(index+1);
-    		        		var createdByLink  = createdBy.substring(0,index+1)+"links.nt";
-    		        		var reportLink  = createdBy.substring(0,index+1)+"report.log";
-    		        		var specLink  = createdBy.substring(0,index+1)+"spec.xml";
+    		        		var base = entry.createdBy.value;
+    		        		var index = base.lastIndexOf("/");
+    		        		
+    		        		var createdByName  = base.substring(index+1);
+    		        		var baseUrl = base.substring(0,index+1);
+    		        		var path = baseUrl.replace("http://demo.sindice.net/","");
+    		        		
+    		        		var linksetSummary = "linkset/"+path+linksetName;
+    		        		var createdByLink  = baseUrl+"links.nt";
+    		        		var reportLink     = baseUrl+"report.log";
+    		        		var specLink       = baseUrl+"spec.xml";
+    		        		
     		        		var performedAt = entry.performedAt.value.replace(/-/g, "/").replace("T"," ").replace(/[+,-]\d\d\d\d$/,""); 
     		        		var createdAt =   entry.createdAt.value.replace(/-/g, "/").replace("T"," ").replace(/[+,-]\d\d\d\d$/,""); 
     		        		var feedLink = contextPrefix+"rss/"+entry.id.value+"/notifications.atom";
     		        		
     		        		html.push('<tr>');
-    		        		html.push('<td><a href="'+linkset+'">'+linksetName+'</a>, <a href="'+specLink+'">spec</a></td>');
+    		        		html.push('<td><a href="'+linksetSummary+'">'+linksetName+'</a>, <a href="'+specLink+'">spec</a>, <a href="'+linkset+'">void</a></td>');
     		        		html.push('<td>'+createdAt+'</td>');
     		        		html.push('<td>'+createdByName+'</td>');
     		        		html.push('<td>'+performedAt+'</td>');

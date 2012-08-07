@@ -1,0 +1,20 @@
+ <div xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0" class="span9">
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  <spring:message var="app_name" code="application_name" htmlEscape="false" />
+  <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
+    
+    <div class="hero-unit">
+		<h2>
+ 		All info about linkset: ${linkspecName}
+		</h2>
+    	<p>
+			<a href="${fileServerUrl}${linksetUrl}/">folder listing</a><br />
+			<a href="${fileServerUrl}${linksetUrl}/report.log">report</a><br />
+			<a href="${fileServerUrl}${linksetUrl}/spec.xml">specification</a><br />
+			<a href="${fileServerUrl}${linksetUrl}/void.ttl">void</a><br />
+			<a href="${fileServerUrl}${linksetUrl}/links.nt">links</a><br />
+      	</p>
+    </div>
+    
+</div>

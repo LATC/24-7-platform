@@ -27,8 +27,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sindice.linker.cache.MemcachedClientWrapper;
@@ -208,4 +210,30 @@ public class HomeController {
     	return "login";
     }
 
+    @RequestMapping(value="/linkset/**")
+    public String linkset(Model uiModel,final HttpServletRequest httpServletRequest) {
+    	
+    	String restOfTheUrl = (String) httpServletRequest.getAttribute(
+    	        HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+    	
+    	int index = restOfTheUrl.lastIndexOf("/");
+    	String linksetName = restOfTheUrl.substring(index+1);
+    	String path = restOfTheUrl.substring(0,index);
+    	int numberOfSlashes = StringUtils.countOccurrencesOf(restOfTheUrl,"/");
+    	
+    	
+    	String contextPrefix = "../";
+    	for(int i=0;i<numberOfSlashes;i++){
+    		contextPrefix+="../";
+    	}
+    	
+    	uiModel.addAttribute("linkspecName",linksetName );
+    	uiModel.addAttribute("contextPrefix", contextPrefix);
+    	uiModel.addAttribute("linksetUrl",path);
+    	uiModel.addAttribute("fileServerUrl","http://demo.sindice.net/");
+    	
+    	return "linkset/index";
+    }
+    
+    
 }
