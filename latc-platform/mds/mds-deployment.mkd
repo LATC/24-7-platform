@@ -2,7 +2,51 @@
 
 ### Data Source Inventory (DSI) ###
 
-- the DSI is based on the [Puelia](https://code.google.com/p/puelia-php/) implementation of the [Linked Data API](http://code.google.com/p/linked-data-api/)
+#### Source Code ####
+
+- the DSI is based on the [Puelia](https://code.google.com/p/puelia-php/) implementation of the [Linked Data API](http://code.google.com/p/linked-data-api/), and implemented in php
+- the instructions are assuming that the DSI will be installed on a typical Linux server
+- the instructions are assuming that that the URI of the DSI will be http://dsi.lod-cloud.net - replace this value in the instructions below if you want to host the DSI elsewhere
+- since the DSI is not available as its own repository, we need to clone the whole LATC 24-7-platform repository from github and then create a symbolic link to the DSI folder (you don't need to repeat the ```git clone``` command if you already did this - in this case just do ```git pull origin master```):
+
+```
+cd /var/www
+git clone git://github.com/LATC/24-7-platform latc
+ln -s latc/latc-platform/dsi/ dsi.lod-cloud.net
+```
+
+#### DSI Server Configuration ####
+
+- in addition to the DSI code, the setup also requires an Apache virtual host config file, most likely to be located in ```/etc/httpd/vhosts.d```
+- here is what the current config file ```dsi.lod-cloud.net.config``` looks like:
+
+```
+<VirtualHost *:80>
+    DocumentRoot /var/www/dsi.lod-cloud.net/
+    ServerName dsi.lod-cloud.net
+    LogFormat "%v %h %l %u %D %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" apilogformat
+    ErrorLog logs/dsi.lod-cloud.net.error.log
+    CustomLog logs/dsi.lod-cloud.net.access.log apilogformat
+    RewriteLog logs/dsi.lod-cloud.net.rewrite.log
+
+
+    RewriteLogLevel 1
+    RewriteEngine On
+
+    RewriteRule ^/$            /datasets                                               [P,L,NE]
+    RewriteRule ^/sparql$      http://api.talis.com/stores/latc-mds/services/sparql    [P,L,NE]
+
+    LogLevel notice
+    ProxyPreserveHost Off
+    Options FollowSymLinks
+</VirtualHost>
+
+<Directory /var/www/dsi.lod-cloud.net/>
+    Options FollowSymLinks
+    AllowOverride FileInfo
+</Directory>
+```
+
 
 ### Meta data store (MDS) ###
 
@@ -12,7 +56,7 @@
 - the MDS is implemented in php
 - the instructions are assuming that the MDS will be installed on a typical Linux server
 - the instructions are assuming that that the URI of the MDS will be http://mds.lod-cloud.net - replace this value in the instructions below if you want to host the MDS elsewhere
-- since the MDS is not available as its own repository, we need to clone the whole LATC 24-7-platform repository from github and then create a symbolic link to the MDS folder:
+- since the MDS is not available as its own repository, we need to clone the whole LATC 24-7-platform repository from github and then create a symbolic link to the MDS folder (you don't need to repeat the ```git clone``` command if you already did this - in this case just do ```git pull origin master```):
 
 ```
 cd /var/www
@@ -20,7 +64,7 @@ git clone git://github.com/LATC/24-7-platform latc
 ln -s latc/latc-platform/mds/ mds.lod-cloud.net
 ```
 
-#### Server Configuration ####
+#### MDS Server Configuration ####
 
 - in addition to the MDS code, the setup also requires an Apache virtual host config file, most likely to be located in ```/etc/httpd/vhosts.d```
 - since the triple store used by the MDS currently is a remote store on the Talis Platform (as opposed to a local store), the config file defines a number of rewrite rules for the APIs offered by the Talis Platform (i.e., SPARQL, textual search, and describe) - if the backend store were to change, these rewrite rules would have to be adapted

@@ -1,0 +1,188 @@
+Name,Format,Author,Author_guessed,Title,Description,Links,Positive,Negative
+am-dbpedia-person,SILK,Christophe,Christophe,am -> dbpedia (person),Total time: 19417.676 seconds,627,6,25
+am-rmon-person,SILK,Christophe,Christophe,am -> rmon (person),Connect entities from Amsterdam Museum,5,4,2
+am-stads-person,SILK,Christophe,Christophe,am -> stads (person),Connect entities from Amsterdam Museum,37,5,2
+bnb-dbpedia-books,SILK,Unknown,Keith Alexander,bnb -> dbpedia (books),No description,0,,
+bnb-dbpedia-novelists,SILK,Unknown,Anja Jentzsch,bnb -> dbpedia (novelists),No description,0,1,
+bnb-openlibrary-books,SILK,Unknown,Keith Alexander,bnb -> openlibrary (books),No description,0,,
+citeseer-dblp-author,SILK,Nur Aini Rakhmawati (DERI),Nur Aini Rakhmawati (DERI),citeseer -> dblp (author),List author dblp - owl:sameAs - citeseer,,1,
+climb-bnb-guidebooks,SILK,Unknown,Keith Alexander,climb -> bnb (guidebooks),No description,7,,
+climb-dbpedia-venues-mountains,SILK,Unknown,Keith Alexander,climb -> dbpedia (venuesmountains),No description,103,17,
+climb-geonames-spatialthings,SILK,Unknown,Keith Alexander,climb -> geonames (spatialthings),No description,,,
+climb-geonames-venues,SILK,Unknown,Keith Alexander,climb -> geonames (venues),No description,2441,,
+climb-geonames-venues-mountains,SILK,Unknown,Keith Alexander,climb -> geonames (venuesmountains),No description,41,12,
+climb-linkedgeodata-venues-near-hospitals,SILK,Unknown,Keith Alexander,climb -> linkedgeodata (venuesnearhospitals),No description,510,,
+climb-linkedgeodata-venues-near-supermarkets,SILK,Unknown,Keith Alexander,climb -> linkedgeodata (venuesnearsupermarkets),No description,95,,
+climb-linkedgeodata-venues-near-trainstations,SILK,Unknown,Keith Alexander,climb -> linkedgeodata (venuesneartrainstations),No description,187,,
+climb-metoffice-venues-near-forecast-locations,SILK,Unknown,Keith Alexander,climb -> metoffice (venuesnearforecastlocations),No description,1047,11,6
+climb-ordnancesurvey-areas,SILK,Unknown,Keith Alexander,climb -> ordnancesurvey (areas),No description,13,,
+climb-ordnancesurvey-venues,SILK,Unknown,Keith Alexander,climb -> ordnancesurvey (venues),No description,193,,
+climb-rail-venues,SILK,Unknown,Keith Alexander,climb -> rail (venues),No description,118,10,
+cordis-dbpedia-projects,SILK,Anja,Anja,cordis -> dbpedia (projects),No description,31,17,
+cordis-eures-companies,SILK,Unknown,Ulrich Zellbeck,No title,No description,,,
+dblp-datasemanticweb-researcher,SILK,Nur Aini Rakhmawati (DERI),Nur Aini Rakhmawati (DERI),dblp -> datasemanticweb (researcher),List researcher semantic web data.semanticweb.org - owl:sameAs - DBLP,,6,40
+dblp_rkb-dblp_rkb-person,SILK,Christophe,Christophe,dblp_rkb -> dblp_rkb (person),Creates foaf:knows based on co-authorship information,,,
+dbpedia-BBCwildLife-species,SILK,Nur Aini Rakhmawati (DERI),Nur Aini Rakhmawati (DERI),dbpedia -> BBCwildLife (species),List Animal Species BBCWildLife - owl:sameAs - Dbpedia,,444,632
+dbpedia-cordis-organizations,SILK,Anja and  Uli,Anja and  Uli,dbpedia -> cordis (organizations),Linkset links dbpedia (http://dbpedia.org) with Cordis (http://cordis.europa.eu).,283,100,14
+dbpedia-datagovUK-city,SILK,Nur Aini Rakhmawati (DERI),Nur Aini Rakhmawati (DERI),dbpedia -> datagovUK (city),List city in UK data.gov.uk - owl:sameAs - Dbpedia,,84,112
+dbpedia-diseasome-disease,SILK,Unknown,Ulrich Zellbeck,No title,No description,,,
+dbpedia-diseasome-gene,SILK,Unknown,Ulrich Zellbeck,No title,No description,,,
+dbpedia-drugbank-drugs,SILK,Unknown,Ulrich Zellbeck,No title,No description,,,
+dbpedia-drugbank-enzyme,SILK,Unknown,Ulrich Zellbeck,No title,No description,,,
+dbpedia-drugbank-target,SILK,Unknown,Ulrich Zellbeck,No title,No description,,,
+dbpedia-eccompetition-companies,SILK,Unknown,Ulrich Zellbeck,No title,No description,,,
+dbpedia-eccompetition-regions,SILK,Unknown,Ulrich Zellbeck,No title,No description,,,
+dbpedia-eunis-species,SILK,Anja,Anja,dbpedia -> eunis (species),No description,3621,100,30
+dbpedia-euraxess-companies,SILK,Unknown,Anja Jentzsch,No title,No description,,,
+dbpedia-eures-administrativeAreas,SILK,Unknown,Ulrich Zellbeck,No title,No description,,,
+dbpedia-factbook-language,SILK,Nur Aini Rakhmawati (DERI),Nur Aini Rakhmawati (DERI),dbpedia -> factbook (language),List language in the world Dbpedia - http://dbpedia.org/ontology/spokenIn - factbook country,,312,
+dbpedia-geonames-airport,SILK,Uli,Uli,dbpedia -> geonames (airport),No description,5442,100,10
+dbpedia-geonames-city,SILK,Uli,Uli,dbpedia -> geonames (city),No description,174074,100,10
+dbpedia-geonames-country,SILK,Uli,Uli,dbpedia -> geonames (country),No description,191,100,10
+dbpedia-geonames-island,SILK,Uli,Uli,dbpedia -> geonames (island),No description,1589,100,10
+dbpedia-geonames-lake,SILK,Uli,Uli,dbpedia -> geonames (lake),No description,3505,100,10
+dbpedia-geonames-mountain,SILK,Uli,Uli,dbpedia -> geonames (mountain),No description,3626,100,10
+dbpedia-geonames-mountainRange,SILK,Uli,Uli,dbpedia -> geonames (mountainRange),No description,697,100,10
+dbpedia-geonames-river,SILK,Uli,Uli,dbpedia -> geonames (river),No description,,,
+dbpedia-geonames-school,SILK,Unknown,Ulrich Zellbeck,No title,No description,,,
+dbpedia-geospecies-species,SILK,Anja and  Uli,Anja and  Uli,dbpedia -> geospecies (species),Linkset links dbpedia (http://dbpedia.org) with Geospecies (http://lod.geospecies.org/).,11411,100,3
+dbpedia-gutendata-person,SILK,Uli,Uli,dbpedia -> gutendata (person),No description,126,100,10
+dbpedia-gutendata-texts,SILK,Uli,Uli,dbpedia -> gutendata (texts),No description,135,100,10
+dbpedia-linkedct-city,SILK,Uli,Uli,dbpedia -> linkedct (city),No description,1714,100,10
+dbpedia-linkedct-condition,SILK,Uli,Uli,dbpedia -> linkedct (condition),No description,4072,100,10
+dbpedia-linkedct-country,SILK,Uli,Uli,dbpedia -> linkedct (country),No description,169,100,10
+dbpedia-linkedct-intervention,SILK,Uli,Uli,dbpedia -> linkedct (intervention),No description,32158,100,10
+dbpedia-linkedct-keyword,SILK,Uli,Uli,dbpedia -> linkedct (keyword),No description,6627,100,10
+dbpedia-linkedct-sponsor,SILK,Uli,Uli,dbpedia -> linkedct (sponsor),No description,1234,100,10
+dbpedia-linkedct-state,SILK,Uli,Uli,dbpedia -> linkedct (state),No description,501,100,11
+dbpedia-linkedgeodata-airport,SILK,Unknown,Anja Jentzsch,dbpedia -> linkedgeodata (airport),No description,8404,250,0
+dbpedia-linkedgeodata-city,SILK,Unknown,Anja Jentzsch,dbpedia -> linkedgeodata (city),No description,88377,250,
+dbpedia-linkedgeodata-country,SILK,Unknown,Anja Jentzsch,dbpedia -> linkedgeodata (country),No description,222,220,2
+dbpedia-linkedgeodata-embassy,SILK,Nur Aini Rakhmawati (DERI),Nur Aini Rakhmawati (DERI),dbpedia -> linkedgeodata (embassy),List Embassy location linkedgeodata - lgdp:country - Dbpedia Country,,1309,
+dbpedia-linkedgeodata-island,SILK,Unknown,Anja Jentzsch,dbpedia -> linkedgeodata (island),No description,449,250,
+dbpedia-linkedgeodata-lake,SILK,Unknown,Anja Jentzsch,No title,No description,0,,
+dbpedia-linkedgeodata-mountain,SILK,Unknown,Anja Jentzsch,dbpedia -> linkedgeodata (mountain),No description,3258,246,2
+dbpedia-linkedgeodata-river,SILK,Unknown,Anja Jentzsch,dbpedia -> linkedgeodata (river),No description,52,8,
+dbpedia-linkedgeodata-school,SILK,Unknown,Anja Jentzsch,dbpedia -> linkedgeodata (school),No description,2470,250,
+dbpedia-linkedgeodata-stadium,SILK,Unknown,Anja Jentzsch,dbpedia -> linkedgeodata (stadium),No description,133,133,
+dbpedia-linkedgeodata-university,SILK,Unknown,Anja Jentzsch,dbpedia -> linkedgeodata (university),No description,268,267,
+dbpedia-linkedmdb-actor,SILK,Anja,Anja,dbpedia -> linkedmdb (actor),No description,1172,,
+dbpedia-linkedmdb-director,SILK,Anja,Anja,dbpedia -> linkedmdb (director),No description,470,,
+dbpedia-linkedmdb-movies,SILK,Anja,Anja,dbpedia -> linkedmdb (movies),No description,10108,100,10
+dbpedia-linkedmdb-producer,SILK,Anja,Anja,dbpedia -> linkedmdb (producer),No description,2048,,
+dbpedia-lobid-organization,SILK,Uli,Uli,dbpedia -> lobid (organization),Linkset links dbpedia with lobid.,,,
+dbpedia-musicbrainz-album,SILK,Uli Zellbeck,Uli Zellbeck,dbpedia -> musicbrainz (album),Links albums on dbpedia with musicbrainz,,,
+dbpedia-musicbrainz-artist,SILK,Uli Zellbeck,Uli Zellbeck,dbpedia -> musicbrainz (artist),Links artists on dbpedia with musicbrainz,,,
+dbpedia-musicbrainz-band,SILK,Uli Zellbeck,Uli Zellbeck,dbpedia -> musicbrainz (band),Links bands on dbpedia with musicbrainz,,100,
+dbpedia-musicbrainz-soloArtist,SILK,Uli Zellbeck,Uli Zellbeck,dbpedia -> musicbrainz (soloArtist),Links solo artists on dbpedia with musicbrainz,,,
+dbpedia-openei-country,SILK,Uli,Uli,dbpedia -> openei (country),No description,217,100,10
+dbpedia-openei-organisation,SILK,Unknown,Ulrich Zellbeck,No title,No description,361,100,7
+dbpedia-openei-places,SILK,Uli,Uli,dbpedia -> openei (places),No description,29005,100,10
+dbpedia-openlibrary-bookauthor,SILK,Nur Aini Rakhmawati (DERI),Nur Aini Rakhmawati (DERI),dbpedia -> openlibrary (bookauthor),List city in UK Dbpedia Book - dbpedia-owl:author - openlibraryAuthor,,766,2224
+dbpedia-sider-drug,SILK,Unknown,Ulrich Zellbeck,No title,No description,662,100,10
+dbpedia-sider-sideEffect,SILK,Unknown,Ulrich Zellbeck,No title,No description,1214,100,10
+dbpedia-stich-proteinorganism,SILK,Nur Aini Rakhmawati (DERI),Nur Aini Rakhmawati (DERI),dbpedia -> stich (proteinorganism),Protein organism Stich chemicalProteinInteractions - stitch:organism - Dbpedia Organism ,,14,
+dbtune-dbpedia-album,SILK,Nur Aini Rakhmawati (DERI),Nur Aini Rakhmawati (DERI),dbtune -> dbpedia (album),List album Dbtune - owl:sameAs - Dbpedia,,730,
+dbtune-dbpedia-band,SILK,Nur Aini Rakhmawati (DERI),Nur Aini Rakhmawati (DERI),dbtune -> dbpedia (band),List Bands Dbtune - owl:sameAs - Dbpedia,416,108,
+dogfood-ckan-person-dataset,SILK,Christophe,Christophe,dogfood -> ckan (persondataset),Connects the packages in CKAN to their author in DogFood,115,6,11
+drugbank-dailymed-activeIngredients,LIMES,Unknown,Unknown,No title,No description,1193,,
+drugbank-dailymed-activeMoiety,LIMES,Unknown,Unknown,No title,No description,2362,,
+drugbank-dailymed-inactiveIngredients,LIMES,Unknown,Unknown,No title,No description,2424,,
+drugbank-dailymed-ingredients,LIMES,Unknown,Unknown,No title,No description,1046,,
+eccompetition-cordis-companies,SILK,Unknown,Anja Jentzsch,No title,No description,,,
+eccompetition-euraxess-companies,SILK,Unknown,Anja Jentzsch,No title,No description,,,
+eccompetition-eures-companies,SILK,Unknown,Anja Jentzsch,No title,No description,,,
+eccompetition-eures-regions,SILK,Unknown,Ulrich Zellbeck,No title,No description,,,
+epo-dbpedia-countries,SILK,Christophe,Christophe,epo -> dbpedia (countries),Link countries from EPO and DBpedia,39,39,0
+epo-euraxess-countries,SILK,Christophe,Christophe,epo -> euraxess (countries),Link countries from EPO and Euraxess,36,36,0
+eumida-euelections-countries,SILK,Unknown,Keith Alexander,eumida -> euelections (countries),No description,0,,
+eunis-geospecies-species,SILK,Anja and  Uli,Anja and  Uli,eunis -> geospecies (species),Linkset links Eunis (http://eunis.eea.europa.eu/) with Geospecies (http://lod.geospecies.org/).,3282,100,15
+euraxess-cordis-companies,SILK,Unknown,Ulrich Zellbeck,No title,No description,,,
+euraxess-dbpedia-country,SILK,Christophe,Christophe,euraxess -> dbpedia (country),Link countries from Euraxess and DBpedia,190,11,0
+euraxess-eures-companies,SILK,Unknown,Ulrich Zellbeck,No title,No description,,,
+euraxess-eures-country,SILK,Christophe,Christophe,euraxess -> eures (country),Link countries from Euraxess and Eures,188,10,0
+eurostat-dbpedia-aircraft,SILK,Unknown,AniDa,No title,No description,23,23,
+eurostat-dbpedia-countries_continents,SILK,Unknown,AniDa,No title,No description,222,29,
+eurostat-dbpedia-greenhouse_gases,SILK,Unknown,AniDa,No title,No description,8,8,
+eventseer-dblp_fu-person,SILK,Christophe,Christophe,eventseer -> dblp_fu (person),No description,0,,
+eventseer-dblp_l3s-event,SILK,Christophe,Christophe,eventseer -> dblp_l3s (event),sameAs relations between persons in EventSeer and DBLP (L3S),0,,
+eventseer-dblp_l3s-person,SILK,Christophe,Christophe,eventseer -> dblp_l3s (person),sameAs relations between persons in EventSeer and DBLP (L3S),35,0,1
+eventseer-dblp_l3s-publications,SILK,Christophe,Christophe,eventseer -> dblp_l3s (publications),No description,0,,
+eventseer-dblp_rkb-event,SILK,Christophe,Christophe,eventseer -> dblp_rkb (event),Connect event to related proceedings (eventually from previous editions),23,14,5
+eventseer-dblp_rkb-person,SILK,Christophe,Christophe,eventseer -> dblp_rkb (person),No description,13692,,
+eventseer-dogfood-event,SILK,Christophe,Christophe,eventseer -> dogfood (event),sameAs relations between events in EventSeer and DogFood,6,4,2
+eventseer-dogfood-person,SILK,Christophe,Christophe,eventseer -> dogfood (person),sameAs relations between persons in EventSeer and DogFood,1272,10,0
+geonames-linkedgeodata-airport,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (airport),No description,21552,250,0
+geonames-linkedgeodata-bay,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (bay),No description,14670,250,0
+geonames-linkedgeodata-beach,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (beach),No description,2028,250,0
+geonames-linkedgeodata-bus stop,SILK,Unknown,Anja Jentzsch,No title,No description,,,
+geonames-linkedgeodata-bus_stop,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (bus_stop),No description,0,0,
+geonames-linkedgeodata-castle,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (castle),No description,252,252,
+geonames-linkedgeodata-city,SILK,Unknown,KonradHoeffner,geonames -> linkedgeodata (city),No description,34907,247,
+geonames-linkedgeodata-cliff,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (cliff),No description,4414,252,0
+geonames-linkedgeodata-country,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (country),No description,218,217,1
+geonames-linkedgeodata-farm,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (farm),No description,54,54,0
+geonames-linkedgeodata-garden,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (garden),No description,11,11,0
+geonames-linkedgeodata-glacier,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (glacier),No description,375,250,0
+geonames-linkedgeodata-golf course,SILK,Unknown,Anja Jentzsch,No title,No description,,,
+geonames-linkedgeodata-golf_course,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (golf_course),No description,51,50,0
+geonames-linkedgeodata-graveyard,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (graveyard),No description,1,1,0
+geonames-linkedgeodata-guest house,SILK,Unknown,Anja Jentzsch,No title,No description,,,
+geonames-linkedgeodata-guest_house,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (guest_house),No description,3,3,0
+geonames-linkedgeodata-hospital,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (hospital),No description,11032,241,6
+geonames-linkedgeodata-hotel,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (hotel),No description,1850,250,0
+geonames-linkedgeodata-island,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (island),No description,37399,154,90
+geonames-linkedgeodata-library,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (library),No description,9225,250,0
+geonames-linkedgeodata-medical centre,SILK,Unknown,Anja Jentzsch,No title,No description,,,
+geonames-linkedgeodata-medical_centre,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (medical_centre),No description,0,0,
+geonames-linkedgeodata-memorial,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (memorial),No description,186,186,0
+geonames-linkedgeodata-memorial2,SILK,Unknown,Anja Jentzsch,No title,No description,186,,
+geonames-linkedgeodata-mountain,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (mountain),No description,236711,129,120
+geonames-linkedgeodata-museum,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (museum),No description,3291,249,1
+geonames-linkedgeodata-park,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (park),No description,55648,248,2
+geonames-linkedgeodata-parking,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (parking),No description,1,1,0
+geonames-linkedgeodata-petrol station,SILK,Unknown,Anja Jentzsch,No title,No description,,,
+geonames-linkedgeodata-petrol_station,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (petrol_station),No description,1,1,0
+geonames-linkedgeodata-pier,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (pier),No description,5,5,0
+geonames-linkedgeodata-place of worship,SILK,Unknown,Anja Jentzsch,No title,No description,,,
+geonames-linkedgeodata-place_of_worship,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (place_of_worship),No description,201318,243,6
+geonames-linkedgeodata-police post,SILK,Unknown,Anja Jentzsch,No title,No description,,,
+geonames-linkedgeodata-police_post,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (police_post),No description,24,24,0
+geonames-linkedgeodata-post office,SILK,Unknown,Anja Jentzsch,No title,No description,,,
+geonames-linkedgeodata-post_office,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (post_office),No description,20718,250,0
+geonames-linkedgeodata-restaurant,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (restaurant),No description,55,55,0
+geonames-linkedgeodata-river,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (river),No description,47101,0,
+geonames-linkedgeodata-school,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (school),No description,168545,251,0
+geonames-linkedgeodata-shelter,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (shelter),No description,0,0,
+geonames-linkedgeodata-shop,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (shop),No description,59,56,3
+geonames-linkedgeodata-stadium,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (stadium),No description,24,24,0
+geonames-linkedgeodata-university,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (university),No description,48,43,5
+geonames-linkedgeodata-veterinary,SILK,Unknown,Anja Jentzsch,geonames -> linkedgeodata (veterinary),No description,0,0,
+gho-linkedct-country,SILK,Unknown,KonradHoeffner,gho -> linkedct (country),No description,274628,250,0
+gho-linkedct-disease,SILK,Unknown,Anja Jentzsch,gho -> linkedct (disease),No description,40,40,0
+gho-pubmed-country,SILK,Unknown,root,gho -> pubmed (country),No description,160,160,0
+linkedct-pubmed-country,SILK,Unknown,root,linkedct -> pubmed (country),No description,155,155,0
+linkedct-pubmed-disease,SILK,Unknown,Anja Jentzsch,linkedct -> pubmed (disease),No description,3602,,
+linkedgeodata-airportdata,SILK,Unknown,root,linkedgeodata -> airportdata (),No description,5877,223,15
+linkedgeodata-factbook-country,SILK,Unknown,KonradHoeffner,linkedgeodata -> factbook (country),No description,120,120,0
+linkedgeodata-fao,SILK,Unknown,Anja Jentzsch,linkedgeodata -> fao (),No description,191,188,3
+linkedmanchester-dbpedia-busoperators,SILK,Unknown,Keith Alexander,linkedmanchester -> dbpedia (busoperators),No description,25,4,13
+metoffice-dbpedia-locations,SILK,Unknown,Keith Alexander,metoffice -> dbpedia (locations),No description,71,1,1
+metoffice-geonames-locations,SILK,Unknown,Keith Alexander,metoffice -> geonames (locations),No description,396,11,
+metoffice-ordnancesurvey-locations,SILK,Unknown,Keith Alexander,metoffice -> ordnancesurvey (locations),No description,261,2,2
+metoffice-ordnancesurvey-othersettlements,SILK,Unknown,Keith Alexander,metoffice -> ordnancesurvey (othersettlements),No description,59,7,2
+ourairports-ordnancesurvey,SILK,Unknown,Keith Alexander,ourairports -> ordnancesurvey (),No description,62,,
+pbac-dbpedia-17thcanglicanbishops,SILK,Unknown,Keith Alexander,pbac -> dbpedia (17thcanglicanbishops),No description,47,12,11
+pbac-pbac-books,SILK,Unknown,Keith Alexander,pbac -> pbac (books),No description,671,,
+rail-dbpedia-scottishmonuments,SILK,Unknown,Keith Alexander,rail -> dbpedia (scottishmonuments),No description,144,10,
+rail-geonames-ukplaces,SILK,Unknown,Keith Alexander,rail -> geonames (ukplaces),No description,275,,
+rkbcrime-dbpedia-constabularies,SILK,Unknown,Keith Alexander,rkbcrime -> dbpedia (constabularies),No description,35,35,
+schema_org-foaf-class,SILK,Christophe,Christophe,schema_org -> foaf (class),sameAs relations between schema.org and FOAF,2,2,0
+schema_rdfs_org-foaf-class,SILK,Christophe,Christophe,schema_rdfs_org -> foaf (class),sameAs relations between schema.rdfs.org and FOAF,3,3,0
+sciencewise-dbpedia-concept,SILK,Christophe,Christophe,sciencewise -> dbpedia (concept),Link concepts from ScienceWise to DBPedia,21,21,0
+stad-rmon-person,SILK,Christophe,Christophe,stad -> rmon (person),SameAs between Person instances,32,14,18
+trafficscotland-dbpedia-roads,SILK,Unknown,Keith Alexander,trafficscotland -> dbpedia (roads),No description,46,,
+transport-ontologi.es-rail-stations,SILK,Unknown,Keith Alexander,transport -> ontologi.es (railstations),No description,2376,17,
+transport-ordnancesurvey-localauthorities,SILK,Unknown,Keith Alexander,transport -> ordnancesurvey (localauthorities),No description,100,,
+transport-ordnancesurvey-roads-within-place,SILK,Unknown,Keith Alexander,transport -> ordnancesurvey (roadswithinplace),No description,3069,,
+transport-ordnancesurvey-trafficcountpoints,SILK,Unknown,Keith Alexander,transport -> ordnancesurvey (trafficcountpoints),No description,7235,,
