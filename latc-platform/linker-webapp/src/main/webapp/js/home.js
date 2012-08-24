@@ -54,8 +54,12 @@ function getGeneratedTriples(username){
     		        		
     		        		var linkset  = entry.linkset.value;
     		        		var index = linkset.lastIndexOf("#");
-    		        		var linksetName  = linkset.substring(index+1);
+    		        		var linksetName2  = linkset.substring(index+1);
     		        		
+    		        		index = linkset.lastIndexOf("/");
+    		        		var linksetName1 = linkset.substring(0,index);
+    		        		index = linksetName1.lastIndexOf("/");
+    		        		linksetName1 = linksetName1.substring(index+1);
     		        		
     		        		var generatedTriples = entry.generatedTriples.value;
     		        		var base = entry.createdBy.value;
@@ -65,7 +69,7 @@ function getGeneratedTriples(username){
     		        		var baseUrl = base.substring(0,index+1);
     		        		var path = baseUrl.replace("http://demo.sindice.net/","");
     		        		
-    		        		var linksetSummary = "linkset/"+path+linksetName;
+    		        		var linksetSummary = "linkset/"+path+linksetName2;
     		        		var createdByLink  = baseUrl+"links.nt";
     		        		var reportLink     = baseUrl+"report.log";
     		        		var specLink       = baseUrl+"spec.xml";
@@ -75,7 +79,7 @@ function getGeneratedTriples(username){
     		        		var feedLink = contextPrefix+"rss/"+entry.id.value+"/notifications.atom";
     		        		
     		        		html.push('<tr>');
-    		        		html.push('<td><a href="'+linksetSummary+'">'+linksetName+'</a>, <a href="'+specLink+'">spec</a>, <a href="'+linkset+'">void</a></td>');
+    		        		html.push('<td><a href="'+linksetSummary+'">'+linksetName1+'#'+linksetName2+' </a>, <a href="'+specLink+'">spec</a>, <a href="'+linkset+'">void</a></td>');
     		        		html.push('<td>'+createdAt+'</td>');
     		        		html.push('<td>'+createdByName+'</td>');
     		        		html.push('<td>'+performedAt+'</td>');

@@ -216,18 +216,26 @@ public class HomeController {
     	String restOfTheUrl = (String) httpServletRequest.getAttribute(
     	        HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
     	
+    	//take the second name
     	int index = restOfTheUrl.lastIndexOf("/");
-    	String linksetName = restOfTheUrl.substring(index+1);
+    	String linksetName2 = restOfTheUrl.substring(index+1);
+    	
     	String path = restOfTheUrl.substring(0,index);
     	int numberOfSlashes = StringUtils.countOccurrencesOf(restOfTheUrl,"/");
-    	
     	
     	String contextPrefix = "../";
     	for(int i=0;i<numberOfSlashes;i++){
     		contextPrefix+="../";
     	}
     	
-    	uiModel.addAttribute("linkspecName",linksetName );
+    	// take the first name
+    	index = path.lastIndexOf("/");
+    	String linksetName1 = path.substring(index+1);
+    	
+    	
+    	
+    	uiModel.addAttribute("linkspecName1",linksetName1 );
+    	uiModel.addAttribute("linkspecName2",linksetName2 );
     	uiModel.addAttribute("contextPrefix", contextPrefix);
     	uiModel.addAttribute("linksetUrl",path);
     	uiModel.addAttribute("fileServerUrl","http://demo.sindice.net/");
