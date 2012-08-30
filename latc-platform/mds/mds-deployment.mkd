@@ -24,7 +24,7 @@ ln -s latc/latc-platform/dsi/ dsi.lod-cloud.net
 <VirtualHost *:80>
     DocumentRoot /var/www/dsi.lod-cloud.net/
     ServerName dsi.lod-cloud.net
-    LogFormat "%v %h %l %u %D %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" apilogformat
+    LogFormat "%v %h %l %u %D %t \\"%r\\" %>s %b \\"%{Referer}i\\" \\"%{User-Agent}i\\"" apilogformat
     ErrorLog logs/dsi.lod-cloud.net.error.log
     CustomLog logs/dsi.lod-cloud.net.access.log apilogformat
     RewriteLog logs/dsi.lod-cloud.net.rewrite.log
@@ -71,31 +71,31 @@ ln -s latc/latc-platform/mds/ mds.lod-cloud.net
 - here is what the current config file ```mds.lod-cloud.net.config``` looks like:
 
 ```
-	<VirtualHost *:80>
-	    DocumentRoot /var/www/mds.lod-cloud.net/htdocs
-	    ServerName mds.lod-cloud.net
-	    LogFormat "%v %h %l %u %D %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" apilogformat
-	    ErrorLog logs/mds.lod-cloud.net.error.log
-	    CustomLog logs/mds.lod-cloud.net.access.log apilogformat
-	    RewriteLog logs/mds.lod-cloud.net.rewrite.log
+<VirtualHost *:80>
+    DocumentRoot /var/www/mds.lod-cloud.net/htdocs
+    ServerName mds.lod-cloud.net
+    LogFormat "%v %h %l %u %D %t \\"%r\\" %>s %b \\"%{Referer}i\\" \\"%{User-Agent}i\\"" apilogformat
+    ErrorLog logs/mds.lod-cloud.net.error.log
+    CustomLog logs/mds.lod-cloud.net.access.log apilogformat
+    RewriteLog logs/mds.lod-cloud.net.rewrite.log
 
-	    RewriteLogLevel 1
-	    RewriteEngine On
+    RewriteLogLevel 1
+    RewriteEngine On
 
-	    RewriteRule ^/sparql$        http://api.talis.com/stores/latc-mds/services/sparql    [P,L,NE]
-	    RewriteRule ^/search$        http://api.talis.com/stores/latc-mds/items              [P,L,NE]
-	    RewriteRule ^/describe$      http://api.talis.com/stores/latc-mds/meta               [P,L,NE]
-	    RewriteRule ^/data$          http://api.talis.com/stores/latc-mds/meta               [P,L,NE]
+    RewriteRule ^/sparql$        http://api.talis.com/stores/latc-mds/services/sparql    [P,L,NE]
+    RewriteRule ^/search$        http://api.talis.com/stores/latc-mds/items              [P,L,NE]
+    RewriteRule ^/describe$      http://api.talis.com/stores/latc-mds/meta               [P,L,NE]
+    RewriteRule ^/data$          http://api.talis.com/stores/latc-mds/meta               [P,L,NE]
 
-	    LogLevel notice
-	    ProxyPreserveHost Off
-	    Options FollowSymLinks
-	</VirtualHost>
+    LogLevel notice
+    ProxyPreserveHost Off
+    Options FollowSymLinks
+</VirtualHost>
 
-	<Directory /var/www/mds.lod-cloud.net/htdocs>
-	    Options FollowSymLinks
-	    AllowOverride All
-	</Directory>
+<Directory /var/www/mds.lod-cloud.net/htdocs>
+    Options FollowSymLinks
+    AllowOverride All
+</Directory>
 ```
 #### CKAN Import Scripts ####
 
