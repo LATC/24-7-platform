@@ -1,5 +1,23 @@
 "use strict";
 
+function formatLinksNumber(size){
+		var size = parseFloat(size);
+		if (size == 1)
+			return "1";
+		else if (size < 1 * 1000)
+			return size.toFixed(0) + " ";
+		else if (size < 1 * 1000 * 1000)
+			return (size / 1000).toFixed(1) + " thousand";
+		else if (size < 1 * 1000 * 1000 * 1000)
+			return (size / (1000 * 1000)).toFixed(2) + " million";
+		else if (size < 1 * 1000 * 1000 * 1000 * 1000)
+			return (size / (1000 * 1000 * 1000)).toFixed(3) + " billion";
+		else if (size < 1 * 1000 * 1000 * 1000 * 1000 * 1000)
+			return (size / (1000 * 1000 * 1000 * 1000)).toFixed(4) + " TB";
+		else
+			return 0
+}
+
 function getGeneratedTriples(username){
     	var url = contextPrefix+"latest-jobs?generatedTriples=total";
     	if(username){
@@ -13,7 +31,8 @@ function getGeneratedTriples(username){
 		        	 //ok 
 		        	 var entry = json.entries.results.bindings[0];
 		        	 var generatedTriplesTotal = entry.generatedTriplesTotal.value;
-		        	 $("#totalGeneratedLinks").text(generatedTriplesTotal +" links generated so far !!!").show();
+		        	 generatedTriplesTotal = formatLinksNumber(generatedTriplesTotal);
+		        	 $("#totalGeneratedLinks").text("So far "+generatedTriplesTotal +" links were generated").show();
 		         }
 		     }
     	});
