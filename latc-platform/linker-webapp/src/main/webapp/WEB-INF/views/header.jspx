@@ -10,15 +10,6 @@
   
   <spring:url value="${contextPrefix}resources/j_spring_security_logout" var="logout"/>
   
-  <!-- 
-  
-  <a href="${home}" name="${fn:escapeXml(home_label)}" title="${fn:escapeXml(home_label)}">
-    <img src="${banner}" />
-  </a>
-  
-   -->
-   
-   
    <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -47,8 +38,10 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="${contextPrefix}">Home</a></li>
+              <!-- 
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
+               -->
             </ul>
           </div><!--/.nav-collapse -->
         </div>
