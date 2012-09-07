@@ -24,11 +24,17 @@
            <p>
            The following components are available so far, online
            <ul>
-               <li>The <a href="https://github.com/LATC/24-7-platform/tree/master/latc-platform/dsi" >Dataset Inventory</a> to find datasets to interlink</li>
-               <li>The <a href="https://www.assembla.com/spaces/silk/wiki/Silk_Workbench">Workbench</a>, to generate links</li>
-               <li>The <a href="https://github.com/LATC/24-7-platform/tree/master/latc-platform/console" >Console</a> to monitor the link generation progress</li>
-               <li>The <a href="http://demo.sindice.net/latctemp/">Linkset API</a> to download the generated links</li>
-               <li>The <a href="https://github.com/LATC/24-7-platform/tree/master/latc-platform/linkqa">Quality Assurance</a> to asses the quality of the generated links.</li>
+               <li>The <a href="http://dsi.lod-cloud.net/" >Dataset Inventory</a>&#160;<a href="https://github.com/LATC/24-7-platform/tree/master/latc-platform/dsi"  class="label label-info">&#60; code &#62;</a> to find datasets to interlink
+               </li>
+               <li>The <a href="workbench" >Workbench</a> &#160;<a href="https://www.assembla.com/spaces/silk/wiki/Silk_Workbench"  class="label label-info">&#60; code &#62;</a> to generate links
+               </li>
+               <li>The <a href="console" >Console</a>&#160;<a href="https://github.com/LATC/24-7-platform/tree/master/latc-platform/console" class="label label-info">&#60; code &#62;</a> to monitor the link generation progress
+               </li>
+               <li>The <a href="http://qa.linkeddata.org/frontend/" >Quality Assurance</a>&#160;<a href="https://github.com/LATC/24-7-platform/tree/master/latc-platform/linkqa" class="label label-info">&#60; code &#62;</a> to asses the quality of the generated links.
+               </li>
+               <li>The <a href="http://demo.sindice.net/latctemp/">Linkset API</a> to download the generated links
+               </li>
+               
            </ul>
           </p>
           <p>
