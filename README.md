@@ -50,14 +50,4 @@ The Runtime is a backend component operated by DERI. The Runtime uses a Silk Map
 
 The documentation of the runtime is located [there](https://github.com/LATC/24-7-platform/wiki/Documentation-for-Runtime) and its source code [there](https://github.com/LATC/24-7-platform/tree/master/latc-platform/runtime)
 
-## Aditional components
-
-There are some componentns which are not depicted in the drawing of the platform but are used and embedded by other components.
-
-### Linkset Evaluator
-
-The LinkSet Evaluator is a QA module executed by the Runtime which verify if the reference link sets are correctly generated when the task gets executed.
-
-The documentation of the LinkSet evaluator is located [there](https://github.com/LATC/24-7-platform/wiki/Documentation-for-LinksetEvaluator)
-
 
